@@ -1,0 +1,2560 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Restaurant Am Fels – Kroatische Küche in Engelskirchen</title>
+  <meta name="description" content="Restaurant Am Fels in Engelskirchen-Loope. Kroatische Tradition trifft internationale Kochkunst. Steaks, Grillspezialitäten, frischer Fisch." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #c9a96e;
+      --gold-light: #e8d5b0;
+      --gold-dark: #9a7a48;
+      --black: #0a0a0a;
+      --dark: #111111;
+      --dark2: #1a1a1a;
+      --dark3: #222222;
+      --cream: #f8f4ed;
+      --text: #d4c9b8;
+      --text-light: #f0ebe2;
+      --wine: #6b1f1f;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--black);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 3px; }
+
+    /* ── SELECTION ── */
+    ::selection { background: var(--gold); color: var(--black); }
+
+    /* ────────────────────────────────────
+       NAVIGATION
+    ──────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 1.2rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.4s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(10, 10, 10, 0.96);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 0.9rem 3rem;
+      border-bottom: 1px solid rgba(201, 169, 110, 0.15);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .nav-logo span {
+      font-size: 0.55rem;
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-reserve {
+      background: var(--gold);
+      color: var(--black) !important;
+      padding: 0.6rem 1.4rem;
+      font-weight: 700 !important;
+      transition: background 0.3s, transform 0.2s !important;
+    }
+
+    .nav-reserve::after { display: none !important; }
+    .nav-reserve:hover { background: var(--gold-light) !important; transform: translateY(-1px); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 26px; height: 2px;
+      background: var(--gold);
+      transition: all 0.3s;
+    }
+
+    /* ────────────────────────────────────
+       HERO
+    ──────────────────────────────────── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 700px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('images/terrasse.jpeg');
+      background-size: cover;
+      background-position: center 30%;
+      transform: scale(1.08);
+      transition: transform 8s ease;
+    }
+
+    .hero-bg.loaded { transform: scale(1); }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.3) 0%,
+        rgba(0,0,0,0.55) 50%,
+        rgba(0,0,0,0.85) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 0 2rem;
+      animation: heroFadeIn 1.2s ease both;
+    }
+
+    @keyframes heroFadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-eyebrow {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(4rem, 12vw, 9rem);
+      font-weight: 900;
+      color: var(--cream);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1rem, 3vw, 1.5rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--gold-light);
+      margin-bottom: 3rem;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 auto 2.5rem;
+      position: relative;
+    }
+
+    .hero-divider::before, .hero-divider::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      width: 5px; height: 5px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    .hero-divider::before { left: -8px; }
+    .hero-divider::after { right: -8px; }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--text);
+      max-width: 520px;
+      margin: 0 auto 3rem;
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--black);
+      padding: 1rem 2.5rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(201, 169, 110, 0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--cream);
+      padding: 1rem 2.5rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.4);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--gold);
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+      cursor: pointer;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    .hero-scroll svg { width: 20px; opacity: 0.7; }
+
+    /* ────────────────────────────────────
+       SECTION COMMONS
+    ──────────────────────────────────── */
+    section { position: relative; }
+
+    .section-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .ornament {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .ornament-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-dark));
+      max-width: 80px;
+    }
+
+    .ornament-line.right {
+      background: linear-gradient(to left, transparent, var(--gold-dark));
+    }
+
+    .ornament-diamond {
+      width: 8px; height: 8px;
+      background: var(--gold);
+      transform: rotate(45deg);
+    }
+
+    /* fade-in animation */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ────────────────────────────────────
+       STRIP / TICKER
+    ──────────────────────────────────── */
+    .ticker {
+      background: var(--gold);
+      padding: 0.85rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ticker-inner {
+      display: inline-flex;
+      animation: ticker 35s linear infinite;
+    }
+
+    .ticker-item {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--black);
+      padding: 0 3rem;
+    }
+
+    .ticker-sep {
+      color: var(--black);
+      opacity: 0.4;
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ────────────────────────────────────
+       ÖFFNUNGSZEITEN
+    ──────────────────────────────────── */
+    .hours {
+      background: var(--dark2);
+      padding: 7rem 3rem;
+    }
+
+    .hours-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .hours-text .section-title { margin-bottom: 1.5rem; }
+
+    .hours-text p {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: var(--text);
+      font-weight: 300;
+    }
+
+    .hours-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(201, 169, 110, 0.1);
+      transition: background 0.2s;
+    }
+
+    .hours-row:first-child { border-top: 1px solid rgba(201, 169, 110, 0.1); }
+
+    .hours-day {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+
+    .hours-time {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      color: var(--gold);
+      text-align: right;
+    }
+
+    .hours-time.closed {
+      color: rgba(201, 169, 110, 0.3);
+      font-style: italic;
+    }
+
+    /* ────────────────────────────────────
+       ÜBER UNS
+    ──────────────────────────────────── */
+    .about {
+      padding: 8rem 3rem;
+      background: var(--dark);
+    }
+
+    .about-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .about-image-wrap {
+      position: relative;
+    }
+
+    .about-image-main {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      display: block;
+    }
+
+    .about-image-secondary {
+      position: absolute;
+      width: 55%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      bottom: -2.5rem;
+      right: -2.5rem;
+      border: 5px solid var(--dark);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    }
+
+    .about-gold-label {
+      position: absolute;
+      top: 2rem; left: -2rem;
+      background: var(--gold);
+      color: var(--black);
+      padding: 0.6rem 1.2rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.85rem;
+      font-style: italic;
+      white-space: nowrap;
+    }
+
+    .about-text { padding-right: 1rem; }
+    .about-text p {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: var(--text);
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .feature-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .feature-icon {
+      width: 40px; height: 40px;
+      border: 1px solid var(--gold-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--gold);
+      font-size: 1.1rem;
+    }
+
+    .feature-text h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      color: var(--cream);
+      margin-bottom: 0.2rem;
+    }
+
+    .feature-text p {
+      font-size: 0.78rem;
+      color: var(--text);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* ────────────────────────────────────
+       GALERIE
+    ──────────────────────────────────── */
+    .gallery {
+      padding: 8rem 3rem;
+      background: var(--black);
+    }
+
+    .gallery-header {
+      max-width: 700px;
+      margin: 0 auto 4rem;
+      text-align: center;
+    }
+
+    .gallery-grid {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto auto;
+      gap: 8px;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .gallery-item:nth-child(1) {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .gallery-item:nth-child(4) {
+      grid-column: span 2;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+      min-height: 220px;
+    }
+
+    .gallery-item:nth-child(1) img { min-height: 460px; }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+    }
+
+    .gallery-overlay svg {
+      color: white;
+      opacity: 0;
+      transition: opacity 0.3s;
+      width: 40px;
+    }
+
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-item:hover .gallery-overlay { background: rgba(0,0,0,0.45); }
+    .gallery-item:hover .gallery-overlay svg { opacity: 1; }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox.open { display: flex; }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 2rem; right: 2rem;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+      background: none;
+      border: none;
+    }
+
+    .lightbox-close:hover { opacity: 1; }
+
+    /* ────────────────────────────────────
+       SPEISEKARTE
+    ──────────────────────────────────── */
+    .menu {
+      padding: 8rem 3rem;
+      background: var(--dark2);
+    }
+
+    .menu-header {
+      max-width: 700px;
+      margin: 0 auto 4rem;
+      text-align: center;
+    }
+
+    .menu-tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+      max-width: 1000px;
+      margin: 0 auto 4rem;
+      border-bottom: 1px solid rgba(201, 169, 110, 0.2);
+    }
+
+    .menu-tab {
+      padding: 0.9rem 1.8rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text);
+      cursor: pointer;
+      border: none;
+      background: none;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: all 0.3s;
+    }
+
+    .menu-tab:hover { color: var(--gold); }
+    .menu-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+    .menu-panel { display: none; max-width: 1000px; margin: 0 auto; }
+    .menu-panel.active { display: block; }
+
+    .menu-category {
+      margin-bottom: 3rem;
+    }
+
+    .menu-cat-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .menu-cat-divider {
+      height: 1px;
+      background: linear-gradient(to right, var(--gold-dark), transparent);
+      margin-bottom: 1.5rem;
+    }
+
+    .menu-items-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      transition: background 0.2s;
+      gap: 1rem;
+    }
+
+    .menu-item:hover { background: rgba(201, 169, 110, 0.04); }
+
+    .menu-item-left { flex: 1; }
+
+    .menu-item-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      color: var(--cream);
+      margin-bottom: 0.2rem;
+    }
+
+    .menu-item-desc {
+      font-size: 0.78rem;
+      color: var(--text);
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    .menu-item-price {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+
+    .menu-note {
+      font-size: 0.78rem;
+      color: var(--text);
+      font-style: italic;
+      margin-top: 2rem;
+      padding: 1rem;
+      border-left: 2px solid var(--gold-dark);
+      background: rgba(201, 169, 110, 0.04);
+    }
+
+    .menu-cta {
+      text-align: center;
+      margin-top: 4rem;
+      padding: 3rem;
+      border: 1px solid rgba(201, 169, 110, 0.15);
+    }
+
+    .menu-cta p {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ────────────────────────────────────
+       EVENTS
+    ──────────────────────────────────── */
+    .events {
+      padding: 8rem 3rem;
+      background: var(--dark);
+    }
+
+    .events-header {
+      max-width: 700px;
+      margin: 0 auto 5rem;
+      text-align: center;
+    }
+
+    .events-header p {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: var(--text);
+      font-weight: 300;
+    }
+
+    .events-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+    }
+
+    .event-card {
+      position: relative;
+      overflow: hidden;
+      height: 420px;
+      cursor: pointer;
+    }
+
+    .event-card-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.7s ease;
+    }
+
+    .event-card:hover .event-card-bg { transform: scale(1.06); }
+
+    .event-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.2) 60%);
+    }
+
+    .event-card-content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 2.5rem;
+      transform: translateY(10px);
+      transition: transform 0.4s ease;
+    }
+
+    .event-card:hover .event-card-content { transform: translateY(0); }
+
+    .event-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold-dark);
+      padding: 0.3rem 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .event-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 0.8rem;
+    }
+
+    .event-desc {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .event-card:hover .event-desc {
+      opacity: 1;
+      max-height: 100px;
+    }
+
+    .events-banner {
+      max-width: 1200px;
+      margin: 2px auto 0;
+      background: var(--gold);
+      padding: 2.5rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .events-banner-text h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--black);
+      margin-bottom: 0.4rem;
+    }
+
+    .events-banner-text p {
+      font-size: 0.9rem;
+      color: rgba(0,0,0,0.65);
+    }
+
+    .btn-dark {
+      background: var(--black);
+      color: var(--gold);
+      padding: 0.9rem 2rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+
+    .btn-dark:hover {
+      background: var(--dark3);
+      transform: translateY(-1px);
+    }
+
+    /* ────────────────────────────────────
+       GUTSCHEINE
+    ──────────────────────────────────── */
+    .voucher {
+      padding: 8rem 3rem;
+      background: var(--dark2);
+      text-align: center;
+    }
+
+    .voucher-inner { max-width: 1000px; margin: 0 auto; }
+
+    .voucher-card {
+      background: var(--dark3);
+      border: 1px solid rgba(201, 169, 110, 0.2);
+      padding: 5rem 4rem;
+      margin-top: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .voucher-card::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(201,169,110,0.08) 0%, transparent 70%);
+    }
+
+    .voucher-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(201,169,110,0.06) 0%, transparent 70%);
+    }
+
+    .voucher-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .voucher-card > p {
+      font-size: 1rem;
+      color: var(--text);
+      max-width: 600px;
+      margin: 0 auto 3.5rem;
+      line-height: 1.8;
+    }
+
+    .voucher-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .voucher-step {
+      padding: 2rem 1.5rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(201,169,110,0.1);
+    }
+
+    .voucher-step-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      color: rgba(201,169,110,0.15);
+      line-height: 1;
+      margin-bottom: 0.8rem;
+    }
+
+    .voucher-step h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--cream);
+      margin-bottom: 0.5rem;
+    }
+
+    .voucher-step p {
+      font-size: 0.82rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .voucher-validity {
+      font-size: 0.78rem;
+      color: var(--text);
+      opacity: 0.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ────────────────────────────────────
+       RESERVIERUNG
+    ──────────────────────────────────── */
+    .reservation {
+      padding: 8rem 3rem;
+      background: var(--dark);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .reservation::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('images/hauptraum.jpeg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.04;
+    }
+
+    .reservation-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .reservation-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .reservation-header p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text);
+      max-width: 550px;
+      margin: 1rem auto 0;
+    }
+
+    .res-form {
+      background: var(--dark2);
+      border: 1px solid rgba(201, 169, 110, 0.15);
+      padding: 3.5rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group.full { grid-column: span 2; }
+
+    .form-group label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201, 169, 110, 0.2);
+      color: var(--cream);
+      padding: 0.9rem 1rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.92rem;
+      outline: none;
+      transition: border-color 0.3s;
+      width: 100%;
+      -webkit-appearance: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(212, 201, 184, 0.35);
+    }
+
+    .form-group select option { background: var(--dark2); color: var(--cream); }
+
+    .form-group textarea { resize: vertical; min-height: 100px; }
+
+    .form-submit {
+      display: flex;
+      justify-content: center;
+      margin-top: 2.5rem;
+    }
+
+    .btn-submit {
+      background: var(--gold);
+      color: var(--black);
+      padding: 1.1rem 3rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-submit:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(201,169,110,0.25);
+    }
+
+    .res-phone {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+
+    .res-phone a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    /* ────────────────────────────────────
+       KONTAKT
+    ──────────────────────────────────── */
+    .contact {
+      padding: 8rem 3rem;
+      background: var(--black);
+    }
+
+    .contact-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+    }
+
+    .contact-info { }
+
+    .contact-info p {
+      font-size: 0.98rem;
+      line-height: 1.9;
+      color: var(--text);
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    .contact-details { list-style: none; margin-bottom: 2.5rem; }
+
+    .contact-details li {
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid rgba(201,169,110,0.08);
+    }
+
+    .contact-icon {
+      color: var(--gold);
+      font-size: 1rem;
+      margin-top: 2px;
+      width: 18px;
+      flex-shrink: 0;
+    }
+
+    .contact-detail-text { }
+
+    .contact-detail-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-detail-value {
+      font-size: 0.95rem;
+      color: var(--cream);
+    }
+
+    .contact-detail-value a {
+      color: var(--cream);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-detail-value a:hover { color: var(--gold); }
+
+    .contact-social {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .social-link {
+      width: 42px; height: 42px;
+      border: 1px solid rgba(201,169,110,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: all 0.3s;
+    }
+
+    .social-link:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(201,169,110,0.06);
+    }
+
+    .contact-form { }
+
+    .contact-form .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    /* ────────────────────────────────────
+       FOOTER
+    ──────────────────────────────────── */
+    footer {
+      background: var(--dark2);
+      border-top: 1px solid rgba(201,169,110,0.1);
+      padding: 4rem 3rem 2rem;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 4rem;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .footer-desc {
+      font-size: 0.85rem;
+      color: var(--text);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-col h4 {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-col ul li a {
+      font-size: 0.85rem;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover { color: var(--gold); }
+
+    .footer-col p {
+      font-size: 0.85rem;
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: rgba(212,201,184,0.4);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .footer-links a {
+      font-size: 0.75rem;
+      color: rgba(212,201,184,0.4);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ────────────────────────────────────
+       TOAST
+    ──────────────────────────────────── */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--dark3);
+      border: 1px solid var(--gold-dark);
+      border-left: 3px solid var(--gold);
+      padding: 1rem 1.5rem;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      min-width: 300px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    .toast-icon { color: var(--gold); font-size: 1.2rem; }
+
+    .toast-text h4 {
+      font-size: 0.88rem;
+      color: var(--cream);
+      margin-bottom: 0.15rem;
+    }
+
+    .toast-text p {
+      font-size: 0.75rem;
+      color: var(--text);
+    }
+
+    /* ────────────────────────────────────
+       RESPONSIVE
+    ──────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .hours-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .about-image-secondary { display: none; }
+      .about-gold-label { left: 1rem; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+      .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 1.2rem 1.5rem; }
+      nav.scrolled { padding: 0.9rem 1.5rem; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        inset: 0;
+        background: rgba(10,10,10,0.98);
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+        z-index: 999;
+      }
+
+      .nav-links.open a { font-size: 1.2rem; }
+      .nav-reserve { display: none !important; }
+
+      .hero-title { font-size: clamp(3rem, 15vw, 6rem); }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .gallery-item:nth-child(1) {
+        grid-column: span 2;
+        grid-row: span 1;
+      }
+
+      .gallery-item:nth-child(4) { grid-column: span 1; }
+
+      .menu-items-grid { grid-template-columns: 1fr; }
+      .menu-tabs { overflow-x: auto; }
+
+      .events-grid { grid-template-columns: 1fr; }
+      .event-card { height: 320px; }
+      .events-banner { flex-direction: column; text-align: center; }
+
+      .voucher-steps { grid-template-columns: 1fr; }
+      .voucher-card { padding: 3rem 2rem; }
+
+      .form-row { grid-template-columns: 1fr; }
+      .form-group.full { grid-column: span 1; }
+
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+
+      .hours, .about, .gallery, .menu, .events, .voucher, .reservation, .contact {
+        padding: 5rem 1.5rem;
+      }
+
+      .ticker-item { padding: 0 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    Am Fels
+    <span>Restaurant &amp; Eventlocation</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#ueber-uns">Über uns</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#speisekarte">Speisekarte</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#gutscheine">Gutscheine</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+    <li><a href="#reservierung" class="nav-reserve">Reservieren</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Engelskirchen · Loope</span>
+    <h1 class="hero-title">Am <em>Fels</em></h1>
+    <p class="hero-subtitle">Kroatische Tradition trifft internationale Kochkunst</p>
+    <div class="hero-divider"></div>
+    <p class="hero-desc">
+      Erleben Sie außergewöhnliche Küche in einzigartigem Ambiente –
+      frisch zubereitet, mit Leidenschaft serviert.
+    </p>
+    <div class="hero-buttons">
+      <a href="#reservierung" class="btn-primary">Tisch reservieren</a>
+      <a href="#speisekarte" class="btn-outline">Speisekarte ansehen</a>
+    </div>
+  </div>
+  <div class="hero-scroll" onclick="document.getElementById('oeffnungszeiten').scrollIntoView({behavior:'smooth'})">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M19 9l-7 7-7-7"/>
+    </svg>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ── TICKER ── -->
+<div class="ticker">
+  <div class="ticker-inner" id="tickerInner">
+    <span class="ticker-item">Kroatische Spezialitäten</span>
+    <span class="ticker-item ticker-sep">◆</span>
+    <span class="ticker-item">Premium Steaks aus Argentinien</span>
+    <span class="ticker-item ticker-sep">◆</span>
+    <span class="ticker-item">Frischer Fisch</span>
+    <span class="ticker-item ticker-sep">◆</span>
+    <span class="ticker-item">Grillspezialitäten</span>
+    <span class="ticker-item ticker-sep">◆</span>
+    <span class="ticker-item">Eventlocation bis 75 Personen</span>
+    <span class="ticker-item ticker-sep">◆</span>
+    <span class="ticker-item">Familienküche seit Jahren</span>
+    <span class="ticker-item ticker-sep">◆</span>
+    <span class="ticker-item">Kroatische Spezialitäten</span>
+    <span class="ticker-item ticker-sep">◆</span>
+    <span class="ticker-item">Premium Steaks aus Argentinien</span>
+    <span class="ticker-item ticker-sep">◆</span>
+    <span class="ticker-item">Frischer Fisch</span>
+    <span class="ticker-item ticker-sep">◆</span>
+    <span class="ticker-item">Grillspezialitäten</span>
+    <span class="ticker-item ticker-sep">◆</span>
+    <span class="ticker-item">Eventlocation bis 75 Personen</span>
+    <span class="ticker-item ticker-sep">◆</span>
+    <span class="ticker-item">Familienküche seit Jahren</span>
+    <span class="ticker-item ticker-sep">◆</span>
+  </div>
+</div>
+
+<!-- ── ÖFFNUNGSZEITEN ── -->
+<section class="hours" id="oeffnungszeiten">
+  <div class="hours-inner">
+    <div class="hours-text fade-up">
+      <span class="section-label">Öffnungszeiten</span>
+      <h2 class="section-title">Wir freuen uns<br>auf <em>Ihren Besuch</em></h2>
+      <div class="ornament">
+        <div class="ornament-line"></div>
+        <div class="ornament-diamond"></div>
+        <div class="ornament-line right"></div>
+      </div>
+      <p>
+        Reservierungen empfehlen wir besonders für Wochenenden und besondere Anlässe.
+        Für Gruppen ab 10 Personen bitten wir Sie, uns vorab zu kontaktieren –
+        wir bereiten gerne alles für Sie vor.
+      </p>
+    </div>
+    <div class="hours-grid fade-up" style="transition-delay:0.2s">
+      <div class="hours-row">
+        <span class="hours-day">Montag</span>
+        <span class="hours-time closed">Ruhetag</span>
+      </div>
+      <div class="hours-row">
+        <span class="hours-day">Dienstag – Freitag</span>
+        <span class="hours-time">11:30 – 14:30 &nbsp;|&nbsp; 17:00 – 22:30</span>
+      </div>
+      <div class="hours-row">
+        <span class="hours-day">Samstag</span>
+        <span class="hours-time">12:00 – 22:30</span>
+      </div>
+      <div class="hours-row">
+        <span class="hours-day">Sonntag</span>
+        <span class="hours-time">12:00 – 21:00</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ÜBER UNS ── -->
+<section class="about" id="ueber-uns">
+  <div class="about-inner">
+    <div class="about-image-wrap fade-up">
+      <img src="images/innen.jpeg" alt="Restaurant Am Fels Innenraum" class="about-image-main" />
+      <img src="images/hauptraum.jpeg" alt="Hauptraum" class="about-image-secondary" />
+      <span class="about-gold-label">Raum &amp; Genuss</span>
+    </div>
+    <div class="about-text fade-up" style="transition-delay:0.15s">
+      <span class="section-label">Unsere Geschichte</span>
+      <h2 class="section-title">Kroatische Tradition<br>im <em>besonderen Ambiente</em></h2>
+      <div class="ornament">
+        <div class="ornament-line"></div>
+        <div class="ornament-diamond"></div>
+        <div class="ornament-line right"></div>
+      </div>
+      <p>
+        Das Restaurant Am Fels steht für die Verbindung von kroatischer Kochtradition
+        und internationaler Kochkunst. Inmitten der malerischen Natur von
+        Engelskirchen-Loope schaffen wir ein Erlebnis, das weit über den Tellerrand hinausgeht.
+      </p>
+      <p>
+        Jedes Gericht wird frisch zubereitet – mit Zutaten, die sorgfältig ausgewählt werden.
+        Unsere Steaks stammen aus Argentinien, unser Fisch aus kontrollierter Herkunft,
+        und unsere Grillspezialitäten folgen seit Generationen überlieferten Rezepten.
+      </p>
+      <div class="about-features">
+        <div class="feature-item">
+          <div class="feature-icon">✦</div>
+          <div class="feature-text">
+            <h4>Frische Küche</h4>
+            <p>Täglich frisch zubereitet, keine Convenience</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">✦</div>
+          <div class="feature-text">
+            <h4>Premium Steaks</h4>
+            <p>Grain Fed Beef aus Argentinien</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">✦</div>
+          <div class="feature-text">
+            <h4>Kroatische Seele</h4>
+            <p>Cevapcici, Raznjici &amp; mehr</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">✦</div>
+          <div class="feature-text">
+            <h4>Eventlocation</h4>
+            <p>Separater Raum bis 75 Personen</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── GALERIE ── -->
+<section class="gallery" id="galerie">
+  <div class="gallery-header fade-up">
+    <span class="section-label">Impressionen</span>
+    <h2 class="section-title">Einblicke in unser<br><em>Restaurant</em></h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item" onclick="openLightbox('images/terrasse.jpeg')">
+      <img src="images/terrasse.jpeg" alt="Terrasse Am Fels" loading="lazy" />
+      <div class="gallery-overlay">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/></svg>
+      </div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/steak.jpeg')">
+      <img src="images/steak.jpeg" alt="Premium Steak" loading="lazy" />
+      <div class="gallery-overlay">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/></svg>
+      </div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/cevapcici.jpeg')">
+      <img src="images/cevapcici.jpeg" alt="Cevapcici" loading="lazy" />
+      <div class="gallery-overlay">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/></svg>
+      </div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/hauptraum.jpeg')">
+      <img src="images/hauptraum.jpeg" alt="Hauptraum" loading="lazy" />
+      <div class="gallery-overlay">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/></svg>
+      </div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/grillfleisch.jpeg')">
+      <img src="images/grillfleisch.jpeg" alt="Grillspezialitäten" loading="lazy" />
+      <div class="gallery-overlay">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/></svg>
+      </div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/natur.jpeg')">
+      <img src="images/natur.jpeg" alt="Restaurant und Natur" loading="lazy" />
+      <div class="gallery-overlay">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/></svg>
+      </div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/ambiente.jpeg')">
+      <img src="images/ambiente.jpeg" alt="Ambiente" loading="lazy" />
+      <div class="gallery-overlay">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/></svg>
+      </div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/drinne.jpeg')">
+      <img src="images/drinne.jpeg" alt="Innenbereich" loading="lazy" />
+      <div class="gallery-overlay">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightboxImg" src="" alt="" />
+</div>
+
+<!-- ── SPEISEKARTE ── -->
+<section class="menu" id="speisekarte">
+  <div class="menu-header fade-up">
+    <span class="section-label">Unsere Küche</span>
+    <h2 class="section-title">Die <em>Speisekarte</em></h2>
+    <div class="ornament" style="justify-content:center">
+      <div class="ornament-line"></div>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line right"></div>
+    </div>
+  </div>
+
+  <div class="menu-tabs" role="tablist">
+    <button class="menu-tab active" onclick="switchTab('vorspeisen', this)">Vorspeisen</button>
+    <button class="menu-tab" onclick="switchTab('salate', this)">Salate &amp; Kleines</button>
+    <button class="menu-tab" onclick="switchTab('steaks', this)">Steaks</button>
+    <button class="menu-tab" onclick="switchTab('grill', this)">Grill</button>
+    <button class="menu-tab" onclick="switchTab('fleisch', this)">Fleisch &amp; Fisch</button>
+    <button class="menu-tab" onclick="switchTab('dessert', this)">Desserts</button>
+  </div>
+
+  <!-- VORSPEISEN -->
+  <div class="menu-panel active" id="panel-vorspeisen">
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Vorspeisen</h3>
+      <div class="menu-cat-divider"></div>
+      <div class="menu-items-grid">
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Knoblauchbrot</div>
+            <div class="menu-item-desc">mit Sauerrahm-Dip</div>
+          </div>
+          <span class="menu-item-price">5,90 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Schafskäse überbacken</div>
+            <div class="menu-item-desc">mit Tomaten, Paprika und Olivenöl, dazu Brot</div>
+          </div>
+          <span class="menu-item-price">10,90 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Scampi Picante</div>
+            <div class="menu-item-desc">mit Knoblauch, dazu Brot</div>
+          </div>
+          <span class="menu-item-price">13,50 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Ziegenkäse</div>
+            <div class="menu-item-desc">mit Honig und Walnüssen überbacken, dazu Brot</div>
+          </div>
+          <span class="menu-item-price">10,50 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Carpaccio</div>
+            <div class="menu-item-desc">Rinderfiletscheiben auf Balsamicodressing, mit geraspeltem Parmesan und Rucola</div>
+          </div>
+          <span class="menu-item-price">13,50 €</span>
+        </div>
+      </div>
+    </div>
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Suppen</h3>
+      <div class="menu-cat-divider"></div>
+      <div class="menu-items-grid">
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Hühnersuppe</div>
+            <div class="menu-item-desc">hausgemacht, klar</div>
+          </div>
+          <span class="menu-item-price">6,50 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Tagessuppe</div>
+            <div class="menu-item-desc">mit Pesto</div>
+          </div>
+          <span class="menu-item-price">6,50 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Zwiebelsuppe</div>
+            <div class="menu-item-desc">mit Käse überbacken</div>
+          </div>
+          <span class="menu-item-price">7,90 €</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SALATE & KLEINES -->
+  <div class="menu-panel" id="panel-salate">
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Für den kleinen Appetit</h3>
+      <div class="menu-cat-divider"></div>
+      <div class="menu-items-grid">
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Salat „Filetto di Manzo"</div>
+            <div class="menu-item-desc">Bunt gemischter Salat mit Vinaigrette, Steakfleischstreifen, mediterranem Gemüse und Parmesan</div>
+          </div>
+          <span class="menu-item-price">17,90 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Salat Chef</div>
+            <div class="menu-item-desc">Bunt gemischter Salat mit Vinaigrette, Bratkartoffeln, Putenstreifen und Käse</div>
+          </div>
+          <span class="menu-item-price">17,90 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Gemüseteller Vegetaria</div>
+            <div class="menu-item-desc">Buntes Pfannengemüse, Folienkartoffel mit Sauerrahm</div>
+          </div>
+          <span class="menu-item-price">16,90 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Tagliatelle „Gambas"</div>
+            <div class="menu-item-desc">Frische Bandnudeln mit Garnelen, Cherry Tomaten und Knoblauch in Käse-Sahne-Sauce</div>
+          </div>
+          <span class="menu-item-price">16,90 €</span>
+        </div>
+      </div>
+    </div>
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Vom Lamm</h3>
+      <div class="menu-cat-divider"></div>
+      <div class="menu-items-grid">
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Lammsteak</div>
+            <div class="menu-item-desc">von der Hüfte, mit Knoblauch, dazu Prinzessbohnen und Bratkartoffeln</div>
+          </div>
+          <span class="menu-item-price">25,90 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Lamm-Mix-Teller</div>
+            <div class="menu-item-desc">Kotelett und Steak mit Knoblauch, dazu Prinzessbohnen und Bratkartoffeln</div>
+          </div>
+          <span class="menu-item-price">28,90 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Lamm-Kotelett</div>
+            <div class="menu-item-desc">vom Carré, mit Knoblauch, dazu Prinzessbohnen und Bratkartoffeln</div>
+          </div>
+          <span class="menu-item-price">30,90 €</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEAKS -->
+  <div class="menu-panel" id="panel-steaks">
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Steak-Börse</h3>
+      <div class="menu-cat-divider"></div>
+      <p style="font-size:0.85rem;color:var(--text);margin-bottom:1.5rem;font-style:italic;line-height:1.7;">
+        Premium Grain Fed Beef aus Argentinien – vom Futtermittel über die Aufzucht bis zur Schlachtung aus einer Hand. Englisch · Medium · Well done
+      </p>
+      <div class="menu-items-grid">
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Pfanne „Rustikana"</div>
+            <div class="menu-item-desc">Steakfleischstreifen, Paprika, Champignons in pikant-scharfer Sauce, Butterreis</div>
+          </div>
+          <span class="menu-item-price">ab 22,90 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Zwiebelrostbraten</div>
+            <div class="menu-item-desc">Hüftsteak mit gerösteten Zwiebeln, dazu Bratkartoffeln</div>
+          </div>
+          <span class="menu-item-price">ab 23,90 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Lustiger Bosnjak</div>
+            <div class="menu-item-desc">Rumpsteak gefüllt mit Schinken und Käse, Ofenkartoffel mit Sauerrahm</div>
+          </div>
+          <span class="menu-item-price">ab 28,90 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Filetsteak Madagaskar</div>
+            <div class="menu-item-desc">In Pfeffersauce, dazu Bratkartoffeln</div>
+          </div>
+          <span class="menu-item-price">ab 33,90 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Filetsteak Champignon</div>
+            <div class="menu-item-desc">Mit frischen Champignons in Rahmsauce, dazu Kroketten und Gemüse</div>
+          </div>
+          <span class="menu-item-price">ab 33,90 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Steakteller (300g)</div>
+            <div class="menu-item-desc">3 verschiedene Premium-Rindersteaks vom Grill, geröstete Champignons, Ofenkartoffel</div>
+          </div>
+          <span class="menu-item-price">33,90 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Rumpsteak „Diabolo"</div>
+            <div class="menu-item-desc">Mit 2 gegrillten Garnelen in pikant-scharfer-Sauce, Folienkartoffel</div>
+          </div>
+          <span class="menu-item-price">ab 31,90 €</span>
+        </div>
+      </div>
+    </div>
+    <div class="menu-note">
+      Alle Steaks werden mit einem Salat vom Buffet serviert. Größen: 200g · 300g · 400g auf Anfrage.
+    </div>
+  </div>
+
+  <!-- GRILL -->
+  <div class="menu-panel" id="panel-grill">
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Kroatische Grillspezialitäten</h3>
+      <div class="menu-cat-divider"></div>
+      <div class="menu-items-grid">
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Cevapcici</div>
+            <div class="menu-item-desc">Dazu Pommes frites und Djuwetschreis</div>
+          </div>
+          <span class="menu-item-price">17,90 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Raznjici</div>
+            <div class="menu-item-desc">2 Spieße, dazu Pommes frites und Djuwetschreis</div>
+          </div>
+          <span class="menu-item-price">18,90 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Hacksteak Hirten</div>
+            <div class="menu-item-desc">Mit Schafskäse gefüllt, dazu Pommes frites und Djuwetschreis</div>
+          </div>
+          <span class="menu-item-price">19,90 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Grill-Teller</div>
+            <div class="menu-item-desc">Spießchen, Cevapcici, Hacksteak, Rückensteak, Pommes frites und Djuwetschreis</div>
+          </div>
+          <span class="menu-item-price">21,90 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Kalbsleber</div>
+            <div class="menu-item-desc">Mit gerösteten Zwiebeln, dazu Pommes frites und Djuwetschreis</div>
+          </div>
+          <span class="menu-item-price">19,90 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Räuber-Teller</div>
+            <div class="menu-item-desc">Hüftsteak, Hacksteak, Rückensteak, Speck, Debreciner Würstchen, Pommes frites</div>
+          </div>
+          <span class="menu-item-price">22,90 €</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLEISCH & FISCH -->
+  <div class="menu-panel" id="panel-fleisch">
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Vom Hähnchen</h3>
+      <div class="menu-cat-divider"></div>
+      <div class="menu-items-grid">
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Schnitzel Wiener Art</div>
+            <div class="menu-item-desc">Paniert, dazu Pommes frites</div>
+          </div>
+          <span class="menu-item-price">17,90 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Pfanne India</div>
+            <div class="menu-item-desc">Geschnetzeltes mit tropischen Früchten in Curry-Sahne-Sauce, dazu Butterreis</div>
+          </div>
+          <span class="menu-item-price">19,90 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Putensteak Natur</div>
+            <div class="menu-item-desc">Vom Grill, mit Kräuterbutter, Ofenkartoffel mit Sauerrahm</div>
+          </div>
+          <span class="menu-item-price">18,90 €</span>
+        </div>
+      </div>
+    </div>
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Frischer Fisch</h3>
+      <div class="menu-cat-divider"></div>
+      <div class="menu-items-grid">
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Zanderfilet</div>
+            <div class="menu-item-desc">Mit Kräuterbutter, dazu Dalmatiner Beilage (Blattspinat, Kartoffeln, Knoblauch)</div>
+          </div>
+          <span class="menu-item-price">22,90 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Lachsfilet</div>
+            <div class="menu-item-desc">Mit Kräuterbutter, dazu Ofenkartoffel mit Sauerrahm</div>
+          </div>
+          <span class="menu-item-price">22,90 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Gegrillte Scampi</div>
+            <div class="menu-item-desc">Mit Knoblauch in Olivenöl, dazu Dalmatiner Beilage</div>
+          </div>
+          <span class="menu-item-price">24,90 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Fischteller nach Art des Hauses</div>
+            <div class="menu-item-desc">Verschiedene Fischsorten, 2 Garnelen, dazu Dalmatiner Beilage</div>
+          </div>
+          <span class="menu-item-price">26,90 €</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DESSERTS -->
+  <div class="menu-panel" id="panel-dessert">
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Desserts</h3>
+      <div class="menu-cat-divider"></div>
+      <div class="menu-items-grid">
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Palatschinken mit Schokolade</div>
+            <div class="menu-item-desc">Hauchdünne Pfannkuchen mit Schokoladensauce</div>
+          </div>
+          <span class="menu-item-price">5,90 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Palatschinken mit Marmelade</div>
+            <div class="menu-item-desc">Hauchdünne Pfannkuchen mit hausgemachter Marmelade</div>
+          </div>
+          <span class="menu-item-price">5,90 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Eis &amp; Heiß Kirsch</div>
+            <div class="menu-item-desc">Vanilleeis mit heißen Kirschen und Sahne</div>
+          </div>
+          <span class="menu-item-price">8,90 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Palatschinken Gourmet</div>
+            <div class="menu-item-desc">Hauchdünn, mit Schokolade gefüllt mit Vanilleeis, dekoriert mit Kirschen und Sahne</div>
+          </div>
+          <span class="menu-item-price">8,90 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Lava Cake</div>
+            <div class="menu-item-desc">Warmes Schokoladen-Soufflé mit flüssigem Kern, dazu Vanilleeis und Sahne</div>
+          </div>
+          <span class="menu-item-price">8,90 €</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-cta fade-up">
+    <p>Die vollständige Speise- und Getränkekarte liegt im Restaurant für Sie bereit.</p>
+    <a href="#reservierung" class="btn-primary">Tisch reservieren</a>
+  </div>
+</section>
+
+<!-- ── EVENTS ── -->
+<section class="events" id="events">
+  <div class="events-header fade-up">
+    <span class="section-label">Besondere Anlässe</span>
+    <h2 class="section-title">Ihr Fest in<br><em>besonderem Rahmen</em></h2>
+    <div class="ornament" style="justify-content:center">
+      <div class="ornament-line"></div>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line right"></div>
+    </div>
+    <p>
+      Ob Geburtstag, Hochzeit, Firmenfeier oder Gedenkfeier –
+      unser separater Saal fasst bis zu 75 Personen und bietet den perfekten Rahmen
+      für Ihren unvergesslichen Abend.
+    </p>
+  </div>
+
+  <div class="events-grid">
+    <div class="event-card">
+      <div class="event-card-bg" style="background-image: url('images/drinne.jpeg');"></div>
+      <div class="event-card-overlay"></div>
+      <div class="event-card-content">
+        <span class="event-tag">Geburtstag</span>
+        <h3 class="event-title">Geburtstagsfeiern</h3>
+        <p class="event-desc">Feiern Sie Ihren besonderen Tag in stilvollem Ambiente. Wir gestalten mit Ihnen ein maßgeschneidertes Menü für Ihre Gäste.</p>
+      </div>
+    </div>
+    <div class="event-card">
+      <div class="event-card-bg" style="background-image: url('images/ambiente.jpeg');"></div>
+      <div class="event-card-overlay"></div>
+      <div class="event-card-content">
+        <span class="event-tag">Hochzeit</span>
+        <h3 class="event-title">Hochzeitsfeiern</h3>
+        <p class="event-desc">Ihr schönster Tag verdient die schönste Kulisse. Wir bieten Ihnen und Ihren Gästen einen unvergesslichen Abend.</p>
+      </div>
+    </div>
+    <div class="event-card">
+      <div class="event-card-bg" style="background-image: url('images/hauptraum.jpeg');"></div>
+      <div class="event-card-overlay"></div>
+      <div class="event-card-content">
+        <span class="event-tag">Business</span>
+        <h3 class="event-title">Firmenfeiern</h3>
+        <p class="event-desc">Teamevents, Jubiläen oder geschäftliche Dinners – wir kümmern uns um alles, damit Sie sich auf Ihre Gäste konzentrieren können.</p>
+      </div>
+    </div>
+    <div class="event-card">
+      <div class="event-card-bg" style="background-image: url('images/innen.jpeg');"></div>
+      <div class="event-card-overlay"></div>
+      <div class="event-card-content">
+        <span class="event-tag">Trauerfeier</span>
+        <h3 class="event-title">Gedenkfeiern</h3>
+        <p class="event-desc">Auch in schweren Stunden begleiten wir Sie mit Würde und Feingefühl. Wir schaffen einen angemessenen Rahmen für Ihre Zusammenkunft.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="events-banner fade-up">
+    <div class="events-banner-text">
+      <h3>Gruppe ab 10 Personen?</h3>
+      <p>Separater Raum verfügbar · bis zu 75 Personen · individuelle Menügestaltung</p>
+    </div>
+    <a href="#kontakt" class="btn-dark">Anfrage senden</a>
+  </div>
+</section>
+
+<!-- ── GUTSCHEINE ── -->
+<section class="voucher" id="gutscheine">
+  <div class="voucher-inner">
+    <div class="fade-up">
+      <span class="section-label">Geschenke mit Geschmack</span>
+      <h2 class="section-title">Restaurant-<em>Gutscheine</em></h2>
+    </div>
+    <div class="voucher-card fade-up">
+      <h2>Das perfekte Geschenk</h2>
+      <p>
+        Schenken Sie unvergessliche Momente. Ein Gutschein für das Restaurant Am Fels –
+        für Genießer, die das Besondere schätzen. Zwei Jahre gültig, individuell gestaltbar.
+      </p>
+      <div class="voucher-steps">
+        <div class="voucher-step">
+          <div class="voucher-step-num">01</div>
+          <h4>Kontaktieren</h4>
+          <p>Rufen Sie uns an oder schreiben Sie uns – wir beraten Sie gerne bei der Wahl des Wertes.</p>
+        </div>
+        <div class="voucher-step">
+          <div class="voucher-step-num">02</div>
+          <h4>Erhalten</h4>
+          <p>Wir stellen Ihnen den Gutschein persönlich oder per Post zu – liebevoll verpackt.</p>
+        </div>
+        <div class="voucher-step">
+          <div class="voucher-step-num">03</div>
+          <h4>Genießen</h4>
+          <p>Der Beschenkte wählt seinen Wunschtermin – und erlebt einen unvergesslichen Abend.</p>
+        </div>
+      </div>
+      <a href="#kontakt" class="btn-primary">Gutschein anfragen</a>
+      <p class="voucher-validity" style="margin-top:1.5rem">* Gutscheine sind 2 Jahre ab Ausstellungsdatum gültig.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── RESERVIERUNG ── -->
+<section class="reservation" id="reservierung">
+  <div class="reservation-inner">
+    <div class="reservation-header fade-up">
+      <span class="section-label">Tisch reservieren</span>
+      <h2 class="section-title">Wir freuen uns<br>auf <em>Sie</em></h2>
+      <p>Reservieren Sie Ihren Tisch bequem online. Wir bestätigen Ihre Reservierung schnellstmöglich per Telefon oder E-Mail.</p>
+    </div>
+    <form class="res-form fade-up" onsubmit="submitReservation(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Vorname &amp; Nachname</label>
+          <input type="text" placeholder="Max Mustermann" required />
+        </div>
+        <div class="form-group">
+          <label>Telefon</label>
+          <input type="tel" placeholder="+49 221 ..." required />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>E-Mail</label>
+          <input type="email" placeholder="ihre@email.de" />
+        </div>
+        <div class="form-group">
+          <label>Anzahl Personen</label>
+          <select>
+            <option value="">Bitte wählen</option>
+            <option>1 Person</option>
+            <option>2 Personen</option>
+            <option>3 Personen</option>
+            <option>4 Personen</option>
+            <option>5 Personen</option>
+            <option>6 Personen</option>
+            <option>7–10 Personen</option>
+            <option>Mehr als 10 Personen</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Datum</label>
+          <input type="date" required />
+        </div>
+        <div class="form-group">
+          <label>Uhrzeit</label>
+          <select>
+            <option value="">Bitte wählen</option>
+            <option>11:30</option>
+            <option>12:00</option>
+            <option>12:30</option>
+            <option>13:00</option>
+            <option>13:30</option>
+            <option>17:00</option>
+            <option>17:30</option>
+            <option>18:00</option>
+            <option>18:30</option>
+            <option>19:00</option>
+            <option>19:30</option>
+            <option>20:00</option>
+            <option>20:30</option>
+            <option>21:00</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group full">
+          <label>Anmerkungen (optional)</label>
+          <textarea placeholder="Besondere Wünsche, Allergien, Anlass..."></textarea>
+        </div>
+      </div>
+      <div class="form-submit">
+        <button type="submit" class="btn-submit">Reservierung anfragen</button>
+      </div>
+    </form>
+    <p class="res-phone">
+      Oder direkt anrufen: <a href="tel:+492263XXXXX">02263 / XXX XX</a>
+    </p>
+  </div>
+</section>
+
+<!-- ── KONTAKT ── -->
+<section class="contact" id="kontakt">
+  <div class="contact-inner">
+    <div class="contact-info fade-up">
+      <span class="section-label">So finden Sie uns</span>
+      <h2 class="section-title">Kontakt &amp;<br><em>Anfahrt</em></h2>
+      <div class="ornament">
+        <div class="ornament-line"></div>
+        <div class="ornament-diamond"></div>
+        <div class="ornament-line right"></div>
+      </div>
+      <p>
+        Wir freuen uns auf Ihre Nachricht – ob für eine Reservierung,
+        eine Eventanfrage oder Fragen zu unserer Speisekarte.
+      </p>
+      <ul class="contact-details">
+        <li>
+          <span class="contact-icon">📍</span>
+          <div class="contact-detail-text">
+            <div class="contact-detail-label">Adresse</div>
+            <div class="contact-detail-value">Staadter Weg 2<br>51766 Engelskirchen-Loope</div>
+          </div>
+        </li>
+        <li>
+          <span class="contact-icon">📞</span>
+          <div class="contact-detail-text">
+            <div class="contact-detail-label">Telefon</div>
+            <div class="contact-detail-value"><a href="tel:+492263XXXXX">02263 / XXX XX</a></div>
+          </div>
+        </li>
+        <li>
+          <span class="contact-icon">✉</span>
+          <div class="contact-detail-text">
+            <div class="contact-detail-label">E-Mail</div>
+            <div class="contact-detail-value"><a href="mailto:info@restaurant-amfels.de">info@restaurant-amfels.de</a></div>
+          </div>
+        </li>
+        <li>
+          <span class="contact-icon">🕐</span>
+          <div class="contact-detail-text">
+            <div class="contact-detail-label">Öffnungszeiten</div>
+            <div class="contact-detail-value">Di–Fr: 11:30–14:30 &amp; 17:00–22:30<br>Sa: 12:00–22:30 | So: 12:00–21:00</div>
+          </div>
+        </li>
+      </ul>
+      <div class="contact-social">
+        <a href="#" class="social-link" title="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+        </a>
+        <a href="#" class="social-link" title="Facebook">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-form fade-up" style="transition-delay:0.15s">
+      <span class="section-label">Nachricht senden</span>
+      <form onsubmit="submitContact(event)" style="margin-top:1.5rem">
+        <div class="form-group" style="margin-bottom:1.2rem">
+          <label>Name</label>
+          <input type="text" placeholder="Ihr Name" required />
+        </div>
+        <div class="form-group" style="margin-bottom:1.2rem">
+          <label>E-Mail oder Telefon</label>
+          <input type="text" placeholder="Kontaktdaten" required />
+        </div>
+        <div class="form-group" style="margin-bottom:1.2rem">
+          <label>Betreff</label>
+          <select>
+            <option>Reservierung</option>
+            <option>Eventanfrage</option>
+            <option>Gutschein</option>
+            <option>Allgemeine Anfrage</option>
+          </select>
+        </div>
+        <div class="form-group" style="margin-bottom:1.5rem">
+          <label>Nachricht</label>
+          <textarea placeholder="Ihre Nachricht..." required style="min-height:130px"></textarea>
+        </div>
+        <button type="submit" class="btn-submit" style="width:100%">Nachricht senden</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="#" class="footer-logo">Am Fels</a>
+        <p class="footer-desc">
+          Kroatische Tradition trifft internationale Kochkunst –
+          im besonderen Ambiente von Engelskirchen-Loope.
+        </p>
+        <div class="contact-social">
+          <a href="#" class="social-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="#" class="social-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#ueber-uns">Über uns</a></li>
+          <li><a href="#galerie">Galerie</a></li>
+          <li><a href="#speisekarte">Speisekarte</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#gutscheine">Gutscheine</a></li>
+          <li><a href="#reservierung">Reservierung</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Öffnungszeiten</h4>
+        <p>Mo: Ruhetag<br>Di–Fr: 11:30–22:30<br>Sa: 12:00–22:30<br>So: 12:00–21:00</p>
+      </div>
+      <div class="footer-col">
+        <h4>Kontakt</h4>
+        <p>Staadter Weg 2<br>51766 Engelskirchen<br><br><a href="tel:+492263XXXXX" style="color:var(--gold);">02263 / XXX XX</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 Restaurant Am Fels · Alle Rechte vorbehalten</span>
+      <div class="footer-links">
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── TOAST ── -->
+<div class="toast" id="toast">
+  <span class="toast-icon">✓</span>
+  <div class="toast-text">
+    <h4 id="toastTitle">Anfrage gesendet</h4>
+    <p id="toastMsg">Wir melden uns schnellstmöglich bei Ihnen.</p>
+  </div>
+</div>
+
+<!-- ── JAVASCRIPT ── -->
+<script>
+  // Hero BG load animation
+  const heroBg = document.getElementById('heroBg');
+  setTimeout(() => heroBg.classList.add('loaded'), 100);
+
+  // Navbar scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    const spans = hamburger.querySelectorAll('span');
+    if (navLinks.classList.contains('open')) {
+      spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+      spans[1].style.opacity = '0';
+      spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+    } else {
+      spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+    }
+  });
+
+  // Close menu on link click
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      hamburger.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+    });
+  });
+
+  // Intersection Observer for fade-up
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Menu tabs
+  function switchTab(id, btn) {
+    document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-' + id).classList.add('active');
+  }
+
+  // Lightbox
+  function openLightbox(src) {
+    document.getElementById('lightboxImg').src = src;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  // Toast helper
+  function showToast(title, msg) {
+    const toast = document.getElementById('toast');
+    document.getElementById('toastTitle').textContent = title;
+    document.getElementById('toastMsg').textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 4000);
+  }
+
+  // Reservation form
+  function submitReservation(e) {
+    e.preventDefault();
+    showToast('Reservierung eingegangen!', 'Wir bestätigen Ihren Tisch schnellstmöglich.');
+    e.target.reset();
+  }
+
+  // Contact form
+  function submitContact(e) {
+    e.preventDefault();
+    showToast('Nachricht gesendet!', 'Wir melden uns in Kürze bei Ihnen.');
+    e.target.reset();
+  }
+
+  // Set min date for reservation
+  const dateInputs = document.querySelectorAll('input[type="date"]');
+  const today = new Date().toISOString().split('T')[0];
+  dateInputs.forEach(d => d.min = today);
+</script>
+</body>
+</html>
