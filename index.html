@@ -2659,22 +2659,35 @@
     { emoji: '🧅', anim: 'food6', delay: '1.5s', dur: '1.0s', left: '52%', top: '65%', floatDur: '3.8s' },
   ];
 
+  // Use fixed positioning so overflow:hidden on hero doesn't clip the fly-in
   foods.forEach(f => {
     const el = document.createElement('div');
     el.className = 'food-item';
     el.textContent = f.emoji;
-    el.style.left = f.left;
-    el.style.top  = f.top;
+    el.style.position = 'fixed';
+    el.style.zIndex = '999';
+
+    // Compute final position relative to hero
+    const hero = document.querySelector('.hero');
+    const setPos = () => {
+      const r = hero.getBoundingClientRect();
+      el.style.left = (r.left + parseFloat(f.left) / 100 * r.width) + 'px';
+      el.style.top  = (r.top  + parseFloat(f.top)  / 100 * r.height) + 'px';
+    };
+    setPos();
+
     el.style.animationName = f.anim;
     el.style.animationDelay = f.delay;
     el.style.animationDuration = f.dur;
-    document.querySelector('.hero').appendChild(el);
+    document.body.appendChild(el);
 
-    // After fly-in, start floating
     const totalMs = (parseFloat(f.delay) + parseFloat(f.dur)) * 1000;
     setTimeout(() => {
       el.style.animation = `foodFloat ${f.floatDur} ease-in-out infinite`;
       el.style.opacity = '1';
+      // Reposition on scroll/resize
+      window.addEventListener('scroll', () => { setPos(); }, { passive: true });
+      window.addEventListener('resize', setPos);
     }, totalMs);
   });
 
