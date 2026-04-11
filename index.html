@@ -25,7 +25,9 @@
       --wine: #6b1f1f;
     }
 
-    html { scroll-behavior: smooth; overflow-x: hidden; max-width: 100vw; }
+    html { scroll-behavior: smooth; }
+    *, *::before, *::after { box-sizing: border-box; }
+    section, footer, .ticker { overflow-x: hidden; }
 
     body {
       font-family: 'Lato', sans-serif;
@@ -528,6 +530,7 @@
     .about {
       padding: 8rem 3rem;
       background: var(--dark);
+      overflow: hidden;
     }
 
     .about-inner {
@@ -1222,6 +1225,7 @@
       padding: 8rem 3rem;
       background: var(--dark2);
       text-align: center;
+      overflow: hidden;
     }
 
     .voucher-inner { max-width: 1000px; margin: 0 auto; }
