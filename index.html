@@ -2605,6 +2605,7 @@
   // ═══════════════════════════════════════
   // 💨 STEAM / RAUCH EFFEKT
   // ═══════════════════════════════════════
+  const heroEl = document.querySelector('.hero');
   const steamCanvas = document.createElement('canvas');
   steamCanvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;';
   heroEl.appendChild(steamCanvas);
@@ -2665,7 +2666,6 @@
   // ═══════════════════════════════════════
   // 🔥 EMBER PARTICLES
   // ═══════════════════════════════════════
-  const heroEl = document.querySelector('.hero');
   const emberCanvas = document.createElement('canvas');
   emberCanvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;';
   heroEl.appendChild(emberCanvas);
