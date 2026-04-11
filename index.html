@@ -159,7 +159,7 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background-image: url('images/terrasse.jpeg');
+      background-image: url('images/hero_kroatisch2.webp');
       background-size: cover;
       background-position: center 30%;
       transform: scale(1.08);
@@ -814,6 +814,25 @@
       border-left: 2px solid var(--gold-dark);
       background: rgba(201, 169, 110, 0.04);
     }
+
+    .menu-sizes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .menu-size-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: rgba(201,169,110,0.07);
+      border: 1px solid rgba(201,169,110,0.25);
+      border-radius: 6px;
+      padding: 0.3rem 0.7rem;
+      min-width: 72px;
+    }
+    .menu-size-label { font-size: 0.72rem; color: var(--gold); font-weight: 600; letter-spacing: 0.03em; }
+    .menu-size-price { font-size: 0.85rem; color: var(--text-dim); }
 
     .menu-cta {
       text-align: center;
@@ -1606,19 +1625,23 @@
     <div class="hours-grid fade-up" style="transition-delay:0.2s">
       <div class="hours-row">
         <span class="hours-day">Montag</span>
+        <span class="hours-time">17:30 – 22:00</span>
+      </div>
+      <div class="hours-row">
+        <span class="hours-day">Dienstag</span>
         <span class="hours-time closed">Ruhetag</span>
       </div>
       <div class="hours-row">
-        <span class="hours-day">Dienstag – Freitag</span>
-        <span class="hours-time">11:30 – 14:30 &nbsp;|&nbsp; 17:00 – 22:30</span>
+        <span class="hours-day">Mittwoch – Freitag</span>
+        <span class="hours-time">17:30 – 22:00</span>
       </div>
       <div class="hours-row">
         <span class="hours-day">Samstag</span>
-        <span class="hours-time">12:00 – 22:30</span>
+        <span class="hours-time">12:00 – 14:30 &nbsp;|&nbsp; 17:30 – 22:00</span>
       </div>
       <div class="hours-row">
         <span class="hours-day">Sonntag</span>
-        <span class="hours-time">12:00 – 21:00</span>
+        <span class="hours-time">12:00 – 15:00 &nbsp;|&nbsp; 17:00 – 21:00</span>
       </div>
     </div>
   </div>
@@ -1761,213 +1784,160 @@
   </div>
 
   <div class="menu-tabs" role="tablist">
-    <button class="menu-tab active" onclick="switchTab('vorspeisen', this)">Vorspeisen</button>
-    <button class="menu-tab" onclick="switchTab('salate', this)">Salate &amp; Kleines</button>
-    <button class="menu-tab" onclick="switchTab('steaks', this)">Steaks</button>
+    <button class="menu-tab active" onclick="switchTab('mittag', this)">Mittagskarte</button>
+    <button class="menu-tab" onclick="switchTab('aperitifs', this)">Aperitifs</button>
+    <button class="menu-tab" onclick="switchTab('vorspeisen', this)">Vorspeisen</button>
+    <button class="menu-tab" onclick="switchTab('suppen', this)">Suppen</button>
+    <button class="menu-tab" onclick="switchTab('kleines', this)">Klein aber Fein</button>
+    <button class="menu-tab" onclick="switchTab('steaks', this)">Steakbörse</button>
+    <button class="menu-tab" onclick="switchTab('lamm', this)">Vom Lamm</button>
+    <button class="menu-tab" onclick="switchTab('schwein', this)">Vom Schwein</button>
+    <button class="menu-tab" onclick="switchTab('haehnchen', this)">Hähnchen &amp; Schnitzel</button>
     <button class="menu-tab" onclick="switchTab('grill', this)">Grill</button>
-    <button class="menu-tab" onclick="switchTab('fleisch', this)">Fleisch &amp; Fisch</button>
+    <button class="menu-tab" onclick="switchTab('fisch', this)">Frischer Fisch</button>
+    <button class="menu-tab" onclick="switchTab('senioren', this)">Senioren &amp; Kinder</button>
+    <button class="menu-tab" onclick="switchTab('beilagen', this)">Beilagen &amp; Saucen</button>
     <button class="menu-tab" onclick="switchTab('dessert', this)">Desserts</button>
+    <button class="menu-tab" onclick="switchTab('weine', this)">Weinkarte</button>
+    <button class="menu-tab" onclick="switchTab('getraenke', this)">Getränke</button>
+    <button class="menu-tab" onclick="switchTab('spirituosen', this)">Spirituosen</button>
+    <button class="menu-tab" onclick="switchTab('heissgetraenke', this)">Heiße Getränke</button>
+  </div>
+
+  <!-- MITTAGSKARTE -->
+  <div class="menu-panel active" id="panel-mittag">
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Mittagskarte</h3>
+      <div class="menu-cat-divider"></div>
+      <div class="menu-items-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Tagliatelle Pollo</div><div class="menu-item-desc">mit Hähnchenbruststreifen &amp; Champignons, in Käse-Sahne-Sauce</div></div><span class="menu-item-price">15,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Gourmet Hacksteak</div><div class="menu-item-desc">mit frischen Zwiebeln &amp; Speck gemischt, dazu Pommes Frites</div></div><span class="menu-item-price">16,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Schnitzel „Paprika Art"</div><div class="menu-item-desc">vom Schwein, paniert, in Paprika Sauce, dazu Pommes Frites</div></div><span class="menu-item-price">16,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Bauerntopf</div><div class="menu-item-desc">Schweinefilet mit Sauce Hollandaise &amp; Käse überbacken, dazu Bratkartoffeln &amp; Gemüse</div></div><span class="menu-item-price">16,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Rückensteak</div><div class="menu-item-desc">mit gerösteten Champignons, dazu Folienkartoffel mit Sauerrahm</div></div><span class="menu-item-price">16,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Hähnchen Curry</div><div class="menu-item-desc">Hähnchensteak in Curry Sauce, dazu Kroketten &amp; Gemüse</div></div><span class="menu-item-price">16,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Rotbarschfilet</div><div class="menu-item-desc">paniert, dazu Bratkartoffeln &amp; Remouladensauce</div></div><span class="menu-item-price">16,90 €</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- APERITIFS -->
+  <div class="menu-panel" id="panel-aperitifs">
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Aperitifs</h3>
+      <div class="menu-cat-divider"></div>
+      <div class="menu-items-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Sherry dry</div><div class="menu-item-desc">5cl</div></div><span class="menu-item-price">4,50 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Martini Bianco</div><div class="menu-item-desc">5cl</div></div><span class="menu-item-price">4,50 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Glas Sekt</div><div class="menu-item-desc">0,1l</div></div><span class="menu-item-price">4,50 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Campari Orange</div><div class="menu-item-desc">0,2l</div></div><span class="menu-item-price">7,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Aperolspritz</div><div class="menu-item-desc">0,2l</div></div><span class="menu-item-price">7,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Lillet Berry</div><div class="menu-item-desc">0,2l</div></div><span class="menu-item-price">7,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Tanqueray Gin Tonic</div><div class="menu-item-desc">0,25l</div></div><span class="menu-item-price">9,90 €</span></div>
+      </div>
+    </div>
   </div>
 
   <!-- VORSPEISEN -->
-  <div class="menu-panel active" id="panel-vorspeisen">
+  <div class="menu-panel" id="panel-vorspeisen">
     <div class="menu-category">
       <h3 class="menu-cat-title">Vorspeisen</h3>
       <div class="menu-cat-divider"></div>
       <div class="menu-items-grid">
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Knoblauchbrot</div>
-            <div class="menu-item-desc">mit Sauerrahm-Dip</div>
-          </div>
-          <span class="menu-item-price">5,90 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Schafskäse überbacken</div>
-            <div class="menu-item-desc">mit Tomaten, Paprika und Olivenöl, dazu Brot</div>
-          </div>
-          <span class="menu-item-price">10,90 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Scampi Picante</div>
-            <div class="menu-item-desc">mit Knoblauch, dazu Brot</div>
-          </div>
-          <span class="menu-item-price">13,50 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Ziegenkäse</div>
-            <div class="menu-item-desc">mit Honig und Walnüssen überbacken, dazu Brot</div>
-          </div>
-          <span class="menu-item-price">10,50 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Carpaccio</div>
-            <div class="menu-item-desc">Rinderfiletscheiben auf Balsamicodressing, mit geraspeltem Parmesan und Rucola</div>
-          </div>
-          <span class="menu-item-price">13,50 €</span>
-        </div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Knoblauchbrot</div><div class="menu-item-desc">mit Sauerrahm-Dip</div></div><span class="menu-item-price">5,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Schafskäse überbacken</div><div class="menu-item-desc">auf Tomaten und Paprika mit Olivenöl, dazu Brot</div></div><span class="menu-item-price">10,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Scampi Picante</div><div class="menu-item-desc">In hauseigener Sauce, mit Knoblauch, dazu Brot</div></div><span class="menu-item-price">13,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Ziegenkäse</div><div class="menu-item-desc">mit Honig und Walnüssen überbacken, dazu Brot</div></div><span class="menu-item-price">10,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Carpaccio</div><div class="menu-item-desc">Rinderfiletscheiben auf Balsamicodressing, mit geraspeltem Parmesan, Kapern und Rucola, dazu Brot</div></div><span class="menu-item-price">13,90 €</span></div>
       </div>
     </div>
+  </div>
+
+  <!-- SUPPEN -->
+  <div class="menu-panel" id="panel-suppen">
     <div class="menu-category">
       <h3 class="menu-cat-title">Suppen</h3>
       <div class="menu-cat-divider"></div>
       <div class="menu-items-grid">
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Hühnersuppe</div>
-            <div class="menu-item-desc">hausgemacht, klar</div>
-          </div>
-          <span class="menu-item-price">6,50 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Tagessuppe</div>
-            <div class="menu-item-desc">mit Pesto</div>
-          </div>
-          <span class="menu-item-price">6,50 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Zwiebelsuppe</div>
-            <div class="menu-item-desc">mit Käse überbacken</div>
-          </div>
-          <span class="menu-item-price">7,90 €</span>
-        </div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Hühnersuppe</div></div><span class="menu-item-price">6,50 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Tagessuppe</div></div><span class="menu-item-price">6,50 €</span></div>
       </div>
     </div>
   </div>
 
-  <!-- SALATE & KLEINES -->
-  <div class="menu-panel" id="panel-salate">
+  <!-- KLEIN ABER FEIN -->
+  <div class="menu-panel" id="panel-kleines">
     <div class="menu-category">
-      <h3 class="menu-cat-title">Für den kleinen Appetit</h3>
+      <h3 class="menu-cat-title">Klein aber Fein</h3>
       <div class="menu-cat-divider"></div>
       <div class="menu-items-grid">
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Salat „Filetto di Manzo"</div>
-            <div class="menu-item-desc">Bunt gemischter Salat mit Vinaigrette, Steakfleischstreifen, mediterranem Gemüse und Parmesan</div>
-          </div>
-          <span class="menu-item-price">17,90 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Salat Chef</div>
-            <div class="menu-item-desc">Bunt gemischter Salat mit Vinaigrette, Bratkartoffeln, Putenstreifen und Käse</div>
-          </div>
-          <span class="menu-item-price">17,90 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Gemüseteller Vegetaria</div>
-            <div class="menu-item-desc">Buntes Pfannengemüse, Folienkartoffel mit Sauerrahm</div>
-          </div>
-          <span class="menu-item-price">16,90 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Tagliatelle „Gambas"</div>
-            <div class="menu-item-desc">Frische Bandnudeln mit Garnelen, Cherry Tomaten und Knoblauch in Käse-Sahne-Sauce</div>
-          </div>
-          <span class="menu-item-price">16,90 €</span>
-        </div>
-      </div>
-    </div>
-    <div class="menu-category">
-      <h3 class="menu-cat-title">Vom Lamm</h3>
-      <div class="menu-cat-divider"></div>
-      <div class="menu-items-grid">
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Lammsteak</div>
-            <div class="menu-item-desc">von der Hüfte, mit Knoblauch, dazu Prinzessbohnen und Bratkartoffeln</div>
-          </div>
-          <span class="menu-item-price">25,90 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Lamm-Mix-Teller</div>
-            <div class="menu-item-desc">Kotelett und Steak mit Knoblauch, dazu Prinzessbohnen und Bratkartoffeln</div>
-          </div>
-          <span class="menu-item-price">28,90 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Lamm-Kotelett</div>
-            <div class="menu-item-desc">vom Carré, mit Knoblauch, dazu Prinzessbohnen und Bratkartoffeln</div>
-          </div>
-          <span class="menu-item-price">30,90 €</span>
-        </div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Salat „Filetto di Manzo"</div><div class="menu-item-desc">bunt gemischter Salat mit hausgemachtem Vinaigrette Dressing, dazu Steakfleischstreifen, mediterranes Gemüse und Parmesan</div></div><span class="menu-item-price">18,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Salat Chef</div><div class="menu-item-desc">bunt gemischter Salat mit hausgemachtem Vinaigrette Dressing, dazu Hähnchenstreifen, Bratkartoffeln und Parmesan</div></div><span class="menu-item-price">17,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Gemüseteller Vegetaria</div><div class="menu-item-desc">buntes Pfannengemüse, dazu Folienkartoffel mit Sauerrahm</div></div><span class="menu-item-price">16,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Tagliatelle Gambas</div><div class="menu-item-desc">frische Bandnudeln mit Garnelen und Cherry Tomaten in Parmesan-Sahne-Sauce</div></div><span class="menu-item-price">17,90 €</span></div>
       </div>
     </div>
   </div>
 
-  <!-- STEAKS -->
+  <!-- STEAKBÖRSE -->
   <div class="menu-panel" id="panel-steaks">
     <div class="menu-category">
-      <h3 class="menu-cat-title">Steak-Börse</h3>
+      <h3 class="menu-cat-title">Steakbörse</h3>
       <div class="menu-cat-divider"></div>
       <p style="font-size:0.85rem;color:var(--text);margin-bottom:1.5rem;font-style:italic;line-height:1.7;">
         Premium Grain Fed Beef aus Argentinien – vom Futtermittel über die Aufzucht bis zur Schlachtung aus einer Hand. Englisch · Medium · Well done
       </p>
       <div class="menu-items-grid">
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Pfanne „Rustikana"</div>
-            <div class="menu-item-desc">Steakfleischstreifen, Paprika, Champignons in pikant-scharfer Sauce, Butterreis</div>
-          </div>
-          <span class="menu-item-price">ab 22,90 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Zwiebelrostbraten</div>
-            <div class="menu-item-desc">Hüftsteak mit gerösteten Zwiebeln, dazu Bratkartoffeln</div>
-          </div>
-          <span class="menu-item-price">ab 23,90 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Lustiger Bosnjak</div>
-            <div class="menu-item-desc">Rumpsteak gefüllt mit Schinken und Käse, Ofenkartoffel mit Sauerrahm</div>
-          </div>
-          <span class="menu-item-price">ab 28,90 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Filetsteak Madagaskar</div>
-            <div class="menu-item-desc">In Pfeffersauce, dazu Bratkartoffeln</div>
-          </div>
-          <span class="menu-item-price">ab 33,90 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Filetsteak Champignon</div>
-            <div class="menu-item-desc">Mit frischen Champignons in Rahmsauce, dazu Kroketten und Gemüse</div>
-          </div>
-          <span class="menu-item-price">ab 33,90 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Steakteller (300g)</div>
-            <div class="menu-item-desc">3 verschiedene Premium-Rindersteaks vom Grill, geröstete Champignons, Ofenkartoffel</div>
-          </div>
-          <span class="menu-item-price">33,90 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Rumpsteak „Diabolo"</div>
-            <div class="menu-item-desc">Mit 2 gegrillten Garnelen in pikant-scharfer-Sauce, Folienkartoffel</div>
-          </div>
-          <span class="menu-item-price">ab 31,90 €</span>
-        </div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Rumpsteak Premium Grain Fed</div><div class="menu-item-desc">mit Kräuterbutter, dazu Folienkartoffel mit Sauerrahm</div><div class="menu-sizes"><div class="menu-size-btn"><span class="menu-size-label">200g</span><span class="menu-size-price">27,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">300g</span><span class="menu-size-price">35,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">400g</span><span class="menu-size-price">41,90 €</span></div></div></div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Filetsteak Premium Grain Fed</div><div class="menu-item-desc">mit Kräuterbutter, dazu Folienkartoffel mit Sauerrahm</div><div class="menu-sizes"><div class="menu-size-btn"><span class="menu-size-label">200g</span><span class="menu-size-price">33,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">300g</span><span class="menu-size-price">43,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">400g</span><span class="menu-size-price">51,90 €</span></div></div></div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Pfanne „Am Fels"</div><div class="menu-item-desc">Steakfleischstreifen, Paprika &amp; frische Champignons, in feuriger Peperoni-Salsa, dazu Butterreis</div><div class="menu-sizes"><div class="menu-size-btn"><span class="menu-size-label">200g</span><span class="menu-size-price">23,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">300g</span><span class="menu-size-price">29,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">400g</span><span class="menu-size-price">35,90 €</span></div></div></div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Zwiebelrostbraten</div><div class="menu-item-desc">Rumpsteak mit frischen gerösteten Zwiebeln, dazu Bratkartoffeln</div><div class="menu-sizes"><div class="menu-size-btn"><span class="menu-size-label">200g</span><span class="menu-size-price">28,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">300g</span><span class="menu-size-price">36,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">400g</span><span class="menu-size-price">42,90 €</span></div></div></div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Filetsteak Madagaskar</div><div class="menu-item-desc">mit Pfeffersauce, dazu Bratkartoffeln</div><div class="menu-sizes"><div class="menu-size-btn"><span class="menu-size-label">200g</span><span class="menu-size-price">33,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">300g</span><span class="menu-size-price">43,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">400g</span><span class="menu-size-price">51,90 €</span></div></div></div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Filetsteak Champignon</div><div class="menu-item-desc">mit Champignonrahmsauce, dazu Kroketten und Gemüse</div><div class="menu-sizes"><div class="menu-size-btn"><span class="menu-size-label">200g</span><span class="menu-size-price">33,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">300g</span><span class="menu-size-price">43,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">400g</span><span class="menu-size-price">51,90 €</span></div></div></div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Rumpsteak „Spezial"</div><div class="menu-item-desc">mit gerösteten Champignons und einem Hauch von Sauce Béarnaise, dazu Pommes Frites</div><div class="menu-sizes"><div class="menu-size-btn"><span class="menu-size-label">200g</span><span class="menu-size-price">28,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">300g</span><span class="menu-size-price">36,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">400g</span><span class="menu-size-price">42,90 €</span></div></div></div></div>
       </div>
     </div>
-    <div class="menu-note">
-      Alle Steaks werden mit einem Salat vom Buffet serviert. Größen: 200g · 300g · 400g auf Anfrage.
+    <div class="menu-note">Alle Steaks werden mit einem Beilagensalat serviert. Garpunkte: Englisch · Medium · Well done</div>
+  </div>
+
+  <!-- VOM LAMM -->
+  <div class="menu-panel" id="panel-lamm">
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Vom Lamm</h3>
+      <div class="menu-cat-divider"></div>
+      <div class="menu-items-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Lamm-Hüfte</div><div class="menu-item-desc">mit frischem Knoblauch, dazu Prinzessbohnen und Bratkartoffeln</div></div><span class="menu-item-price">25,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Lamm-Mix Teller</div><div class="menu-item-desc">Steak und Kotelett mit frischem Knoblauch, dazu Prinzessbohnen und Bratkartoffeln</div></div><span class="menu-item-price">28,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Lamm-Kotelett</div><div class="menu-item-desc">vom Carré, mit frischem Knoblauch, dazu Prinzessbohnen und Bratkartoffeln</div></div><span class="menu-item-price">30,90 €</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VOM SCHWEIN -->
+  <div class="menu-panel" id="panel-schwein">
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Vom Schwein</h3>
+      <div class="menu-cat-divider"></div>
+      <div class="menu-items-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Cordon Bleu</div><div class="menu-item-desc">Schweinefilet gefüllt mit Schinken und Käse, paniert, dazu Pommes Frites</div></div><span class="menu-item-price">20,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Zagreb Teller</div><div class="menu-item-desc">Schweinefilet gefüllt mit Schinken und Käse, in Knoblauchrahmsauce, dazu Bratkartoffeln</div></div><span class="menu-item-price">20,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Schiwago Teller</div><div class="menu-item-desc">Schweinefilet mit Champignonrahmsauce, dazu Kroketten und Gemüse</div></div><span class="menu-item-price">20,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Marco Polo</div><div class="menu-item-desc">Schweinefilet mit Schinken, Sauce Béarnaise und Käse überbacken, dazu Bratkartoffeln</div></div><span class="menu-item-price">21,90 €</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HÄHNCHEN & SCHNITZEL -->
+  <div class="menu-panel" id="panel-haehnchen">
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Hähnchen &amp; Schnitzel</h3>
+      <div class="menu-cat-divider"></div>
+      <div class="menu-items-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Pfanne India</div><div class="menu-item-desc">Hähnchengeschnetzeltes mit tropischen Früchten, in feiner Curry-Sahne-Sauce, dazu Butterreis</div></div><span class="menu-item-price">19,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Schnitzel „Wiener Art"</div><div class="menu-item-desc">paniert, dazu Pommes Frites</div></div><span class="menu-item-price">17,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Schnitzel „Champignon"</div><div class="menu-item-desc">paniert, mit Champignon-Rahmsauce, dazu Pommes Frites</div></div><span class="menu-item-price">19,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Hähnchensteak Natur</div><div class="menu-item-desc">gegrillt, mit Kräuterbutter, dazu Folienkartoffel mit Sauerrahm</div></div><span class="menu-item-price">18,90 €</span></div>
+      </div>
     </div>
   </div>
 
@@ -1977,113 +1947,83 @@
       <h3 class="menu-cat-title">Kroatische Grillspezialitäten</h3>
       <div class="menu-cat-divider"></div>
       <div class="menu-items-grid">
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Cevapcici</div>
-            <div class="menu-item-desc">Dazu Pommes frites und Djuwetschreis</div>
-          </div>
-          <span class="menu-item-price">17,90 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Raznjici</div>
-            <div class="menu-item-desc">2 Spieße, dazu Pommes frites und Djuwetschreis</div>
-          </div>
-          <span class="menu-item-price">18,90 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Hacksteak Hirten</div>
-            <div class="menu-item-desc">Mit Schafskäse gefüllt, dazu Pommes frites und Djuwetschreis</div>
-          </div>
-          <span class="menu-item-price">19,90 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Grill-Teller</div>
-            <div class="menu-item-desc">Spießchen, Cevapcici, Hacksteak, Rückensteak, Pommes frites und Djuwetschreis</div>
-          </div>
-          <span class="menu-item-price">21,90 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Kalbsleber</div>
-            <div class="menu-item-desc">Mit gerösteten Zwiebeln, dazu Pommes frites und Djuwetschreis</div>
-          </div>
-          <span class="menu-item-price">19,90 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Räuber-Teller</div>
-            <div class="menu-item-desc">Hüftsteak, Hacksteak, Rückensteak, Speck, Debreciner Würstchen, Pommes frites</div>
-          </div>
-          <span class="menu-item-price">22,90 €</span>
-        </div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Cevapcici</div><div class="menu-item-desc">Hausgemachte Hackfleischröllchen, dazu Pommes Frites und Djuwetschreis</div></div><span class="menu-item-price">18,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Raznjici</div><div class="menu-item-desc">vom Schwein, dazu Pommes Frites und Djuwetschreis</div></div><span class="menu-item-price">19,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Hacksteak Hirten Art</div><div class="menu-item-desc">gefüllt mit Schafskäse, dazu Pommes Frites und Djuwetschreis</div></div><span class="menu-item-price">18,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Grill Teller</div><div class="menu-item-desc">Cevapcici, Rückensteak, Hacksteak und Raznjici, dazu Djuwetschreis und Pommes</div></div><span class="menu-item-price">21,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Kalbsleber</div><div class="menu-item-desc">mit frischen gerösteten Zwiebeln, dazu Pommes Frites und Djuwetschreis</div></div><span class="menu-item-price">20,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Lustiger Bosnjak</div><div class="menu-item-desc">Rumpsteak gefüllt mit Schinken und Käse, dazu Pommes Frites und Djuwetschreis</div><div class="menu-sizes"><div class="menu-size-btn"><span class="menu-size-label">200g</span><span class="menu-size-price">28,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">300g</span><span class="menu-size-price">36,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">400g</span><span class="menu-size-price">42,90 €</span></div></div></div></div>
       </div>
     </div>
   </div>
 
-  <!-- FLEISCH & FISCH -->
-  <div class="menu-panel" id="panel-fleisch">
-    <div class="menu-category">
-      <h3 class="menu-cat-title">Vom Hähnchen</h3>
-      <div class="menu-cat-divider"></div>
-      <div class="menu-items-grid">
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Schnitzel Wiener Art</div>
-            <div class="menu-item-desc">Paniert, dazu Pommes frites</div>
-          </div>
-          <span class="menu-item-price">17,90 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Pfanne India</div>
-            <div class="menu-item-desc">Geschnetzeltes mit tropischen Früchten in Curry-Sahne-Sauce, dazu Butterreis</div>
-          </div>
-          <span class="menu-item-price">19,90 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Putensteak Natur</div>
-            <div class="menu-item-desc">Vom Grill, mit Kräuterbutter, Ofenkartoffel mit Sauerrahm</div>
-          </div>
-          <span class="menu-item-price">18,90 €</span>
-        </div>
-      </div>
-    </div>
+  <!-- FRISCHER FISCH -->
+  <div class="menu-panel" id="panel-fisch">
     <div class="menu-category">
       <h3 class="menu-cat-title">Frischer Fisch</h3>
       <div class="menu-cat-divider"></div>
       <div class="menu-items-grid">
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Zanderfilet</div>
-            <div class="menu-item-desc">Mit Kräuterbutter, dazu Dalmatiner Beilage (Blattspinat, Kartoffeln, Knoblauch)</div>
-          </div>
-          <span class="menu-item-price">22,90 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Lachsfilet</div>
-            <div class="menu-item-desc">Mit Kräuterbutter, dazu Ofenkartoffel mit Sauerrahm</div>
-          </div>
-          <span class="menu-item-price">22,90 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Gegrillte Scampi</div>
-            <div class="menu-item-desc">Mit Knoblauch in Olivenöl, dazu Dalmatiner Beilage</div>
-          </div>
-          <span class="menu-item-price">24,90 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Fischteller nach Art des Hauses</div>
-            <div class="menu-item-desc">Verschiedene Fischsorten, 2 Garnelen, dazu Dalmatiner Beilage</div>
-          </div>
-          <span class="menu-item-price">26,90 €</span>
-        </div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Zanderfilet</div><div class="menu-item-desc">in feiner Dill-Sauce, dazu Mangold-Kartoffeln mit Knoblauch</div></div><span class="menu-item-price">22,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Lachsfilet</div><div class="menu-item-desc">mit Kräuterbutter, dazu Folienkartoffel mit Sauerrahm</div></div><span class="menu-item-price">22,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Doradenfilet</div><div class="menu-item-desc">In Kräuterbutter Sauce, dazu Mangold-Kartoffeln mit Knoblauch</div></div><span class="menu-item-price">21,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Fischteller</div><div class="menu-item-desc">verschiedene Fischfilets und 2 Garnelen, dazu Mangold-Kartoffeln mit Knoblauch</div></div><span class="menu-item-price">26,90 €</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SENIOREN & KINDER -->
+  <div class="menu-panel" id="panel-senioren">
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Für unsere Senioren</h3>
+      <div class="menu-cat-divider"></div>
+      <div class="menu-items-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Herren Teller</div><div class="menu-item-desc">2 Schweinefiletmedaillons mit Pfeffersauce, dazu Bratkartoffeln</div></div><span class="menu-item-price">17,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Damen Teller</div><div class="menu-item-desc">Hähnchensteak und tropische Früchte mit Sauce Hollandaise und Käse überbacken, dazu Kroketten und Gemüse</div></div><span class="menu-item-price">17,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Filetsteak Mini 130g</div><div class="menu-item-desc">mit frischen Champignons in Pfefferrahmsauce, dazu Bratkartoffeln</div></div><span class="menu-item-price">25,90 €</span></div>
+      </div>
+    </div>
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Kindergerichte</h3>
+      <div class="menu-cat-divider"></div>
+      <div class="menu-items-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Biene Maya</div><div class="menu-item-desc">paniertes Hähnchenschnitzel mit Pommes Frites</div></div><span class="menu-item-price">9,50 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Cowboy</div><div class="menu-item-desc">4 Cevapcici mit Pommes Frites</div></div><span class="menu-item-price">9,50 €</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BEILAGEN & SAUCEN -->
+  <div class="menu-panel" id="panel-beilagen">
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Beilagen</h3>
+      <div class="menu-cat-divider"></div>
+      <div class="menu-items-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Pommes Frites</div></div><span class="menu-item-price">4,00 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Kroketten</div></div><span class="menu-item-price">4,00 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Folienkartoffel</div></div><span class="menu-item-price">5,00 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Bratkartoffeln</div></div><span class="menu-item-price">4,00 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Gemüse</div></div><span class="menu-item-price">4,00 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Djuwetschreis</div></div><span class="menu-item-price">4,00 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Butterreis</div></div><span class="menu-item-price">4,00 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Beilagensalat</div></div><span class="menu-item-price">4,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Prinzessbohnen</div></div><span class="menu-item-price">4,00 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Mangold-Kartoffeln</div></div><span class="menu-item-price">4,00 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Geröstete Champignons</div></div><span class="menu-item-price">4,00 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Röstzwiebeln</div></div><span class="menu-item-price">4,00 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Kräuterbutter</div></div><span class="menu-item-price">2,50 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Ajvar</div></div><span class="menu-item-price">2,50 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Sauerrahm</div></div><span class="menu-item-price">3,00 €</span></div>
+      </div>
+    </div>
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Saucen</h3>
+      <div class="menu-cat-divider"></div>
+      <div class="menu-items-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Champignonsauce</div></div><span class="menu-item-price">4,00 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Pfeffersauce</div></div><span class="menu-item-price">4,00 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Hollandaise</div></div><span class="menu-item-price">4,00 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Béarnaise</div></div><span class="menu-item-price">4,00 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Rahmsauce</div></div><span class="menu-item-price">4,00 €</span></div>
       </div>
     </div>
   </div>
@@ -2094,41 +2034,163 @@
       <h3 class="menu-cat-title">Desserts</h3>
       <div class="menu-cat-divider"></div>
       <div class="menu-items-grid">
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Palatschinken mit Schokolade</div>
-            <div class="menu-item-desc">Hauchdünne Pfannkuchen mit Schokoladensauce</div>
-          </div>
-          <span class="menu-item-price">5,90 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Palatschinken mit Marmelade</div>
-            <div class="menu-item-desc">Hauchdünne Pfannkuchen mit hausgemachter Marmelade</div>
-          </div>
-          <span class="menu-item-price">5,90 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Eis &amp; Heiß Kirsch</div>
-            <div class="menu-item-desc">Vanilleeis mit heißen Kirschen und Sahne</div>
-          </div>
-          <span class="menu-item-price">8,90 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Palatschinken Gourmet</div>
-            <div class="menu-item-desc">Hauchdünn, mit Schokolade gefüllt mit Vanilleeis, dekoriert mit Kirschen und Sahne</div>
-          </div>
-          <span class="menu-item-price">8,90 €</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <div class="menu-item-name">Lava Cake</div>
-            <div class="menu-item-desc">Warmes Schokoladen-Soufflé mit flüssigem Kern, dazu Vanilleeis und Sahne</div>
-          </div>
-          <span class="menu-item-price">8,90 €</span>
-        </div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Palatschinken mit Schokolade</div></div><span class="menu-item-price">5,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Palatschinken mit Marmelade</div></div><span class="menu-item-price">5,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Palatschinken Gourmet</div><div class="menu-item-desc">hauchdünner Pfannkuchen mit Schokolade, gefüllt mit Vanilleeis, dekoriert mit Früchten und Sahne</div></div><span class="menu-item-price">8,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Crème brûlée</div><div class="menu-item-desc">mit karamellisierter Zuckerschicht</div></div><span class="menu-item-price">6,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Lava Cake</div><div class="menu-item-desc">warmes Schokoladen-Soufflé mit flüssigem Schokoladenkern, dazu Vanilleeis mit Sahne</div></div><span class="menu-item-price">8,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Semifreddo</div><div class="menu-item-desc">luftig wie eine Mousse, cremig wie Eis, mit karamellisierten Mandeln und hausgemachter Karamellsauce auf Keksboden</div></div><span class="menu-item-price">9,50 €</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEINKARTE -->
+  <div class="menu-panel" id="panel-weine">
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Rotweine</h3>
+      <div class="menu-cat-divider"></div>
+      <p style="font-size:0.8rem;color:var(--text);margin-bottom:1rem;font-style:italic;">Glas 0,2l / Flasche 0,75l</p>
+      <div class="menu-items-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Cavazza, Merlot, Veneto Italien</div><div class="menu-item-desc">Fruchtiges Aroma von reifen roten Beeren. Sanft, elegant und sehr gut balanciert. Trocken</div></div><span class="menu-item-price">6,50 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Casa Carmela, Semi-Dulce, Spanien</div><div class="menu-item-desc">Fruchtiger Rotwein mit ausbalancierter Süße, nicht ganz trocken</div></div><span class="menu-item-price">7,00 / 24,00 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Seniora de Ayanz, Temranillo, Navarra</div><div class="menu-item-desc">Frucht und Tannin mit Beeren. Saftiger, junger Spanier</div></div><span class="menu-item-price">7,00 / 24,00 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Plavac, Kroatien</div><div class="menu-item-desc">Fein trockener leichter Wein</div></div><span class="menu-item-price">6,90 / 23,00 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Kadarka, Nordmazedonien</div><div class="menu-item-desc">Rund und weich, Wein mit einem feinen sanften Aroma. Lieblich</div></div><span class="menu-item-price">6,90 / 23,00 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Don Filippo, Primitivo, Puglia</div><div class="menu-item-desc">Intensive Noten von roten Früchten, weich und rund</div></div><span class="menu-item-price">8,00 / 28,00 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Cà Dei Frati Ronchedone DOC</div><div class="menu-item-desc">Marzemino, Sangiovese und Cabernet Sauvignon. Aromen von Himbeeren und Cassis, Holznoten von Vanille und Karamell</div></div><span class="menu-item-price">42,00 €</span></div>
+      </div>
+    </div>
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Roséweine</h3>
+      <div class="menu-cat-divider"></div>
+      <p style="font-size:0.8rem;color:var(--text);margin-bottom:1rem;font-style:italic;">Glas 0,2l / Flasche 0,75l</p>
+      <div class="menu-items-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Seniora de Ayanz, Grenache, Navarra</div><div class="menu-item-desc">Erfrischende Frucht, leichter Genuss. Trocken</div></div><span class="menu-item-price">6,90 / 23,00 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Wildner, Spätburgunder Rosé</div><div class="menu-item-desc">Fruchtige Aromen von Waldbeeren, Erdbeeren und Kirschen</div></div><span class="menu-item-price">7,30 / 25,00 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Cà Dei Frati Rosa Cuvée DOC</div><div class="menu-item-desc">Aromen von Walderdbeeren, Himbeeren, Kirschen und floralen Noten</div></div><span class="menu-item-price">35,00 €</span></div>
+      </div>
+    </div>
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Weißweine</h3>
+      <div class="menu-cat-divider"></div>
+      <p style="font-size:0.8rem;color:var(--text);margin-bottom:1rem;font-style:italic;">Glas 0,2l / Flasche 0,75l</p>
+      <div class="menu-items-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Cavazza, Pinot Grigio, Veneto</div><div class="menu-item-desc">Frisch, mit Aroma von tropischen Früchten. Trocken</div></div><span class="menu-item-price">6,50 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Karl Pfaffmann, Riesling, Herrenberg</div><div class="menu-item-desc">Kräftige Früchte und zart süßlicher Schmelz. Feinherb</div></div><span class="menu-item-price">7,00 / 24,00 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Karl Pfaffmann, Grauburgunder, Pfalz</div><div class="menu-item-desc">Saftig und animierend frisch. Lang im Abgang. Trocken</div></div><span class="menu-item-price">6,90 / 23,00 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Javier Sanz, Verdejo, Rueda Spanien</div></div><span class="menu-item-price">7,30 / 25,00 €</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GETRÄNKE -->
+  <div class="menu-panel" id="panel-getraenke">
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Alkoholfreie Getränke</h3>
+      <div class="menu-cat-divider"></div>
+      <div class="menu-items-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Coca-Cola</div><div class="menu-item-desc">0,3l</div></div><span class="menu-item-price">3,30 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Coca-Cola Zero</div><div class="menu-item-desc">0,33l Fl.</div></div><span class="menu-item-price">3,80 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Spezi</div><div class="menu-item-desc">0,3l</div></div><span class="menu-item-price">3,30 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Fanta</div><div class="menu-item-desc">0,3l</div></div><span class="menu-item-price">3,30 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Sprite</div><div class="menu-item-desc">0,3l</div></div><span class="menu-item-price">3,30 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Fassbrause</div><div class="menu-item-desc">0,33l Fl.</div></div><span class="menu-item-price">3,80 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">O-Saft</div><div class="menu-item-desc">0,2l Fl.</div></div><span class="menu-item-price">3,50 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Apfelsaft</div><div class="menu-item-desc">0,2l Fl.</div></div><span class="menu-item-price">3,50 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Tönnissteiner</div><div class="menu-item-desc">0,25l Fl.</div></div><span class="menu-item-price">3,00 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Tönnissteiner</div><div class="menu-item-desc">0,75l Fl.</div></div><span class="menu-item-price">6,50 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Bitter Lemon</div><div class="menu-item-desc">0,2l Fl.</div></div><span class="menu-item-price">3,00 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Tonic Wasser</div><div class="menu-item-desc">0,2l Fl.</div></div><span class="menu-item-price">3,00 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Eistee Pfirsich</div><div class="menu-item-desc">0,3l Fl.</div></div><span class="menu-item-price">3,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Rhabarberlimonade</div><div class="menu-item-desc">0,33l Fl.</div></div><span class="menu-item-price">3,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Apfelschorle Naturtrüb</div><div class="menu-item-desc">0,33l Fl.</div></div><span class="menu-item-price">3,90 €</span></div>
+      </div>
+    </div>
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Bier</h3>
+      <div class="menu-cat-divider"></div>
+      <div class="menu-items-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Früh Kölsch</div><div class="menu-item-desc">0,3l</div></div><span class="menu-item-price">3,20 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Früh Kölsch</div><div class="menu-item-desc">0,2l</div></div><span class="menu-item-price">2,20 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Früh Kölsch alkoholfrei</div><div class="menu-item-desc">0,33l Fl.</div></div><span class="menu-item-price">3,50 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Erzquell Pils</div><div class="menu-item-desc">0,3l</div></div><span class="menu-item-price">3,30 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Bergisches Landbier</div><div class="menu-item-desc">0,3l</div></div><span class="menu-item-price">3,40 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Bergisches Landbier alkoholfrei</div><div class="menu-item-desc">0,33l Fl.</div></div><span class="menu-item-price">3,60 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Paulaner Hefeweizen</div><div class="menu-item-desc">0,5l Fl.</div></div><span class="menu-item-price">5,50 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Paulaner Hefeweizen alkoholfrei</div><div class="menu-item-desc">0,5l Fl.</div></div><span class="menu-item-price">5,50 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Malzbier</div><div class="menu-item-desc">0,3l</div></div><span class="menu-item-price">3,20 €</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPIRITUOSEN -->
+  <div class="menu-panel" id="panel-spirituosen">
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Spirituosen</h3>
+      <div class="menu-cat-divider"></div>
+      <p style="font-size:0.8rem;color:var(--text);margin-bottom:1rem;font-style:italic;">Je 2cl, sofern nicht anders angegeben</p>
+      <div class="menu-items-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Williambs-Birne</div></div><span class="menu-item-price">3,20 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Malteser</div></div><span class="menu-item-price">2,70 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Linie Aquavit</div></div><span class="menu-item-price">3,20 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Wodka</div></div><span class="menu-item-price">2,50 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Barak Palinka</div></div><span class="menu-item-price">2,70 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Slivovic</div></div><span class="menu-item-price">2,50 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Ouzo</div></div><span class="menu-item-price">2,50 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Grappa</div></div><span class="menu-item-price">2,70 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Julishka</div></div><span class="menu-item-price">2,50 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Bergische Nuss</div></div><span class="menu-item-price">3,20 €</span></div>
+      </div>
+    </div>
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Liköre &amp; Bitter</h3>
+      <div class="menu-cat-divider"></div>
+      <div class="menu-items-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Baileys Cream</div><div class="menu-item-desc">4cl</div></div><span class="menu-item-price">4,50 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Sambuca</div><div class="menu-item-desc">2cl</div></div><span class="menu-item-price">2,50 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Jägermeister</div><div class="menu-item-desc">2cl</div></div><span class="menu-item-price">2,50 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Fernet Branca</div><div class="menu-item-desc">2cl</div></div><span class="menu-item-price">2,50 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Ramazotti</div><div class="menu-item-desc">4cl</div></div><span class="menu-item-price">4,50 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Averna</div><div class="menu-item-desc">4cl</div></div><span class="menu-item-price">4,50 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">43'er auf Eis</div><div class="menu-item-desc">4cl</div></div><span class="menu-item-price">4,50 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Visnjevac</div><div class="menu-item-desc">4cl</div></div><span class="menu-item-price">4,50 €</span></div>
+      </div>
+    </div>
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Whisky</h3>
+      <div class="menu-cat-divider"></div>
+      <div class="menu-items-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Johnny Walker</div><div class="menu-item-desc">2cl</div></div><span class="menu-item-price">3,80 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Jack Daniels</div><div class="menu-item-desc">2cl</div></div><span class="menu-item-price">3,80 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Chivas Regal</div><div class="menu-item-desc">2cl</div></div><span class="menu-item-price">4,00 €</span></div>
+      </div>
+    </div>
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Cognac &amp; Weinbrand</h3>
+      <div class="menu-cat-divider"></div>
+      <div class="menu-items-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Remy V.S.O.P</div><div class="menu-item-desc">2cl</div></div><span class="menu-item-price">4,50 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Hennessy V.S.O.P</div><div class="menu-item-desc">2cl</div></div><span class="menu-item-price">4,00 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Asbach Uralt</div><div class="menu-item-desc">2cl</div></div><span class="menu-item-price">2,80 €</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEISSE GETRÄNKE -->
+  <div class="menu-panel" id="panel-heissgetraenke">
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Heiße Getränke</h3>
+      <div class="menu-cat-divider"></div>
+      <div class="menu-items-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Tasse Kaffee</div></div><span class="menu-item-price">2,50 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Espresso</div></div><span class="menu-item-price">2,30 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Espresso doppelt</div></div><span class="menu-item-price">3,00 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Espresso Macchiato</div></div><span class="menu-item-price">3,00 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Heiße Schokolade</div></div><span class="menu-item-price">3,50 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Cappuccino</div></div><span class="menu-item-price">3,30 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Latte Macchiato</div></div><span class="menu-item-price">3,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Milchkaffee</div></div><span class="menu-item-price">3,60 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Tasse Tee</div><div class="menu-item-desc">Minze, Kamille, Kräuter, Schwarz, Früchte, Grün</div></div><span class="menu-item-price">3,00 €</span></div>
       </div>
     </div>
   </div>
@@ -2438,7 +2500,7 @@
       </div>
       <div class="footer-col">
         <h4>Öffnungszeiten</h4>
-        <p>Mo: Ruhetag<br>Di–Fr: 11:30–22:30<br>Sa: 12:00–22:30<br>So: 12:00–21:00</p>
+        <p>Mo, Mi–Fr: 17:30–22:00<br>Di: Ruhetag<br>Sa: 12:00–14:30 &amp; 17:30–22:00<br>So: 12:00–15:00 &amp; 17:00–21:00</p>
       </div>
       <div class="footer-col">
         <h4>Kontakt</h4>
