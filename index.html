@@ -32,6 +32,17 @@
       overflow-x: clip;
     }
     *, *::before, *::after { box-sizing: border-box; }
+    /* Grid/flex items default min-width:auto which prevents shrinking on mobile.
+       min-width:0 allows them to shrink below their content size. */
+    .hours-inner > *, .about-inner > *, .contact-inner > *,
+    .form-row > *, .footer-top > *, .voucher-steps > *,
+    .events-grid > *, .menu-items-grid > *, .about-features > * {
+      min-width: 0;
+    }
+    /* Images and media never overflow their container */
+    img, video, canvas, svg, iframe, input, select, textarea, button {
+      max-width: 100%;
+    }
     #page-wrap {
       /* No transform here — transform creates a new containing block for
          position:fixed children (lightbox), which breaks on iOS. */
@@ -482,6 +493,7 @@
     .hours {
       background: var(--dark2);
       padding: 7rem 3rem;
+      overflow: hidden;
     }
 
     .hours-inner {
@@ -956,6 +968,7 @@
     .menu {
       padding: 8rem 3rem;
       background: var(--dark2);
+      overflow: hidden;
     }
 
     .menu-header {
@@ -1104,6 +1117,7 @@
     .events {
       padding: 8rem 3rem;
       background: var(--dark);
+      overflow: hidden;
     }
 
     .events-header {
@@ -1482,6 +1496,7 @@
     .contact {
       padding: 8rem 3rem;
       background: var(--dark3);
+      overflow: hidden;
     }
 
     .contact-inner {
@@ -1582,6 +1597,7 @@
       background: var(--dark2);
       border-top: 1px solid rgba(201,169,110,0.1);
       padding: 4rem 3rem 2rem;
+      overflow: hidden;
     }
 
     .footer-inner {
@@ -2950,24 +2966,6 @@
 
 <!-- ── JAVASCRIPT ── -->
 <script>
-  // DEBUG: find overflowing elements — remove after iOS fix confirmed
-  (function() {
-    const vw = document.documentElement.clientWidth;
-    const bad = [];
-    document.querySelectorAll('*').forEach(el => {
-      const r = el.getBoundingClientRect();
-      if (r.right > vw + 1) {
-        bad.push({tag: el.tagName, cls: el.className.toString().slice(0,40), right: Math.round(r.right), vw});
-      }
-    });
-    if (bad.length) {
-      const box = document.createElement('div');
-      box.style.cssText = 'position:fixed;top:60px;left:8px;right:8px;background:rgba(180,0,0,0.92);color:#fff;font-size:11px;padding:8px;z-index:99999;border-radius:4px;max-height:200px;overflow-y:auto;word-break:break-all;';
-      box.innerHTML = '<b>OVERFLOW:</b><br>' + bad.map(b => b.tag+'.'+b.cls+' right='+b.right+'px (vw='+b.vw+')').join('<br>');
-      document.body.appendChild(box);
-    }
-  })();
-
   // Hero BG load animation
   // hero-bg scale animation removed (caused iOS overflow)
 
