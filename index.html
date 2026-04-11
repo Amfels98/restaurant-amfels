@@ -1764,9 +1764,20 @@
       .nav-logo img { height: 60px !important; }
       .gallery-category { columns: 1; }
       .hero-title { font-size: clamp(2.4rem, 13vw, 4rem); }
+      .hero { min-height: 100svh; }
       .hours, .about, .gallery, .menu, .events, .voucher, .reservation, .contact {
         padding: 3.5rem 1rem;
       }
+      .toast { min-width: min(300px, 88vw); }
+    }
+
+    /* Touch-Targets: min 44px */
+    @media (hover: none) and (pointer: coarse) {
+      .menu-tab-btn, .gallery-tab, .btn, .nav-links a, .hamburger {
+        min-height: 44px;
+      }
+      .hamburger { padding: 8px; }
+      input, select, textarea { font-size: 16px !important; } /* iOS zoom verhindern */
     }
   </style>
 </head>
