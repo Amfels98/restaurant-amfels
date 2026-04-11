@@ -398,6 +398,52 @@
     }
 
 
+    /* ── FLYING FOOD ── */
+    .food-item {
+      position: absolute;
+      font-size: 3.2rem;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0;
+      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.5));
+      animation-fill-mode: forwards;
+      animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    @keyframes foodFloat {
+      0%,100% { transform: translateY(0px) rotate(0deg); }
+      50%      { transform: translateY(-12px) rotate(4deg); }
+    }
+    @keyframes food1 {
+      0%   { opacity:0; transform: translate(-300px,-200px) rotate(-60deg) scale(0.3); }
+      70%  { opacity:1; transform: translate(0,0) rotate(8deg) scale(1.1); }
+      100% { opacity:1; transform: translate(0,0) rotate(5deg) scale(1); }
+    }
+    @keyframes food2 {
+      0%   { opacity:0; transform: translate(300px,-250px) rotate(80deg) scale(0.3); }
+      70%  { opacity:1; transform: translate(0,0) rotate(-10deg) scale(1.1); }
+      100% { opacity:1; transform: translate(0,0) rotate(-7deg) scale(1); }
+    }
+    @keyframes food3 {
+      0%   { opacity:0; transform: translate(-350px,200px) rotate(120deg) scale(0.3); }
+      70%  { opacity:1; transform: translate(0,0) rotate(-5deg) scale(1.1); }
+      100% { opacity:1; transform: translate(0,0) rotate(-3deg) scale(1); }
+    }
+    @keyframes food4 {
+      0%   { opacity:0; transform: translate(300px,250px) rotate(-100deg) scale(0.3); }
+      70%  { opacity:1; transform: translate(0,0) rotate(6deg) scale(1.1); }
+      100% { opacity:1; transform: translate(0,0) rotate(4deg) scale(1); }
+    }
+    @keyframes food5 {
+      0%   { opacity:0; transform: translateY(-300px) rotate(40deg) scale(0.3); }
+      70%  { opacity:1; transform: translate(0,0) rotate(-8deg) scale(1.1); }
+      100% { opacity:1; transform: translate(0,0) rotate(-5deg) scale(1); }
+    }
+    @keyframes food6 {
+      0%   { opacity:0; transform: translateY(300px) rotate(-40deg) scale(0.3); }
+      70%  { opacity:1; transform: translate(0,0) rotate(7deg) scale(1.1); }
+      100% { opacity:1; transform: translate(0,0) rotate(5deg) scale(1); }
+    }
+
     @keyframes flyIn {
       0%   { opacity: 0; transform: translateX(120%) rotate(12deg) scale(0.85); }
       65%  { transform: translateX(-12px) rotate(-2deg) scale(1.03); }
@@ -2600,6 +2646,37 @@
   const dateInputs = document.querySelectorAll('input[type="date"]');
   const today = new Date().toISOString().split('T')[0];
   dateInputs.forEach(d => d.min = today);
+
+  // ═══════════════════════════════════════
+  // 🍖 FLYING FOOD ITEMS
+  // ═══════════════════════════════════════
+  const foods = [
+    { emoji: '🍢', anim: 'food1', delay: '0.2s', dur: '1.1s', left: '18%', top: '35%', floatDur: '3.2s' },
+    { emoji: '🐟', anim: 'food2', delay: '0.5s', dur: '1.2s', left: '68%', top: '28%', floatDur: '2.8s' },
+    { emoji: '🥩', anim: 'food3', delay: '0.8s', dur: '1.0s', left: '24%', top: '58%', floatDur: '3.5s' },
+    { emoji: '🌿', anim: 'food4', delay: '1.0s', dur: '1.1s', left: '72%', top: '55%', floatDur: '2.6s' },
+    { emoji: '🔥', anim: 'food5', delay: '1.3s', dur: '0.9s', left: '46%', top: '20%', floatDur: '2.0s' },
+    { emoji: '🧅', anim: 'food6', delay: '1.5s', dur: '1.0s', left: '52%', top: '65%', floatDur: '3.8s' },
+  ];
+
+  foods.forEach(f => {
+    const el = document.createElement('div');
+    el.className = 'food-item';
+    el.textContent = f.emoji;
+    el.style.left = f.left;
+    el.style.top  = f.top;
+    el.style.animationName = f.anim;
+    el.style.animationDelay = f.delay;
+    el.style.animationDuration = f.dur;
+    document.querySelector('.hero').appendChild(el);
+
+    // After fly-in, start floating
+    const totalMs = (parseFloat(f.delay) + parseFloat(f.dur)) * 1000;
+    setTimeout(() => {
+      el.style.animation = `foodFloat ${f.floatDur} ease-in-out infinite`;
+      el.style.opacity = '1';
+    }, totalMs);
+  });
 
   // ═══════════════════════════════════════
   // 🔥 EMBER PARTICLES
