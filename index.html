@@ -2950,6 +2950,24 @@
 
 <!-- ── JAVASCRIPT ── -->
 <script>
+  // DEBUG: find overflowing elements — remove after iOS fix confirmed
+  (function() {
+    const vw = document.documentElement.clientWidth;
+    const bad = [];
+    document.querySelectorAll('*').forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.right > vw + 1) {
+        bad.push({tag: el.tagName, cls: el.className.toString().slice(0,40), right: Math.round(r.right), vw});
+      }
+    });
+    if (bad.length) {
+      const box = document.createElement('div');
+      box.style.cssText = 'position:fixed;top:60px;left:8px;right:8px;background:rgba(180,0,0,0.92);color:#fff;font-size:11px;padding:8px;z-index:99999;border-radius:4px;max-height:200px;overflow-y:auto;word-break:break-all;';
+      box.innerHTML = '<b>OVERFLOW:</b><br>' + bad.map(b => b.tag+'.'+b.cls+' right='+b.right+'px (vw='+b.vw+')').join('<br>');
+      document.body.appendChild(box);
+    }
+  })();
+
   // Hero BG load animation
   // hero-bg scale animation removed (caused iOS overflow)
 
