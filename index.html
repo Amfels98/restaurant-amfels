@@ -32,15 +32,46 @@
       overflow-x: clip;
     }
     *, *::before, *::after { box-sizing: border-box; }
-    /* Grid/flex items default min-width:auto which prevents shrinking on mobile.
-       min-width:0 allows them to shrink below their content size. */
+
+    /* ── GLOBAL OVERFLOW GUARD ───────────────────────────────────
+       Every section, container, and flex/grid item must stay inside
+       the viewport on iOS Safari. Three rules work together:
+       1) overflow:hidden on sections clips their content at the edge
+       2) min-width:0 lets flex/grid children shrink below content size
+       3) word-break prevents long strings from busting the layout
+    ──────────────────────────────────────────────────────────── */
+
+    /* All inner grid/flex containers: constrain width */
+    section, footer {
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    /* All grid/flex children: allow shrinking */
     .hours-inner > *, .about-inner > *, .contact-inner > *,
     .form-row > *, .footer-top > *, .voucher-steps > *,
-    .events-grid > *, .menu-items-grid > *, .about-features > * {
+    .events-grid > *, .menu-items-grid > *, .about-features > *,
+    .contact-details li > *, .hours-row > *, .feature-item > *,
+    .footer-top > *, .nav-links > * {
       min-width: 0;
     }
+
+    /* Long strings (addresses, times) must wrap, not overflow */
+    .contact-detail-value, .hours-time, .hours-day,
+    .menu-item-name, .menu-item-price {
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+
     /* Images and media never overflow their container */
     img, video, canvas, svg, iframe, input, select, textarea, button {
+      max-width: 100%;
+    }
+
+    /* Inner containers: never wider than viewport */
+    .hours-inner, .about-inner, .contact-inner, .reservation-inner,
+    .menu-inner, .gallery-grid, .gallery-category, .gallery-videos,
+    .events-grid, .voucher-inner, .footer-top {
       max-width: 100%;
     }
     #page-wrap {
@@ -494,6 +525,7 @@
       background: var(--dark2);
       padding: 7rem 3rem;
       overflow: hidden;
+      contain: layout paint;
     }
 
     .hours-inner {
@@ -969,6 +1001,7 @@
       padding: 8rem 3rem;
       background: var(--dark2);
       overflow: hidden;
+      contain: layout paint;
     }
 
     .menu-header {
@@ -1118,6 +1151,7 @@
       padding: 8rem 3rem;
       background: var(--dark);
       overflow: hidden;
+      contain: layout paint;
     }
 
     .events-header {
@@ -1497,6 +1531,7 @@
       padding: 8rem 3rem;
       background: var(--dark3);
       overflow: hidden;
+      contain: layout paint;
     }
 
     .contact-inner {
@@ -1535,7 +1570,7 @@
       flex-shrink: 0;
     }
 
-    .contact-detail-text { }
+    .contact-detail-text { flex: 1; min-width: 0; }
 
     .contact-detail-label {
       font-size: 0.65rem;
