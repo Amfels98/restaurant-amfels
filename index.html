@@ -2316,7 +2316,7 @@
       </div>
     </form>
     <p class="res-phone">
-      Oder direkt anrufen: <a href="tel:+492263XXXXX">02263 / XXX XX</a>
+      Oder direkt anrufen: <a href="tel:+4922639291371">02263 9291371</a>
     </p>
   </div>
 </section>
@@ -2348,14 +2348,14 @@
           <span class="contact-icon">📞</span>
           <div class="contact-detail-text">
             <div class="contact-detail-label">Telefon</div>
-            <div class="contact-detail-value"><a href="tel:+492263XXXXX">02263 / XXX XX</a></div>
+            <div class="contact-detail-value"><a href="tel:+4922639291371">02263 9291371</a></div>
           </div>
         </li>
         <li>
           <span class="contact-icon">✉</span>
           <div class="contact-detail-text">
             <div class="contact-detail-label">E-Mail</div>
-            <div class="contact-detail-value"><a href="mailto:info@restaurant-amfels.de">info@restaurant-amfels.de</a></div>
+            <div class="contact-detail-value"><a href="mailto:restaurant.amfels@web.de">restaurant.amfels@web.de</a></div>
           </div>
         </li>
         <li>
@@ -2442,18 +2442,48 @@
       </div>
       <div class="footer-col">
         <h4>Kontakt</h4>
-        <p>Staadter Weg 2<br>51766 Engelskirchen<br><br><a href="tel:+492263XXXXX" style="color:var(--gold);">02263 / XXX XX</a></p>
+        <p>Staadter Weg 2<br>51766 Engelskirchen<br><br><a href="tel:+4922639291371" style="color:var(--gold);">02263 9291371</a></p>
       </div>
     </div>
     <div class="footer-bottom">
       <span class="footer-copy">© 2025 Restaurant Am Fels · Alle Rechte vorbehalten</span>
       <div class="footer-links">
-        <a href="#">Impressum</a>
+        <a href="#" onclick="document.getElementById('impressumModal').classList.add('open');document.body.style.overflow='hidden';return false;">Impressum</a>
         <a href="#">Datenschutz</a>
       </div>
     </div>
   </div>
 </footer>
+
+<!-- ── IMPRESSUM MODAL ── -->
+<div class="lightbox" id="impressumModal" style="align-items:flex-start;overflow-y:auto;padding:2rem 1rem;">
+  <div style="background:#1a1a1a;border:1px solid #333;border-radius:12px;max-width:600px;width:100%;margin:auto;padding:2.5rem;position:relative;">
+    <button onclick="document.getElementById('impressumModal').classList.remove('open');document.body.style.overflow='';" style="position:absolute;top:1rem;right:1rem;background:none;border:none;color:#c9a96e;font-size:1.5rem;cursor:pointer;line-height:1;">✕</button>
+    <h2 style="color:#c9a96e;font-family:'Playfair Display',serif;margin-bottom:1.5rem;">Impressum</h2>
+    <p style="color:#f0ebe2;line-height:1.8;margin-bottom:1rem;">
+      <strong style="color:#c9a96e;">Angaben gemäß § 5 TMG</strong><br>
+      Leon Rajic<br>
+      Staadter Weg 2<br>
+      51766 Engelskirchen
+    </p>
+    <p style="color:#f0ebe2;line-height:1.8;margin-bottom:1rem;">
+      <strong style="color:#c9a96e;">Kontakt</strong><br>
+      Telefon: <a href="tel:+4922639291371" style="color:#c9a96e;">02263 9291371</a><br>
+      E-Mail: <a href="mailto:restaurant.amfels@web.de" style="color:#c9a96e;">restaurant.amfels@web.de</a>
+    </p>
+    <p style="color:#f0ebe2;line-height:1.8;margin-bottom:1rem;">
+      <strong style="color:#c9a96e;">Umsatzsteuer-ID</strong><br>
+      Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:<br>
+      DE368958442
+    </p>
+    <p style="color:#f0ebe2;line-height:1.8;">
+      <strong style="color:#c9a96e;">Streitschlichtung</strong><br>
+      Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
+      <a href="https://ec.europa.eu/consumers/odr/" target="_blank" style="color:#c9a96e;">https://ec.europa.eu/consumers/odr/</a>.<br>
+      Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+    </p>
+  </div>
+</div>
 
 <!-- ── TOAST ── -->
 <div class="toast" id="toast">
