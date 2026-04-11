@@ -27,7 +27,8 @@
 
     html { scroll-behavior: smooth; }
     *, *::before, *::after { box-sizing: border-box; }
-    section, footer, .ticker { overflow-x: hidden; }
+    #page-wrap { overflow-x: hidden; width: 100%; position: relative; }
+    section, footer, .ticker, .video-divider { overflow-x: hidden; }
 
     body {
       font-family: 'Lato', sans-serif;
@@ -1793,6 +1794,7 @@
   </style>
 </head>
 <body>
+<div id="page-wrap">
 
 <!-- ── NAVIGATION ── -->
 <nav id="navbar">
@@ -3236,5 +3238,6 @@
     });
   }
 </script>
+</div><!-- #page-wrap -->
 </body>
 </html>
