@@ -12,16 +12,16 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --gold: #c9a96e;
-      --gold-light: #e8d5b0;
+      --gold: #b8924a;
+      --gold-light: #dfc089;
       --gold-dark: #9a7a48;
       --black: #0a0a0a;
-      --dark: #111111;
-      --dark2: #1a1a1a;
-      --dark3: #222222;
-      --cream: #f8f4ed;
-      --text: #d4c9b8;
-      --text-light: #f0ebe2;
+      --dark: #f5efe4;
+      --dark2: #fdfaf5;
+      --dark3: #ece5d8;
+      --cream: #3a2516;
+      --text: #6b5645;
+      --text-light: #2a1a0e;
       --wine: #6b1f1f;
     }
 
@@ -29,14 +29,14 @@
 
     body {
       font-family: 'Lato', sans-serif;
-      background: var(--black);
+      background: var(--dark2);
       color: var(--text);
       overflow-x: hidden;
     }
 
     /* ── SCROLLBAR ── */
     ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-track { background: var(--dark); }
     ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 3px; }
 
     /* ── SELECTION ── */
@@ -1819,6 +1819,7 @@
         <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Rotbarschfilet</div><div class="menu-item-desc">paniert, dazu Bratkartoffeln &amp; Remouladensauce</div></div><span class="menu-item-price">16,90 €</span></div>
       </div>
     </div>
+    <div class="menu-note">Zu diesen Gerichten servieren wir einen Beilagensalat.</div>
   </div>
 
   <!-- APERITIFS -->
@@ -1911,6 +1912,7 @@
         <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Lamm-Kotelett</div><div class="menu-item-desc">vom Carré, mit frischem Knoblauch, dazu Prinzessbohnen und Bratkartoffeln</div></div><span class="menu-item-price">30,90 €</span></div>
       </div>
     </div>
+    <div class="menu-note">Zu diesen Gerichten servieren wir einen Beilagensalat.</div>
   </div>
 
   <!-- VOM SCHWEIN -->
@@ -1925,6 +1927,7 @@
         <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Marco Polo</div><div class="menu-item-desc">Schweinefilet mit Schinken, Sauce Béarnaise und Käse überbacken, dazu Bratkartoffeln</div></div><span class="menu-item-price">21,90 €</span></div>
       </div>
     </div>
+    <div class="menu-note">Zu diesen Gerichten servieren wir einen Beilagensalat.</div>
   </div>
 
   <!-- HÄHNCHEN & SCHNITZEL -->
@@ -1939,6 +1942,7 @@
         <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Hähnchensteak Natur</div><div class="menu-item-desc">gegrillt, mit Kräuterbutter, dazu Folienkartoffel mit Sauerrahm</div></div><span class="menu-item-price">18,90 €</span></div>
       </div>
     </div>
+    <div class="menu-note">Zu diesen Gerichten servieren wir einen Beilagensalat.</div>
   </div>
 
   <!-- GRILL -->
@@ -1949,12 +1953,13 @@
       <div class="menu-items-grid">
         <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Cevapcici</div><div class="menu-item-desc">Hausgemachte Hackfleischröllchen, dazu Pommes Frites und Djuwetschreis</div></div><span class="menu-item-price">18,90 €</span></div>
         <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Raznjici</div><div class="menu-item-desc">vom Schwein, dazu Pommes Frites und Djuwetschreis</div></div><span class="menu-item-price">19,90 €</span></div>
-        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Hacksteak Hirten Art</div><div class="menu-item-desc">gefüllt mit Schafskäse, dazu Pommes Frites und Djuwetschreis</div></div><span class="menu-item-price">18,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Hacksteak Hirten Art</div><div class="menu-item-desc">gefüllt mit Schafskäse, dazu Pommes Frites und Djuwetschreis</div></div><span class="menu-item-price">19,90 €</span></div>
         <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Grill Teller</div><div class="menu-item-desc">Cevapcici, Rückensteak, Hacksteak und Raznjici, dazu Djuwetschreis und Pommes</div></div><span class="menu-item-price">21,90 €</span></div>
         <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Kalbsleber</div><div class="menu-item-desc">mit frischen gerösteten Zwiebeln, dazu Pommes Frites und Djuwetschreis</div></div><span class="menu-item-price">20,90 €</span></div>
         <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Lustiger Bosnjak</div><div class="menu-item-desc">Rumpsteak gefüllt mit Schinken und Käse, dazu Pommes Frites und Djuwetschreis</div><div class="menu-sizes"><div class="menu-size-btn"><span class="menu-size-label">200g</span><span class="menu-size-price">28,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">300g</span><span class="menu-size-price">36,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">400g</span><span class="menu-size-price">42,90 €</span></div></div></div></div>
       </div>
     </div>
+    <div class="menu-note">Zu diesen Gerichten servieren wir einen Beilagensalat.</div>
   </div>
 
   <!-- FRISCHER FISCH -->
@@ -1969,6 +1974,7 @@
         <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Fischteller</div><div class="menu-item-desc">verschiedene Fischfilets und 2 Garnelen, dazu Mangold-Kartoffeln mit Knoblauch</div></div><span class="menu-item-price">26,90 €</span></div>
       </div>
     </div>
+    <div class="menu-note">Zu diesen Gerichten servieren wir einen Beilagensalat.</div>
   </div>
 
   <!-- SENIOREN & KINDER -->
@@ -1982,6 +1988,7 @@
         <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Filetsteak Mini 130g</div><div class="menu-item-desc">mit frischen Champignons in Pfefferrahmsauce, dazu Bratkartoffeln</div></div><span class="menu-item-price">25,90 €</span></div>
       </div>
     </div>
+    <div class="menu-note">Zu diesen Gerichten servieren wir einen Beilagensalat.</div>
     <div class="menu-category">
       <h3 class="menu-cat-title">Kindergerichte</h3>
       <div class="menu-cat-divider"></div>
@@ -2196,7 +2203,7 @@
   </div>
 
   <div class="menu-cta fade-up">
-    <p>Die vollständige Speise- und Getränkekarte liegt im Restaurant für Sie bereit.</p>
+    <p>Reservieren Sie Ihren Tisch und genießen Sie unsere Küche.</p>
     <a href="#reservierung" class="btn-primary">Tisch reservieren</a>
   </div>
 </section>
