@@ -618,7 +618,7 @@
     ──────────────────────────────────── */
     .gallery {
       padding: 8rem 3rem;
-      background: var(--black);
+      background: #1a0e07;
     }
 
     .gallery-header {
@@ -627,61 +627,125 @@
       text-align: center;
     }
 
+    .gallery-header .section-label { color: var(--gold); }
+    .gallery-header .section-title { color: #f5efe4; }
+    .gallery-header .section-title em { color: var(--gold); }
+
     .gallery-grid {
       max-width: 1300px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: auto auto;
-      gap: 8px;
+      columns: 3;
+      column-gap: 14px;
     }
 
     .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 14px;
       overflow: hidden;
       position: relative;
       cursor: pointer;
+      border-radius: 4px;
     }
 
-    .gallery-item:nth-child(1) {
-      grid-column: span 2;
-      grid-row: span 2;
-    }
-
-    .gallery-item:nth-child(4) {
-      grid-column: span 2;
+    .gallery-item::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 2px solid transparent;
+      border-radius: 4px;
+      transition: border-color 0.4s ease;
+      z-index: 2;
+      pointer-events: none;
     }
 
     .gallery-item img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
       display: block;
-      transition: transform 0.6s ease;
-      min-height: 220px;
+      transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
     }
-
-    .gallery-item:nth-child(1) img { min-height: 460px; }
 
     .gallery-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.3s;
-    }
-
-    .gallery-overlay svg {
-      color: white;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 50%);
       opacity: 0;
-      transition: opacity 0.3s;
-      width: 40px;
+      transition: opacity 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 1.5rem;
+      gap: 0.4rem;
     }
 
-    .gallery-item:hover img { transform: scale(1.06); }
-    .gallery-item:hover .gallery-overlay { background: rgba(0,0,0,0.45); }
-    .gallery-item:hover .gallery-overlay svg { opacity: 1; }
+    .gallery-overlay-title {
+      color: #fff;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-align: center;
+      transform: translateY(8px);
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-overlay-line {
+      width: 30px;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform 0.4s ease 0.05s;
+    }
+
+    .gallery-item:hover img { transform: scale(1.07); }
+    .gallery-item:hover::before { border-color: var(--gold); }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-item:hover .gallery-overlay-title { transform: translateY(0); }
+    .gallery-item:hover .gallery-overlay-line { transform: scaleX(1); }
+
+    .gallery-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .gallery-tab {
+      padding: 0.6rem 1.8rem;
+      border: 1px solid rgba(184,146,74,0.4);
+      border-radius: 30px;
+      background: transparent;
+      color: rgba(245,239,228,0.6);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .gallery-tab:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .gallery-tab.active {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #1a0e07;
+      font-weight: 600;
+    }
+
+    .gallery-category {
+      display: none;
+      max-width: 1300px;
+      margin: 0 auto;
+      columns: 3;
+      column-gap: 14px;
+    }
+
+    .gallery-category.active { display: block; }
 
     /* Lightbox */
     .lightbox {
@@ -1510,16 +1574,9 @@
 
       .hero-title { font-size: clamp(3rem, 15vw, 6rem); }
 
-      .gallery-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .gallery-item:nth-child(1) {
-        grid-column: span 2;
-        grid-row: span 1;
-      }
-
-      .gallery-item:nth-child(4) { grid-column: span 1; }
+      .gallery-category { columns: 2; }
+      .gallery-tabs { gap: 0.5rem; }
+      .gallery-tab { padding: 0.5rem 1.2rem; font-size: 0.8rem; }
 
       .menu-items-grid { grid-template-columns: 1fr; }
       .menu-tabs { overflow-x: auto; }
@@ -1734,38 +1791,106 @@
     <span class="section-label">Impressionen</span>
     <h2 class="section-title">Einblicke in unser<br><em>Restaurant</em></h2>
   </div>
-  <div class="gallery-grid">
+
+  <div class="gallery-tabs">
+    <button class="gallery-tab active" onclick="switchGallery('gerichte', this)">Gerichte</button>
+    <button class="gallery-tab" onclick="switchGallery('personal', this)">Personal</button>
+    <button class="gallery-tab" onclick="switchGallery('ambiente', this)">Ambiente</button>
+  </div>
+
+  <!-- Gerichte -->
+  <div class="gallery-category active" id="gallery-gerichte">
     <div class="gallery-item" onclick="openLightbox('images/restaurant-fotos/salat-filetto.jpg')">
-      <img src="images/restaurant-fotos/salat-filetto.jpg" alt="Salat Filetto di Manzo" loading="lazy" />
-      <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/></svg></div>
+      <img src="images/restaurant-fotos/salat-filetto.jpg" alt="Salat Filetto" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Salat Filetto di Manzo</div><div class="gallery-overlay-line"></div></div>
     </div>
     <div class="gallery-item" onclick="openLightbox('images/restaurant-fotos/tagliatelle-gambas.jpg')">
       <img src="images/restaurant-fotos/tagliatelle-gambas.jpg" alt="Tagliatelle Gambas" loading="lazy" />
-      <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/></svg></div>
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Tagliatelle Gambas</div><div class="gallery-overlay-line"></div></div>
     </div>
     <div class="gallery-item" onclick="openLightbox('images/restaurant-fotos/schafskase-platte.jpg')">
       <img src="images/restaurant-fotos/schafskase-platte.jpg" alt="Schafskäse Platte" loading="lazy" />
-      <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/></svg></div>
-    </div>
-    <div class="gallery-item" onclick="openLightbox('images/hauptraum.jpeg')">
-      <img src="images/hauptraum.jpeg" alt="Hauptraum" loading="lazy" />
-      <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/></svg></div>
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Schafskäse Platte</div><div class="gallery-overlay-line"></div></div>
     </div>
     <div class="gallery-item" onclick="openLightbox('images/restaurant-fotos/haehnchen-sauce-kartoffeln.jpg')">
-      <img src="images/restaurant-fotos/haehnchen-sauce-kartoffeln.jpg" alt="Hähnchen mit Sauce" loading="lazy" />
-      <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/></svg></div>
+      <img src="images/restaurant-fotos/haehnchen-sauce-kartoffeln.jpg" alt="Hähnchen" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Hähnchen mit Sauce</div><div class="gallery-overlay-line"></div></div>
     </div>
     <div class="gallery-item" onclick="openLightbox('images/restaurant-fotos/schnitzel-champignon.jpg')">
       <img src="images/restaurant-fotos/schnitzel-champignon.jpg" alt="Schnitzel Champignon" loading="lazy" />
-      <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/></svg></div>
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Schnitzel Champignon</div><div class="gallery-overlay-line"></div></div>
     </div>
+    <div class="gallery-item" onclick="openLightbox('images/restaurant-fotos/grillplatte.jpg')">
+      <img src="images/restaurant-fotos/grillplatte.jpg" alt="Grillplatte" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Grillplatte</div><div class="gallery-overlay-line"></div></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/cevapcici.jpeg')">
+      <img src="images/cevapcici.jpeg" alt="Ćevapčići" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Ćevapčići</div><div class="gallery-overlay-line"></div></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/steak.jpeg')">
+      <img src="images/steak.jpeg" alt="Steak" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Steak vom Grill</div><div class="gallery-overlay-line"></div></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/grillfleisch.jpeg')">
+      <img src="images/grillfleisch.jpeg" alt="Grillfleisch" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Grillfleisch</div><div class="gallery-overlay-line"></div></div>
+    </div>
+  </div>
+
+  <!-- Personal -->
+  <div class="gallery-category" id="gallery-personal">
     <div class="gallery-item" onclick="openLightbox('images/restaurant-fotos/barkeeperin.jpg')">
-      <img src="images/restaurant-fotos/barkeeperin.jpg" alt="Bar Am Fels" loading="lazy" />
-      <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/></svg></div>
+      <img src="images/restaurant-fotos/barkeeperin.jpg" alt="Bar Team" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Unser Bar-Team</div><div class="gallery-overlay-line"></div></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/restaurant-fotos/koch-kueche.jpg')">
+      <img src="images/restaurant-fotos/koch-kueche.jpg" alt="Koch in der Küche" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">In der Küche</div><div class="gallery-overlay-line"></div></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/restaurant-fotos/koch-arbeit.jpg')">
+      <img src="images/restaurant-fotos/koch-arbeit.jpg" alt="Koch bei der Arbeit" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Koch bei der Arbeit</div><div class="gallery-overlay-line"></div></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/restaurant-fotos/koch-fleisch-schneiden.jpg')">
+      <img src="images/restaurant-fotos/koch-fleisch-schneiden.jpg" alt="Fleisch schneiden" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Handwerk am Herd</div><div class="gallery-overlay-line"></div></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/tea-leon.jpeg')">
+      <img src="images/tea-leon.jpeg" alt="Team" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Unser Team</div><div class="gallery-overlay-line"></div></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/tea-leon2.jpeg')">
+      <img src="images/tea-leon2.jpeg" alt="Team" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Mit Leidenschaft</div><div class="gallery-overlay-line"></div></div>
+    </div>
+  </div>
+
+  <!-- Ambiente -->
+  <div class="gallery-category" id="gallery-ambiente">
+    <div class="gallery-item" onclick="openLightbox('images/hauptraum.jpeg')">
+      <img src="images/hauptraum.jpeg" alt="Hauptraum" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Hauptraum</div><div class="gallery-overlay-line"></div></div>
     </div>
     <div class="gallery-item" onclick="openLightbox('images/ambiente.jpeg')">
       <img src="images/ambiente.jpeg" alt="Ambiente" loading="lazy" />
-      <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/></svg></div>
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Gemütliches Ambiente</div><div class="gallery-overlay-line"></div></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/innen.jpeg')">
+      <img src="images/innen.jpeg" alt="Innenbereich" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Innenbereich</div><div class="gallery-overlay-line"></div></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/drinne.jpeg')">
+      <img src="images/drinne.jpeg" alt="Drinnen" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Einladende Atmosphäre</div><div class="gallery-overlay-line"></div></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/terrasse.jpeg')">
+      <img src="images/terrasse.jpeg" alt="Terrasse" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Unsere Terrasse</div><div class="gallery-overlay-line"></div></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/natur.jpeg')">
+      <img src="images/natur.jpeg" alt="Natur" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Natur pur</div><div class="gallery-overlay-line"></div></div>
     </div>
   </div>
 </section>
@@ -2565,6 +2690,14 @@
     document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
     btn.classList.add('active');
     document.getElementById('panel-' + id).classList.add('active');
+  }
+
+  // Gallery tabs
+  function switchGallery(category, btn) {
+    document.querySelectorAll('.gallery-category').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.gallery-tab').forEach(el => el.classList.remove('active'));
+    document.getElementById('gallery-' + category).classList.add('active');
+    btn.classList.add('active');
   }
 
   // Lightbox
