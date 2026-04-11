@@ -25,21 +25,19 @@
       --wine: #6b1f1f;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      /* overflow:clip hard-clips at viewport without creating a scroll container.
+         Unlike overflow:hidden it does NOT break position:fixed on iOS Safari. */
+      overflow-x: clip;
+    }
     *, *::before, *::after { box-sizing: border-box; }
     #page-wrap {
-      overflow-x: hidden;
+      /* No transform here — transform creates a new containing block for
+         position:fixed children (lightbox), which breaks on iOS. */
+      overflow-x: clip;
       width: 100%;
-      max-width: 100vw;
       position: relative;
-      -webkit-transform: translateZ(0);
-      transform: translateZ(0);
-    }
-    section, footer, .ticker, .video-divider {
-      overflow-x: hidden;
-      max-width: 100%;
-      -webkit-transform: translateZ(0);
-      transform: translateZ(0);
     }
 
     body {
@@ -180,12 +178,17 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      contain: layout paint;
     }
 
     .hero-bg {
       position: absolute;
+      /* inset -4% gives a slight oversize so the video never shows edges on zoom.
+         The hero itself clips it via overflow:hidden. */
       inset: -4%;
       overflow: hidden;
+      /* contain: strict prevents any layout/paint bleed out of this box on iOS */
+      contain: strict;
     }
 
     .hero-bg video {
@@ -422,7 +425,10 @@
 
 
     @keyframes flyIn {
-      0%   { opacity: 0; transform: translateX(120%) rotate(12deg) scale(0.85); }
+      /* Use 100vw instead of 120% so the start is always off the right viewport edge,
+         but the animation is driven by the card's overflow:hidden clip on desktop
+         and stays within the html overflow:clip boundary on iOS */
+      0%   { opacity: 0; transform: translateX(100%) rotate(12deg) scale(0.85); }
       65%  { transform: translateX(-12px) rotate(-2deg) scale(1.03); }
       100% { opacity: 1; transform: translateX(0) rotate(0deg) scale(1); }
     }
@@ -441,6 +447,7 @@
       background: var(--gold);
       padding: 0.85rem 0;
       overflow: hidden;
+      contain: layout paint;
       white-space: nowrap;
     }
 
@@ -540,6 +547,7 @@
       padding: 8rem 3rem;
       background: var(--dark);
       overflow: hidden;
+      contain: layout paint;
     }
 
     .about-inner {
@@ -638,6 +646,8 @@
     .gallery {
       padding: 8rem 3rem;
       background: #1a0e07;
+      overflow: hidden;
+      contain: layout paint;
     }
 
     .gallery-header {
@@ -877,6 +887,7 @@
       width: 100%;
       height: 90vh;
       overflow: hidden;
+      contain: layout paint;
       background: #0a0603;
     }
 
