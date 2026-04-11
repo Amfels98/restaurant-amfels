@@ -397,6 +397,29 @@
       transform: translateY(0);
     }
 
+    @keyframes bunnyHop {
+      0%   { left: -120px; bottom: 18%; transform: scaleX(1); }
+      10%  { bottom: 22%; }
+      20%  { bottom: 18%; }
+      30%  { bottom: 24%; }
+      40%  { bottom: 18%; }
+      50%  { bottom: 26%; }
+      60%  { bottom: 18%; }
+      70%  { bottom: 23%; }
+      80%  { bottom: 18%; }
+      90%  { bottom: 21%; }
+      95%  { left: 110%; bottom: 18%; transform: scaleX(1); opacity:1; }
+      100% { left: 110%; opacity: 0; }
+    }
+    #easter-bunny {
+      position: fixed;
+      font-size: 4.5rem;
+      z-index: 99998;
+      pointer-events: none;
+      animation: bunnyHop 6s ease-in-out forwards;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.25));
+    }
+
     @keyframes flyIn {
       0%   { opacity: 0; transform: translateX(120%) rotate(12deg) scale(0.85); }
       65%  { transform: translateX(-12px) rotate(-2deg) scale(1.03); }
@@ -2602,6 +2625,15 @@
     showToast('Nachricht gesendet!', 'Wir melden uns in Kürze bei Ihnen.');
     e.target.reset();
   }
+
+  // 🐇 EASTER BUNNY
+  setTimeout(() => {
+    const bunny = document.createElement('div');
+    bunny.id = 'easter-bunny';
+    bunny.textContent = '🐇';
+    document.body.appendChild(bunny);
+    bunny.addEventListener('animationend', () => bunny.remove());
+  }, 2000);
 
   // Set min date for reservation
   const dateInputs = document.querySelectorAll('input[type="date"]');
