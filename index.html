@@ -27,8 +27,20 @@
 
     html { scroll-behavior: smooth; }
     *, *::before, *::after { box-sizing: border-box; }
-    #page-wrap { overflow-x: hidden; width: 100%; position: relative; }
-    section, footer, .ticker, .video-divider { overflow-x: hidden; }
+    #page-wrap {
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100vw;
+      position: relative;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+    }
+    section, footer, .ticker, .video-divider {
+      overflow-x: hidden;
+      max-width: 100%;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+    }
 
     body {
       font-family: 'Lato', sans-serif;
@@ -172,13 +184,9 @@
 
     .hero-bg {
       position: absolute;
-      inset: 0;
-      transform: scale(1.08);
-      transition: transform 8s ease;
+      inset: -4%;
       overflow: hidden;
     }
-
-    .hero-bg.loaded { transform: scale(1); }
 
     .hero-bg video {
       width: 100%; height: 100%;
@@ -1739,8 +1747,8 @@
       .gallery-tab { padding: 0.45rem 1rem; font-size: 0.78rem; }
 
       .menu-items-grid { grid-template-columns: 1fr; }
-      .menu-tabs { overflow-x: auto; flex-wrap: nowrap; justify-content: flex-start; padding-bottom: 0.5rem; }
-      .menu-tab-btn { white-space: nowrap; }
+      .menu-tabs { overflow-x: scroll; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; justify-content: flex-start; padding-bottom: 0.5rem; width: 100%; max-width: 100%; }
+      .menu-tab-btn, .menu-tab { white-space: nowrap; flex-shrink: 0; }
 
       .events-grid { grid-template-columns: 1fr; }
       .event-card { height: 280px; }
@@ -2932,8 +2940,7 @@
 <!-- ── JAVASCRIPT ── -->
 <script>
   // Hero BG load animation
-  const heroBg = document.getElementById('heroBg');
-  setTimeout(() => heroBg.classList.add('loaded'), 100);
+  // hero-bg scale animation removed (caused iOS overflow)
 
   // Navbar scroll
   const navbar = document.getElementById('navbar');
