@@ -397,44 +397,6 @@
       transform: translateY(0);
     }
 
-    @keyframes bunnyRun {
-      0%   { left: -160px; }
-      100% { left: 110%; }
-    }
-    @keyframes bunnyBounce {
-      0%,100% { bottom: 12%; transform: scaleX(1) scaleY(1) rotate(0deg); }
-      18%     { bottom: 22%; transform: scaleX(0.9) scaleY(1.1) rotate(-8deg); }
-      25%     { bottom: 12%; transform: scaleX(1.15) scaleY(0.85) rotate(0deg); }
-      43%     { bottom: 28%; transform: scaleX(0.88) scaleY(1.12) rotate(-10deg); }
-      50%     { bottom: 12%; transform: scaleX(1.15) scaleY(0.85) rotate(0deg); }
-      68%     { bottom: 20%; transform: scaleX(0.92) scaleY(1.08) rotate(-6deg); }
-      75%     { bottom: 12%; transform: scaleX(1.1) scaleY(0.9) rotate(0deg); }
-    }
-    @keyframes earLeft {
-      0%,100% { transform: rotate(-8deg) translateX(0); }
-      18%,43%,68% { transform: rotate(18deg) translateX(-3px); }
-      25%,50%,75% { transform: rotate(-14deg) translateX(2px); }
-    }
-    @keyframes earRight {
-      0%,100% { transform: rotate(8deg); }
-      18%,43%,68% { transform: rotate(-18deg) translateX(3px); }
-      25%,50%,75% { transform: rotate(14deg) translateX(-2px); }
-    }
-    @keyframes tailWag {
-      0%,100% { transform: rotate(0deg); }
-      50% { transform: rotate(20deg); }
-    }
-    #easter-bunny {
-      position: fixed;
-      width: 120px;
-      z-index: 99998;
-      pointer-events: none;
-      animation: bunnyRun 5.5s linear forwards, bunnyBounce 1.4s ease-in-out infinite;
-      filter: drop-shadow(0 6px 16px rgba(0,0,0,0.3));
-    }
-    #easter-bunny .ear-left  { transform-origin: 50% 100%; animation: earLeft  1.4s ease-in-out infinite; }
-    #easter-bunny .ear-right { transform-origin: 50% 100%; animation: earRight 1.4s ease-in-out infinite; }
-    #easter-bunny .tail      { transform-origin: 50% 50%;  animation: tailWag  0.7s ease-in-out infinite; }
 
     @keyframes flyIn {
       0%   { opacity: 0; transform: translateX(120%) rotate(12deg) scale(0.85); }
@@ -2642,53 +2604,6 @@
     e.target.reset();
   }
 
-  // 🐇 EASTER BUNNY SVG
-  setTimeout(() => {
-    const bunny = document.createElement('div');
-    bunny.id = 'easter-bunny';
-    bunny.innerHTML = `<svg viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">
-      <!-- Ohren -->
-      <g class="ear-left">
-        <ellipse cx="38" cy="30" rx="10" ry="28" fill="#f0e6f0" stroke="#d4b8d4" stroke-width="1.5"/>
-        <ellipse cx="38" cy="30" rx="5" ry="22" fill="#f7b8c8"/>
-      </g>
-      <g class="ear-right">
-        <ellipse cx="78" cy="30" rx="10" ry="28" fill="#f0e6f0" stroke="#d4b8d4" stroke-width="1.5"/>
-        <ellipse cx="78" cy="30" rx="5" ry="22" fill="#f7b8c8"/>
-      </g>
-      <!-- Körper -->
-      <ellipse cx="60" cy="105" rx="34" ry="28" fill="#f5f0f5" stroke="#ddd0dd" stroke-width="1.5"/>
-      <!-- Kopf -->
-      <circle cx="60" cy="72" r="28" fill="#f5f0f5" stroke="#ddd0dd" stroke-width="1.5"/>
-      <!-- Wangen -->
-      <ellipse cx="44" cy="80" rx="8" ry="5" fill="#ffd0e0" opacity="0.6"/>
-      <ellipse cx="76" cy="80" rx="8" ry="5" fill="#ffd0e0" opacity="0.6"/>
-      <!-- Augen -->
-      <circle cx="50" cy="68" r="5" fill="#222"/>
-      <circle cx="70" cy="68" r="5" fill="#222"/>
-      <circle cx="52" cy="66" r="1.5" fill="white"/>
-      <circle cx="72" cy="66" r="1.5" fill="white"/>
-      <!-- Nase -->
-      <ellipse cx="60" cy="77" rx="4" ry="3" fill="#f08"/>
-      <!-- Mund -->
-      <path d="M57 80 Q60 85 63 80" stroke="#c06" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-      <!-- Schwanz -->
-      <g class="tail">
-        <circle cx="92" cy="108" r="10" fill="white" stroke="#ddd" stroke-width="1"/>
-        <circle cx="92" cy="108" r="7" fill="#f8f4f8"/>
-      </g>
-      <!-- Vorderpfoten -->
-      <ellipse cx="42" cy="128" rx="11" ry="7" fill="#f5f0f5" stroke="#ddd0dd" stroke-width="1.2"/>
-      <ellipse cx="76" cy="128" rx="11" ry="7" fill="#f5f0f5" stroke="#ddd0dd" stroke-width="1.2"/>
-      <!-- Osterei im Arm -->
-      <ellipse cx="88" cy="95" rx="9" ry="12" fill="#f7c948" stroke="#e0a800" stroke-width="1"/>
-      <line x1="79" y1="95" x2="97" y2="95" stroke="#e0a800" stroke-width="1.2"/>
-      <circle cx="84" cy="89" r="2" fill="#ff6b6b"/>
-      <circle cx="92" cy="101" r="2" fill="#6bcbff"/>
-    </svg>`;
-    document.body.appendChild(bunny);
-    setTimeout(() => bunny.remove(), 6500);
-  }, 1500);
 
   // Set min date for reservation
   const dateInputs = document.querySelectorAll('input[type="date"]');
