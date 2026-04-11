@@ -25,7 +25,7 @@
       --wine: #6b1f1f;
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; max-width: 100vw; }
 
     body {
       font-family: 'Lato', sans-serif;
@@ -76,8 +76,15 @@
       flex-direction: column;
       line-height: 1;
     }
-    .nav-logo img { filter: brightness(0) invert(1); transition: filter 0.4s ease; }
-    nav.scrolled .nav-logo img { filter: none; }
+    .nav-logo-img {
+      height: 160px;
+      width: auto;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      transition: filter 0.4s ease;
+      display: block;
+    }
+    nav.scrolled .nav-logo-img { filter: none; }
 
     .nav-logo span {
       font-size: 0.55rem;
@@ -152,8 +159,8 @@
     ──────────────────────────────────── */
     .hero {
       position: relative;
-      height: 100vh;
-      min-height: 700px;
+      height: 100dvh;
+      min-height: 600px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1692,8 +1699,8 @@
     }
 
     @media (max-width: 768px) {
-      nav { padding: 1.2rem 1.5rem; }
-      nav.scrolled { padding: 0.9rem 1.5rem; }
+      nav { padding: 0.8rem 1.2rem; }
+      nav.scrolled { padding: 0.6rem 1.2rem; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
 
@@ -1718,7 +1725,7 @@
       .section-title { font-size: clamp(1.8rem, 7vw, 3rem); }
 
       /* Logo auf Mobile kleiner */
-      .nav-logo img { height: 75px !important; }
+      .nav-logo-img { height: 60px; }
 
       .gallery-category { columns: 2; }
       .gallery-videos { grid-template-columns: 1fr; }
@@ -1761,7 +1768,7 @@
     }
 
     @media (max-width: 400px) {
-      .nav-logo img { height: 60px !important; }
+      .nav-logo-img { height: 50px; }
       .gallery-category { columns: 1; }
       .hero-title { font-size: clamp(2.4rem, 13vw, 4rem); }
       .hero { min-height: 100svh; }
@@ -1786,7 +1793,7 @@
 <!-- ── NAVIGATION ── -->
 <nav id="navbar">
   <a href="#" class="nav-logo">
-    <img src="images/logo.png" alt="Restaurant Am Fels" style="height:160px;width:auto;object-fit:contain;" />
+    <img src="images/logo.png" alt="Restaurant Am Fels" class="nav-logo-img" />
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#ueber-uns">Über uns</a></li>
@@ -3050,9 +3057,15 @@
   // 💨 STEAM / RAUCH EFFEKT
   // ═══════════════════════════════════════
   const heroEl = document.querySelector('.hero');
+  const isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+  if (isMobile) {
+    // Canvas-Effekte auf Touch-Geräten deaktivieren (zu schwer)
+    const vdBgs = document.querySelectorAll('.vd-bg');
+    vdBgs.forEach(v => { v.style.filter = 'brightness(0.35)'; v.style.transform = 'scale(1)'; });
+  }
   const steamCanvas = document.createElement('canvas');
   steamCanvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;';
-  heroEl.appendChild(steamCanvas);
+  if (!isMobile) heroEl.appendChild(steamCanvas);
   const sc = steamCanvas.getContext('2d');
 
   function resizeSteam() {
