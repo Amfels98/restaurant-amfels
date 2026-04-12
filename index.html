@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if(window.screen.width<=950){document.documentElement.classList.add('is-mobile');}</script>
   <title>Restaurant Am Fels – Kroatische Küche in Engelskirchen</title>
   <meta name="description" content="Restaurant Am Fels in Engelskirchen-Loope. Kroatische Tradition trifft internationale Kochkunst. Steaks, Grillspezialitäten, frischer Fisch." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -3021,14 +3022,6 @@
 
 <!-- ── JAVASCRIPT ── -->
 <script>
-  // Mobile detection using screen.width (bypasses iOS layout viewport bug)
-  // screen.width always returns true CSS device pixels (393px on iPhone 17 Pro)
-  (function() {
-    if (window.screen.width <= 950) {
-      document.documentElement.classList.add('is-mobile');
-    }
-  })();
-
   // Hero BG load animation
   // hero-bg scale animation removed (caused iOS overflow)
 
