@@ -66,6 +66,7 @@
     #page-wrap {
       width: 100%;
       position: relative;
+      overflow-x: clip;
     }
 
     body {
@@ -1793,7 +1794,7 @@
     }
 
     /* Desktop 2-column layouts */
-    @media (min-width: 769px) {
+    @media (min-width: 900px) {
       .hours-inner { flex-direction: row; gap: 5rem; align-items: center; }
       .hours-inner > * { flex: 1; }
     }
