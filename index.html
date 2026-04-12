@@ -122,7 +122,7 @@
       width: auto;
       object-fit: contain;
       filter: brightness(0) invert(1);
-      transition: filter 0.4s ease;
+      transition: filter 0.15s ease;
       display: block;
     }
     nav.scrolled .nav-logo-img { filter: none; }
@@ -2919,11 +2919,25 @@
   // Navbar scroll
   const navbar = document.getElementById('navbar');
   const navLinks = document.getElementById('navLinks');
-  window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY > 60;
+  const navLogoImg = document.querySelector('.nav-logo-img');
+  function updateNav() {
+    const hero = document.getElementById('hero');
+    const heroBottom = hero ? hero.offsetHeight : 400;
+    const progress = Math.min(1, Math.max(0, window.scrollY / heroBottom));
+    const scrolled = progress > 0.15;
     navbar.classList.toggle('scrolled', scrolled);
     navLinks.classList.toggle('scrolled', scrolled);
-  });
+    // Smooth logo: interpolate from white (invert) to natural color
+    const brightness = progress * 1 + (1 - progress) * 0; // 0→1
+    const invert = 1 - progress;
+    navLogoImg.style.filter = progress < 0.05
+      ? 'brightness(0) invert(1)'
+      : progress > 0.95
+        ? 'none'
+        : `brightness(${brightness}) invert(${invert})`;
+  }
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
 
   // Hamburger menu
   const hamburger = document.getElementById('hamburger');
