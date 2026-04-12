@@ -10,7 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    a { color: inherit; text-decoration: none; }
 
     :root {
       --gold: #b8924a;
@@ -556,9 +555,10 @@
     .hours-inner {
       max-width: 1100px;
       margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
     }
 
     .hours-text .section-title { margin-bottom: 1.5rem; }
@@ -624,9 +624,10 @@
     .about-inner {
       max-width: 1100px;
       margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
     }
 
     .about-image-wrap {
@@ -1085,7 +1086,7 @@
 
     .menu-items-grid {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 1fr;
       gap: 0;
     }
 
@@ -1193,7 +1194,7 @@
       max-width: 1200px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, 1fr);
       gap: 2px;
     }
 
@@ -1364,7 +1365,7 @@
 
     .voucher-steps {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
       margin-bottom: 3rem;
       position: relative;
@@ -1558,9 +1559,9 @@
     .contact-inner {
       max-width: 1100px;
       margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
     }
 
     .contact-info p {
@@ -1789,19 +1790,6 @@
       .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
     }
 
-    /* Desktop layouts — only above 900px */
-    @media (min-width: 900px) {
-      .hours-inner { flex-direction: row; gap: 5rem; align-items: center; }
-      .hours-inner > * { flex: 1; }
-      .about-inner { flex-direction: row; gap: 6rem; align-items: center; }
-      .about-inner > * { flex: 1; }
-      .contact-inner { flex-direction: row; gap: 6rem; }
-      .contact-inner > * { flex: 1; }
-      .menu-items-grid { grid-template-columns: 1fr 1fr; }
-      .events-grid { grid-template-columns: repeat(2, 1fr); }
-      .voucher-steps { grid-template-columns: repeat(3, 1fr); }
-    }
-
     /* Desktop: show nav links as fixed bar, hide hamburger */
     @media (min-width: 769px) {
       .nav-links {
@@ -1820,8 +1808,13 @@
     }
 
     @media (max-width: 768px) {
-      /* Force single-column on all main grids */
-
+      /* Single-column on mobile */
+      .hours-inner { grid-template-columns: 1fr !important; gap: 2.5rem; }
+      .about-inner { grid-template-columns: 1fr !important; gap: 2rem; }
+      .contact-inner { grid-template-columns: 1fr !important; gap: 2rem; }
+      .menu-items-grid { grid-template-columns: 1fr !important; }
+      .events-grid { grid-template-columns: 1fr !important; }
+      .voucher-steps { grid-template-columns: 1fr !important; }
 
       nav { padding: 0.8rem 1.2rem; }
       nav.scrolled { padding: 0.6rem 1.2rem; }
