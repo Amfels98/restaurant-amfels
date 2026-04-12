@@ -143,8 +143,9 @@
       margin-top: 3px;
     }
 
+    /* Mobile-first: links hidden by default, hamburger shown */
     .nav-links {
-      display: flex;
+      display: none;
       list-style: none;
       gap: 2.5rem;
       align-items: center;
@@ -186,8 +187,9 @@
     .nav-reserve::after { display: none !important; }
     .nav-reserve:hover { background: var(--gold-light) !important; transform: translateY(-1px); }
 
+    /* Mobile-first: hamburger visible by default */
     .hamburger {
-      display: none;
+      display: flex;
       flex-direction: column;
       gap: 5px;
       cursor: pointer;
@@ -1752,6 +1754,12 @@
       .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
     }
 
+    /* Desktop: show nav links, hide hamburger */
+    @media (min-width: 769px) {
+      .nav-links { display: flex; }
+      .hamburger { display: none; }
+    }
+
     @media (max-width: 768px) {
       /* Force single-column on all main grids */
       .hours-inner { grid-template-columns: 1fr !important; gap: 2.5rem; }
@@ -1760,8 +1768,6 @@
 
       nav { padding: 0.8rem 1.2rem; }
       nav.scrolled { padding: 0.6rem 1.2rem; }
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
 
       .nav-links.open {
         display: flex;
