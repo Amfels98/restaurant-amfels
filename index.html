@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    a { color: inherit; text-decoration: none; }
 
     :root {
       --gold: #b8924a;
@@ -1363,7 +1364,7 @@
 
     .voucher-steps {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr;
       gap: 2rem;
       margin-bottom: 3rem;
       position: relative;
@@ -1561,8 +1562,6 @@
       flex-direction: column;
       gap: 2.5rem;
     }
-
-    .contact-info { }
 
     .contact-info p {
       font-size: 0.98rem;
@@ -1790,7 +1789,7 @@
       .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
     }
 
-    /* Desktop 2-column layouts */
+    /* Desktop layouts — only above 900px */
     @media (min-width: 900px) {
       .hours-inner { flex-direction: row; gap: 5rem; align-items: center; }
       .hours-inner > * { flex: 1; }
@@ -1800,6 +1799,7 @@
       .contact-inner > * { flex: 1; }
       .menu-items-grid { grid-template-columns: 1fr 1fr; }
       .events-grid { grid-template-columns: repeat(2, 1fr); }
+      .voucher-steps { grid-template-columns: repeat(3, 1fr); }
     }
 
     /* Desktop: show nav links as fixed bar, hide hamburger */
@@ -1850,7 +1850,6 @@
       .event-card { height: 280px; }
       .events-banner { flex-direction: column; text-align: center; gap: 1.5rem; }
 
-      .voucher-steps { grid-template-columns: 1fr; }
       .voucher-card { padding: 2.5rem 1.5rem; }
       .voucher-img-wrap { max-width: 100%; }
       .voucher-img { max-width: 100%; }
