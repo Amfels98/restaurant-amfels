@@ -1782,80 +1782,7 @@
     /* ────────────────────────────────────
        RESPONSIVE
     ──────────────────────────────────── */
-    /* ── DESKTOP ONLY (min-width: 1025px) ──
-       887px iOS viewport bug < 1025px → these rules never fire on mobile */
-    @media (min-width: 1025px) {
-      /* Nav */
-      .nav-links {
-        display: flex;
-        position: fixed;
-        top: 0; right: 0;
-        height: 80px;
-        padding: 0 3rem;
-        align-items: center;
-        gap: 2.5rem;
-        z-index: 1001;
-      }
-      .nav-links.scrolled a { color: var(--text); }
-      .hamburger { display: none; }
-
-      /* Layouts: 2-column on desktop */
-      .hours-inner { grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-      .about-inner { grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
-      .contact-inner { grid-template-columns: 1fr 1fr; gap: 6rem; }
-      .menu-items-grid { grid-template-columns: 1fr 1fr; }
-      .events-grid { grid-template-columns: repeat(2, 1fr); }
-      .voucher-steps { grid-template-columns: repeat(3, 1fr); }
-      .footer-top { grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; }
-
-      /* Section padding desktop */
-      .hours, .about, .gallery, .menu, .events, .voucher, .reservation, .contact {
-        padding: 7rem 3rem;
-      }
-      nav { padding: 1.2rem 3rem; }
-      .nav-reserve { display: inline-flex !important; }
-      .nav-logo-img { height: 160px; }
-      .about-image-secondary { display: block; }
-      .about-gold-label { left: -2rem; }
-
-      /* Form */
-      .form-row { grid-template-columns: 1fr 1fr; }
-      .form-group.full { grid-column: span 2; }
-
-      /* Footer */
-      .footer-bottom { flex-direction: row; }
-
-      /* Gallery */
-      .gallery-category { columns: 3; }
-      .gallery-videos { grid-template-columns: repeat(3, 1fr); }
-      .gallery-video-item video { height: auto; }
-      .gallery-tabs { gap: 0.8rem; flex-wrap: nowrap; }
-      .gallery-tab { padding: 0.6rem 1.4rem; font-size: 0.82rem; }
-
-      /* Events */
-      .event-card { height: 360px; }
-      .events-banner { flex-direction: row; text-align: left; }
-
-      /* Voucher */
-      .voucher-card { padding: 5rem 4rem; }
-
-      /* Misc */
-      .video-divider { height: 100vh; }
-      .ticker-item { padding: 0 2rem; font-size: 0.9rem; }
-      .btn { padding: 1rem 2.5rem; font-size: 0.9rem; }
-      .hours-row { padding: 1.1rem 0; }
-      .hours-day { font-size: 0.78rem; letter-spacing: 0.12em; }
-      .hours-time { font-size: 0.95rem; }
-      .contact-details { gap: 1.5rem; }
-      .contact-detail-icon { width: 50px; height: 50px; font-size: 1.2rem; }
-      .menu-tabs { overflow-x: visible; flex-wrap: wrap; justify-content: center; padding-bottom: 0; }
-      .section-title { font-size: clamp(2.5rem, 4vw, 4rem); }
-      .hero-title { font-size: clamp(5rem, 8vw, 10rem); }
-      .hero-subtitle { font-size: 1.1rem; }
-      .hero-desc { font-size: 1rem; }
-    }
-
-    /* Mobile styles (base — always applies, no media query needed) */
+    /* ── MOBILE BASE (immer aktiv, kein Media Query) ── */
     nav { padding: 0.8rem 1.2rem; }
     .hero-title { font-size: clamp(2.8rem, 14vw, 6rem); }
     .hero-subtitle { font-size: 0.9rem; }
@@ -1888,6 +1815,58 @@
     .about-image-secondary { display: none; }
     .about-gold-label { left: 1rem; }
     .nav-reserve { display: none !important; }
+
+    /* ── DESKTOP (min-width: 1025px) — muss NACH Mobile-Base stehen um zu gewinnen ── */
+    @media (min-width: 1025px) {
+      .nav-links {
+        display: flex;
+        position: fixed;
+        top: 0; right: 0;
+        height: 80px;
+        padding: 0 3rem;
+        align-items: center;
+        gap: 2.5rem;
+        z-index: 1001;
+      }
+      .nav-links.scrolled a { color: var(--text); }
+      .hamburger { display: none; }
+      .hours-inner { grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+      .about-inner { grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+      .contact-inner { grid-template-columns: 1fr 1fr; gap: 6rem; }
+      .menu-items-grid { grid-template-columns: 1fr 1fr; }
+      .events-grid { grid-template-columns: repeat(2, 1fr); }
+      .voucher-steps { grid-template-columns: repeat(3, 1fr); }
+      .footer-top { grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; }
+      .hours, .about, .gallery, .menu, .events, .voucher, .reservation, .contact { padding: 7rem 3rem; }
+      nav { padding: 1.2rem 3rem; }
+      .nav-reserve { display: inline-flex !important; }
+      .nav-logo-img { height: 160px; }
+      .about-image-secondary { display: block; }
+      .about-gold-label { left: -2rem; }
+      .form-row { grid-template-columns: 1fr 1fr; }
+      .form-group.full { grid-column: span 2; }
+      .footer-bottom { flex-direction: row; }
+      .gallery-category { columns: 3; }
+      .gallery-videos { grid-template-columns: repeat(3, 1fr); }
+      .gallery-video-item video { height: auto; }
+      .gallery-tabs { gap: 0.8rem; flex-wrap: nowrap; }
+      .gallery-tab { padding: 0.6rem 1.4rem; font-size: 0.82rem; }
+      .event-card { height: 360px; }
+      .events-banner { flex-direction: row; text-align: left; }
+      .voucher-card { padding: 5rem 4rem; }
+      .video-divider { height: 100vh; }
+      .ticker-item { padding: 0 2rem; font-size: 0.9rem; }
+      .btn { padding: 1rem 2.5rem; font-size: 0.9rem; }
+      .hours-row { padding: 1.1rem 0; }
+      .hours-day { font-size: 0.78rem; letter-spacing: 0.12em; }
+      .contact-details { gap: 1.5rem; }
+      .contact-detail-icon { width: 50px; height: 50px; font-size: 1.2rem; }
+      .menu-tabs { overflow-x: visible; flex-wrap: wrap; justify-content: center; padding-bottom: 0; }
+      .section-title { font-size: clamp(2.5rem, 4vw, 4rem); }
+      .hero-title { font-size: clamp(5rem, 8vw, 10rem); }
+      .hero-subtitle { font-size: 1.1rem; }
+      .hero-desc { font-size: 1rem; }
+    }
 
     @media (max-width: 400px) {
       .nav-logo-img { height: 50px; }
