@@ -144,20 +144,30 @@
       align-items: center;
     }
 
-    /* Mobile fullscreen menu — global so it works on any viewport */
+    /* Mobile fullscreen menu */
     .nav-links.open {
       display: flex !important;
       flex-direction: column;
-      position: fixed;
-      inset: 0;
-      background: rgba(10,10,10,0.98);
-      justify-content: center;
-      align-items: center;
-      gap: 3rem;
-      z-index: 9999;
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      min-height: -webkit-fill-available;
+      background: rgba(10,10,10,0.98) !important;
+      justify-content: center !important;
+      align-items: center !important;
+      gap: 3rem !important;
+      z-index: 2147483647 !important;
+      margin: 0 !important;
+      padding: 2rem !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch;
     }
 
-    .nav-links.open a { font-size: 1.2rem; color: #ffffff; }
+    .nav-links.open a { font-size: 1.2rem !important; color: #ffffff !important; }
 
     .nav-links a {
       font-family: 'Lato', sans-serif;
@@ -170,7 +180,7 @@
       transition: color 0.3s;
       position: relative;
     }
-    nav.scrolled .nav-links a { color: var(--text); }
+    .nav-links.scrolled a { color: var(--text); }
 
     .nav-links a::after {
       content: '';
@@ -1762,9 +1772,20 @@
       .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
     }
 
-    /* Desktop: show nav links, hide hamburger */
+    /* Desktop: show nav links as fixed bar, hide hamburger */
     @media (min-width: 769px) {
-      .nav-links { display: flex; }
+      .nav-links {
+        display: flex;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 80px;
+        padding: 0 3rem;
+        align-items: center;
+        gap: 2.5rem;
+        z-index: 1001;
+      }
+      .nav-links.scrolled a { color: var(--text); }
       .hamburger { display: none; }
     }
 
@@ -1855,19 +1876,19 @@
   <a href="#" class="nav-logo">
     <img src="images/logo.png" alt="Restaurant Am Fels" class="nav-logo-img" />
   </a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#ueber-uns">Über uns</a></li>
-    <li><a href="#galerie">Galerie</a></li>
-    <li><a href="#speisekarte">Speisekarte</a></li>
-    <li><a href="#events">Events</a></li>
-    <li><a href="#gutscheine">Gutscheine</a></li>
-    <li><a href="#kontakt">Kontakt</a></li>
-    <li><a href="#reservierung" class="nav-reserve">Reservieren</a></li>
-  </ul>
   <div class="hamburger" id="hamburger">
     <span></span><span></span><span></span>
   </div>
 </nav>
+<ul class="nav-links" id="navLinks">
+  <li><a href="#ueber-uns">Über uns</a></li>
+  <li><a href="#galerie">Galerie</a></li>
+  <li><a href="#speisekarte">Speisekarte</a></li>
+  <li><a href="#events">Events</a></li>
+  <li><a href="#gutscheine">Gutscheine</a></li>
+  <li><a href="#kontakt">Kontakt</a></li>
+  <li><a href="#reservierung" class="nav-reserve">Reservieren</a></li>
+</ul>
 
 <div id="page-wrap">
 
@@ -2991,31 +3012,39 @@
 
   // Navbar scroll
   const navbar = document.getElementById('navbar');
+  const navLinks = document.getElementById('navLinks');
   window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 60);
+    const scrolled = window.scrollY > 60;
+    navbar.classList.toggle('scrolled', scrolled);
+    navLinks.classList.toggle('scrolled', scrolled);
   });
 
   // Hamburger menu
   const hamburger = document.getElementById('hamburger');
-  const navLinks = document.getElementById('navLinks');
+
+  function closeMenu() {
+    navLinks.classList.remove('open');
+    document.body.style.overflow = '';
+    hamburger.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+  }
+
   hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
+    const isOpen = navLinks.classList.contains('open');
     const spans = hamburger.querySelectorAll('span');
-    if (navLinks.classList.contains('open')) {
+    if (!isOpen) {
+      navLinks.classList.add('open');
+      document.body.style.overflow = 'hidden';
       spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
       spans[1].style.opacity = '0';
       spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
     } else {
-      spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+      closeMenu();
     }
   });
 
   // Close menu on link click
   navLinks.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      hamburger.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
-    });
+    a.addEventListener('click', closeMenu);
   });
 
   // Intersection Observer for fade-up
