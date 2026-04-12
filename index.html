@@ -41,12 +41,6 @@
        3) word-break prevents long strings from busting the layout
     ──────────────────────────────────────────────────────────── */
 
-    /* All inner grid/flex containers: constrain width */
-    section, footer {
-      max-width: 100%;
-      overflow: hidden;
-    }
-
     /* All grid/flex children: allow shrinking */
     .hours-inner > *, .about-inner > *, .contact-inner > *,
     .form-row > *, .footer-top > *, .voucher-steps > *,
@@ -56,10 +50,8 @@
       min-width: 0;
     }
 
-    /* Long strings (addresses, times) must wrap, not overflow */
-    .contact-detail-value, .hours-time, .hours-day,
-    .menu-item-name, .menu-item-price {
-      word-break: break-word;
+    /* Long strings (addresses, contact values) must wrap — NOT day names */
+    .contact-detail-value, .hours-time {
       overflow-wrap: break-word;
     }
 
@@ -224,12 +216,8 @@
 
     .hero-bg {
       position: absolute;
-      /* inset -4% gives a slight oversize so the video never shows edges on zoom.
-         The hero itself clips it via overflow:hidden. */
       inset: -4%;
       overflow: hidden;
-      /* contain: strict prevents any layout/paint bleed out of this box on iOS */
-      contain: strict;
     }
 
     .hero-bg video {
@@ -1765,13 +1753,10 @@
     }
 
     @media (max-width: 768px) {
-      /* Explicitly re-declare single-column at 768px so iOS never misses it */
-      .hours-inner, .about-inner, .contact-inner {
-        grid-template-columns: 1fr !important;
-        gap: 2rem;
-      }
-      .hours-row { flex-wrap: wrap; gap: 0.3rem; }
-      .hours-time { text-align: left; }
+      /* Force single-column on all main grids */
+      .hours-inner { grid-template-columns: 1fr !important; gap: 2.5rem; }
+      .about-inner { grid-template-columns: 1fr !important; gap: 2rem; }
+      .contact-inner { grid-template-columns: 1fr !important; gap: 2rem; }
 
       nav { padding: 0.8rem 1.2rem; }
       nav.scrolled { padding: 0.6rem 1.2rem; }
