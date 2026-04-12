@@ -169,6 +169,24 @@
 
     .nav-links.open a { font-size: 1.2rem !important; color: #ffffff !important; }
 
+    /* Close button — only visible when menu is open */
+    .nav-close-item { display: none; }
+    .nav-links.open .nav-close-item { display: block; }
+    .nav-close-btn {
+      background: none;
+      border: 2px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      font-size: 1.4rem;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .nav-close-btn:hover { border-color: var(--gold); color: var(--gold); }
+
     .nav-links a {
       font-family: 'Lato', sans-serif;
       font-size: 0.78rem;
@@ -1881,6 +1899,7 @@
   </div>
 </nav>
 <ul class="nav-links" id="navLinks">
+  <li class="nav-close-item"><button class="nav-close-btn" id="navClose" aria-label="Menü schließen">✕</button></li>
   <li><a href="#ueber-uns">Über uns</a></li>
   <li><a href="#galerie">Galerie</a></li>
   <li><a href="#speisekarte">Speisekarte</a></li>
@@ -3041,6 +3060,9 @@
       closeMenu();
     }
   });
+
+  // Close button
+  document.getElementById('navClose').addEventListener('click', closeMenu);
 
   // Close menu on link click
   navLinks.querySelectorAll('a').forEach(a => {
