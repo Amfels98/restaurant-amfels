@@ -1865,11 +1865,11 @@
 
       .btn { padding: 0.8rem 1.8rem; font-size: 0.85rem; }
 
-      /* Öffnungszeiten */
+      /* Öffnungszeiten — untereinander auf Mobile */
       .hours-grid { width: 100%; }
-      .hours-row { padding: 1rem 0; gap: 0.8rem; }
+      .hours-row { flex-direction: column; align-items: flex-start; gap: 0.25rem; padding: 1rem 0; }
       .hours-day { font-size: 0.72rem; letter-spacing: 0.08em; }
-      .hours-time { font-size: 0.9rem; }
+      .hours-time { font-size: 1rem; text-align: left; }
 
       /* Kontakt */
       .contact-details { gap: 1.2rem; }
