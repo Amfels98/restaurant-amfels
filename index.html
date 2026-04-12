@@ -1790,7 +1790,7 @@
       .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
     }
 
-    /* Desktop: show nav links as fixed bar, hide hamburger */
+    /* Desktop: show nav links, hide hamburger — only when NOT mobile */
     @media (min-width: 951px) {
       .nav-links {
         display: flex;
@@ -1806,73 +1806,60 @@
       .nav-links.scrolled a { color: var(--text); }
       .hamburger { display: none; }
     }
+    /* Hide nav-links on mobile, show hamburger */
+    html.is-mobile .nav-links { display: none; }
+    html.is-mobile .hamburger { display: flex; }
 
-    @media (max-width: 950px) {
-      /* Single-column on mobile */
-      .hours-inner { grid-template-columns: 1fr !important; gap: 2.5rem; }
-      .about-inner { grid-template-columns: 1fr !important; gap: 2rem; }
-      .contact-inner { grid-template-columns: 1fr !important; gap: 2rem; }
-      .menu-items-grid { grid-template-columns: 1fr !important; }
-      .events-grid { grid-template-columns: 1fr !important; }
-      .voucher-steps { grid-template-columns: 1fr !important; }
-
-      nav { padding: 0.8rem 1.2rem; }
-      nav.scrolled { padding: 0.6rem 1.2rem; }
-
-      .nav-reserve { display: none !important; }
-
-      .hero-title { font-size: clamp(2.8rem, 14vw, 6rem); }
-      .hero-subtitle { font-size: 0.9rem; }
-      .hero-desc { font-size: 0.85rem; }
-      .section-title { font-size: clamp(1.8rem, 7vw, 3rem); }
-
-      /* Logo auf Mobile kleiner */
-      .nav-logo-img { height: 60px; }
-
-      .gallery-category { columns: 2; }
-      .gallery-videos { grid-template-columns: 1fr; }
-      .gallery-video-item video { height: 220px; }
-      .gallery-tabs { gap: 0.4rem; flex-wrap: wrap; }
-      .gallery-tab { padding: 0.45rem 1rem; font-size: 0.78rem; }
-
-
-      .menu-tabs { overflow-x: scroll; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; justify-content: flex-start; padding-bottom: 0.5rem; width: 100%; max-width: 100%; }
-      .menu-tab-btn, .menu-tab { white-space: nowrap; flex-shrink: 0; }
-
-
-      .event-card { height: 280px; }
-      .events-banner { flex-direction: column; text-align: center; gap: 1.5rem; }
-
-      .voucher-card { padding: 2.5rem 1.5rem; }
-      .voucher-img-wrap { max-width: 100%; }
-      .voucher-img { max-width: 100%; }
-
-      .form-row { grid-template-columns: 1fr; }
-      .form-group.full { grid-column: span 1; }
-
-      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
-      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
-
-      .hours, .about, .gallery, .menu, .events, .voucher, .reservation, .contact {
-        padding: 4rem 1.2rem;
-      }
-
-      .video-divider { height: 75vh; }
-
-      .ticker-item { padding: 0 1.2rem; font-size: 0.8rem; }
-
-      .btn { padding: 0.8rem 1.8rem; font-size: 0.85rem; }
-
-      /* Öffnungszeiten */
-      .hours-grid { width: 100%; }
-      .hours-row { padding: 0.9rem 0; }
-      .hours-day { font-size: 0.75rem; letter-spacing: 0.08em; }
-      .hours-time { font-size: 0.95rem; }
-
-      /* Kontakt */
-      .contact-details { gap: 1.2rem; }
-      .contact-detail-icon { width: 40px; height: 40px; font-size: 1rem; }
-    }
+    /* ── MOBILE STYLES via JS class on <html> ──
+       screen.width always returns true device CSS pixels (393px on iPhone),
+       bypassing iOS layout-viewport expansion. Media query kept as fallback. */
+    html.is-mobile .hours-inner { grid-template-columns: 1fr !important; gap: 2.5rem; }
+    html.is-mobile .about-inner { grid-template-columns: 1fr !important; gap: 2rem; }
+    html.is-mobile .contact-inner { grid-template-columns: 1fr !important; gap: 2rem; }
+    html.is-mobile .menu-items-grid { grid-template-columns: 1fr !important; }
+    html.is-mobile .events-grid { grid-template-columns: 1fr !important; }
+    html.is-mobile .voucher-steps { grid-template-columns: 1fr !important; }
+    html.is-mobile nav { padding: 0.8rem 1.2rem; }
+    html.is-mobile nav.scrolled { padding: 0.6rem 1.2rem; }
+    html.is-mobile .nav-reserve { display: none !important; }
+    html.is-mobile .hero-title { font-size: clamp(2.8rem, 14vw, 6rem); }
+    html.is-mobile .hero-subtitle { font-size: 0.9rem; }
+    html.is-mobile .hero-desc { font-size: 0.85rem; }
+    html.is-mobile .section-title { font-size: clamp(1.8rem, 7vw, 3rem); }
+    html.is-mobile .nav-logo-img { height: 60px; }
+    html.is-mobile .gallery-category { columns: 2; }
+    html.is-mobile .gallery-videos { grid-template-columns: 1fr; }
+    html.is-mobile .gallery-video-item video { height: 220px; }
+    html.is-mobile .gallery-tabs { gap: 0.4rem; flex-wrap: wrap; }
+    html.is-mobile .gallery-tab { padding: 0.45rem 1rem; font-size: 0.78rem; }
+    html.is-mobile .menu-tabs { overflow-x: scroll; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; justify-content: flex-start; padding-bottom: 0.5rem; width: 100%; max-width: 100%; }
+    html.is-mobile .menu-tab-btn, html.is-mobile .menu-tab { white-space: nowrap; flex-shrink: 0; }
+    html.is-mobile .event-card { height: 280px; }
+    html.is-mobile .events-banner { flex-direction: column; text-align: center; gap: 1.5rem; }
+    html.is-mobile .voucher-card { padding: 2.5rem 1.5rem; }
+    html.is-mobile .voucher-img-wrap { max-width: 100%; }
+    html.is-mobile .voucher-img { max-width: 100%; }
+    html.is-mobile .form-row { grid-template-columns: 1fr; }
+    html.is-mobile .form-group.full { grid-column: span 1; }
+    html.is-mobile .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+    html.is-mobile .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    html.is-mobile .hours,
+    html.is-mobile .about,
+    html.is-mobile .gallery,
+    html.is-mobile .menu,
+    html.is-mobile .events,
+    html.is-mobile .voucher,
+    html.is-mobile .reservation,
+    html.is-mobile .contact { padding: 4rem 1.2rem; }
+    html.is-mobile .video-divider { height: 75vh; }
+    html.is-mobile .ticker-item { padding: 0 1.2rem; font-size: 0.8rem; }
+    html.is-mobile .btn { padding: 0.8rem 1.8rem; font-size: 0.85rem; }
+    html.is-mobile .hours-grid { width: 100%; }
+    html.is-mobile .hours-row { padding: 0.9rem 0; }
+    html.is-mobile .hours-day { font-size: 0.75rem; letter-spacing: 0.08em; }
+    html.is-mobile .hours-time { font-size: 0.95rem; }
+    html.is-mobile .contact-details { gap: 1.2rem; }
+    html.is-mobile .contact-detail-icon { width: 40px; height: 40px; font-size: 1rem; }
 
     @media (max-width: 400px) {
       .nav-logo-img { height: 50px; }
@@ -3034,6 +3021,14 @@
 
 <!-- ── JAVASCRIPT ── -->
 <script>
+  // Mobile detection using screen.width (bypasses iOS layout viewport bug)
+  // screen.width always returns true CSS device pixels (393px on iPhone 17 Pro)
+  (function() {
+    if (window.screen.width <= 950) {
+      document.documentElement.classList.add('is-mobile');
+    }
+  })();
+
   // Hero BG load animation
   // hero-bg scale animation removed (caused iOS overflow)
 
