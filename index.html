@@ -27,9 +27,6 @@
 
     html {
       scroll-behavior: smooth;
-      /* overflow:clip hard-clips at viewport without creating a scroll container.
-         Unlike overflow:hidden it does NOT break position:fixed on iOS Safari. */
-      overflow-x: clip;
     }
     *, *::before, *::after { box-sizing: border-box; }
 
@@ -67,9 +64,6 @@
       max-width: 100%;
     }
     #page-wrap {
-      /* No transform here — transform creates a new containing block for
-         position:fixed children (lightbox), which breaks on iOS. */
-      overflow-x: clip;
       width: 100%;
       position: relative;
     }
@@ -78,9 +72,6 @@
       font-family: 'Lato', sans-serif;
       background: var(--dark2);
       color: var(--text);
-      /* clip statt hidden — hidden macht body zum Scroll-Container
-         und bricht position:fixed auf iOS (nav scrollt weg) */
-      overflow-x: clip;
     }
 
     /* ── SCROLLBAR ── */
