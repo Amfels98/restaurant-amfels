@@ -554,10 +554,9 @@
     .hours-inner {
       max-width: 1100px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: center;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
     }
 
     .hours-text .section-title { margin-bottom: 1.5rem; }
@@ -1786,12 +1785,17 @@
        RESPONSIVE
     ──────────────────────────────────── */
     @media (max-width: 1024px) {
-      .hours-inner { grid-template-columns: 1fr; gap: 3rem; }
       .about-inner { grid-template-columns: 1fr; gap: 3rem; }
       .about-image-secondary { display: none; }
       .about-gold-label { left: 1rem; }
       .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
       .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    /* Desktop 2-column layouts */
+    @media (min-width: 769px) {
+      .hours-inner { flex-direction: row; gap: 5rem; align-items: center; }
+      .hours-inner > * { flex: 1; }
     }
 
     /* Desktop: show nav links as fixed bar, hide hamburger */
@@ -1813,7 +1817,6 @@
 
     @media (max-width: 768px) {
       /* Force single-column on all main grids */
-      .hours-inner { grid-template-columns: 1fr !important; gap: 2.5rem; }
       .about-inner { grid-template-columns: 1fr !important; gap: 2rem; }
       .contact-inner { grid-template-columns: 1fr !important; gap: 2rem; }
 
