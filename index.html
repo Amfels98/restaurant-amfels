@@ -78,7 +78,9 @@
       font-family: 'Lato', sans-serif;
       background: var(--dark2);
       color: var(--text);
-      overflow-x: hidden;
+      /* clip statt hidden — hidden macht body zum Scroll-Container
+         und bricht position:fixed auf iOS (nav scrollt weg) */
+      overflow-x: clip;
     }
 
     /* ── SCROLLBAR ── */
