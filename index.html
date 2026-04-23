@@ -137,11 +137,11 @@
       margin-top: 3px;
     }
 
-    /* Mobile-first: links hidden by default, hamburger shown */
+    /* Desktop: links visible by default */
     .nav-links {
-      display: none;
+      display: flex;
       list-style: none;
-      gap: 2.5rem;
+      gap: 2rem;
       align-items: center;
     }
 
@@ -224,9 +224,9 @@
     .nav-reserve::after { display: none !important; }
     .nav-reserve:hover { background: var(--gold-light) !important; transform: translateY(-1px); }
 
-    /* Mobile-first: hamburger visible by default */
+    /* Desktop: hamburger hidden by default */
     .hamburger {
-      display: flex;
+      display: none;
       flex-direction: column;
       gap: 5px;
       cursor: pointer;
@@ -1812,22 +1812,16 @@
     .about-gold-label { left: 1rem; }
     .nav-reserve { display: none !important; }
 
-    /* ── DESKTOP (min-width: 1025px) — muss NACH Mobile-Base stehen um zu gewinnen ── */
+    /* ── MOBILE: Hamburger an, Links aus ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open { display: flex !important; }
+      .hamburger { display: flex !important; }
+      .nav-reserve { display: none !important; }
+    }
+
+    /* ── DESKTOP: Normale Layouts ── */
     @media (min-width: 769px) {
-      .nav-links {
-        display: flex !important;
-        position: static !important;
-        flex-direction: row !important;
-        background: none !important;
-        padding: 0 !important;
-        gap: 2rem !important;
-        align-items: center !important;
-        height: auto !important;
-        width: auto !important;
-        z-index: auto !important;
-      }
-      .nav-links.scrolled a { color: var(--text); }
-      .hamburger { display: none !important; }
       .hours-inner { grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
       .about-inner { grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
       .contact-inner { grid-template-columns: 1fr 1fr; gap: 6rem; }
