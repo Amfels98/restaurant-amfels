@@ -1732,17 +1732,16 @@
     .footer-inner {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 5rem 3rem 0;
+      padding: 1.2rem 3rem;
     }
 
     .footer-logo-img {
-      height: 80px;
+      height: 42px;
       width: auto;
       object-fit: contain;
       display: block;
-      margin-bottom: 1.2rem;
       filter: brightness(0) invert(1);
-      opacity: 0.9;
+      opacity: 0.75;
     }
 
     .footer-bottom {
@@ -1778,8 +1777,8 @@
       position: fixed;
       bottom: 2rem;
       right: 2rem;
-      background: var(--dark3);
-      border: 1px solid var(--gold-dark);
+      background: #1c1c1c;
+      border: 1px solid rgba(201,169,110,0.3);
       border-left: 3px solid var(--gold);
       padding: 1rem 1.5rem;
       z-index: 9999;
@@ -1787,12 +1786,14 @@
       align-items: center;
       gap: 1rem;
       min-width: 300px;
-      transform: translateY(100px);
+      transform: translateY(120px);
       opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast.show { transform: translateY(0); opacity: 1; visibility: visible; pointer-events: auto; }
 
     .toast-icon { color: var(--gold); font-size: 1.2rem; }
 
