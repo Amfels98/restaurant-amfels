@@ -1562,72 +1562,124 @@
     ──────────────────────────────────── */
     .contact {
       padding: 8rem 3rem;
-      background: var(--dark3);
+      background: var(--dark);
       overflow: hidden;
+      position: relative;
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('images/hauptraum.jpeg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.03;
+      pointer-events: none;
     }
 
     .contact-inner {
       max-width: 1100px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
+      position: relative;
+      z-index: 1;
     }
 
-    .contact-info p {
-      font-size: 0.98rem;
-      line-height: 1.9;
-      color: var(--text);
-      margin-bottom: 2.5rem;
-      font-weight: 300;
+    .contact-header {
+      text-align: center;
+      margin-bottom: 4rem;
     }
 
-    .contact-details { list-style: none; margin-bottom: 2.5rem; }
-
-    .contact-details li {
-      display: flex;
-      gap: 1.2rem;
-      align-items: flex-start;
-      padding: 0.9rem 0;
-      border-bottom: 1px solid rgba(0,0,0,0.09);
-    }
-
-    .contact-icon {
-      color: var(--gold);
+    .contact-header p {
       font-size: 1rem;
-      margin-top: 2px;
-      width: 18px;
-      flex-shrink: 0;
+      color: var(--text);
+      max-width: 500px;
+      margin: 1rem auto 0;
+      line-height: 1.8;
     }
 
-    .contact-detail-text { flex: 1; min-width: 0; }
+    /* Info-Karten Reihe */
+    .contact-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(201,169,110,0.15);
+      margin-bottom: 4rem;
+    }
 
-    .contact-detail-label {
-      font-size: 0.65rem;
+    .contact-card {
+      background: var(--dark2);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: background 0.3s;
+    }
+
+    .contact-card:hover { background: var(--dark3); }
+
+    .contact-card-icon {
+      width: 48px; height: 48px;
+      border: 1px solid var(--gold-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.2rem;
+      color: var(--gold);
+    }
+
+    .contact-card-label {
+      font-size: 0.62rem;
       font-weight: 700;
-      letter-spacing: 0.25em;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.7rem;
     }
 
-    .contact-detail-value {
+    .contact-card-value {
+      font-family: 'Playfair Display', serif;
       font-size: 0.95rem;
       color: var(--cream);
+      line-height: 1.6;
     }
 
-    .contact-detail-value a {
+    .contact-card-value a {
       color: var(--cream);
       text-decoration: none;
       transition: color 0.2s;
     }
 
-    .contact-detail-value a:hover { color: var(--gold); }
+    .contact-card-value a:hover { color: var(--gold); }
+
+    /* Karte + Formular */
+    .contact-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .contact-map iframe {
+      width: 100%;
+      height: 380px;
+      border: none;
+      display: block;
+      filter: grayscale(30%) contrast(1.1);
+    }
+
+    .contact-map-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: block;
+    }
 
     .contact-social {
       display: flex;
-      gap: 1rem;
-      margin-top: 2rem;
+      gap: 0.8rem;
+      margin-top: 1.5rem;
     }
 
     .social-link {
@@ -1638,7 +1690,6 @@
       justify-content: center;
       color: var(--text);
       text-decoration: none;
-      font-size: 0.85rem;
       transition: all 0.3s;
     }
 
@@ -1648,12 +1699,20 @@
       background: rgba(201,169,110,0.06);
     }
 
-    .contact-form { }
+    .contact-form-title {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
 
     .contact-form .form-group {
       margin-bottom: 1.2rem;
 
-      
+
       
     /* ────────────────────────────────────
        FOOTER
@@ -1851,7 +1910,8 @@
       .form-group.full { grid-column: span 1; }
       .res-form { padding: 2rem 1.5rem; }
 
-      .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .contact-cards { grid-template-columns: 1fr 1fr; }
+      .contact-bottom { grid-template-columns: 1fr; gap: 2rem; }
 
       .footer-top { grid-template-columns: 1fr; gap: 2rem; }
       .footer-bottom { flex-direction: column; gap: 0.8rem; text-align: center; }
@@ -1894,7 +1954,8 @@
       .menu-items-grid { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr 1fr; }
       .form-group.full { grid-column: span 2; }
-      .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .contact-cards { grid-template-columns: 1fr 1fr; }
+      .contact-bottom { grid-template-columns: 1fr; gap: 2rem; }
       .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
       .footer-bottom { flex-direction: row; }
 
@@ -1935,7 +1996,8 @@
       .form-group.full { grid-column: span 2; }
       .res-form { padding: 3.5rem; }
 
-      .contact-inner { grid-template-columns: 1fr 1fr; gap: 6rem; }
+      .contact-cards { grid-template-columns: repeat(4, 1fr); }
+      .contact-bottom { grid-template-columns: 1fr 1fr; gap: 3rem; }
       .footer-top { grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; }
       .footer-bottom { flex-direction: row; }
     }
@@ -2811,83 +2873,97 @@
 <!-- ── KONTAKT ── -->
 <section class="contact" id="kontakt">
   <div class="contact-inner">
-    <div class="contact-info fade-up">
+
+    <!-- Header -->
+    <div class="contact-header fade-up">
       <span class="section-label">So finden Sie uns</span>
-      <h2 class="section-title">Kontakt &amp;<br><em>Anfahrt</em></h2>
-      <div class="ornament">
+      <h2 class="section-title">Kontakt &amp; <em>Anfahrt</em></h2>
+      <div class="ornament" style="justify-content:center">
         <div class="ornament-line"></div>
         <div class="ornament-diamond"></div>
         <div class="ornament-line right"></div>
       </div>
-      <p>
-        Wir freuen uns auf Ihre Nachricht – ob für eine Reservierung,
-        eine Eventanfrage oder Fragen zu unserer Speisekarte.
-      </p>
-      <ul class="contact-details">
-        <li>
-          <span class="contact-icon">📍</span>
-          <div class="contact-detail-text">
-            <div class="contact-detail-label">Adresse</div>
-            <div class="contact-detail-value">Staadter Weg 2<br>51766 Engelskirchen-Loope</div>
-          </div>
-        </li>
-        <li>
-          <span class="contact-icon">📞</span>
-          <div class="contact-detail-text">
-            <div class="contact-detail-label">Telefon</div>
-            <div class="contact-detail-value"><a href="tel:+4922639291371">02263 9291371</a></div>
-          </div>
-        </li>
-        <li>
-          <span class="contact-icon">✉</span>
-          <div class="contact-detail-text">
-            <div class="contact-detail-label">E-Mail</div>
-            <div class="contact-detail-value"><a href="mailto:restaurant.amfels@web.de">restaurant.amfels@web.de</a></div>
-          </div>
-        </li>
-        <li>
-          <span class="contact-icon">🕐</span>
-          <div class="contact-detail-text">
-            <div class="contact-detail-label">Öffnungszeiten</div>
-            <div class="contact-detail-value">Di–Fr: 11:30–14:30 &amp; 17:00–22:30<br>Sa: 12:00–22:30 | So: 12:00–21:00</div>
-          </div>
-        </li>
-      </ul>
-      <div class="contact-social">
-        <a href="#" class="social-link" title="Instagram">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
-        </a>
-        <a href="#" class="social-link" title="Facebook">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-        </a>
+      <p>Wir freuen uns auf Ihren Besuch – kommen Sie vorbei oder schreiben Sie uns.</p>
+    </div>
+
+    <!-- Info-Karten -->
+    <div class="contact-cards fade-up">
+      <div class="contact-card">
+        <div class="contact-card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="contact-card-label">Adresse</div>
+        <div class="contact-card-value">Staadter Weg 2<br>51766 Engelskirchen-Loope</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.24h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.98-.98a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div class="contact-card-label">Telefon</div>
+        <div class="contact-card-value"><a href="tel:+4922639291371">02263 9291371</a></div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="contact-card-label">E-Mail</div>
+        <div class="contact-card-value"><a href="mailto:restaurant.amfels@web.de">restaurant.amfels@web.de</a></div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="contact-card-label">Öffnungszeiten</div>
+        <div class="contact-card-value">Di–Fr: 11:30–22:30<br>Sa–So: 12:00–21:00</div>
       </div>
     </div>
 
-    <div class="contact-form fade-up" style="transition-delay:0.15s">
-      <span class="section-label">Nachricht senden</span>
-      <form onsubmit="submitContact(event)" style="margin-top:1.5rem">
-        <div class="form-group" style="margin-bottom:1.2rem">
-          <label>Name</label>
-          <input type="text" placeholder="Ihr Name" required />
+    <!-- Karte + Formular -->
+    <div class="contact-bottom fade-up">
+      <div class="contact-map">
+        <span class="contact-map-label">Anfahrt</span>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2499.8!2d7.4043!3d51.0012!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bed5b3e2f9cd0b%3A0x7e8c3f1a2b4d5e6f!2sStaadter+Weg+2%2C+51766+Engelskirchen!5e0!3m2!1sde!2sde!4v1234567890"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Restaurant Am Fels Standort">
+        </iframe>
+        <div class="contact-social" style="margin-top:1.5rem">
+          <a href="#" class="social-link" title="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="#" class="social-link" title="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
         </div>
-        <div class="form-group" style="margin-bottom:1.2rem">
-          <label>E-Mail oder Telefon</label>
-          <input type="text" placeholder="Kontaktdaten" required />
-        </div>
-        <div class="form-group" style="margin-bottom:1.2rem">
-          <label>Betreff</label>
-          <select>
-            <option>Reservierung</option>
-            <option>Eventanfrage</option>
-            <option>Gutschein</option>
-            <option>Allgemeine Anfrage</option>
-          </select>
-        </div>
-        <div class="form-group" style="margin-bottom:1.5rem">
-          <label>Nachricht</label>
-          <textarea placeholder="Ihre Nachricht..." required style="min-height:130px"></textarea>
-        </div>
-        <button type="submit" class="btn-submit" style="width:100%">Nachricht senden</button>
+      </div>
+
+      <div class="contact-form">
+        <span class="contact-form-title">Nachricht senden</span>
+        <form onsubmit="submitContact(event)">
+          <div class="form-group" style="margin-bottom:1.2rem">
+            <label>Name</label>
+            <input type="text" placeholder="Ihr Name" required />
+          </div>
+          <div class="form-group" style="margin-bottom:1.2rem">
+            <label>E-Mail oder Telefon</label>
+            <input type="text" placeholder="Kontaktdaten" required />
+          </div>
+          <div class="form-group" style="margin-bottom:1.2rem">
+            <label>Betreff</label>
+            <select>
+              <option>Reservierung</option>
+              <option>Eventanfrage</option>
+              <option>Gutschein</option>
+              <option>Allgemeine Anfrage</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:1.5rem">
+            <label>Nachricht</label>
+            <textarea placeholder="Ihre Nachricht..." required style="min-height:130px"></textarea>
+          </div>
+          <button type="submit" class="btn-submit" style="width:100%">Nachricht senden</button>
       </form>
     </div>
   </div>
