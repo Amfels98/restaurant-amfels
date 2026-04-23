@@ -1718,78 +1718,122 @@
        FOOTER
     ──────────────────────────────────── */
     footer {
-      background: var(--dark2);
-      border-top: 1px solid rgba(201,169,110,0.1);
-      padding: 4rem 3rem 2rem;
+      background: #080808;
+      padding: 0;
       overflow: hidden;
+      position: relative;
+    }
+
+    .footer-gold-bar {
+      height: 3px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
     }
 
     .footer-inner {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
+      padding: 5rem 3rem 0;
     }
 
     .footer-top {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 2rem;
-      margin-bottom: 4rem;
+      gap: 2.5rem;
+      padding-bottom: 4rem;
+      border-bottom: 1px solid rgba(201,169,110,0.08);
     }
 
-    .footer-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: 0.05em;
-      text-decoration: none;
+    .footer-brand { }
+
+    .footer-logo-img {
+      height: 80px;
+      width: auto;
+      object-fit: contain;
       display: block;
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
+      filter: brightness(0) invert(1);
+      opacity: 0.9;
     }
 
     .footer-desc {
-      font-size: 0.85rem;
-      color: var(--text);
-      line-height: 1.8;
+      font-size: 0.82rem;
+      color: rgba(212,201,184,0.55);
+      line-height: 1.9;
       margin-bottom: 1.5rem;
+      max-width: 280px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 0.7rem;
+    }
+
+    .footer-social-link {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(201,169,110,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(212,201,184,0.5);
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .footer-social-link:hover {
+      border-color: var(--gold);
+      color: var(--gold);
     }
 
     .footer-col h4 {
       font-family: 'Lato', sans-serif;
-      font-size: 0.68rem;
+      font-size: 0.62rem;
       font-weight: 700;
-      letter-spacing: 0.25em;
+      letter-spacing: 0.35em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid rgba(201,169,110,0.15);
     }
 
-    .footer-col ul {
-      list-style: none;
-    }
+    .footer-col ul { list-style: none; }
 
-    .footer-col ul li {
-      margin-bottom: 0.6rem;
-    }
+    .footer-col ul li { margin-bottom: 0.7rem; }
 
     .footer-col ul li a {
-      font-size: 0.85rem;
-      color: var(--text);
+      font-size: 0.83rem;
+      color: rgba(212,201,184,0.55);
       text-decoration: none;
       transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer-col ul li a::before {
+      content: '';
+      width: 12px; height: 1px;
+      background: var(--gold-dark);
+      flex-shrink: 0;
+      transition: width 0.2s;
     }
 
     .footer-col ul li a:hover { color: var(--gold); }
+    .footer-col ul li a:hover::before { width: 18px; background: var(--gold); }
 
     .footer-col p {
-      font-size: 0.85rem;
-      color: var(--text);
-      line-height: 1.8;
+      font-size: 0.83rem;
+      color: rgba(212,201,184,0.55);
+      line-height: 2;
+    }
+
+    .footer-col a {
+      color: var(--gold);
+      text-decoration: none;
     }
 
     .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding-top: 2rem;
+      padding: 1.8rem 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -2971,45 +3015,11 @@
 
 <!-- ── FOOTER ── -->
 <footer>
+  <div class="footer-gold-bar"></div>
   <div class="footer-inner">
-    <div class="footer-top">
-      <div>
-        <a href="#" class="footer-logo">Am Fels</a>
-        <p class="footer-desc">
-          Kroatische Tradition trifft internationale Kochkunst –
-          im besonderen Ambiente von Engelskirchen-Loope.
-        </p>
-        <div class="contact-social">
-          <a href="#" class="social-link">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
-          </a>
-          <a href="#" class="social-link">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          </a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>Navigation</h4>
-        <ul>
-          <li><a href="#ueber-uns">Über uns</a></li>
-          <li><a href="#galerie">Galerie</a></li>
-          <li><a href="#speisekarte">Speisekarte</a></li>
-          <li><a href="#events">Events</a></li>
-          <li><a href="#gutscheine">Gutscheine</a></li>
-          <li><a href="#reservierung">Reservierung</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Öffnungszeiten</h4>
-        <p>Mo, Mi–Fr: 17:30–22:00<br>Di: Ruhetag<br>Sa: 12:00–14:30 &amp; 17:30–22:00<br>So: 12:00–15:00 &amp; 17:00–21:00</p>
-      </div>
-      <div class="footer-col">
-        <h4>Kontakt</h4>
-        <p>Staadter Weg 2<br>51766 Engelskirchen<br><br><a href="tel:+4922639291371" style="color:var(--gold);">02263 9291371</a></p>
-      </div>
-    </div>
     <div class="footer-bottom">
-      <span class="footer-copy">© 2025 Restaurant Am Fels · Alle Rechte vorbehalten</span>
+      <img src="images/logo.png" alt="Am Fels" class="footer-logo-img" />
+      <span class="footer-copy">© 2025 Restaurant Am Fels · Staadter Weg 2 · Engelskirchen-Loope</span>
       <div class="footer-links">
         <a href="#" onclick="document.getElementById('impressumModal').classList.add('open');document.body.style.overflow='hidden';return false;">Impressum</a>
         <a href="#">Datenschutz</a>
