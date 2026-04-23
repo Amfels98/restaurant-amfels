@@ -769,7 +769,8 @@
 
     .gallery-item img {
       width: 100%;
-      height: auto;
+      height: 220px;
+      object-fit: cover;
       display: block;
       transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
     }
@@ -1807,7 +1808,7 @@
       .gallery-grid { grid-template-columns: 1fr 1fr; gap: 4px; }
       .gallery-item:nth-child(1) { grid-column: span 2; }
       .gallery-item:nth-child(4) { grid-column: span 1; }
-      .gallery-item img { min-height: 160px; }
+      .gallery-item img { height: 160px; }
       .gallery-item:nth-child(1) img { min-height: 220px; }
 
       .menu-tabs { overflow-x: auto; flex-wrap: nowrap; justify-content: flex-start; padding-bottom: 0.5rem; }
@@ -2075,184 +2076,6 @@
   </div>
 </section>
 
-<!-- ── ÜBER UNS ── -->
-<section class="about" id="ueber-uns">
-  <div class="about-inner">
-    <div class="about-image-wrap fade-up">
-      <img src="images/innen.jpeg" alt="Restaurant Am Fels Innenraum" class="about-image-main" />
-      <img src="images/hauptraum.jpeg" alt="Hauptraum" class="about-image-secondary" />
-      <span class="about-gold-label">Raum &amp; Genuss</span>
-    </div>
-    <div class="about-text fade-up" style="transition-delay:0.15s">
-      <span class="section-label">Unsere Geschichte</span>
-      <h2 class="section-title">Kroatische Tradition<br>im <em>besonderen Ambiente</em></h2>
-      <div class="ornament">
-        <div class="ornament-line"></div>
-        <div class="ornament-diamond"></div>
-        <div class="ornament-line right"></div>
-      </div>
-      <p>
-        Das Restaurant Am Fels steht für die Verbindung von kroatischer Kochtradition
-        und internationaler Kochkunst. Inmitten der malerischen Natur von
-        Engelskirchen-Loope schaffen wir ein Erlebnis, das weit über den Tellerrand hinausgeht.
-      </p>
-      <p>
-        Jedes Gericht wird frisch zubereitet – mit Zutaten, die sorgfältig ausgewählt werden.
-        Unsere Steaks stammen aus Argentinien, unser Fisch aus kontrollierter Herkunft,
-        und unsere Grillspezialitäten folgen seit Generationen überlieferten Rezepten.
-      </p>
-      <div class="about-features">
-        <div class="feature-item">
-          <div class="feature-icon">✦</div>
-          <div class="feature-text">
-            <h4>Frische Küche</h4>
-            <p>Täglich frisch zubereitet, keine Convenience</p>
-          </div>
-        </div>
-        <div class="feature-item">
-          <div class="feature-icon">✦</div>
-          <div class="feature-text">
-            <h4>Premium Steaks</h4>
-            <p>Grain Fed Beef aus Argentinien</p>
-          </div>
-        </div>
-        <div class="feature-item">
-          <div class="feature-icon">✦</div>
-          <div class="feature-text">
-            <h4>Kroatische Seele</h4>
-            <p>Cevapcici, Raznjici &amp; mehr</p>
-          </div>
-        </div>
-        <div class="feature-item">
-          <div class="feature-icon">✦</div>
-          <div class="feature-text">
-            <h4>Eventlocation</h4>
-            <p>Separater Raum bis 75 Personen</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Video Divider 1 -->
-<div class="video-divider" id="vd1">
-  <video class="vd-bg" src="images/videos/fleisch-vorbereitung.mp4" autoplay muted loop playsinline preload="auto"></video>
-  <video class="vd-main" src="images/videos/fleisch-vorbereitung.mp4" autoplay muted loop playsinline preload="auto"></video>
-  <div class="video-divider-overlay">
-    <div class="video-divider-line"></div>
-    <div class="video-divider-text">Jedes Gericht entsteht mit Leidenschaft und Handwerk</div>
-    <div class="video-divider-line"></div>
-  </div>
-</div>
-
-<!-- ── GALERIE ── -->
-<section class="gallery" id="galerie">
-  <div class="gallery-header fade-up">
-    <span class="section-label">Impressionen</span>
-    <h2 class="section-title">Einblicke in unser<br><em>Restaurant</em></h2>
-  </div>
-
-  <div class="gallery-tabs">
-    <button class="gallery-tab active" onclick="switchGallery('gerichte', this)">Gerichte</button>
-    <button class="gallery-tab" onclick="switchGallery('personal', this)">Personal</button>
-    <button class="gallery-tab" onclick="switchGallery('ambiente', this)">Ambiente</button>
-  </div>
-
-  <!-- Gerichte -->
-  <div class="gallery-category active" id="gallery-gerichte">
-    <div class="gallery-item" onclick="openLightbox('images/amfels-de/garnelen-pfanne.jpg')">
-      <img src="images/amfels-de/garnelen-pfanne.jpg" alt="Garnelen Pfanne" loading="lazy" />
-      <div class="gallery-overlay"><div class="gallery-overlay-title">Garnelen in der Pfanne</div><div class="gallery-overlay-line"></div></div>
-    </div>
-    <div class="gallery-item" onclick="openLightbox('images/amfels-de/gemischter-grill.jpg')">
-      <img src="images/amfels-de/gemischter-grill.jpg" alt="Gemischter Grill" loading="lazy" />
-      <div class="gallery-overlay"><div class="gallery-overlay-title">Gemischter Grill</div><div class="gallery-overlay-line"></div></div>
-    </div>
-    <div class="gallery-item" onclick="openLightbox('images/amfels-de/fisch-spinat-garnelen.jpg')">
-      <img src="images/amfels-de/fisch-spinat-garnelen.jpg" alt="Fisch mit Spinat" loading="lazy" />
-      <div class="gallery-overlay"><div class="gallery-overlay-title">Fisch mit Spinat & Garnelen</div><div class="gallery-overlay-line"></div></div>
-    </div>
-    <div class="gallery-item" onclick="openLightbox('images/amfels-de/lammkoteletts.jpg')">
-      <img src="images/amfels-de/lammkoteletts.jpg" alt="Lammkoteletts" loading="lazy" />
-      <div class="gallery-overlay"><div class="gallery-overlay-title">Lammkoteletts</div><div class="gallery-overlay-line"></div></div>
-    </div>
-    <div class="gallery-item" onclick="openLightbox('images/amfels-de/beef-carpaccio.jpg')">
-      <img src="images/amfels-de/beef-carpaccio.jpg" alt="Beef Carpaccio" loading="lazy" />
-      <div class="gallery-overlay"><div class="gallery-overlay-title">Beef Carpaccio</div><div class="gallery-overlay-line"></div></div>
-    </div>
-    <div class="gallery-item" onclick="openLightbox('images/amfels-de/filetsteak-rotwein.jpg')">
-      <img src="images/amfels-de/filetsteak-rotwein.jpg" alt="Filetsteak" loading="lazy" />
-      <div class="gallery-overlay"><div class="gallery-overlay-title">Filetsteak</div><div class="gallery-overlay-line"></div></div>
-    </div>
-  </div>
-
-  <!-- Personal -->
-  <div class="gallery-category" id="gallery-personal">
-    <div class="gallery-item" onclick="openLightbox('images/amfels-de/15.jpg')">
-      <img src="images/amfels-de/15.jpg" alt="Chef mit Platte" loading="lazy" />
-      <div class="gallery-overlay"><div class="gallery-overlay-title">Frisch aus der Küche</div><div class="gallery-overlay-line"></div></div>
-    </div>
-    <div class="gallery-item" onclick="openLightbox('images/amfels-de/16.jpg')">
-      <img src="images/amfels-de/16.jpg" alt="Barkeeperin" loading="lazy" />
-      <div class="gallery-overlay"><div class="gallery-overlay-title">An der Bar</div><div class="gallery-overlay-line"></div></div>
-    </div>
-  </div>
-
-  <!-- Ambiente -->
-  <div class="gallery-category" id="gallery-ambiente">
-    <div class="gallery-item" onclick="openLightbox('images/amfels-de/09.jpg')">
-      <img src="images/amfels-de/09.jpg" alt="Terrasse" loading="lazy" />
-      <div class="gallery-overlay"><div class="gallery-overlay-title">Unsere Terrasse</div><div class="gallery-overlay-line"></div></div>
-    </div>
-    <div class="gallery-item" onclick="openLightbox('images/amfels-de/14.jpg')">
-      <img src="images/amfels-de/14.jpg" alt="Gedeckter Tisch" loading="lazy" />
-      <div class="gallery-overlay"><div class="gallery-overlay-title">Einladend gedeckt</div><div class="gallery-overlay-line"></div></div>
-    </div>
-    <div class="gallery-item" onclick="openLightbox('images/amfels-de/11.jpg')">
-      <img src="images/amfels-de/11.jpg" alt="Bar" loading="lazy" />
-      <div class="gallery-overlay"><div class="gallery-overlay-title">Unsere Bar</div><div class="gallery-overlay-line"></div></div>
-    </div>
-    <div class="gallery-item" onclick="openLightbox('images/amfels-de/10.jpg')">
-      <img src="images/amfels-de/10.jpg" alt="Hauptraum" loading="lazy" />
-      <div class="gallery-overlay"><div class="gallery-overlay-title">Hauptraum</div><div class="gallery-overlay-line"></div></div>
-    </div>
-    <div class="gallery-item" onclick="openLightbox('images/amfels-de/13.jpg')">
-      <img src="images/amfels-de/13.jpg" alt="Gastraum" loading="lazy" />
-      <div class="gallery-overlay"><div class="gallery-overlay-title">Gemütliche Atmosphäre</div><div class="gallery-overlay-line"></div></div>
-    </div>
-    <div class="gallery-item" onclick="openLightbox('images/amfels-de/25.jpg')">
-      <img src="images/amfels-de/25.jpg" alt="Nebenraum" loading="lazy" />
-      <div class="gallery-overlay"><div class="gallery-overlay-title">Festlicher Nebenraum</div><div class="gallery-overlay-line"></div></div>
-    </div>
-    <div class="gallery-item" onclick="openLightbox('images/amfels-de/26.jpg')">
-      <img src="images/amfels-de/26.jpg" alt="Nebenraum Buffet" loading="lazy" />
-      <div class="gallery-overlay"><div class="gallery-overlay-title">Für besondere Anlässe</div><div class="gallery-overlay-line"></div></div>
-    </div>
-    <div class="gallery-item" onclick="openLightbox('images/amfels-de/tisch-fenster.jpg')">
-      <img src="images/amfels-de/tisch-fenster.jpg" alt="Tisch am Fenster" loading="lazy" />
-      <div class="gallery-overlay"><div class="gallery-overlay-title">Tisch am Fenster</div><div class="gallery-overlay-line"></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-  <img id="lightboxImg" src="" alt="" />
-</div>
-
-<!-- Video Divider 2 -->
-<div class="video-divider" id="vd2">
-  <video class="vd-bg" src="images/videos/schokokuchen-dessert.mp4" autoplay muted loop playsinline preload="auto"></video>
-  <video class="vd-main" src="images/videos/schokokuchen-dessert.mp4" autoplay muted loop playsinline preload="auto"></video>
-  <div class="video-divider-overlay">
-    <div class="video-divider-line"></div>
-    <div class="video-divider-text">Von der Vorspeise bis zum Dessert — ein Erlebnis</div>
-    <div class="video-divider-line"></div>
-  </div>
-</div>
-
 <!-- ── SPEISEKARTE ── -->
 <section class="menu" id="speisekarte">
   <div class="menu-header fade-up">
@@ -2486,7 +2309,7 @@
         <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Cevapcici</div><div class="menu-item-desc">Hausgemachte Hackfleischröllchen, dazu Pommes Frites und Djuwetschreis</div></div><span class="menu-item-price">18,90 €</span></div>
         <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Raznjici</div><div class="menu-item-desc">vom Schwein, dazu Pommes Frites und Djuwetschreis</div></div><span class="menu-item-price">19,90 €</span></div>
         <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Hacksteak Hirten Art</div><div class="menu-item-desc">gefüllt mit Schafskäse, dazu Pommes Frites und Djuwetschreis</div></div><span class="menu-item-price">19,90 €</span></div>
-        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Grill Teller</div><div class="menu-item-desc">Cevapcici, Rückensteak, Hacksteak und Raznjici, dazu Djuwetschreis und Pommes</div></div><span class="menu-item-price">21,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Grillteller</div><div class="menu-item-desc">Cevapcici, Rückensteak, Hacksteak und Raznjici, dazu Djuwetschreis und Pommes</div></div><span class="menu-item-price">21,90 €</span></div>
         <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Kalbsleber</div><div class="menu-item-desc">mit frischen gerösteten Zwiebeln, dazu Pommes Frites und Djuwetschreis</div></div><span class="menu-item-price">20,90 €</span></div>
         <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Lustiger Bosnjak</div><div class="menu-item-desc">Rumpsteak gefüllt mit Schinken und Käse, dazu Pommes Frites und Djuwetschreis</div><div class="menu-sizes"><div class="menu-size-btn"><span class="menu-size-label">200g</span><span class="menu-size-price">28,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">300g</span><span class="menu-size-price">36,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">400g</span><span class="menu-size-price">42,90 €</span></div></div></div></div>
       </div>
@@ -2676,6 +2499,208 @@
   </div>
 </section>
 
+<!-- ── ÜBER UNS ── -->
+<section class="about" id="ueber-uns">
+  <div class="about-inner">
+    <div class="about-image-wrap fade-up">
+      <img src="images/innen.jpeg" alt="Restaurant Am Fels Innenraum" class="about-image-main" />
+      <img src="images/hauptraum.jpeg" alt="Hauptraum" class="about-image-secondary" />
+      <span class="about-gold-label">Raum &amp; Genuss</span>
+    </div>
+    <div class="about-text fade-up" style="transition-delay:0.15s">
+      <span class="section-label">Unsere Geschichte</span>
+      <h2 class="section-title">Kroatische Tradition<br>im <em>besonderen Ambiente</em></h2>
+      <div class="ornament">
+        <div class="ornament-line"></div>
+        <div class="ornament-diamond"></div>
+        <div class="ornament-line right"></div>
+      </div>
+      <p>
+        Das Restaurant Am Fels steht für die Verbindung von kroatischer Kochtradition
+        und internationaler Kochkunst. Inmitten der malerischen Natur von
+        Engelskirchen-Loope schaffen wir ein Erlebnis, das weit über den Tellerrand hinausgeht.
+      </p>
+      <p>
+        Jedes Gericht wird frisch zubereitet – mit Zutaten, die sorgfältig ausgewählt werden.
+        Unsere Steaks stammen aus Argentinien, unser Fisch aus kontrollierter Herkunft,
+        und unsere Grillspezialitäten folgen seit Generationen überlieferten Rezepten.
+      </p>
+      <div class="about-features">
+        <div class="feature-item">
+          <div class="feature-icon">✦</div>
+          <div class="feature-text">
+            <h4>Frische Küche</h4>
+            <p>Täglich frisch zubereitet, keine Convenience</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">✦</div>
+          <div class="feature-text">
+            <h4>Premium Steaks</h4>
+            <p>Grain Fed Beef aus Argentinien</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">✦</div>
+          <div class="feature-text">
+            <h4>Kroatische Seele</h4>
+            <p>Cevapcici, Raznjici &amp; mehr</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">✦</div>
+          <div class="feature-text">
+            <h4>Eventlocation</h4>
+            <p>Separater Raum bis 75 Personen</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Video Divider 1 -->
+<div class="video-divider" id="vd1">
+  <video class="vd-bg" src="images/videos/fleisch-vorbereitung.mp4" autoplay muted loop playsinline preload="auto"></video>
+  <video class="vd-main" src="images/videos/fleisch-vorbereitung.mp4" autoplay muted loop playsinline preload="auto"></video>
+  <div class="video-divider-overlay">
+    <div class="video-divider-line"></div>
+    <div class="video-divider-text">Jedes Gericht entsteht mit Leidenschaft und Handwerk</div>
+    <div class="video-divider-line"></div>
+  </div>
+</div>
+
+<!-- ── GALERIE ── -->
+<section class="gallery" id="galerie">
+  <div class="gallery-header fade-up">
+    <span class="section-label">Impressionen</span>
+    <h2 class="section-title">Einblicke in unser<br><em>Restaurant</em></h2>
+  </div>
+
+  <div class="gallery-tabs">
+    <button class="gallery-tab active" onclick="switchGallery('gerichte', this)">Gerichte</button>
+    <button class="gallery-tab" onclick="switchGallery('personal', this)">Personal</button>
+    <button class="gallery-tab" onclick="switchGallery('ambiente', this)">Ambiente</button>
+  </div>
+
+  <!-- Gerichte -->
+  <div class="gallery-category active" id="gallery-gerichte">
+    <div class="gallery-item" onclick="openLightbox('images/amfels-de/garnelen-pfanne.jpg')">
+      <img src="images/amfels-de/garnelen-pfanne.jpg" alt="Garnelen Pfanne" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Garnelen in der Pfanne</div><div class="gallery-overlay-line"></div></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/amfels-de/gemischter-grill.jpg')">
+      <img src="images/amfels-de/gemischter-grill.jpg" alt="Gemischter Grill" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Gemischter Grill</div><div class="gallery-overlay-line"></div></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/amfels-de/fisch-spinat-garnelen.jpg')">
+      <img src="images/amfels-de/fisch-spinat-garnelen.jpg" alt="Fisch mit Spinat" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Fisch mit Spinat & Garnelen</div><div class="gallery-overlay-line"></div></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/amfels-de/lammkoteletts.jpg')">
+      <img src="images/amfels-de/lammkoteletts.jpg" alt="Lammkoteletts" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Lammkoteletts</div><div class="gallery-overlay-line"></div></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/amfels-de/beef-carpaccio.jpg')">
+      <img src="images/amfels-de/beef-carpaccio.jpg" alt="Beef Carpaccio" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Beef Carpaccio</div><div class="gallery-overlay-line"></div></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/amfels-de/filetsteak-rotwein.jpg')">
+      <img src="images/amfels-de/filetsteak-rotwein.jpg" alt="Filetsteak" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Filetsteak</div><div class="gallery-overlay-line"></div></div>
+    </div>
+  </div>
+
+  <!-- Personal -->
+  <div class="gallery-category" id="gallery-personal">
+    <div class="gallery-item" onclick="openLightbox('images/amfels-de/15.jpg')">
+      <img src="images/amfels-de/15.jpg" alt="Chef mit Platte" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Frisch aus der Küche</div><div class="gallery-overlay-line"></div></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/amfels-de/16.jpg')">
+      <img src="images/amfels-de/16.jpg" alt="Barkeeperin" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">An der Bar</div><div class="gallery-overlay-line"></div></div>
+    </div>
+  </div>
+
+  <!-- Ambiente -->
+  <div class="gallery-category" id="gallery-ambiente">
+    <div class="gallery-item" onclick="openLightbox('images/amfels-de/09.jpg')">
+      <img src="images/amfels-de/09.jpg" alt="Terrasse" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Unsere Terrasse</div><div class="gallery-overlay-line"></div></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/amfels-de/14.jpg')">
+      <img src="images/amfels-de/14.jpg" alt="Gedeckter Tisch" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Einladend gedeckt</div><div class="gallery-overlay-line"></div></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/amfels-de/11.jpg')">
+      <img src="images/amfels-de/11.jpg" alt="Bar" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Unsere Bar</div><div class="gallery-overlay-line"></div></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/amfels-de/10.jpg')">
+      <img src="images/amfels-de/10.jpg" alt="Hauptraum" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Hauptraum</div><div class="gallery-overlay-line"></div></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/amfels-de/13.jpg')">
+      <img src="images/amfels-de/13.jpg" alt="Gastraum" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Gemütliche Atmosphäre</div><div class="gallery-overlay-line"></div></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/amfels-de/25.jpg')">
+      <img src="images/amfels-de/25.jpg" alt="Nebenraum" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Festlicher Nebenraum</div><div class="gallery-overlay-line"></div></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/amfels-de/26.jpg')">
+      <img src="images/amfels-de/26.jpg" alt="Nebenraum Buffet" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Für besondere Anlässe</div><div class="gallery-overlay-line"></div></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/amfels-de/tisch-fenster.jpg')">
+      <img src="images/amfels-de/tisch-fenster.jpg" alt="Tisch am Fenster" loading="lazy" />
+      <div class="gallery-overlay"><div class="gallery-overlay-title">Tisch am Fenster</div><div class="gallery-overlay-line"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightboxImg" src="" alt="" />
+</div>
+
+<!-- Video Divider 2 -->
+<div class="video-divider" id="vd2">
+  <video class="vd-bg" src="images/videos/schokokuchen-dessert.mp4" autoplay muted loop playsinline preload="auto"></video>
+  <video class="vd-main" src="images/videos/schokokuchen-dessert.mp4" autoplay muted loop playsinline preload="auto"></video>
+  <div class="video-divider-overlay">
+    <div class="video-divider-line"></div>
+    <div class="video-divider-text">Von der Vorspeise bis zum Dessert — ein Erlebnis</div>
+    <div class="video-divider-line"></div>
+  </div>
+</div>
+
+
+<section class="reservation" id="reservierung">
+  <div class="reservation-inner">
+    <div class="reservation-header fade-up">
+      <span class="section-label">Tisch reservieren</span>
+      <h2 class="section-title">Wir freuen uns<br>auf <em>Sie</em></h2>
+      <p>Reservieren Sie Ihren Tisch bequem online. Wir bestätigen Ihre Reservierung schnellstmöglich per Telefon oder E-Mail.</p>
+    </div>
+    <div class="fade-up" style="max-width:700px;margin:0 auto;">
+      <div id="teburio-ZZE2uHLvJerGaAx9R"></div>
+      <script>(function( d, s, f, js, fjs) {
+        (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
+        js.src = f; js.async = 1;
+        fjs.parentNode.insertBefore(js, fjs);
+      })( document, "script", "https://static.teburio.de/w2.js?id=ZZE2uHLvJerGaAx9R");
+      </script>
+    </div>
+    <p class="res-phone">
+      Oder direkt anrufen: <a href="tel:+4922639291371">02263 9291371</a>
+    </p>
+  </div>
+</section>
+
+
 <!-- ── EVENTS ── -->
 <section class="events" id="events">
   <div class="events-header fade-up">
@@ -2695,7 +2720,7 @@
 
   <div class="events-grid">
     <div class="event-card">
-      <div class="event-card-bg" style="background-image: url('images/drinne.jpeg');"></div>
+      <div class="event-card-bg" style="background-image: url('images/amfels-de/25.jpg');"></div>
       <div class="event-card-overlay"></div>
       <div class="event-card-content">
         <span class="event-tag">Feiern</span>
@@ -2704,7 +2729,7 @@
       </div>
     </div>
     <div class="event-card">
-      <div class="event-card-bg" style="background-image: url('images/innen.jpeg');"></div>
+      <div class="event-card-bg" style="background-image: url('images/amfels-de/26.jpg');"></div>
       <div class="event-card-overlay"></div>
       <div class="event-card-content">
         <span class="event-tag">Trauerfeier</span>
@@ -2719,7 +2744,7 @@
       <h3>Gruppe ab 10 Personen?</h3>
       <p>Separater Raum verfügbar · bis zu 75 Personen · individuelle Menügestaltung</p>
     </div>
-    <a href="#kontakt" class="btn-dark">Anfrage senden</a>
+    <a href="#kontaktformular" class="btn-dark">Anfrage senden</a>
   </div>
 </section>
 
@@ -2748,29 +2773,6 @@
       <a href="#kontakt" class="btn-primary">Gutschein anfragen</a>
       <p class="voucher-validity" style="margin-top:1.5rem">* Gutscheine sind 2 Jahre ab Ausstellungsdatum gültig.</p>
     </div>
-  </div>
-</section>
-
-<!-- ── RESERVIERUNG ── -->
-<section class="reservation" id="reservierung">
-  <div class="reservation-inner">
-    <div class="reservation-header fade-up">
-      <span class="section-label">Tisch reservieren</span>
-      <h2 class="section-title">Wir freuen uns<br>auf <em>Sie</em></h2>
-      <p>Reservieren Sie Ihren Tisch bequem online. Wir bestätigen Ihre Reservierung schnellstmöglich per Telefon oder E-Mail.</p>
-    </div>
-    <div class="fade-up" style="max-width:700px;margin:0 auto;">
-      <div id="teburio-ZZE2uHLvJerGaAx9R"></div>
-      <script>(function( d, s, f, js, fjs) {
-        (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
-        js.src = f; js.async = 1;
-        fjs.parentNode.insertBefore(js, fjs);
-      })( document, "script", "https://static.teburio.de/w2.js?id=ZZE2uHLvJerGaAx9R");
-      </script>
-    </div>
-    <p class="res-phone">
-      Oder direkt anrufen: <a href="tel:+4922639291371">02263 9291371</a>
-    </p>
   </div>
 </section>
 
@@ -2843,28 +2845,34 @@
         </div>
       </div>
 
-      <div class="contact-form">
+      <div id="kontaktformular" class="contact-form">
         <span class="contact-form-title">Nachricht senden</span>
+        <div style="background:rgba(201,169,110,0.08);border:1px solid rgba(201,169,110,0.2);padding:1rem 1.2rem;margin-bottom:1.5rem;font-size:0.82rem;color:var(--text);line-height:1.7;">
+          Tisch online reservieren? <a href="#reservierung" style="color:var(--gold);font-weight:700;text-decoration:none;">Hier klicken →</a> – schnell und einfach über unser Buchungssystem.
+        </div>
         <form onsubmit="submitContact(event)">
           <div class="form-group" style="margin-bottom:1.2rem">
-            <label>Name</label>
+            <label>Name *</label>
             <input type="text" placeholder="Ihr Name" required />
           </div>
           <div class="form-group" style="margin-bottom:1.2rem">
-            <label>E-Mail oder Telefon</label>
-            <input type="text" placeholder="Kontaktdaten" required />
+            <label>E-Mail *</label>
+            <input type="email" placeholder="ihre@email.de" required />
+          </div>
+          <div class="form-group" style="margin-bottom:1.2rem">
+            <label>Telefon (optional)</label>
+            <input type="tel" placeholder="Ihre Telefonnummer" />
           </div>
           <div class="form-group" style="margin-bottom:1.2rem">
             <label>Betreff</label>
             <select>
-              <option>Reservierung</option>
               <option>Eventanfrage</option>
-              <option>Gutschein</option>
+              <option>Trauerfeier Anfrage</option>
               <option>Allgemeine Anfrage</option>
             </select>
           </div>
           <div class="form-group" style="margin-bottom:1.5rem">
-            <label>Nachricht</label>
+            <label>Nachricht *</label>
             <textarea placeholder="Ihre Nachricht..." required style="min-height:130px"></textarea>
           </div>
           <button type="submit" class="btn-submit" style="width:100%">Nachricht senden</button>
