@@ -40,10 +40,10 @@
 
     /* All grid/flex children: allow shrinking */
     .hours-inner > *, .about-inner > *, .contact-inner > *,
-    .form-row > *, .footer-top > *, .voucher-steps > *,
+    .form-row > *, .voucher-steps > *,
     .events-grid > *, .menu-items-grid > *, .about-features > *,
     .contact-details li > *, .hours-row > *, .feature-item > *,
-    .footer-top > *, .nav-links > * {
+    .nav-links > * {
       min-width: 0;
     }
 
@@ -60,7 +60,7 @@
     /* Inner containers: never wider than viewport */
     .hours-inner, .about-inner, .contact-inner, .reservation-inner,
     .menu-inner, .gallery-grid, .gallery-category, .gallery-videos,
-    .events-grid, .voucher-inner, .footer-top {
+    .events-grid, .voucher-inner {
       max-width: 100%;
     }
     #page-wrap {
@@ -1735,16 +1735,6 @@
       padding: 5rem 3rem 0;
     }
 
-    .footer-top {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
-      padding-bottom: 4rem;
-      border-bottom: 1px solid rgba(201,169,110,0.08);
-    }
-
-    .footer-brand { }
-
     .footer-logo-img {
       height: 80px;
       width: auto;
@@ -1753,83 +1743,6 @@
       margin-bottom: 1.2rem;
       filter: brightness(0) invert(1);
       opacity: 0.9;
-    }
-
-    .footer-desc {
-      font-size: 0.82rem;
-      color: rgba(212,201,184,0.55);
-      line-height: 1.9;
-      margin-bottom: 1.5rem;
-      max-width: 280px;
-    }
-
-    .footer-social {
-      display: flex;
-      gap: 0.7rem;
-    }
-
-    .footer-social-link {
-      width: 36px; height: 36px;
-      border: 1px solid rgba(201,169,110,0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(212,201,184,0.5);
-      text-decoration: none;
-      transition: all 0.3s;
-    }
-
-    .footer-social-link:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-    }
-
-    .footer-col h4 {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.8rem;
-      border-bottom: 1px solid rgba(201,169,110,0.15);
-    }
-
-    .footer-col ul { list-style: none; }
-
-    .footer-col ul li { margin-bottom: 0.7rem; }
-
-    .footer-col ul li a {
-      font-size: 0.83rem;
-      color: rgba(212,201,184,0.55);
-      text-decoration: none;
-      transition: color 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .footer-col ul li a::before {
-      content: '';
-      width: 12px; height: 1px;
-      background: var(--gold-dark);
-      flex-shrink: 0;
-      transition: width 0.2s;
-    }
-
-    .footer-col ul li a:hover { color: var(--gold); }
-    .footer-col ul li a:hover::before { width: 18px; background: var(--gold); }
-
-    .footer-col p {
-      font-size: 0.83rem;
-      color: rgba(212,201,184,0.55);
-      line-height: 2;
-    }
-
-    .footer-col a {
-      color: var(--gold);
-      text-decoration: none;
     }
 
     .footer-bottom {
@@ -1957,7 +1870,6 @@
       .contact-cards { grid-template-columns: 1fr 1fr; }
       .contact-bottom { grid-template-columns: 1fr; gap: 2rem; }
 
-      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
       .footer-bottom { flex-direction: column; gap: 0.8rem; text-align: center; }
 
       .section-title { font-size: clamp(1.8rem, 8vw, 2.8rem); }
@@ -2000,7 +1912,6 @@
       .form-group.full { grid-column: span 2; }
       .contact-cards { grid-template-columns: 1fr 1fr; }
       .contact-bottom { grid-template-columns: 1fr; gap: 2rem; }
-      .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
       .footer-bottom { flex-direction: row; }
 
       input, select, textarea { font-size: 16px !important; }
@@ -2042,7 +1953,6 @@
 
       .contact-cards { grid-template-columns: repeat(4, 1fr); }
       .contact-bottom { grid-template-columns: 1fr 1fr; gap: 3rem; }
-      .footer-top { grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; }
       .footer-bottom { flex-direction: row; }
     }
 
