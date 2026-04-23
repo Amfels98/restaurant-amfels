@@ -1816,13 +1816,14 @@
     @media (min-width: 769px) {
       .nav-links {
         display: flex;
-        position: fixed;
-        top: 0; right: 0;
-        height: 80px;
-        padding: 0 3rem;
+        position: static;
+        flex-direction: row;
+        background: none;
+        padding: 0;
+        gap: 2rem;
         align-items: center;
-        gap: 2.5rem;
-        z-index: 1001;
+        height: auto;
+        z-index: auto;
       }
       .nav-links.scrolled a { color: var(--text); }
       .hamburger { display: none; }
@@ -1892,19 +1893,15 @@
   <a href="#" class="nav-logo">
     <img src="images/logo.png" alt="Restaurant Am Fels" class="nav-logo-img" />
   </a>
-  <div class="hamburger" id="hamburger">
-    <span></span><span></span><span></span>
-  </div>
-</nav>
-<ul class="nav-links" id="navLinks">
-  <li class="nav-close-item"><button class="nav-close-btn" id="navClose" aria-label="Menü schließen">✕</button></li>
-  <li><a href="#ueber-uns">Über uns</a></li>
-  <li><a href="#galerie">Galerie</a></li>
-  <li><a href="#speisekarte">Speisekarte</a></li>
-  <li><a href="#events">Events</a></li>
-  <li><a href="#gutscheine">Gutscheine</a></li>
-  <li><a href="#kontakt">Kontakt</a></li>
-  <li><a href="#reservierung" class="nav-reserve">Reservieren</a></li>
+  <ul class="nav-links" id="navLinks">
+    <li class="nav-close-item"><button class="nav-close-btn" id="navClose" aria-label="Menü schließen">✕</button></li>
+    <li><a href="#ueber-uns">Über uns</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#speisekarte">Speisekarte</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#gutscheine">Gutscheine</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+    <li><a href="#reservierung" class="nav-reserve">Reservieren</a></li>
 </ul>
 
 
