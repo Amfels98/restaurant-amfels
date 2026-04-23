@@ -155,24 +155,33 @@
     /* Mobile fullscreen menu */
     .nav-links.open {
       display: flex !important;
-      flex-direction: column;
+      flex-direction: column !important;
       position: fixed !important;
       top: 0 !important;
       left: 0 !important;
       right: 0 !important;
       bottom: 0 !important;
       width: 100vw !important;
-      height: 100vh !important;
-      min-height: -webkit-fill-available;
-      background: rgba(10,10,10,0.98) !important;
+      height: 100dvh !important;
+      background: rgba(10,10,10,0.99) !important;
       justify-content: center !important;
       align-items: center !important;
-      gap: 3rem !important;
+      gap: 2.5rem !important;
       z-index: 2147483647 !important;
       margin: 0 !important;
       padding: 2rem !important;
       overflow-y: auto !important;
+      pointer-events: all !important;
       -webkit-overflow-scrolling: touch;
+    }
+
+    .nav-links.open li {
+      pointer-events: all !important;
+    }
+
+    .nav-links.open a {
+      pointer-events: all !important;
+      cursor: pointer !important;
     }
 
     .nav-links.open a { font-size: 1.2rem !important; color: #ffffff !important; }
@@ -1819,32 +1828,16 @@
     .about-gold-label { left: 1rem; }
     .nav-reserve { display: none !important; }
 
-    /* ── MOBILE: Hamburger an, Links versteckt ── */
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none !important;
-      }
-      .nav-links.open {
-        display: flex !important;
-        position: fixed !important;
-        top: 0 !important; left: 0 !important;
-        right: 0 !important; bottom: 0 !important;
-        width: 100vw !important; height: 100vh !important;
-        flex-direction: column !important;
-        background: rgba(10,10,10,0.98) !important;
-        justify-content: center !important;
-        align-items: center !important;
-        gap: 2.5rem !important;
-        z-index: 99999 !important;
-        overflow-y: auto !important;
-        padding: 2rem !important;
-      }
+    /* ── MOBILE/TABLET: Hamburger an, Links versteckt ── */
+    @media (max-width: 1023px) {
+      .nav-links { display: none !important; }
+      .nav-links.open { display: flex !important; }
       .hamburger { display: flex !important; }
       .nav-reserve { display: none !important; }
     }
 
     /* ── DESKTOP: Normale Layouts ── */
-    @media (min-width: 769px) {
+    @media (min-width: 1024px) {
       .hours-inner { grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
       .about-inner { grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
       .contact-inner { grid-template-columns: 1fr 1fr; gap: 6rem; }
