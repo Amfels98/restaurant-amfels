@@ -1829,8 +1829,13 @@
       .form-group.full { grid-column: span 1; }
       .res-form { padding: 2rem 1.5rem; }
 
-      .contact-cards { grid-template-columns: 1fr 1fr; }
+      .contact-cards { grid-template-columns: 1fr 1fr; gap: 1px; overflow: hidden; }
+      .contact-card { padding: 1.2rem 0.8rem; }
+      .contact-card-icon { width: 36px; height: 36px; margin-bottom: 0.8rem; }
+      .contact-card-label { font-size: 0.55rem; }
+      .contact-card-value { font-size: 0.78rem; overflow-wrap: break-word; word-break: break-word; }
       .contact-bottom { grid-template-columns: 1fr; gap: 2rem; }
+      .contact-map iframe { height: 250px; }
       .footer-bottom { flex-direction: column; gap: 0.8rem; text-align: center; }
 
       .section-title { font-size: clamp(1.8rem, 8vw, 2.8rem); }
@@ -2806,7 +2811,7 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </div>
         <div class="contact-card-label">E-Mail</div>
-        <div class="contact-card-value"><a href="mailto:restaurant.amfels@web.de">restaurant.amfels@web.de</a></div>
+        <div class="contact-card-value"><a href="mailto:restaurant.amfels@web.de" style="word-break:break-all;">restaurant.amfels<br>@web.de</a></div>
       </div>
       <div class="contact-card">
         <div class="contact-card-icon">
