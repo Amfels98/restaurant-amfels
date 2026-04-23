@@ -2956,22 +2956,22 @@
         <div style="background:rgba(201,169,110,0.08);border:1px solid rgba(201,169,110,0.2);padding:1rem 1.2rem;margin-bottom:1.5rem;font-size:0.82rem;color:var(--text);line-height:1.7;">
           Tisch online reservieren? <a href="#reservierung" style="color:var(--gold);font-weight:700;text-decoration:none;">Hier klicken →</a> – schnell und einfach über unser Buchungssystem.
         </div>
-        <form onsubmit="submitContact(event)">
+        <form id="contactForm" onsubmit="submitContact(event)">
           <div class="form-group" style="margin-bottom:1.2rem">
             <label>Name *</label>
-            <input type="text" placeholder="Ihr Name" required />
+            <input type="text" id="cf-name" placeholder="Ihr Name" required />
           </div>
           <div class="form-group" style="margin-bottom:1.2rem">
             <label>E-Mail *</label>
-            <input type="email" placeholder="ihre@email.de" required />
+            <input type="email" id="cf-email" placeholder="ihre@email.de" required />
           </div>
           <div class="form-group" style="margin-bottom:1.2rem">
             <label>Telefon (optional)</label>
-            <input type="tel" placeholder="Ihre Telefonnummer" />
+            <input type="tel" id="cf-phone" placeholder="Ihre Telefonnummer" />
           </div>
           <div class="form-group" style="margin-bottom:1.2rem">
             <label>Betreff</label>
-            <select>
+            <select id="cf-subject">
               <option>Eventanfrage</option>
               <option>Trauerfeier Anfrage</option>
               <option>Allgemeine Anfrage</option>
@@ -2979,10 +2979,10 @@
           </div>
           <div class="form-group" style="margin-bottom:1.5rem">
             <label>Nachricht *</label>
-            <textarea placeholder="Ihre Nachricht..." required style="min-height:130px"></textarea>
+            <textarea id="cf-message" placeholder="Ihre Nachricht..." required style="min-height:130px"></textarea>
           </div>
           <button type="submit" class="btn-submit" style="width:100%">Nachricht senden</button>
-      </form>
+        </form>
     </div>
   </div>
 </section>
@@ -3244,10 +3244,25 @@
     e.target.reset();
   }
 
-  // Contact form
+  // Contact form — öffnet Mail-App mit vorausgefüllter E-Mail
   function submitContact(e) {
     e.preventDefault();
-    alert('Nachricht gesendet! Wir melden uns in Kürze bei Ihnen.');
+    var name    = document.getElementById('cf-name').value;
+    var email   = document.getElementById('cf-email').value;
+    var phone   = document.getElementById('cf-phone').value;
+    var subject = document.getElementById('cf-subject').value;
+    var message = document.getElementById('cf-message').value;
+
+    var body = 'Name: ' + name + '\n'
+             + 'E-Mail: ' + email + '\n'
+             + (phone ? 'Telefon: ' + phone + '\n' : '')
+             + '\n' + message;
+
+    var mailto = 'mailto:restaurant.amfels@web.de'
+               + '?subject=' + encodeURIComponent('[Anfrage] ' + subject + ' – ' + name)
+               + '&body='    + encodeURIComponent(body);
+
+    window.location.href = mailto;
     e.target.reset();
   }
 
