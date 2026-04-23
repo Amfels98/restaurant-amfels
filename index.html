@@ -1044,40 +1044,37 @@
       text-align: center;
     }
 
-    .menu-nav {
+    .menu-tabs {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      gap: 0.5rem;
-      max-width: 1100px;
-      margin: 0 auto 3rem;
-    }
-    .menu-nav a {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text);
-      text-decoration: none;
-      padding: 0.45rem 1rem;
-      border: 1px solid rgba(201,169,110,0.25);
-      transition: all 0.25s;
-      white-space: nowrap;
-    }
-    .menu-nav a:hover {
-      color: var(--gold);
-      border-color: var(--gold);
-      background: rgba(201,169,110,0.06);
+      flex-wrap: wrap;
+      gap: 0;
+      max-width: 1000px;
+      margin: 0 auto 4rem;
+      border-bottom: 1px solid rgba(201, 169, 110, 0.2);
     }
 
-    .menu-panel { max-width: 1000px; margin: 0 auto 4rem; padding-top: 1rem; }
-    .menu-panel-divider {
-      height: 1px;
-      background: linear-gradient(to right, transparent, rgba(201,169,110,0.25), transparent);
-      margin: 0 auto 4rem;
-      max-width: 1000px;
+    .menu-tab {
+      padding: 0.9rem 1.8rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text);
+      cursor: pointer;
+      border: none;
+      background: none;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: all 0.3s;
     }
+
+    .menu-tab:hover { color: var(--gold); }
+    .menu-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+    .menu-panel { display: none; max-width: 1000px; margin: 0 auto; }
+    .menu-panel.active { display: block; }
 
     .menu-category {
       margin-bottom: 3rem;
@@ -1917,7 +1914,8 @@
       .gallery-item img { height: auto; }
       .gallery-item:nth-child(1) img { min-height: 220px; }
 
-      .menu-nav { gap: 0.35rem; }
+      .menu-tabs { overflow-x: auto; flex-wrap: nowrap; justify-content: flex-start; padding-bottom: 0.5rem; }
+      .menu-tab { white-space: nowrap; flex-shrink: 0; padding: 0.7rem 1rem; font-size: 0.7rem; }
       .menu-items-grid { grid-template-columns: 1fr; }
       .menu-item { padding: 0.75rem 0.5rem; }
       .menu-cta { padding: 2rem 1rem; }
@@ -1947,7 +1945,7 @@
       .section-title { font-size: clamp(1.8rem, 8vw, 2.8rem); }
 
       /* Touch targets mindestens 44px */
-      .menu-nav a, .btn-primary, .btn-outline, .btn-submit,
+      .menu-tab, .btn-primary, .btn-outline, .btn-submit,
       .nav-links.open a { min-height: 44px; display: flex; align-items: center; justify-content: center; }
       input, select, textarea { font-size: 16px !important; } /* iOS Zoom verhindern */
     }
@@ -2010,7 +2008,7 @@
       .gallery-item:nth-child(4) { grid-column: span 2; }
 
       .menu-items-grid { grid-template-columns: 1fr 1fr; }
-      .menu-nav { justify-content: center; }
+      .menu-tabs { flex-wrap: wrap; justify-content: center; overflow: visible; }
 
       .events-grid { grid-template-columns: repeat(2, 1fr); }
       .event-card { height: 420px; }
@@ -2217,22 +2215,22 @@
     </div>
   </div>
 
-  <nav class="menu-nav">
-    <a href="#panel-mittag">Mittagskarte</a>
-    <a href="#panel-vorspeisen">Vorspeisen &amp; Suppen</a>
-    <a href="#panel-steaks">Steakbörse</a>
-    <a href="#panel-fleisch">Lamm · Hähnchen · Schwein</a>
-    <a href="#panel-grill">Grill</a>
-    <a href="#panel-fisch">Frischer Fisch</a>
-    <a href="#panel-senioren">Klein &amp; Fein</a>
-    <a href="#panel-dessert">Desserts &amp; Kaffee</a>
-    <a href="#panel-weine">Weinkarte</a>
-    <a href="#panel-getraenke">Getränke</a>
-    <a href="#panel-aperitifs">Aperitifs &amp; Spirituosen</a>
-  </nav>
+  <div class="menu-tabs" role="tablist">
+    <button class="menu-tab active" onclick="switchTab('mittag', this)">Mittagskarte</button>
+    <button class="menu-tab" onclick="switchTab('vorspeisen', this)">Vorspeisen &amp; Suppen</button>
+    <button class="menu-tab" onclick="switchTab('steaks', this)">Steakbörse</button>
+    <button class="menu-tab" onclick="switchTab('fleisch', this)">Lamm · Hähnchen · Schwein</button>
+    <button class="menu-tab" onclick="switchTab('grill', this)">Grill</button>
+    <button class="menu-tab" onclick="switchTab('fisch', this)">Frischer Fisch</button>
+    <button class="menu-tab" onclick="switchTab('senioren', this)">Klein &amp; Fein</button>
+    <button class="menu-tab" onclick="switchTab('dessert', this)">Desserts &amp; Kaffee</button>
+    <button class="menu-tab" onclick="switchTab('weine', this)">Weinkarte</button>
+    <button class="menu-tab" onclick="switchTab('getraenke', this)">Getränke</button>
+    <button class="menu-tab" onclick="switchTab('aperitifs', this)">Aperitifs &amp; Spirituosen</button>
+  </div>
 
   <!-- MITTAGSKARTE -->
-  <div class="menu-panel" id="panel-mittag">
+  <div class="menu-panel active" id="panel-mittag">
     <div class="menu-category">
       <h3 class="menu-cat-title">Mittagskarte</h3>
       <p style="text-align:center;color:var(--gold);font-size:0.95rem;margin:-0.5rem 0 1rem;letter-spacing:0.04em;">Samstag · 11:30 – 14:30 Uhr</p>
@@ -2249,9 +2247,6 @@
     </div>
     <div class="menu-note">Zu diesen Gerichten servieren wir einen Beilagensalat.</div>
   </div>
-  <div class="menu-panel-divider"></div>
-
-  <!-- VORSPEISEN (oben) -->
   <!-- APERITIFS -->
   <div class="menu-panel" id="panel-aperitifs">
     <div class="menu-category">
@@ -2317,8 +2312,6 @@
       </div>
     </div>
   </div>
-  <div class="menu-panel-divider"></div>
-
   <!-- VORSPEISEN -->
   <div class="menu-panel" id="panel-vorspeisen">
     <div class="menu-category">
@@ -2342,8 +2335,7 @@
     </div>
   </div>
 
-  <div class="menu-panel-divider"></div>
-
+  <!-- KLEIN ABER FEIN -->
   <!-- STEAKBÖRSE -->
   <div class="menu-panel" id="panel-steaks">
     <div class="menu-category">
@@ -2399,8 +2391,6 @@
     </div>
   </div>
 
-  <div class="menu-panel-divider"></div>
-
   <!-- FLEISCH (Lamm, Schwein, Hähnchen) -->
   <div class="menu-panel" id="panel-fleisch">
     <div class="menu-category">
@@ -2435,8 +2425,6 @@
     <div class="menu-note">Zu diesen Gerichten servieren wir einen Beilagensalat.</div>
   </div>
 
-  <div class="menu-panel-divider"></div>
-
   <!-- GRILL -->
   <div class="menu-panel" id="panel-grill">
     <div class="menu-category">
@@ -2454,8 +2442,6 @@
     <div class="menu-note">Zu diesen Gerichten servieren wir einen Beilagensalat.</div>
   </div>
 
-  <div class="menu-panel-divider"></div>
-
   <!-- FRISCHER FISCH -->
   <div class="menu-panel" id="panel-fisch">
     <div class="menu-category">
@@ -2470,8 +2456,6 @@
     </div>
     <div class="menu-note">Zu diesen Gerichten servieren wir einen Beilagensalat.</div>
   </div>
-
-  <div class="menu-panel-divider"></div>
 
   <!-- SENIOREN & KINDER -->
   <div class="menu-panel" id="panel-senioren">
@@ -2505,8 +2489,6 @@
     </div>
   </div>
 
-  <div class="menu-panel-divider"></div>
-
   <!-- DESSERTS -->
   <div class="menu-panel" id="panel-dessert">
     <div class="menu-category">
@@ -2537,8 +2519,6 @@
       </div>
     </div>
   </div>
-
-  <div class="menu-panel-divider"></div>
 
   <!-- WEINKARTE -->
   <div class="menu-panel" id="panel-weine">
@@ -2592,8 +2572,6 @@
     </div>
   </div>
 
-  <div class="menu-panel-divider"></div>
-
   <!-- GETRÄNKE -->
   <div class="menu-panel" id="panel-getraenke">
     <div class="menu-category">
@@ -2633,8 +2611,6 @@
       </div>
     </div>
   </div>
-
-  <div class="menu-panel-divider"></div>
 
   <div class="menu-cta fade-up">
     <p>Reservieren Sie Ihren Tisch und genießen Sie unsere Küche.</p>
@@ -2866,18 +2842,25 @@
       <span class="section-label">Inspiration für Ihre Feier</span>
       <h3>Menü-<em>Beispiele</em></h3>
     </div>
-    <div class="menu-cards-grid">
+    <!-- Buffet-Beispiele -->
+    <p style="font-family:'Lato',sans-serif;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;">Buffet-Beispiele</p>
+    <div class="menu-cards-grid" style="margin-bottom:2.5rem;">
       <div class="menu-card-item" onclick="openMenuLightbox(0)">
-        <img src="images/menue-beispiele/menue-hochzeit.png" alt="Menü Hochzeit" loading="lazy">
-        <div class="menu-card-label">Hochzeit</div>
-      </div>
-      <div class="menu-card-item" onclick="openMenuLightbox(1)">
-        <img src="images/menue-beispiele/menue-geburtstag.png" alt="Menü Geburtstag" loading="lazy">
+        <img src="images/menue-beispiele/menue-geburtstag.png" alt="Buffet Geburtstag" loading="lazy">
         <div class="menu-card-label">Geburtstag</div>
       </div>
-      <div class="menu-card-item" onclick="openMenuLightbox(2)">
-        <img src="images/menue-beispiele/menue-tauffeier.png" alt="Menü Tauffeier" loading="lazy">
+      <div class="menu-card-item" onclick="openMenuLightbox(1)">
+        <img src="images/menue-beispiele/menue-tauffeier.png" alt="Buffet Tauffeier" loading="lazy">
         <div class="menu-card-label">Tauffeier</div>
+      </div>
+    </div>
+
+    <!-- Menü-Beispiele -->
+    <p style="font-family:'Lato',sans-serif;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;">Menü-Beispiele</p>
+    <div class="menu-cards-grid">
+      <div class="menu-card-item" onclick="openMenuLightbox(2)">
+        <img src="images/menue-beispiele/menue-hochzeit.png" alt="Menü Hochzeit" loading="lazy">
+        <div class="menu-card-label">Hochzeit</div>
       </div>
       <div class="menu-card-item" onclick="openMenuLightbox(3)">
         <img src="images/menue-beispiele/menue-stiefelhagen.png" alt="Menü Familienfeier" loading="lazy">
@@ -3124,9 +3107,9 @@
 <script>
   // Menu examples lightbox
   const menuLightboxImgs = [
-    'images/menue-beispiele/menue-hochzeit.png',
     'images/menue-beispiele/menue-geburtstag.png',
     'images/menue-beispiele/menue-tauffeier.png',
+    'images/menue-beispiele/menue-hochzeit.png',
     'images/menue-beispiele/menue-stiefelhagen.png',
     'images/menue-beispiele/menue-weihnachten.png'
   ];
