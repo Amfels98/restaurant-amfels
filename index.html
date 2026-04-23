@@ -137,17 +137,19 @@
       margin-top: 3px;
     }
 
-    /* Desktop: links visible by default */
+    /* Desktop: links fixed top right */
     .nav-links {
       display: flex;
       list-style: none;
       gap: 2rem;
       align-items: center;
       flex-direction: row;
-      position: static;
+      position: fixed;
+      top: 0; right: 0;
+      height: 70px;
+      padding: 0 2rem;
       background: none;
-      width: auto;
-      height: auto;
+      z-index: 1001;
     }
 
     /* Mobile fullscreen menu */
@@ -229,7 +231,7 @@
     .nav-reserve::after { display: none !important; }
     .nav-reserve:hover { background: var(--gold-light) !important; transform: translateY(-1px); }
 
-    /* Desktop: hamburger hidden by default */
+    /* Hamburger hidden on desktop */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -1817,19 +1819,17 @@
     .about-gold-label { left: 1rem; }
     .nav-reserve { display: none !important; }
 
-    /* ── MOBILE: Hamburger an, Links aus ── */
+    /* ── MOBILE: Hamburger an, Links versteckt ── */
     @media (max-width: 768px) {
       .nav-links {
         display: none !important;
-        position: static !important;
       }
       .nav-links.open {
         display: flex !important;
         position: fixed !important;
         top: 0 !important; left: 0 !important;
         right: 0 !important; bottom: 0 !important;
-        width: 100vw !important;
-        height: 100vh !important;
+        width: 100vw !important; height: 100vh !important;
         flex-direction: column !important;
         background: rgba(10,10,10,0.98) !important;
         justify-content: center !important;
@@ -1837,6 +1837,7 @@
         gap: 2.5rem !important;
         z-index: 99999 !important;
         overflow-y: auto !important;
+        padding: 2rem !important;
       }
       .hamburger { display: flex !important; }
       .nav-reserve { display: none !important; }
@@ -1910,20 +1911,21 @@
   <a href="#" class="nav-logo">
     <img src="images/logo.png" alt="Restaurant Am Fels" class="nav-logo-img" />
   </a>
-  <ul class="nav-links" id="navLinks">
-    <li class="nav-close-item"><button class="nav-close-btn" id="navClose" aria-label="Menü schließen">✕</button></li>
-    <li><a href="#ueber-uns">Über uns</a></li>
-    <li><a href="#galerie">Galerie</a></li>
-    <li><a href="#speisekarte">Speisekarte</a></li>
-    <li><a href="#events">Events</a></li>
-    <li><a href="#gutscheine">Gutscheine</a></li>
-    <li><a href="#kontakt">Kontakt</a></li>
-    <li><a href="#reservierung" class="nav-reserve">Reservieren</a></li>
-  </ul>
   <div class="hamburger" id="hamburger">
     <span></span><span></span><span></span>
   </div>
 </nav>
+
+<ul class="nav-links" id="navLinks">
+  <li class="nav-close-item"><button class="nav-close-btn" id="navClose" aria-label="Menü schließen">✕</button></li>
+  <li><a href="#ueber-uns">Über uns</a></li>
+  <li><a href="#galerie">Galerie</a></li>
+  <li><a href="#speisekarte">Speisekarte</a></li>
+  <li><a href="#events">Events</a></li>
+  <li><a href="#gutscheine">Gutscheine</a></li>
+  <li><a href="#kontakt">Kontakt</a></li>
+  <li><a href="#reservierung" class="nav-reserve">Reservieren</a></li>
+</ul>
 
 <div id="page-wrap">
 
