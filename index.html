@@ -1736,7 +1736,7 @@
     }
 
     .footer-logo-img {
-      height: 48px;
+      height: 32px;
       width: auto;
       object-fit: contain;
       display: block;
@@ -1769,43 +1769,6 @@
 
     .footer-links a:hover { color: var(--gold); }
 
-    /* ────────────────────────────────────
-       TOAST
-    ──────────────────────────────────── */
-    .toast {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      background: #1c1c1c;
-      border: 1px solid rgba(201,169,110,0.3);
-      border-left: 3px solid var(--gold);
-      padding: 1rem 1.5rem;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      min-width: 300px;
-      transform: translateY(120px);
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .toast.show { transform: translateY(0); opacity: 1; visibility: visible; pointer-events: auto; }
-
-    .toast-icon { color: var(--gold); font-size: 1.2rem; }
-
-    .toast-text h4 {
-      font-size: 0.88rem;
-      color: var(--cream);
-      margin-bottom: 0.15rem;
-    }
-
-    .toast-text p {
-      font-size: 0.75rem;
-      color: var(--text);
-    }
 
     /* ════════════════════════════════════
        RESPONSIVE
@@ -1991,7 +1954,6 @@
       .hours, .about, .gallery, .menu, .events, .voucher, .reservation, .contact {
         padding: 3.5rem 1rem;
       }
-      .toast { min-width: min(300px, 88vw); }
     }
 
     /* Touch-Targets: min 44px */
@@ -2932,7 +2894,7 @@
       <span class="footer-copy">© 2025 Restaurant Am Fels · Staadter Weg 2 · Engelskirchen-Loope</span>
       <div class="footer-links">
         <a href="#" onclick="document.getElementById('impressumModal').classList.add('open');document.body.style.overflow='hidden';return false;">Impressum</a>
-        <a href="#">Datenschutz</a>
+        <a href="#" onclick="document.getElementById('datenschutzModal').classList.add('open');document.body.style.overflow='hidden';return false;">Datenschutz</a>
       </div>
     </div>
   </div>
@@ -2968,12 +2930,33 @@
   </div>
 </div>
 
-<!-- ── TOAST ── -->
-<div class="toast" id="toast">
-  <span class="toast-icon">✓</span>
-  <div class="toast-text">
-    <h4 id="toastTitle">Anfrage gesendet</h4>
-    <p id="toastMsg">Wir melden uns schnellstmöglich bei Ihnen.</p>
+<!-- ── DATENSCHUTZ MODAL ── -->
+<div class="lightbox" id="datenschutzModal" style="align-items:flex-start;overflow-y:auto;padding:2rem 1rem;">
+  <div style="background:#1a1a1a;border:1px solid #333;border-radius:12px;max-width:600px;width:100%;margin:auto;padding:2.5rem;position:relative;">
+    <button onclick="document.getElementById('datenschutzModal').classList.remove('open');document.body.style.overflow='';" style="position:absolute;top:1rem;right:1rem;background:none;border:none;color:#c9a96e;font-size:1.5rem;cursor:pointer;line-height:1;">✕</button>
+    <h2 style="color:#c9a96e;font-family:'Playfair Display',serif;margin-bottom:1.5rem;">Datenschutzerklärung</h2>
+    <p style="color:#f0ebe2;line-height:1.8;margin-bottom:1rem;">
+      <strong style="color:#c9a96e;">Verantwortlicher</strong><br>
+      Restaurant Am Fels<br>
+      Staadter Weg 2<br>
+      51766 Engelskirchen-Loope
+    </p>
+    <p style="color:#f0ebe2;line-height:1.8;margin-bottom:1rem;">
+      <strong style="color:#c9a96e;">Erhebung und Verarbeitung personenbezogener Daten</strong><br>
+      Wir erheben auf dieser Website nur die Daten, die Sie uns freiwillig über das Kontakt- oder Reservierungsformular mitteilen (Name, E-Mail, Telefon). Diese Daten werden ausschließlich zur Bearbeitung Ihrer Anfrage verwendet und nicht an Dritte weitergegeben.
+    </p>
+    <p style="color:#f0ebe2;line-height:1.8;margin-bottom:1rem;">
+      <strong style="color:#c9a96e;">Cookies</strong><br>
+      Diese Website verwendet keine Tracking-Cookies. Es werden lediglich technisch notwendige Daten verarbeitet.
+    </p>
+    <p style="color:#f0ebe2;line-height:1.8;margin-bottom:1rem;">
+      <strong style="color:#c9a96e;">Ihre Rechte</strong><br>
+      Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer personenbezogenen Daten gemäß DSGVO. Kontakt: info@restaurant-amfels.de
+    </p>
+    <p style="color:#f0ebe2;line-height:1.8;">
+      <strong style="color:#c9a96e;">Hosting</strong><br>
+      Diese Website wird über Vercel Inc. gehostet. Dabei können Server-Logs (IP-Adresse, Zugriffszeit) anfallen, die Vercel gemäß ihrer eigenen Datenschutzrichtlinie verarbeitet.
+    </p>
   </div>
 </div>
 
@@ -3119,26 +3102,17 @@
 
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
-  // Toast helper
-  function showToast(title, msg) {
-    const toast = document.getElementById('toast');
-    document.getElementById('toastTitle').textContent = title;
-    document.getElementById('toastMsg').textContent = msg;
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 4000);
-  }
-
   // Reservation form
   function submitReservation(e) {
     e.preventDefault();
-    showToast('Reservierung eingegangen!', 'Wir bestätigen Ihren Tisch schnellstmöglich.');
+    alert('Reservierung eingegangen! Wir bestätigen Ihren Tisch schnellstmöglich.');
     e.target.reset();
   }
 
   // Contact form
   function submitContact(e) {
     e.preventDefault();
-    showToast('Nachricht gesendet!', 'Wir melden uns in Kürze bei Ihnen.');
+    alert('Nachricht gesendet! Wir melden uns in Kürze bei Ihnen.');
     e.target.reset();
   }
 
