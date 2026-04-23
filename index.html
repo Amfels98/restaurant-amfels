@@ -1320,7 +1320,7 @@
       transform: translateY(-1px);
     }
 
-    /* ── MENU EXAMPLES ACCORDION ── */
+    /* ── MENU EXAMPLES CARDS ── */
     .menu-examples {
       margin: 4rem auto 0;
       max-width: 1200px;
@@ -1340,127 +1340,89 @@
       color: var(--cream);
       font-weight: 400;
     }
-    .menu-examples-header h3 em {
-      color: var(--gold);
-    }
-    .menu-accordion {
-      display: grid;
-      gap: 0;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    .menu-acc-item {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(201,169,110,0.15);
-      margin-bottom: -1px;
-    }
-    .menu-acc-header {
+    .menu-examples-header h3 em { color: var(--gold); }
+    .menu-cards-grid {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.3rem 1.8rem;
+      gap: 1.4rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(184,146,74,0.3) transparent;
+    }
+    .menu-cards-grid::-webkit-scrollbar { height: 4px; }
+    .menu-cards-grid::-webkit-scrollbar-thumb { background: rgba(184,146,74,0.3); border-radius: 2px; }
+    .menu-card-item {
+      flex: 0 0 220px;
       cursor: pointer;
-      gap: 1rem;
-      transition: background 0.25s;
-      user-select: none;
+      border: 1px solid rgba(201,169,110,0.15);
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      background: var(--dark3);
     }
-    .menu-acc-header:hover {
-      background: rgba(201,169,110,0.07);
+    .menu-card-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+      border-color: rgba(201,169,110,0.45);
     }
-    .menu-acc-label {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.68rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.2rem;
-    }
-    .menu-acc-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      color: var(--cream);
-      font-weight: 400;
-    }
-    .menu-acc-arrow {
-      flex-shrink: 0;
-      width: 18px;
-      height: 18px;
-      border: 1px solid rgba(201,169,110,0.4);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--gold);
-      font-size: 0.7rem;
-      transition: transform 0.3s, background 0.3s;
-    }
-    .menu-acc-item.open .menu-acc-arrow {
-      transform: rotate(180deg);
-      background: rgba(201,169,110,0.12);
-    }
-    .menu-acc-body {
-      display: none;
-      padding: 0 1.8rem 2rem;
-      border-top: 1px solid rgba(201,169,110,0.1);
-    }
-    .menu-acc-item.open .menu-acc-body {
+    .menu-card-item img {
+      width: 100%;
+      height: 290px;
+      object-fit: cover;
+      object-position: top;
       display: block;
     }
-    .menu-course {
-      margin-top: 1.5rem;
-    }
-    .menu-course-title {
+    .menu-card-label {
+      padding: 0.8rem 1rem;
       font-family: 'Lato', sans-serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 0.7rem;
-      display: flex;
+      text-align: center;
+    }
+    /* Lightbox */
+    .menu-lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 9999;
       align-items: center;
-      gap: 0.8rem;
+      justify-content: center;
     }
-    .menu-course-title::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: rgba(201,169,110,0.2);
+    .menu-lightbox.active { display: flex; }
+    .menu-lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border: 1px solid rgba(201,169,110,0.2);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
     }
-    .menu-course ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .menu-course ul li {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.87rem;
-      color: var(--text);
-      padding: 0.22rem 0;
-      line-height: 1.55;
-    }
-    .menu-course ul li small {
-      font-size: 0.78rem;
-      color: rgba(107,86,69,0.6);
-    }
-    .menu-price-tag {
-      display: inline-block;
-      margin-top: 1.6rem;
-      background: rgba(201,169,110,0.1);
-      border: 1px solid rgba(201,169,110,0.28);
-      padding: 0.55rem 1.4rem;
-      font-family: 'Lato', sans-serif;
-      font-size: 0.78rem;
-      letter-spacing: 0.14em;
+    .menu-lightbox-close {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.5rem;
+      font-size: 2rem;
       color: var(--gold);
+      cursor: pointer;
+      line-height: 1;
+      background: none;
+      border: none;
     }
-    .menu-note {
-      margin-top: 1.1rem;
-      font-family: 'Lato', sans-serif;
-      font-size: 0.78rem;
-      color: rgba(107,86,69,0.65);
-      font-style: italic;
-      line-height: 1.65;
+    .menu-lightbox-prev, .menu-lightbox-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      color: var(--gold);
+      cursor: pointer;
+      background: rgba(0,0,0,0.4);
+      border: none;
+      padding: 0.6rem 1rem;
+      line-height: 1;
     }
+    .menu-lightbox-prev { left: 1rem; }
+    .menu-lightbox-next { right: 1rem; }
 
     /* ────────────────────────────────────
        GUTSCHEINE
@@ -2883,195 +2845,46 @@
     </div>
   </div>
 
-  <!-- MENÜ-BEISPIELE ACCORDION -->
+  <!-- MENÜ-BEISPIELE BILDER -->
   <div class="menu-examples fade-up">
     <div class="menu-examples-header">
       <span class="section-label">Inspiration für Ihre Feier</span>
       <h3>Menü-<em>Beispiele</em></h3>
     </div>
-    <div class="menu-accordion">
-
-      <!-- Hochzeit / Jubiläum -->
-      <div class="menu-acc-item">
-        <div class="menu-acc-header" onclick="toggleAcc(this)">
-          <div>
-            <div class="menu-acc-label">Hochzeit &amp; Jubiläum</div>
-            <div class="menu-acc-title">Beispiel-Menü · Hochzeit</div>
-          </div>
-          <div class="menu-acc-arrow">&#9660;</div>
-        </div>
-        <div class="menu-acc-body">
-          <div class="menu-course">
-            <div class="menu-course-title">Vorspeisen</div>
-            <ul>
-              <li>Verschiedene Antipasti Gemüse</li>
-              <li>Kräuterquark</li>
-              <li>Knoblauchbrot &amp; Baguette</li>
-            </ul>
-          </div>
-          <div class="menu-course">
-            <div class="menu-course-title">Hauptgerichte</div>
-            <ul>
-              <li>Lachsfilet in Dillsauce</li>
-              <li>Argentinisches Hüftsteak in Champignonsauce</li>
-              <li>Hähnchenschnitzel „Wiener Art"</li>
-            </ul>
-          </div>
-          <div class="menu-course">
-            <div class="menu-course-title">Beilagen</div>
-            <ul>
-              <li>Kartoffelgratin · Grillgemüse · Djuwetschreis · Kroketten</li>
-            </ul>
-          </div>
-          <div class="menu-course">
-            <div class="menu-course-title">Dessert</div>
-            <ul>
-              <li>Tiramisu</li>
-              <li>Mascarpone Creme mit Früchten</li>
-            </ul>
-          </div>
-          <div class="menu-course">
-            <div class="menu-course-title">Snack</div>
-            <ul>
-              <li>Käseplatte &amp; Früchte</li>
-            </ul>
-          </div>
-          <div class="menu-price-tag">Ab 63,00 € pro Person</div>
-          <p class="menu-note">Preise und Gänge individuell nach Ihren Wünschen anpassbar. Dieses Menü dient als Orientierungsbeispiel.</p>
-        </div>
+    <div class="menu-cards-grid">
+      <div class="menu-card-item" onclick="openMenuLightbox(0)">
+        <img src="images/menue-beispiele/menue-hochzeit.png" alt="Menü Hochzeit" loading="lazy">
+        <div class="menu-card-label">Hochzeit</div>
       </div>
-
-      <!-- Geburtstag -->
-      <div class="menu-acc-item">
-        <div class="menu-acc-header" onclick="toggleAcc(this)">
-          <div>
-            <div class="menu-acc-label">Geburtstag &amp; Familienfeier</div>
-            <div class="menu-acc-title">Beispiel-Menü · Geburtstag</div>
-          </div>
-          <div class="menu-acc-arrow">&#9660;</div>
-        </div>
-        <div class="menu-acc-body">
-          <div class="menu-course">
-            <div class="menu-course-title">Vorspeise</div>
-            <ul>
-              <li>Frische Salatauswahl</li>
-              <li>Antipasti Gemüse</li>
-              <li>Tomate Mozzarella</li>
-              <li>Schafskäse überbacken</li>
-              <li>Knoblauchbrot mit Frühlingsquark</li>
-            </ul>
-          </div>
-          <div class="menu-course">
-            <div class="menu-course-title">Hauptspeise</div>
-            <ul>
-              <li>Black Angus Hüftsteak mit Pfeffersauce</li>
-              <li>Schweinefilet mit Champignonrahmsauce</li>
-              <li>Doradenfilet in Dillsauce</li>
-            </ul>
-          </div>
-          <div class="menu-course">
-            <div class="menu-course-title">Beilagen</div>
-            <ul>
-              <li>Kroketten · Djuwetschreis · Gemüse</li>
-            </ul>
-          </div>
-          <div class="menu-course">
-            <div class="menu-course-title">Dessert</div>
-            <ul>
-              <li>Mousse au Chocolat</li>
-              <li>Mascarpone Creme mit Früchten</li>
-            </ul>
-          </div>
-          <p class="menu-note">Individuell gestaltbar – wir stimmen Gänge und Portionen auf Ihre Gästezahl ab.</p>
-        </div>
+      <div class="menu-card-item" onclick="openMenuLightbox(1)">
+        <img src="images/menue-beispiele/menue-geburtstag.png" alt="Menü Geburtstag" loading="lazy">
+        <div class="menu-card-label">Geburtstag</div>
       </div>
-
-      <!-- Tauffeier / Kommunion -->
-      <div class="menu-acc-item">
-        <div class="menu-acc-header" onclick="toggleAcc(this)">
-          <div>
-            <div class="menu-acc-label">Taufe &amp; Kommunion</div>
-            <div class="menu-acc-title">Beispiel-Menü · Tauffeier</div>
-          </div>
-          <div class="menu-acc-arrow">&#9660;</div>
-        </div>
-        <div class="menu-acc-body">
-          <div class="menu-course">
-            <div class="menu-course-title">Vorspeisen</div>
-            <ul>
-              <li>Schafskäse</li>
-              <li>Antipasti Gemüse <small>(nach Art des Hauses mariniert)</small></li>
-              <li>Ziegenkäse <small>(mit Honig und Walnüssen überbacken)</small></li>
-              <li>Knoblauchbrot</li>
-              <li>Frühlingsquark</li>
-            </ul>
-          </div>
-          <div class="menu-course">
-            <div class="menu-course-title">Hauptgerichte</div>
-            <ul>
-              <li>Schweinefilet in Champignonrahmsauce</li>
-              <li>Black Angus Hüftsteak in Pfeffersauce</li>
-              <li>Hähnchenschnitzel Wiener Art</li>
-              <li>Doradenfilet in Dillsauce</li>
-            </ul>
-          </div>
-          <div class="menu-course">
-            <div class="menu-course-title">Beilagen</div>
-            <ul>
-              <li>Kartoffelgratin · Spätzle · Mediterranes Gemüse · Pommes</li>
-            </ul>
-          </div>
-          <p class="menu-note">Auf Wunsch ergänzbar mit Dessert und weiteren Gängen.</p>
-        </div>
+      <div class="menu-card-item" onclick="openMenuLightbox(2)">
+        <img src="images/menue-beispiele/menue-tauffeier.png" alt="Menü Tauffeier" loading="lazy">
+        <div class="menu-card-label">Tauffeier</div>
       </div>
-
-      <!-- Großes Menü / Weihnachtsfeier -->
-      <div class="menu-acc-item">
-        <div class="menu-acc-header" onclick="toggleAcc(this)">
-          <div>
-            <div class="menu-acc-label">Firmenfeier &amp; Weihnachtsfeier</div>
-            <div class="menu-acc-title">Beispiel-Menü · Großes Menü</div>
-          </div>
-          <div class="menu-acc-arrow">&#9660;</div>
-        </div>
-        <div class="menu-acc-body">
-          <div class="menu-course">
-            <div class="menu-course-title">Vorspeise</div>
-            <ul>
-              <li>Hühnersuppe</li>
-              <li>Schafskäse <small>(überbacken, in Olivenöl, mit Tomaten und Paprika)</small></li>
-              <li>Knoblauchbrot mit Sauerrahm Dip</li>
-            </ul>
-          </div>
-          <div class="menu-course">
-            <div class="menu-course-title">Hauptspeise — zur Auswahl</div>
-            <ul>
-              <li>Gemüseteller Vegetaria <small>(Paprika · Zucchini · Champignons · Ofenkartoffel mit Sauerrahm)</small></li>
-              <li>Hähnchensteak <small>(überbacken mit Ananas, Hollandaise &amp; Käse · Kroketten · Gemüse)</small></li>
-              <li>Zwiebelrostbraten 200g <small>(Rumpsteak · Röstzwiebeln · Bratkartoffel)</small></li>
-              <li>Filetsteak Champignon 200g <small>(Champignonsauce · Kroketten · Gemüse)</small></li>
-              <li>Schnitzel Champignon <small>(paniert · Champignonsauce · Pommes)</small></li>
-              <li>Zagreb Teller <small>(Schweinefilet gefüllt mit Schinken &amp; Käse · Knoblauchrahmsauce · Bratkartoffeln)</small></li>
-              <li>Grill Teller <small>(Raznjici · Ćevapčići · Rückensteak · Hacksteak · Pommes · Djuwetschreis)</small></li>
-              <li>Lachs Filet <small>(Folienkartoffel mit Sauerrahm)</small></li>
-            </ul>
-          </div>
-          <div class="menu-course">
-            <div class="menu-course-title">Dessert</div>
-            <ul>
-              <li>Lava Cake mit Vanilleeis &amp; Sahne</li>
-              <li>Crème Brûlée mit Zuckerschicht</li>
-            </ul>
-          </div>
-          <p class="menu-note">Ideal für größere Gruppen ab 20 Personen. Menü nach Absprache individuell zusammenstellbar.</p>
-        </div>
+      <div class="menu-card-item" onclick="openMenuLightbox(3)">
+        <img src="images/menue-beispiele/menue-stiefelhagen.png" alt="Menü Familienfeier" loading="lazy">
+        <div class="menu-card-label">Familienfeier</div>
       </div>
-
-    </div><!-- /.menu-accordion -->
-    <p style="text-align:center;margin-top:2rem;font-family:'Lato',sans-serif;font-size:0.8rem;color:rgba(107,86,69,0.6);letter-spacing:0.06em;">
-      Alle Menüs sind Beispiele und werden individuell auf Ihre Feier abgestimmt. <a href="#kontaktformular" style="color:var(--gold);text-decoration:none;font-weight:700;">Jetzt anfragen →</a>
+      <div class="menu-card-item" onclick="openMenuLightbox(4)">
+        <img src="images/menue-beispiele/menue-weihnachten.png" alt="Menü Weihnachtsfeier" loading="lazy">
+        <div class="menu-card-label">Weihnachtsfeier</div>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:1.8rem;font-family:'Lato',sans-serif;font-size:0.8rem;color:rgba(107,86,69,0.6);letter-spacing:0.06em;">
+      Alle Menüs werden individuell auf Ihre Feier abgestimmt. <a href="#kontaktformular" style="color:var(--gold);text-decoration:none;font-weight:700;">Jetzt anfragen →</a>
     </p>
   </div><!-- /.menu-examples -->
+
+  <!-- Lightbox -->
+  <div class="menu-lightbox" id="menuLightbox" onclick="closeMenuLightbox(event)">
+    <button class="menu-lightbox-close" onclick="closeMenuLightbox()">&#215;</button>
+    <button class="menu-lightbox-prev" onclick="shiftMenuLightbox(-1,event)">&#8249;</button>
+    <img id="menuLightboxImg" src="" alt="Menükarte">
+    <button class="menu-lightbox-next" onclick="shiftMenuLightbox(1,event)">&#8250;</button>
+  </div>
 
   <div class="events-banner fade-up">
     <div class="events-banner-text">
@@ -3294,15 +3107,38 @@
 
 <!-- ── JAVASCRIPT ── -->
 <script>
-  // Menu examples accordion
-  function toggleAcc(header) {
-    const item = header.parentElement;
-    const isOpen = item.classList.contains('open');
-    // Close all
-    document.querySelectorAll('.menu-acc-item.open').forEach(el => el.classList.remove('open'));
-    // Open clicked (unless it was already open)
-    if (!isOpen) item.classList.add('open');
+  // Menu examples lightbox
+  const menuLightboxImgs = [
+    'images/menue-beispiele/menue-hochzeit.png',
+    'images/menue-beispiele/menue-geburtstag.png',
+    'images/menue-beispiele/menue-tauffeier.png',
+    'images/menue-beispiele/menue-stiefelhagen.png',
+    'images/menue-beispiele/menue-weihnachten.png'
+  ];
+  let menuLightboxIdx = 0;
+  function openMenuLightbox(i) {
+    menuLightboxIdx = i;
+    document.getElementById('menuLightboxImg').src = menuLightboxImgs[i];
+    document.getElementById('menuLightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
   }
+  function closeMenuLightbox(e) {
+    if (e && e.target !== document.getElementById('menuLightbox') && !e.target.classList.contains('menu-lightbox-close')) return;
+    document.getElementById('menuLightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  function shiftMenuLightbox(dir, e) {
+    e && e.stopPropagation();
+    menuLightboxIdx = (menuLightboxIdx + dir + menuLightboxImgs.length) % menuLightboxImgs.length;
+    document.getElementById('menuLightboxImg').src = menuLightboxImgs[menuLightboxIdx];
+  }
+  document.addEventListener('keydown', e => {
+    const lb = document.getElementById('menuLightbox');
+    if (!lb.classList.contains('active')) return;
+    if (e.key === 'Escape') { lb.classList.remove('active'); document.body.style.overflow = ''; }
+    if (e.key === 'ArrowRight') shiftMenuLightbox(1, null);
+    if (e.key === 'ArrowLeft') shiftMenuLightbox(-1, null);
+  });
 
   // Hero BG load animation
   // hero-bg scale animation removed (caused iOS overflow)
