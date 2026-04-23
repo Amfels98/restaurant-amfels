@@ -2956,11 +2956,8 @@
         <div style="background:rgba(201,169,110,0.08);border:1px solid rgba(201,169,110,0.2);padding:1rem 1.2rem;margin-bottom:1.5rem;font-size:0.82rem;color:var(--text);line-height:1.7;">
           Tisch online reservieren? <a href="#reservierung" style="color:var(--gold);font-weight:700;text-decoration:none;">Hier klicken →</a> – schnell und einfach über unser Buchungssystem.
         </div>
-        <form id="contactForm" action="https://formsubmit.co/restaurant.amfels@web.de" method="POST">
-          <!-- FormSubmit Konfiguration -->
-          <input type="hidden" name="_subject" value="Neue Anfrage – Restaurant Am Fels" />
+        <form id="contactForm">
           <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_next" value="https://amfels.de/#kontakt" />
           <input type="hidden" name="_template" value="table" />
 
           <div class="form-group" style="margin-bottom:1.2rem">
@@ -2992,6 +2989,17 @@
     </div>
   </div>
 </section>
+
+<!-- ── BESTÄTIGUNGS-MODAL ── -->
+<div id="successModal" style="display:none;position:fixed;inset:0;z-index:99999;align-items:center;justify-content:center;background:rgba(10,4,1,0.75);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);">
+  <div style="background:var(--dark2);max-width:480px;width:90%;padding:3.5rem 3rem;text-align:center;position:relative;animation:heroFadeIn 0.4s ease both;">
+    <div style="width:64px;height:64px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 2rem;color:var(--gold);font-size:1.6rem;">✓</div>
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--text-light);margin-bottom:1rem;">Nachricht gesendet</h3>
+    <div style="width:40px;height:1px;background:var(--gold);margin:0 auto 1.5rem;"></div>
+    <p style="font-size:0.95rem;color:var(--text);line-height:1.8;margin-bottom:2rem;">Vielen Dank für Ihre Anfrage.<br>Wir melden uns schnellstmöglich bei Ihnen.</p>
+    <button onclick="document.getElementById('successModal').style.display='none';document.body.style.overflow='';" style="background:var(--gold);color:var(--black);border:none;padding:0.9rem 2.5rem;font-family:'Lato',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;transition:background 0.3s;" onmouseover="this.style.background='#dfc089'" onmouseout="this.style.background='#b8924a'">Schließen</button>
+  </div>
+</div>
 
 <!-- ── FOOTER ── -->
 <footer>
@@ -3250,7 +3258,36 @@
     e.target.reset();
   }
 
-  // Contact form handled by FormSubmit (no JS needed)
+  // Contact form — AJAX via FormSubmit, dann Bestätigungs-Modal
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var form = e.target;
+    var btn = form.querySelector('button[type=submit]');
+    btn.disabled = true;
+    btn.textContent = 'Wird gesendet…';
+
+    var data = new FormData(form);
+
+    fetch('https://formsubmit.co/ajax/restaurant.amfels@web.de', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: data
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      form.reset();
+      btn.disabled = false;
+      btn.textContent = 'Nachricht senden';
+      var modal = document.getElementById('successModal');
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    })
+    .catch(function() {
+      btn.disabled = false;
+      btn.textContent = 'Nachricht senden';
+      alert('Fehler beim Senden. Bitte rufen Sie uns an: 02263 9291371');
+    });
+  });
 
 
   // Set min date for reservation
