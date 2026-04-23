@@ -1815,18 +1815,19 @@
     /* ── DESKTOP (min-width: 1025px) — muss NACH Mobile-Base stehen um zu gewinnen ── */
     @media (min-width: 769px) {
       .nav-links {
-        display: flex;
-        position: static;
-        flex-direction: row;
-        background: none;
-        padding: 0;
-        gap: 2rem;
-        align-items: center;
-        height: auto;
-        z-index: auto;
+        display: flex !important;
+        position: static !important;
+        flex-direction: row !important;
+        background: none !important;
+        padding: 0 !important;
+        gap: 2rem !important;
+        align-items: center !important;
+        height: auto !important;
+        width: auto !important;
+        z-index: auto !important;
       }
       .nav-links.scrolled a { color: var(--text); }
-      .hamburger { display: none; }
+      .hamburger { display: none !important; }
       .hours-inner { grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
       .about-inner { grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
       .contact-inner { grid-template-columns: 1fr 1fr; gap: 6rem; }
