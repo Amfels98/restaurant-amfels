@@ -143,6 +143,11 @@
       list-style: none;
       gap: 2rem;
       align-items: center;
+      flex-direction: row;
+      position: static;
+      background: none;
+      width: auto;
+      height: auto;
     }
 
     /* Mobile fullscreen menu */
@@ -1814,8 +1819,25 @@
 
     /* ── MOBILE: Hamburger an, Links aus ── */
     @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .nav-links.open { display: flex !important; }
+      .nav-links {
+        display: none !important;
+        position: static !important;
+      }
+      .nav-links.open {
+        display: flex !important;
+        position: fixed !important;
+        top: 0 !important; left: 0 !important;
+        right: 0 !important; bottom: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        flex-direction: column !important;
+        background: rgba(10,10,10,0.98) !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 2.5rem !important;
+        z-index: 99999 !important;
+        overflow-y: auto !important;
+      }
       .hamburger { display: flex !important; }
       .nav-reserve { display: none !important; }
     }
