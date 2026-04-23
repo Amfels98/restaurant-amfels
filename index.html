@@ -2898,6 +2898,20 @@
   // Navbar scroll
   const navbar = document.getElementById('navbar');
   const navLinks = document.getElementById('navLinks');
+
+  // Mobile/Desktop Nav Switch via JS (zuverlässiger als CSS Media Queries auf iOS)
+  function updateNavVisibility() {
+    const isMobileNav = window.innerWidth < 1024;
+    if (isMobileNav) {
+      navLinks.style.display = navLinks.classList.contains('open') ? 'flex' : 'none';
+      document.getElementById('hamburger').style.display = 'flex';
+    } else {
+      navLinks.style.display = 'flex';
+      document.getElementById('hamburger').style.display = 'none';
+    }
+  }
+  updateNavVisibility();
+  window.addEventListener('resize', updateNavVisibility);
   const navLogoImg = document.querySelector('.nav-logo-img');
   function updateNav() {
     const hero = document.getElementById('hero');
@@ -2923,6 +2937,7 @@
 
   function closeMenu() {
     navLinks.classList.remove('open');
+    navLinks.style.display = 'none';
     document.body.style.overflow = '';
     hamburger.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
   }
@@ -2932,6 +2947,7 @@
     const spans = hamburger.querySelectorAll('span');
     if (!isOpen) {
       navLinks.classList.add('open');
+      navLinks.style.display = 'flex';
       document.body.style.overflow = 'hidden';
       spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
       spans[1].style.opacity = '0';
