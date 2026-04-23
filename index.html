@@ -1044,37 +1044,40 @@
       text-align: center;
     }
 
-    .menu-tabs {
+    .menu-nav {
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
-      gap: 0;
-      max-width: 1000px;
-      margin: 0 auto 4rem;
-      border-bottom: 1px solid rgba(201, 169, 110, 0.2);
+      justify-content: center;
+      gap: 0.5rem;
+      max-width: 1100px;
+      margin: 0 auto 3rem;
     }
-
-    .menu-tab {
-      padding: 0.9rem 1.8rem;
+    .menu-nav a {
       font-family: 'Lato', sans-serif;
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       font-weight: 700;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--text);
-      cursor: pointer;
-      border: none;
-      background: none;
-      border-bottom: 2px solid transparent;
-      margin-bottom: -1px;
-      transition: all 0.3s;
+      text-decoration: none;
+      padding: 0.45rem 1rem;
+      border: 1px solid rgba(201,169,110,0.25);
+      transition: all 0.25s;
+      white-space: nowrap;
+    }
+    .menu-nav a:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+      background: rgba(201,169,110,0.06);
     }
 
-    .menu-tab:hover { color: var(--gold); }
-    .menu-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
-
-    .menu-panel { display: none; max-width: 1000px; margin: 0 auto; }
-    .menu-panel.active { display: block; }
+    .menu-panel { max-width: 1000px; margin: 0 auto 4rem; padding-top: 1rem; }
+    .menu-panel-divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(201,169,110,0.25), transparent);
+      margin: 0 auto 4rem;
+      max-width: 1000px;
+    }
 
     .menu-category {
       margin-bottom: 3rem;
@@ -1914,8 +1917,7 @@
       .gallery-item img { height: auto; }
       .gallery-item:nth-child(1) img { min-height: 220px; }
 
-      .menu-tabs { overflow-x: auto; flex-wrap: nowrap; justify-content: flex-start; padding-bottom: 0.5rem; }
-      .menu-tab { white-space: nowrap; flex-shrink: 0; padding: 0.7rem 1rem; font-size: 0.7rem; }
+      .menu-nav { gap: 0.35rem; }
       .menu-items-grid { grid-template-columns: 1fr; }
       .menu-item { padding: 0.75rem 0.5rem; }
       .menu-cta { padding: 2rem 1rem; }
@@ -1945,7 +1947,7 @@
       .section-title { font-size: clamp(1.8rem, 8vw, 2.8rem); }
 
       /* Touch targets mindestens 44px */
-      .menu-tab, .btn-primary, .btn-outline, .btn-submit,
+      .menu-nav a, .btn-primary, .btn-outline, .btn-submit,
       .nav-links.open a { min-height: 44px; display: flex; align-items: center; justify-content: center; }
       input, select, textarea { font-size: 16px !important; } /* iOS Zoom verhindern */
     }
@@ -2008,7 +2010,7 @@
       .gallery-item:nth-child(4) { grid-column: span 2; }
 
       .menu-items-grid { grid-template-columns: 1fr 1fr; }
-      .menu-tabs { flex-wrap: wrap; justify-content: center; overflow: visible; }
+      .menu-nav { justify-content: center; }
 
       .events-grid { grid-template-columns: repeat(2, 1fr); }
       .event-card { height: 420px; }
@@ -2215,22 +2217,22 @@
     </div>
   </div>
 
-  <div class="menu-tabs" role="tablist">
-    <button class="menu-tab active" onclick="switchTab('mittag', this)">Mittagskarte</button>
-    <button class="menu-tab" onclick="switchTab('vorspeisen', this)">Vorspeisen & Suppen</button>
-    <button class="menu-tab" onclick="switchTab('steaks', this)">Steakbörse</button>
-    <button class="menu-tab" onclick="switchTab('fleisch', this)">Lamm · Hähnchen · Schwein</button>
-    <button class="menu-tab" onclick="switchTab('grill', this)">Grill</button>
-    <button class="menu-tab" onclick="switchTab('fisch', this)">Frischer Fisch</button>
-    <button class="menu-tab" onclick="switchTab('senioren', this)">Klein &amp; Fein</button>
-    <button class="menu-tab" onclick="switchTab('dessert', this)">Desserts &amp; Kaffee</button>
-    <button class="menu-tab" onclick="switchTab('weine', this)">Weinkarte</button>
-    <button class="menu-tab" onclick="switchTab('getraenke', this)">Getränke</button>
-    <button class="menu-tab" onclick="switchTab('aperitifs', this)">Aperitifs &amp; Spirituosen</button>
-  </div>
+  <nav class="menu-nav">
+    <a href="#panel-mittag">Mittagskarte</a>
+    <a href="#panel-vorspeisen">Vorspeisen &amp; Suppen</a>
+    <a href="#panel-steaks">Steakbörse</a>
+    <a href="#panel-fleisch">Lamm · Hähnchen · Schwein</a>
+    <a href="#panel-grill">Grill</a>
+    <a href="#panel-fisch">Frischer Fisch</a>
+    <a href="#panel-senioren">Klein &amp; Fein</a>
+    <a href="#panel-dessert">Desserts &amp; Kaffee</a>
+    <a href="#panel-weine">Weinkarte</a>
+    <a href="#panel-getraenke">Getränke</a>
+    <a href="#panel-aperitifs">Aperitifs &amp; Spirituosen</a>
+  </nav>
 
   <!-- MITTAGSKARTE -->
-  <div class="menu-panel active" id="panel-mittag">
+  <div class="menu-panel" id="panel-mittag">
     <div class="menu-category">
       <h3 class="menu-cat-title">Mittagskarte</h3>
       <p style="text-align:center;color:var(--gold);font-size:0.95rem;margin:-0.5rem 0 1rem;letter-spacing:0.04em;">Samstag · 11:30 – 14:30 Uhr</p>
@@ -2247,7 +2249,9 @@
     </div>
     <div class="menu-note">Zu diesen Gerichten servieren wir einen Beilagensalat.</div>
   </div>
+  <div class="menu-panel-divider"></div>
 
+  <!-- VORSPEISEN (oben) -->
   <!-- APERITIFS -->
   <div class="menu-panel" id="panel-aperitifs">
     <div class="menu-category">
@@ -2313,6 +2317,7 @@
       </div>
     </div>
   </div>
+  <div class="menu-panel-divider"></div>
 
   <!-- VORSPEISEN -->
   <div class="menu-panel" id="panel-vorspeisen">
@@ -2337,7 +2342,8 @@
     </div>
   </div>
 
-  <!-- KLEIN ABER FEIN -->
+  <div class="menu-panel-divider"></div>
+
   <!-- STEAKBÖRSE -->
   <div class="menu-panel" id="panel-steaks">
     <div class="menu-category">
@@ -2393,6 +2399,8 @@
     </div>
   </div>
 
+  <div class="menu-panel-divider"></div>
+
   <!-- FLEISCH (Lamm, Schwein, Hähnchen) -->
   <div class="menu-panel" id="panel-fleisch">
     <div class="menu-category">
@@ -2427,6 +2435,8 @@
     <div class="menu-note">Zu diesen Gerichten servieren wir einen Beilagensalat.</div>
   </div>
 
+  <div class="menu-panel-divider"></div>
+
   <!-- GRILL -->
   <div class="menu-panel" id="panel-grill">
     <div class="menu-category">
@@ -2444,6 +2454,8 @@
     <div class="menu-note">Zu diesen Gerichten servieren wir einen Beilagensalat.</div>
   </div>
 
+  <div class="menu-panel-divider"></div>
+
   <!-- FRISCHER FISCH -->
   <div class="menu-panel" id="panel-fisch">
     <div class="menu-category">
@@ -2458,6 +2470,8 @@
     </div>
     <div class="menu-note">Zu diesen Gerichten servieren wir einen Beilagensalat.</div>
   </div>
+
+  <div class="menu-panel-divider"></div>
 
   <!-- SENIOREN & KINDER -->
   <div class="menu-panel" id="panel-senioren">
@@ -2491,7 +2505,7 @@
     </div>
   </div>
 
-  <!-- BEILAGEN & SAUCEN -->
+  <div class="menu-panel-divider"></div>
 
   <!-- DESSERTS -->
   <div class="menu-panel" id="panel-dessert">
@@ -2523,6 +2537,8 @@
       </div>
     </div>
   </div>
+
+  <div class="menu-panel-divider"></div>
 
   <!-- WEINKARTE -->
   <div class="menu-panel" id="panel-weine">
@@ -2576,6 +2592,8 @@
     </div>
   </div>
 
+  <div class="menu-panel-divider"></div>
+
   <!-- GETRÄNKE -->
   <div class="menu-panel" id="panel-getraenke">
     <div class="menu-category">
@@ -2616,9 +2634,7 @@
     </div>
   </div>
 
-  <!-- SPIRITUOSEN -->
-
-  <!-- HEISSE GETRÄNKE -->
+  <div class="menu-panel-divider"></div>
 
   <div class="menu-cta fade-up">
     <p>Reservieren Sie Ihren Tisch und genießen Sie unsere Küche.</p>
