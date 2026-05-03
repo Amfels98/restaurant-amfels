@@ -5,1030 +5,648 @@
 <title>Speisekarte — Restaurant Am Fels</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
 <style>
-
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-
 :root{
-  --ink:    #18160f;
-  --ink2:   #38342a;
-  --stone:  #7e7868;
-  --rule:   #cdc4b4;
-  --paper:  #f6f0e4;
-  --gold:   #a8782e;
-  --gold2:  #c4983e;
-  --dark:   #0b0b09;
-  --dark2:  #131310;
+  --green:  #1b2d1e;
+  --green2: #243328;
+  --cream:  #f4edd9;
+  --paper:  #faf6ee;
+  --ink:    #171510;
+  --ink2:   #3a3528;
+  --stone:  #7c7565;
+  --rule:   #d0c8b4;
+  --gold:   #b8893a;
+  --gold2:  #d4a84e;
 }
-
 body{
   font-family:'Cormorant Garamond',serif;
-  background:#b8b0a2;
+  background:#a8a098;
   color:var(--ink);
   -webkit-print-color-adjust:exact;
   print-color-adjust:exact;
 }
-
-/* ─ PAGE ─ */
 .page{
-  width:210mm;
-  min-height:297mm;
+  width:210mm;min-height:297mm;
   margin:0 auto 28px;
-  position:relative;
-  display:flex;
-  flex-direction:column;
-  page-break-after:always;
-  overflow:hidden;
+  position:relative;display:flex;flex-direction:column;
+  page-break-after:always;overflow:hidden;
 }
 
-/* ══════════════════════════════
-   COVER
-══════════════════════════════ */
-.cover{
-  background:var(--dark);
-  padding:13mm 14mm;
-  justify-content:space-between;
-}
+/* ══════════════ COVER ══════════════ */
+.cover{background:var(--green);padding:12mm 22mm 12mm 22mm;justify-content:space-between;}
 
-/* Botanical corner ornaments */
-.cover-corner-svg{
-  position:absolute;
-  width:28mm;
-  height:28mm;
-}
-.cover-corner-svg.tl{top:8mm;left:8mm}
-.cover-corner-svg.tr{top:8mm;right:8mm;transform:scaleX(-1)}
-.cover-corner-svg.bl{bottom:8mm;left:8mm;transform:scaleY(-1)}
-.cover-corner-svg.br{bottom:8mm;right:8mm;transform:scale(-1)}
+.cv-vine{position:absolute;top:0;height:100%;}
+.cv-vine.left{left:0;width:22mm;}
+.cv-vine.right{right:0;width:22mm;transform:scaleX(-1);}
 
-/* Inner frame */
-.cover-frame{
-  position:absolute;
-  inset:7mm;
-  border:.4px solid rgba(168,120,46,.38);
-  pointer-events:none;
-}
+.cv-frame{position:absolute;inset:8mm 8mm;border:.4px solid rgba(212,168,78,.3);pointer-events:none;}
 
-.cover-top{
-  position:relative;z-index:2;
-  display:flex;justify-content:space-between;
-}
-.cover-label{
+.cv-top{position:relative;z-index:2;display:flex;justify-content:space-between;}
+.cv-lbl{
   font-family:'Montserrat',sans-serif;
-  font-size:5.5pt;font-weight:200;
-  letter-spacing:5px;text-transform:uppercase;
-  color:rgba(196,152,62,.5);
+  font-size:5.5pt;font-weight:200;letter-spacing:5px;text-transform:uppercase;
+  color:rgba(212,168,78,.45);
 }
 
-.cover-body{
-  position:relative;z-index:2;
-  flex:1;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  text-align:center;padding:0 10mm;
+.cv-body{
+  position:relative;z-index:2;flex:1;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;
 }
+.cv-logo{width:42mm;margin-bottom:8mm;filter:brightness(0) invert(1);opacity:.92;}
 
-.cover-logo{
-  width:46mm;margin-bottom:9mm;
-  filter:brightness(0) invert(1);opacity:.9;
-}
+.cv-orn{width:64mm;height:14px;display:block;margin:0 auto 7mm;}
 
-/* SVG decorative rule */
-.cover-ornament-svg{
-  width:70mm;height:14px;margin:0 auto 7mm;display:block;
-}
-
-.cover-title{
-  font-size:52pt;font-weight:300;color:#fff;
+.cv-title{
+  font-size:54pt;font-weight:300;color:#fff;
   letter-spacing:18px;text-transform:uppercase;line-height:1;
 }
-.cover-name{
+.cv-sub{
   font-family:'Montserrat',sans-serif;
-  font-size:6pt;font-weight:200;
-  letter-spacing:7px;text-transform:uppercase;
+  font-size:6pt;font-weight:200;letter-spacing:7px;text-transform:uppercase;
   color:var(--gold2);margin-top:5mm;
 }
-.cover-tagline{
+.cv-tag{
   font-style:italic;font-size:11pt;font-weight:300;
-  color:rgba(255,255,255,.32);margin-top:8mm;
-  letter-spacing:.3px;
+  color:rgba(255,255,255,.3);margin-top:7mm;
 }
 
-.cover-foot{
-  position:relative;z-index:2;
-  display:flex;justify-content:space-between;
-}
-.cover-foot p{
+.cv-foot{position:relative;z-index:2;display:flex;justify-content:space-between;}
+.cv-foot p{
   font-family:'Montserrat',sans-serif;
-  font-size:5.5pt;font-weight:200;
-  letter-spacing:3px;text-transform:uppercase;
+  font-size:5.5pt;font-weight:200;letter-spacing:3px;text-transform:uppercase;
   color:rgba(255,255,255,.18);
 }
 
-/* ══════════════════════════════
-   WELCOME
-══════════════════════════════ */
-.welcome{
-  background:var(--dark2);
-  padding:15mm 19mm;
-  justify-content:space-between;
-}
+/* ══════════════ WELCOME ══════════════ */
+.welcome{background:var(--green2);padding:14mm 20mm;justify-content:space-between;}
+.wl-frame{position:absolute;inset:8mm;border:.4px solid rgba(212,168,78,.2);pointer-events:none;}
+.wl-frame2{position:absolute;inset:11mm;border:.4px solid rgba(212,168,78,.09);pointer-events:none;}
 
-.welcome-frame{
-  position:absolute;inset:8mm;
-  border:.4px solid rgba(168,120,46,.22);
-  pointer-events:none;
-}
-.welcome-frame-inner{
-  position:absolute;inset:10.5mm;
-  border:.4px solid rgba(168,120,46,.1);
-  pointer-events:none;
-}
-
-.welcome-body{
-  flex:1;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-}
-
-.welcome-eyebrow{
+.wl-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.wl-eyebrow{
   font-family:'Montserrat',sans-serif;
-  font-size:5pt;font-weight:200;
-  letter-spacing:7px;text-transform:uppercase;
-  color:rgba(196,152,62,.6);margin-bottom:6mm;
+  font-size:5pt;font-weight:200;letter-spacing:7px;text-transform:uppercase;
+  color:rgba(212,168,78,.55);margin-bottom:5mm;
 }
-
-.welcome-title{
-  font-size:38pt;font-weight:300;color:#fff;
-  letter-spacing:9px;text-transform:uppercase;
-  margin-bottom:4mm;
-}
-
-.welcome-ornament{width:70mm;height:14px;display:block;margin:0 auto 7mm;}
-
-.welcome-text{
+.wl-title{font-size:40pt;font-weight:300;color:#fff;letter-spacing:10px;text-transform:uppercase;margin-bottom:4mm;}
+.wl-orn{width:64mm;height:14px;display:block;margin:0 auto 7mm;}
+.wl-text{
   font-style:italic;font-size:11pt;font-weight:300;
-  color:rgba(255,255,255,.48);
-  text-align:center;line-height:2;
+  color:rgba(255,255,255,.45);text-align:center;line-height:2;
   max-width:128mm;margin:0 auto 11mm;
 }
+.wl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm;width:100%;margin-bottom:9mm;}
+.wg{padding:5mm 4mm 4mm;border-top:.5px solid rgba(212,168,78,.28);}
+.wg-lbl{font-family:'Montserrat',sans-serif;font-size:5pt;font-weight:300;letter-spacing:4px;text-transform:uppercase;color:rgba(212,168,78,.65);margin-bottom:3mm;}
+.wg-val{font-size:9.5pt;font-weight:300;color:rgba(255,255,255,.52);line-height:1.95;}
+.wg-val strong{color:rgba(212,168,78,.7);font-weight:400;}
+.wl-addr{text-align:center;}
+.wl-addr p{font-family:'Montserrat',sans-serif;font-size:5.5pt;font-weight:200;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.18);line-height:2.6;}
 
-.welcome-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:5mm;width:100%;margin-bottom:9mm;
-}
-.wg{padding:5mm 4mm 4mm;border-top:.5px solid rgba(196,152,62,.3);}
-.wg-label{
-  font-family:'Montserrat',sans-serif;
-  font-size:5pt;font-weight:300;letter-spacing:4px;text-transform:uppercase;
-  color:rgba(196,152,62,.7);margin-bottom:3mm;
-}
-.wg-val{
-  font-size:9.5pt;font-weight:300;
-  color:rgba(255,255,255,.55);line-height:1.95;
-}
-.wg-val strong{color:rgba(196,152,62,.75);font-weight:400;}
-
-.welcome-addr{text-align:center;}
-.welcome-addr p{
-  font-family:'Montserrat',sans-serif;
-  font-size:5.5pt;font-weight:200;
-  letter-spacing:2.5px;text-transform:uppercase;
-  color:rgba(255,255,255,.2);line-height:2.5;
-}
-
-/* ══════════════════════════════
-   INNER PAGES
-══════════════════════════════ */
+/* ══════════════ INNER ══════════════ */
 .inner{background:var(--paper);}
+.iw{flex:1;padding:11mm 15mm 7mm;display:flex;flex-direction:column;}
 
-.inner-wrap{
-  flex:1;padding:11mm 15mm 7mm;
-  display:flex;flex-direction:column;
-}
-
-/* Running header */
-.rh{
-  display:flex;align-items:center;
-  justify-content:space-between;
-  padding-bottom:2.5mm;margin-bottom:8mm;
-  border-bottom:.4px solid var(--rule);
-}
-.rh-logo{height:8mm;filter:brightness(0);opacity:.38;}
-.rh-title{
-  font-family:'Montserrat',sans-serif;
-  font-size:5.5pt;font-weight:300;
-  letter-spacing:5px;text-transform:uppercase;
-  color:var(--stone);
-}
-.rh-num{
-  font-style:italic;font-size:9pt;font-weight:300;
-  color:rgba(168,120,46,.7);letter-spacing:1px;
-}
+/* Running head */
+.rh{display:flex;align-items:center;justify-content:space-between;padding-bottom:2.5mm;margin-bottom:8mm;border-bottom:.4px solid var(--rule);}
+.rh-logo{height:8mm;filter:brightness(0);opacity:.35;}
+.rh-title{font-family:'Montserrat',sans-serif;font-size:5.5pt;font-weight:300;letter-spacing:5px;text-transform:uppercase;color:var(--stone);}
+.rh-num{font-style:italic;font-size:9pt;font-weight:300;color:rgba(184,137,58,.65);}
 
 /* Section */
-.s{margin-bottom:5.5mm;}
+.s{margin-bottom:5mm;}
+.sh{display:flex;align-items:center;gap:3mm;margin-bottom:3.5mm;}
+.sh-line{flex:1;height:.4px;background:var(--rule);}
+.sh-title{font-family:'Montserrat',sans-serif;font-size:6pt;font-weight:300;letter-spacing:5.5px;text-transform:uppercase;color:var(--gold);white-space:nowrap;}
 
-.s-head{
-  display:flex;align-items:center;gap:3mm;
-  margin-bottom:3.5mm;
-}
-.s-head-line{flex:1;height:.4px;background:var(--rule);}
-.s-title{
-  font-family:'Montserrat',sans-serif;
-  font-size:6pt;font-weight:300;
-  letter-spacing:5px;text-transform:uppercase;
-  color:var(--gold);white-space:nowrap;
-}
+/* SVG ornament row between sections */
+.orn{width:100%;height:16px;display:block;margin:3mm 0;}
 
-/* Ornament divider */
-.ornament-svg{
-  width:100%;height:16px;display:block;margin:3.5mm 0;
-}
-
-/* Dish row */
-.d{
-  display:flex;align-items:baseline;
-  justify-content:space-between;
-  padding:2.8px 0;gap:7mm;
-  border-bottom:.3px solid rgba(205,196,180,.45);
-}
+/* Dish */
+.d{display:flex;align-items:baseline;justify-content:space-between;padding:3px 0;gap:8mm;border-bottom:.3px solid rgba(208,200,180,.4);}
 .d:last-child{border-bottom:none;}
-.d-info{flex:1;min-width:0;}
-.d-name{font-size:10.5pt;font-weight:400;color:var(--ink);line-height:1.3;}
-.d-desc{
-  font-size:7.5pt;font-weight:300;color:var(--stone);
-  font-style:italic;margin-top:1px;line-height:1.4;
-}
-.d-price{
-  font-size:10pt;font-weight:300;color:var(--ink2);
-  white-space:nowrap;flex-shrink:0;
-}
+.d-i{flex:1;min-width:0;}
+.d-n{font-size:10.5pt;font-weight:400;color:var(--ink);line-height:1.3;}
+.d-d{font-size:7.5pt;font-weight:300;color:var(--stone);font-style:italic;margin-top:1px;line-height:1.4;}
+.d-p{font-size:10pt;font-weight:300;color:var(--ink2);white-space:nowrap;flex-shrink:0;}
 
-/* Two columns */
-.cols2{display:grid;grid-template-columns:1fr 1fr;gap:0 11mm;}
-
-/* Separator */
+.c2{display:grid;grid-template-columns:1fr 1fr;gap:0 11mm;}
 .sep{border:none;border-top:.4px solid var(--rule);margin:4mm 0;}
+.note{font-style:italic;font-size:7.5pt;color:var(--stone);margin:1mm 0 2mm;}
 
 /* Steak table */
-.stk-note{
-  font-style:italic;font-size:7.5pt;color:var(--stone);
-  text-align:center;margin-bottom:4.5mm;
-}
-.stk{width:100%;border-collapse:collapse;}
-.stk thead tr{border-bottom:.5px solid var(--gold2);}
-.stk thead th{
-  font-family:'Montserrat',sans-serif;
-  font-size:5pt;font-weight:300;
-  letter-spacing:3px;text-transform:uppercase;
-  color:var(--stone);padding:0 0 2mm;
-  text-align:right;
-}
-.stk thead th:first-child{text-align:left;}
-.stk tbody tr{border-bottom:.3px solid rgba(205,196,180,.5);}
-.stk tbody tr:last-child{border-bottom:none;}
-.stk tbody td{
-  font-size:10pt;font-weight:400;color:var(--ink);
-  text-align:right;padding:3.5px 0;vertical-align:middle;
-}
-.stk tbody td:first-child{text-align:left;}
-.stk .p{font-weight:300;color:var(--ink2);padding-left:5mm;}
-.stk .d-desc{display:block;font-style:italic;font-size:7pt;color:var(--stone);font-weight:300;}
+.sn{font-style:italic;font-size:7.5pt;color:var(--stone);text-align:center;margin-bottom:4mm;}
+.st{width:100%;border-collapse:collapse;}
+.st thead tr{border-bottom:.5px solid var(--gold);}
+.st thead th{font-family:'Montserrat',sans-serif;font-size:5pt;font-weight:300;letter-spacing:3px;text-transform:uppercase;color:var(--stone);padding:0 0 2mm;text-align:right;}
+.st thead th:first-child{text-align:left;}
+.st tbody tr{border-bottom:.3px solid rgba(208,200,180,.45);}
+.st tbody tr:last-child{border-bottom:none;}
+.st td{font-size:10pt;font-weight:400;color:var(--ink);text-align:right;padding:3.5px 0;vertical-align:middle;}
+.st td:first-child{text-align:left;}
+.st td.p{font-weight:300;color:var(--ink2);padding-left:5mm;}
+.st .dd{display:block;font-style:italic;font-size:7pt;color:var(--stone);font-weight:300;}
 
-/* Seasonal highlight */
-.seasonal{
-  border-top:1px solid var(--gold2);
-  background:linear-gradient(to bottom,rgba(168,120,46,.04) 0%,transparent 100%);
-  padding:4mm 0 2mm;margin-top:4mm;
-}
-.seasonal-label{
-  font-family:'Montserrat',sans-serif;
-  font-size:5pt;font-weight:300;
-  letter-spacing:5px;text-transform:uppercase;
-  color:var(--gold);margin-bottom:3mm;
-}
+/* Seasonal */
+.sea{border-top:1px solid var(--gold);background:linear-gradient(rgba(184,137,58,.04),transparent);padding:4mm 0 2mm;margin-top:4mm;}
+.sea-lbl{font-family:'Montserrat',sans-serif;font-size:5pt;font-weight:300;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:3mm;}
 
-/* Drink headings */
-.dk-title{
-  font-family:'Montserrat',sans-serif;
-  font-size:6pt;font-weight:300;
-  letter-spacing:5px;text-transform:uppercase;
-  color:var(--gold);margin-bottom:3mm;
-  padding-bottom:2mm;border-bottom:.4px solid var(--rule);
-}
-.dk-sub{
-  font-style:italic;font-size:8.5pt;color:var(--stone);
-  margin:3mm 0 1.5mm;
-}
+/* Drink */
+.dk{font-family:'Montserrat',sans-serif;font-size:6pt;font-weight:300;letter-spacing:5.5px;text-transform:uppercase;color:var(--gold);margin-bottom:3mm;padding-bottom:2mm;border-bottom:.4px solid var(--rule);}
+.dksub{font-style:italic;font-size:8.5pt;color:var(--stone);margin:3mm 0 1.5mm;}
 
-/* Note */
-.note{
-  font-style:italic;font-size:7.5pt;color:var(--stone);
-  margin:1mm 0 2mm;
-}
+.allergen{margin-top:auto;padding-top:3mm;border-top:.3px solid var(--rule);font-style:italic;font-size:5.5pt;color:#bbb2a0;text-align:center;line-height:1.7;}
+.rf{padding:2.5mm 15mm;border-top:.4px solid var(--rule);display:flex;justify-content:space-between;background:var(--paper);}
+.rf span{font-family:'Montserrat',sans-serif;font-size:5pt;font-weight:200;letter-spacing:2px;text-transform:uppercase;color:var(--rule);}
 
-/* Allergen */
-.allergen{
-  margin-top:auto;padding-top:3mm;
-  border-top:.3px solid var(--rule);
-  font-style:italic;font-size:5.5pt;color:#bbb4a8;
-  text-align:center;line-height:1.7;
-}
+/* ══════════════ BACK ══════════════ */
+.back{background:var(--green);padding:12mm 22mm;justify-content:space-between;}
+.bk-vine{position:absolute;top:0;height:100%;}
+.bk-vine.left{left:0;width:22mm;}
+.bk-vine.right{right:0;width:22mm;transform:scaleX(-1);}
+.bk-frame{position:absolute;inset:8mm;border:.4px solid rgba(212,168,78,.25);pointer-events:none;}
+.bk-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;z-index:1;}
+.bk-q{font-style:italic;font-size:14pt;font-weight:300;color:rgba(255,255,255,.32);line-height:1.85;max-width:112mm;margin-bottom:5mm;}
+.bk-a{font-family:'Montserrat',sans-serif;font-size:5.5pt;font-weight:200;letter-spacing:4px;text-transform:uppercase;color:rgba(212,168,78,.38);}
+.bk-rule{width:14mm;height:.4px;background:var(--gold);opacity:.3;margin:8mm auto;}
+.bk-logo{width:26mm;display:block;margin:0 auto 8mm;filter:brightness(0) invert(1);opacity:.16;}
+.bk-c p{font-family:'Montserrat',sans-serif;font-size:6pt;font-weight:200;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.22);line-height:2.7;text-align:center;}
+.bk-c p.hi{color:rgba(212,168,78,.48);}
 
-/* Running footer */
-.rf{
-  padding:2.5mm 15mm;border-top:.4px solid var(--rule);
-  display:flex;justify-content:space-between;
-  background:var(--paper);
-}
-.rf span{
-  font-family:'Montserrat',sans-serif;
-  font-size:5pt;font-weight:200;
-  letter-spacing:2px;text-transform:uppercase;
-  color:var(--rule);
-}
-
-/* ══════════════════════════════
-   BACK COVER
-══════════════════════════════ */
-.back{
-  background:var(--dark);
-  padding:13mm 14mm;
-  justify-content:space-between;
-}
-.back-frame{position:absolute;inset:7mm;border:.4px solid rgba(168,120,46,.3);pointer-events:none;}
-.back-corner-svg{position:absolute;width:22mm;height:22mm;}
-.back-corner-svg.tl{top:8mm;left:8mm;}
-.back-corner-svg.tr{top:8mm;right:8mm;transform:scaleX(-1);}
-.back-corner-svg.bl{bottom:8mm;left:8mm;transform:scaleY(-1);}
-.back-corner-svg.br{bottom:8mm;right:8mm;transform:scale(-1);}
-
-.back-body{
-  flex:1;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  text-align:center;position:relative;z-index:1;
-}
-.back-quote{
-  font-style:italic;font-size:14.5pt;font-weight:300;
-  color:rgba(255,255,255,.35);line-height:1.85;
-  max-width:115mm;margin-bottom:5mm;
-}
-.back-attr{
-  font-family:'Montserrat',sans-serif;
-  font-size:5.5pt;font-weight:200;
-  letter-spacing:4px;text-transform:uppercase;
-  color:rgba(168,120,46,.4);
-}
-.back-rule{width:14mm;height:.4px;background:var(--gold);opacity:.3;margin:8mm auto;}
-.back-logo{
-  width:26mm;display:block;margin:0 auto 8mm;
-  filter:brightness(0) invert(1);opacity:.18;
-}
-.back-contact p{
-  font-family:'Montserrat',sans-serif;
-  font-size:6pt;font-weight:200;
-  letter-spacing:2.5px;text-transform:uppercase;
-  color:rgba(255,255,255,.25);line-height:2.6;
-}
-.back-contact p.hi{color:rgba(196,152,62,.5);}
-
-/* ══════════════════════════════
-   PRINT + BUTTON
-══════════════════════════════ */
-@media screen{
-  .print-btn{
-    position:fixed;bottom:22px;right:22px;
-    background:var(--dark);color:var(--gold2);
-    border:.5px solid rgba(196,152,62,.45);
-    padding:9px 22px;cursor:pointer;
-    font-family:'Montserrat',sans-serif;
-    font-size:6.5pt;font-weight:300;
-    letter-spacing:4px;text-transform:uppercase;
-    z-index:999;transition:all .2s;
-  }
-  .print-btn:hover{background:var(--gold);color:#fff;}
-}
-@media print{
-  @page{size:A4 portrait;margin:0;}
-  body{background:white;}
-  .page{margin:0;break-after:page;page-break-after:always;}
-  .print-btn{display:none;}
-}
+/* Print */
+@media screen{.print-btn{position:fixed;bottom:22px;right:22px;background:var(--green);color:var(--gold2);border:.5px solid rgba(212,168,78,.4);padding:9px 22px;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:6.5pt;font-weight:300;letter-spacing:4px;text-transform:uppercase;z-index:999;}}
+@media screen{.print-btn:hover{background:var(--gold);color:#fff;}}
+@media print{@page{size:A4 portrait;margin:0;}body{background:white;}.page{margin:0;break-after:page;page-break-after:always;}.print-btn{display:none;}}
 </style>
 </head>
 <body>
 
-<!-- ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-     DECKBLATT
-▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ -->
+<!-- ████████ DECKBLATT ████████ -->
 <div class="page cover">
-  <div class="cover-frame"></div>
 
-  <!-- Botanical corner ornaments -->
-  <svg class="cover-corner-svg tl" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g opacity=".55">
-      <path d="M4,76 C8,58 20,40 40,20 C30,45 55,30 76,4" stroke="#c4983e" stroke-width=".7" fill="none"/>
-      <path d="M14,62 C6,56 4,66 12,68 C13,65 14,62 14,62Z" fill="#c4983e" opacity=".45"/>
-      <path d="M14,62 C22,58 20,68 14,68 C14,65 14,62 14,62Z" fill="#c4983e" opacity=".45"/>
-      <path d="M28,46 C20,40 18,50 26,52 C27,49 28,46 28,46Z" fill="#c4983e" opacity=".45"/>
-      <path d="M28,46 C36,42 34,52 28,52 C28,49 28,46 28,46Z" fill="#c4983e" opacity=".45"/>
-      <path d="M46,26 C38,20 36,30 44,32 C45,29 46,26 46,26Z" fill="#c4983e" opacity=".45"/>
-      <path d="M46,26 C54,22 52,32 46,32 C46,29 46,26 46,26Z" fill="#c4983e" opacity=".45"/>
-      <circle cx="11" cy="70" r="1.3" fill="#c4983e" opacity=".4"/>
-      <circle cx="24" cy="53" r="1.1" fill="#c4983e" opacity=".4"/>
-      <circle cx="42" cy="33" r="1.1" fill="#c4983e" opacity=".4"/>
-      <circle cx="62" cy="14" r="1.1" fill="#c4983e" opacity=".4"/>
-      <!-- short horizontal lines at inner edge -->
-      <line x1="4" y1="4" x2="18" y2="4" stroke="#c4983e" stroke-width=".5" opacity=".5"/>
-      <line x1="4" y1="4" x2="4" y2="18" stroke="#c4983e" stroke-width=".5" opacity=".5"/>
-    </g>
-  </svg>
-  <svg class="cover-corner-svg tr" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g opacity=".55">
-      <path d="M4,76 C8,58 20,40 40,20 C30,45 55,30 76,4" stroke="#c4983e" stroke-width=".7" fill="none"/>
-      <path d="M14,62 C6,56 4,66 12,68 C13,65 14,62 14,62Z" fill="#c4983e" opacity=".45"/>
-      <path d="M14,62 C22,58 20,68 14,68 C14,65 14,62 14,62Z" fill="#c4983e" opacity=".45"/>
-      <path d="M28,46 C20,40 18,50 26,52 C27,49 28,46 28,46Z" fill="#c4983e" opacity=".45"/>
-      <path d="M28,46 C36,42 34,52 28,52 C28,49 28,46 28,46Z" fill="#c4983e" opacity=".45"/>
-      <path d="M46,26 C38,20 36,30 44,32 C45,29 46,26 46,26Z" fill="#c4983e" opacity=".45"/>
-      <path d="M46,26 C54,22 52,32 46,32 C46,29 46,26 46,26Z" fill="#c4983e" opacity=".45"/>
-      <circle cx="11" cy="70" r="1.3" fill="#c4983e" opacity=".4"/>
-      <circle cx="24" cy="53" r="1.1" fill="#c4983e" opacity=".4"/>
-      <circle cx="42" cy="33" r="1.1" fill="#c4983e" opacity=".4"/>
-      <circle cx="62" cy="14" r="1.1" fill="#c4983e" opacity=".4"/>
-      <line x1="4" y1="4" x2="18" y2="4" stroke="#c4983e" stroke-width=".5" opacity=".5"/>
-      <line x1="4" y1="4" x2="4" y2="18" stroke="#c4983e" stroke-width=".5" opacity=".5"/>
-    </g>
-  </svg>
-  <svg class="cover-corner-svg bl" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g opacity=".55">
-      <path d="M4,76 C8,58 20,40 40,20 C30,45 55,30 76,4" stroke="#c4983e" stroke-width=".7" fill="none"/>
-      <path d="M14,62 C6,56 4,66 12,68 C13,65 14,62 14,62Z" fill="#c4983e" opacity=".45"/>
-      <path d="M14,62 C22,58 20,68 14,68 C14,65 14,62 14,62Z" fill="#c4983e" opacity=".45"/>
-      <path d="M28,46 C20,40 18,50 26,52 C27,49 28,46 28,46Z" fill="#c4983e" opacity=".45"/>
-      <path d="M28,46 C36,42 34,52 28,52 C28,49 28,46 28,46Z" fill="#c4983e" opacity=".45"/>
-      <path d="M46,26 C38,20 36,30 44,32 C45,29 46,26 46,26Z" fill="#c4983e" opacity=".45"/>
-      <path d="M46,26 C54,22 52,32 46,32 C46,29 46,26 46,26Z" fill="#c4983e" opacity=".45"/>
-      <circle cx="11" cy="70" r="1.3" fill="#c4983e" opacity=".4"/>
-      <circle cx="24" cy="53" r="1.1" fill="#c4983e" opacity=".4"/>
-      <circle cx="42" cy="33" r="1.1" fill="#c4983e" opacity=".4"/>
-      <circle cx="62" cy="14" r="1.1" fill="#c4983e" opacity=".4"/>
-      <line x1="4" y1="4" x2="18" y2="4" stroke="#c4983e" stroke-width=".5" opacity=".5"/>
-      <line x1="4" y1="4" x2="4" y2="18" stroke="#c4983e" stroke-width=".5" opacity=".5"/>
-    </g>
-  </svg>
-  <svg class="cover-corner-svg br" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g opacity=".55">
-      <path d="M4,76 C8,58 20,40 40,20 C30,45 55,30 76,4" stroke="#c4983e" stroke-width=".7" fill="none"/>
-      <path d="M14,62 C6,56 4,66 12,68 C13,65 14,62 14,62Z" fill="#c4983e" opacity=".45"/>
-      <path d="M14,62 C22,58 20,68 14,68 C14,65 14,62 14,62Z" fill="#c4983e" opacity=".45"/>
-      <path d="M28,46 C20,40 18,50 26,52 C27,49 28,46 28,46Z" fill="#c4983e" opacity=".45"/>
-      <path d="M28,46 C36,42 34,52 28,52 C28,49 28,46 28,46Z" fill="#c4983e" opacity=".45"/>
-      <path d="M46,26 C38,20 36,30 44,32 C45,29 46,26 46,26Z" fill="#c4983e" opacity=".45"/>
-      <path d="M46,26 C54,22 52,32 46,32 C46,29 46,26 46,26Z" fill="#c4983e" opacity=".45"/>
-      <circle cx="11" cy="70" r="1.3" fill="#c4983e" opacity=".4"/>
-      <circle cx="24" cy="53" r="1.1" fill="#c4983e" opacity=".4"/>
-      <circle cx="42" cy="33" r="1.1" fill="#c4983e" opacity=".4"/>
-      <circle cx="62" cy="14" r="1.1" fill="#c4983e" opacity=".4"/>
-      <line x1="4" y1="4" x2="18" y2="4" stroke="#c4983e" stroke-width=".5" opacity=".5"/>
-      <line x1="4" y1="4" x2="4" y2="18" stroke="#c4983e" stroke-width=".5" opacity=".5"/>
-    </g>
+  <!-- LEFT VINE -->
+  <svg class="cv-vine left" viewBox="0 0 22 297" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <path d="M11,5 C8,22 13,38 10,55 C7,72 13,88 9,105 C5,122 13,138 9,155 C5,172 13,188 9,205 C5,222 13,238 9,255 C7,268 10,280 10,292" stroke="#d4a84e" stroke-width=".55" opacity=".4"/>
+    <!-- Leaf pairs going down -->
+    <path d="M10,28 C5,22 2,28 7,33 C9,31 10,28 10,28Z" fill="#d4a84e" opacity=".38"/>
+    <path d="M10,28 C15,22 18,28 13,33 C11,31 10,28 10,28Z" fill="#d4a84e" opacity=".38"/>
+    <circle cx="10" cy="25" r=".9" fill="#d4a84e" opacity=".35"/>
+    <path d="M9,53 C4,47 1,53 6,58 C8,56 9,53 9,53Z" fill="#d4a84e" opacity=".38"/>
+    <path d="M9,53 C14,47 17,53 12,58 C10,56 9,53 9,53Z" fill="#d4a84e" opacity=".38"/>
+    <circle cx="9" cy="50" r=".9" fill="#d4a84e" opacity=".35"/>
+    <path d="M10,78 C5,72 2,78 7,83 C9,81 10,78 10,78Z" fill="#d4a84e" opacity=".38"/>
+    <path d="M10,78 C15,72 18,78 13,83 C11,81 10,78 10,78Z" fill="#d4a84e" opacity=".38"/>
+    <circle cx="10" cy="75" r=".9" fill="#d4a84e" opacity=".35"/>
+    <path d="M9,103 C4,97 1,103 6,108 C8,106 9,103 9,103Z" fill="#d4a84e" opacity=".38"/>
+    <path d="M9,103 C14,97 17,103 12,108 C10,106 9,103 9,103Z" fill="#d4a84e" opacity=".38"/>
+    <circle cx="9" cy="100" r=".9" fill="#d4a84e" opacity=".35"/>
+    <path d="M10,128 C5,122 2,128 7,133 C9,131 10,128 10,128Z" fill="#d4a84e" opacity=".38"/>
+    <path d="M10,128 C15,122 18,128 13,133 C11,131 10,128 10,128Z" fill="#d4a84e" opacity=".38"/>
+    <circle cx="10" cy="125" r=".9" fill="#d4a84e" opacity=".35"/>
+    <path d="M9,153 C4,147 1,153 6,158 C8,156 9,153 9,153Z" fill="#d4a84e" opacity=".38"/>
+    <path d="M9,153 C14,147 17,153 12,158 C10,156 9,153 9,153Z" fill="#d4a84e" opacity=".38"/>
+    <circle cx="9" cy="150" r=".9" fill="#d4a84e" opacity=".35"/>
+    <path d="M10,178 C5,172 2,178 7,183 C9,181 10,178 10,178Z" fill="#d4a84e" opacity=".38"/>
+    <path d="M10,178 C15,172 18,178 13,183 C11,181 10,178 10,178Z" fill="#d4a84e" opacity=".38"/>
+    <circle cx="10" cy="175" r=".9" fill="#d4a84e" opacity=".35"/>
+    <path d="M9,203 C4,197 1,203 6,208 C8,206 9,203 9,203Z" fill="#d4a84e" opacity=".38"/>
+    <path d="M9,203 C14,197 17,203 12,208 C10,206 9,203 9,203Z" fill="#d4a84e" opacity=".38"/>
+    <circle cx="9" cy="200" r=".9" fill="#d4a84e" opacity=".35"/>
+    <path d="M10,228 C5,222 2,228 7,233 C9,231 10,228 10,228Z" fill="#d4a84e" opacity=".38"/>
+    <path d="M10,228 C15,222 18,228 13,233 C11,231 10,228 10,228Z" fill="#d4a84e" opacity=".38"/>
+    <circle cx="10" cy="225" r=".9" fill="#d4a84e" opacity=".35"/>
+    <path d="M9,253 C4,247 1,253 6,258 C8,256 9,253 9,253Z" fill="#d4a84e" opacity=".38"/>
+    <path d="M9,253 C14,247 17,253 12,258 C10,256 9,253 9,253Z" fill="#d4a84e" opacity=".38"/>
+    <circle cx="9" cy="250" r=".9" fill="#d4a84e" opacity=".35"/>
+    <path d="M10,278 C5,272 2,278 7,283 C9,281 10,278 10,278Z" fill="#d4a84e" opacity=".38"/>
+    <path d="M10,278 C15,272 18,278 13,283 C11,281 10,278 10,278Z" fill="#d4a84e" opacity=".38"/>
+    <circle cx="10" cy="275" r=".9" fill="#d4a84e" opacity=".35"/>
+    <!-- Top & bottom horizontal accent lines -->
+    <line x1="5" y1="8" x2="18" y2="8" stroke="#d4a84e" stroke-width=".4" opacity=".4"/>
+    <line x1="5" y1="289" x2="18" y2="289" stroke="#d4a84e" stroke-width=".4" opacity=".4"/>
   </svg>
 
-  <div class="cover-top">
-    <span class="cover-label">Speisekarte</span>
-    <span class="cover-label">Frühjahr 2026</span>
+  <!-- RIGHT VINE (mirrored) -->
+  <svg class="cv-vine right" viewBox="0 0 22 297" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <path d="M11,5 C8,22 13,38 10,55 C7,72 13,88 9,105 C5,122 13,138 9,155 C5,172 13,188 9,205 C5,222 13,238 9,255 C7,268 10,280 10,292" stroke="#d4a84e" stroke-width=".55" opacity=".4"/>
+    <path d="M10,28 C5,22 2,28 7,33 C9,31 10,28 10,28Z" fill="#d4a84e" opacity=".38"/>
+    <path d="M10,28 C15,22 18,28 13,33 C11,31 10,28 10,28Z" fill="#d4a84e" opacity=".38"/>
+    <circle cx="10" cy="25" r=".9" fill="#d4a84e" opacity=".35"/>
+    <path d="M9,53 C4,47 1,53 6,58 C8,56 9,53 9,53Z" fill="#d4a84e" opacity=".38"/>
+    <path d="M9,53 C14,47 17,53 12,58 C10,56 9,53 9,53Z" fill="#d4a84e" opacity=".38"/>
+    <circle cx="9" cy="50" r=".9" fill="#d4a84e" opacity=".35"/>
+    <path d="M10,78 C5,72 2,78 7,83 C9,81 10,78 10,78Z" fill="#d4a84e" opacity=".38"/>
+    <path d="M10,78 C15,72 18,78 13,83 C11,81 10,78 10,78Z" fill="#d4a84e" opacity=".38"/>
+    <circle cx="10" cy="75" r=".9" fill="#d4a84e" opacity=".35"/>
+    <path d="M9,103 C4,97 1,103 6,108 C8,106 9,103 9,103Z" fill="#d4a84e" opacity=".38"/>
+    <path d="M9,103 C14,97 17,103 12,108 C10,106 9,103 9,103Z" fill="#d4a84e" opacity=".38"/>
+    <circle cx="9" cy="100" r=".9" fill="#d4a84e" opacity=".35"/>
+    <path d="M10,128 C5,122 2,128 7,133 C9,131 10,128 10,128Z" fill="#d4a84e" opacity=".38"/>
+    <path d="M10,128 C15,122 18,128 13,133 C11,131 10,128 10,128Z" fill="#d4a84e" opacity=".38"/>
+    <circle cx="10" cy="125" r=".9" fill="#d4a84e" opacity=".35"/>
+    <path d="M9,153 C4,147 1,153 6,158 C8,156 9,153 9,153Z" fill="#d4a84e" opacity=".38"/>
+    <path d="M9,153 C14,147 17,153 12,158 C10,156 9,153 9,153Z" fill="#d4a84e" opacity=".38"/>
+    <circle cx="9" cy="150" r=".9" fill="#d4a84e" opacity=".35"/>
+    <path d="M10,178 C5,172 2,178 7,183 C9,181 10,178 10,178Z" fill="#d4a84e" opacity=".38"/>
+    <path d="M10,178 C15,172 18,178 13,183 C11,181 10,178 10,178Z" fill="#d4a84e" opacity=".38"/>
+    <circle cx="10" cy="175" r=".9" fill="#d4a84e" opacity=".35"/>
+    <path d="M9,203 C4,197 1,203 6,208 C8,206 9,203 9,203Z" fill="#d4a84e" opacity=".38"/>
+    <path d="M9,203 C14,197 17,203 12,208 C10,206 9,203 9,203Z" fill="#d4a84e" opacity=".38"/>
+    <circle cx="9" cy="200" r=".9" fill="#d4a84e" opacity=".35"/>
+    <path d="M10,228 C5,222 2,228 7,233 C9,231 10,228 10,228Z" fill="#d4a84e" opacity=".38"/>
+    <path d="M10,228 C15,222 18,228 13,233 C11,231 10,228 10,228Z" fill="#d4a84e" opacity=".38"/>
+    <circle cx="10" cy="225" r=".9" fill="#d4a84e" opacity=".35"/>
+    <path d="M9,253 C4,247 1,253 6,258 C8,256 9,253 9,253Z" fill="#d4a84e" opacity=".38"/>
+    <path d="M9,253 C14,247 17,253 12,258 C10,256 9,253 9,253Z" fill="#d4a84e" opacity=".38"/>
+    <circle cx="9" cy="250" r=".9" fill="#d4a84e" opacity=".35"/>
+    <path d="M10,278 C5,272 2,278 7,283 C9,281 10,278 10,278Z" fill="#d4a84e" opacity=".38"/>
+    <path d="M10,278 C15,272 18,278 13,283 C11,281 10,278 10,278Z" fill="#d4a84e" opacity=".38"/>
+    <circle cx="10" cy="275" r=".9" fill="#d4a84e" opacity=".35"/>
+    <line x1="5" y1="8" x2="18" y2="8" stroke="#d4a84e" stroke-width=".4" opacity=".4"/>
+    <line x1="5" y1="289" x2="18" y2="289" stroke="#d4a84e" stroke-width=".4" opacity=".4"/>
+  </svg>
+
+  <div class="cv-frame"></div>
+  <div class="cv-top">
+    <span class="cv-lbl">Speisekarte</span>
+    <span class="cv-lbl">Frühjahr 2026</span>
   </div>
-
-  <div class="cover-body">
-    <img src="amfels_logo.png" class="cover-logo" alt="Am Fels">
-    <!-- Ornamental rule SVG -->
-    <svg class="cover-ornament-svg" viewBox="0 0 280 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <line x1="0" y1="7" x2="110" y2="7" stroke="#c4983e" stroke-width=".5" opacity=".5"/>
-      <path d="M120 7 L124 3 L128 7 L124 11Z" fill="#c4983e" opacity=".7"/>
-      <path d="M131 7 L134 4 L137 7 L134 10Z" fill="#c4983e" opacity=".5"/>
-      <path d="M140 7 L144 3 L148 7 L144 11Z" fill="#c4983e" opacity=".35"/>
-      <line x1="158" y1="7" x2="280" y2="7" stroke="#c4983e" stroke-width=".5" opacity=".5"/>
+  <div class="cv-body">
+    <img src="amfels_logo.png" class="cv-logo" alt="Am Fels">
+    <svg class="cv-orn" viewBox="0 0 256 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="7" x2="100" y2="7" stroke="#d4a84e" stroke-width=".5" opacity=".45"/>
+      <path d="M111 7 L115 3 L119 7 L115 11Z" fill="#d4a84e" opacity=".65"/>
+      <path d="M122 7 L125 4.5 L128 7 L125 9.5Z" fill="#d4a84e" opacity=".45"/>
+      <path d="M131 7 L135 3 L139 7 L135 11Z" fill="#d4a84e" opacity=".3"/>
+      <line x1="150" y1="7" x2="256" y2="7" stroke="#d4a84e" stroke-width=".5" opacity=".45"/>
     </svg>
-    <div class="cover-title">Am Fels</div>
-    <div class="cover-name">Restaurant &amp; Grillspezialitäten · Engelskirchen-Loope</div>
-    <div class="cover-tagline">Kroatische Tradition trifft internationale Kochkunst</div>
+    <div class="cv-title">Am Fels</div>
+    <div class="cv-sub">Restaurant &amp; Grillspezialitäten</div>
+    <div class="cv-tag">Kroatische Tradition trifft internationale Kochkunst</div>
   </div>
-
-  <div class="cover-foot">
+  <div class="cv-foot">
+    <p>Engelskirchen · Loope</p>
     <p>amfels.de</p>
-    <p>02263 929 1371</p>
   </div>
 </div>
 
 
-<!-- ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-     WILLKOMMEN
-▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ -->
+<!-- ████████ WILLKOMMEN ████████ -->
 <div class="page welcome">
-  <div class="welcome-frame"></div>
-  <div class="welcome-frame-inner"></div>
-
-  <div class="welcome-body">
-    <div class="welcome-eyebrow">Restaurant Am Fels</div>
-    <div class="welcome-title">Willkommen</div>
-    <svg class="welcome-ornament" viewBox="0 0 280 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <line x1="0" y1="7" x2="108" y2="7" stroke="#c4983e" stroke-width=".5" opacity=".4"/>
-      <path d="M118 7 L122 3 L126 7 L122 11Z" fill="#c4983e" opacity=".6"/>
-      <path d="M129 7 L132 4.5 L135 7 L132 9.5Z" fill="#c4983e" opacity=".4"/>
-      <path d="M138 7 L142 3 L146 7 L142 11Z" fill="#c4983e" opacity=".3"/>
-      <line x1="156" y1="7" x2="280" y2="7" stroke="#c4983e" stroke-width=".5" opacity=".4"/>
+  <div class="wl-frame"></div>
+  <div class="wl-frame2"></div>
+  <div class="wl-body">
+    <div class="wl-eyebrow">Restaurant Am Fels</div>
+    <div class="wl-title">Willkommen</div>
+    <svg class="wl-orn" viewBox="0 0 256 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="7" x2="100" y2="7" stroke="#d4a84e" stroke-width=".5" opacity=".35"/>
+      <path d="M111 7 L115 3 L119 7 L115 11Z" fill="#d4a84e" opacity=".55"/>
+      <path d="M122 7 L125 4.5 L128 7 L125 9.5Z" fill="#d4a84e" opacity=".38"/>
+      <path d="M131 7 L135 3 L139 7 L135 11Z" fill="#d4a84e" opacity=".25"/>
+      <line x1="150" y1="7" x2="256" y2="7" stroke="#d4a84e" stroke-width=".5" opacity=".35"/>
     </svg>
-    <div class="welcome-text">
+    <div class="wl-text">
       In unserem Haus verbinden wir die Leidenschaft für kroatische<br>
       Grilltraditionen mit der Finesse internationaler Küche.<br>
       Jedes Gericht entsteht mit frischen Zutaten und<br>
       dem Wunsch, Ihnen einen unvergesslichen Abend zu bereiten.
     </div>
-    <div class="welcome-grid">
+    <div class="wl-grid">
       <div class="wg">
-        <div class="wg-label">Öffnungszeiten</div>
-        <div class="wg-val">
-          Mo, Mi – Fr<br>17:30 – 22:00<br>
-          Samstag<br>12:00 – 14:30 &amp; 17:30 – 22:00<br>
-          Sonntag<br>12:00 – 15:00 &amp; 17:00 – 21:00<br>
-          <strong>Dienstag Ruhetag</strong>
-        </div>
+        <div class="wg-lbl">Öffnungszeiten</div>
+        <div class="wg-val">Mo, Mi – Fr<br>17:30 – 22:00<br>Samstag<br>12:00 – 14:30 &amp; 17:30 – 22:00<br>Sonntag<br>12:00 – 15:00 &amp; 17:00 – 21:00<br><strong>Dienstag Ruhetag</strong></div>
       </div>
       <div class="wg">
-        <div class="wg-label">Reservierung</div>
-        <div class="wg-val">
-          Telefon<br><strong>02263 929 1371</strong><br>
-          E-Mail<br>restaurant.amfels@web.de<br>
-          Online<br><strong>amfels.de</strong>
-        </div>
+        <div class="wg-lbl">Reservierung</div>
+        <div class="wg-val">Telefon<br><strong>02263 929 1371</strong><br>E-Mail<br>restaurant.amfels@web.de<br>Online<br><strong>amfels.de</strong></div>
       </div>
       <div class="wg">
-        <div class="wg-label">Für Ihre Feier</div>
-        <div class="wg-val">
-          Veranstaltungsraum<br>bis 75 Personen<br>
-          Private Dinner auf Anfrage<br>
-          Gutscheine erhältlich<br>
-          Parkplätze vorhanden
-        </div>
+        <div class="wg-lbl">Für Ihre Feier</div>
+        <div class="wg-val">Veranstaltungsraum<br>bis 75 Personen<br>Private Dinner auf Anfrage<br>Gutscheine erhältlich<br>Parkplätze vorhanden</div>
       </div>
     </div>
   </div>
-
-  <div class="welcome-addr">
+  <div class="wl-addr">
     <p>Staadter Weg 2 · 51766 Engelskirchen-Loope</p>
     <p>02263 929 1371 · restaurant.amfels@web.de · amfels.de</p>
   </div>
 </div>
 
 
-<!-- ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-     01 — VORSPEISEN · SUPPEN · KROATISCH · KLEIN ABER FEIN
-▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ -->
-<div class="page inner">
-<div class="inner-wrap">
-
-  <div class="rh">
-    <img src="amfels_logo.png" class="rh-logo" alt="">
-    <span class="rh-title">Speisekarte</span>
-    <span class="rh-num">01</span>
-  </div>
+<!-- ████████ 01 — VORSPEISEN ████████ -->
+<div class="page inner"><div class="iw">
+  <div class="rh"><img src="amfels_logo.png" class="rh-logo" alt=""><span class="rh-title">Speisekarte</span><span class="rh-num">01</span></div>
 
   <div class="s">
-    <div class="s-head">
-      <div class="s-head-line"></div>
-      <div class="s-title">Vorspeisen</div>
-      <div class="s-head-line"></div>
-    </div>
-    <div class="d"><div class="d-info"><div class="d-name">Knoblauchbrot</div><div class="d-desc">mit hausgemachtem Sauerrahm-Dip</div></div><div class="d-price">5,90 €</div></div>
-    <div class="d"><div class="d-info"><div class="d-name">Schafskäse überbacken</div><div class="d-desc">auf Tomaten und Paprika mit Olivenöl, serviert mit Brot</div></div><div class="d-price">10,90 €</div></div>
-    <div class="d"><div class="d-info"><div class="d-name">Ziegenkäse</div><div class="d-desc">mit Honig und Walnüssen überbacken, serviert mit Brot</div></div><div class="d-price">10,90 €</div></div>
-    <div class="d"><div class="d-info"><div class="d-name">Carpaccio vom Rinderfilet</div><div class="d-desc">auf Balsamicodressing mit frisch gehobeltem Parmesan</div></div><div class="d-price">13,90 €</div></div>
-    <div class="d"><div class="d-info"><div class="d-name">Scampi Picante</div><div class="d-desc">in hauseigener Sauce mit Knoblauch, serviert mit Brot</div></div><div class="d-price">13,90 €</div></div>
+    <div class="sh"><div class="sh-line"></div><div class="sh-title">Vorspeisen</div><div class="sh-line"></div></div>
+    <div class="d"><div class="d-i"><div class="d-n">Knoblauchbrot</div><div class="d-d">mit hausgemachtem Sauerrahm-Dip</div></div><div class="d-p">5,90 €</div></div>
+    <div class="d"><div class="d-i"><div class="d-n">Schafskäse überbacken</div><div class="d-d">auf Tomaten und Paprika mit Olivenöl, serviert mit Brot</div></div><div class="d-p">10,90 €</div></div>
+    <div class="d"><div class="d-i"><div class="d-n">Ziegenkäse</div><div class="d-d">mit Honig und Walnüssen überbacken, serviert mit Brot</div></div><div class="d-p">10,90 €</div></div>
+    <div class="d"><div class="d-i"><div class="d-n">Carpaccio vom Rinderfilet</div><div class="d-d">auf Balsamicodressing mit frisch gehobeltem Parmesan</div></div><div class="d-p">13,90 €</div></div>
+    <div class="d"><div class="d-i"><div class="d-n">Scampi Picante</div><div class="d-d">in hauseigener Sauce mit Knoblauch, serviert mit Brot</div></div><div class="d-p">13,90 €</div></div>
   </div>
 
-  <!-- SVG section ornament -->
-  <svg class="ornament-svg" viewBox="0 0 500 16" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-    <line x1="0" y1="8" x2="216" y2="8" stroke="#c0c0b0" stroke-width=".5"/>
-    <path d="M228 8 L232 4 L236 8 L232 12Z" fill="#a8782e" opacity=".5"/>
-    <circle cx="244" cy="8" r="1.5" fill="#a8782e" opacity=".35"/>
-    <path d="M252 8 L256 4 L260 8 L256 12Z" fill="#a8782e" opacity=".5"/>
-    <line x1="272" y1="8" x2="500" y2="8" stroke="#c0c0b0" stroke-width=".5"/>
-  </svg>
+  <svg class="orn" viewBox="0 0 460 16" fill="none" preserveAspectRatio="xMidYMid meet"><line x1="0" y1="8" x2="196" y2="8" stroke="#d0c8b4" stroke-width=".5"/><path d="M208 8 L212 4 L216 8 L212 12Z" fill="#b8893a" opacity=".5"/><circle cx="223" cy="8" r="1.4" fill="#b8893a" opacity=".35"/><path d="M230 8 L234 4 L238 8 L234 12Z" fill="#b8893a" opacity=".5"/><line x1="250" y1="8" x2="460" y2="8" stroke="#d0c8b4" stroke-width=".5"/></svg>
 
   <div class="s">
-    <div class="s-head">
-      <div class="s-head-line"></div>
-      <div class="s-title">Suppen</div>
-      <div class="s-head-line"></div>
-    </div>
-    <div class="cols2">
+    <div class="sh"><div class="sh-line"></div><div class="sh-title">Suppen</div><div class="sh-line"></div></div>
+    <div class="c2">
       <div>
-        <div class="d"><div class="d-info"><div class="d-name">Hühnersuppe</div></div><div class="d-price">6,50 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Tagessuppe</div></div><div class="d-price">6,50 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Hühnersuppe</div></div><div class="d-p">6,50 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Tagessuppe</div></div><div class="d-p">6,50 €</div></div>
       </div>
       <div>
-        <div class="d"><div class="d-info"><div class="d-name">Spargelsuppe</div><div class="d-desc">Saison</div></div><div class="d-price">6,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Spargelsuppe</div><div class="d-d">Saison</div></div><div class="d-p">6,90 €</div></div>
       </div>
     </div>
   </div>
 
-  <svg class="ornament-svg" viewBox="0 0 500 16" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-    <line x1="0" y1="8" x2="216" y2="8" stroke="#c0c0b0" stroke-width=".5"/>
-    <path d="M228 8 L232 4 L236 8 L232 12Z" fill="#a8782e" opacity=".5"/>
-    <circle cx="244" cy="8" r="1.5" fill="#a8782e" opacity=".35"/>
-    <path d="M252 8 L256 4 L260 8 L256 12Z" fill="#a8782e" opacity=".5"/>
-    <line x1="272" y1="8" x2="500" y2="8" stroke="#c0c0b0" stroke-width=".5"/>
-  </svg>
+  <svg class="orn" viewBox="0 0 460 16" fill="none" preserveAspectRatio="xMidYMid meet"><line x1="0" y1="8" x2="196" y2="8" stroke="#d0c8b4" stroke-width=".5"/><path d="M208 8 L212 4 L216 8 L212 12Z" fill="#b8893a" opacity=".5"/><circle cx="223" cy="8" r="1.4" fill="#b8893a" opacity=".35"/><path d="M230 8 L234 4 L238 8 L234 12Z" fill="#b8893a" opacity=".5"/><line x1="250" y1="8" x2="460" y2="8" stroke="#d0c8b4" stroke-width=".5"/></svg>
 
   <div class="s">
-    <div class="s-head">
-      <div class="s-head-line"></div>
-      <div class="s-title">Kroatische Grillspezialitäten</div>
-      <div class="s-head-line"></div>
-    </div>
-    <div class="d"><div class="d-info"><div class="d-name">Cevapcici</div><div class="d-desc">hausgemachte Hackfleischröllchen, Pommes Frites und Djuwetschreis</div></div><div class="d-price">18,90 €</div></div>
-    <div class="d"><div class="d-info"><div class="d-name">Raznjici vom Schwein</div><div class="d-desc">zarte Grillspieße, Pommes Frites und Djuwetschreis</div></div><div class="d-price">19,90 €</div></div>
-    <div class="d"><div class="d-info"><div class="d-name">Hacksteak Hirten Art</div><div class="d-desc">gefüllt mit cremigem Schafskäse</div></div><div class="d-price">19,90 €</div></div>
-    <div class="d"><div class="d-info"><div class="d-name">Kalbsleber</div><div class="d-desc">mit frischen gerösteten Zwiebeln</div></div><div class="d-price">20,90 €</div></div>
-    <div class="d"><div class="d-info"><div class="d-name">Grillteller Am Fels</div><div class="d-desc">Cevapcici, Rückensteak, Hacksteak und Raznjici auf einem Teller</div></div><div class="d-price">21,90 €</div></div>
-    <div class="d"><div class="d-info"><div class="d-name">Lustiger Bosnjak</div><div class="d-desc">Rumpsteak gefüllt mit Schinken und Käse</div></div><div class="d-price">ab 28,90 €</div></div>
+    <div class="sh"><div class="sh-line"></div><div class="sh-title">Kroatische Grillspezialitäten</div><div class="sh-line"></div></div>
+    <div class="d"><div class="d-i"><div class="d-n">Cevapcici</div><div class="d-d">hausgemachte Hackfleischröllchen, Pommes Frites und Djuwetschreis</div></div><div class="d-p">18,90 €</div></div>
+    <div class="d"><div class="d-i"><div class="d-n">Raznjici vom Schwein</div><div class="d-d">zarte Grillspieße, Pommes Frites und Djuwetschreis</div></div><div class="d-p">19,90 €</div></div>
+    <div class="d"><div class="d-i"><div class="d-n">Hacksteak Hirten Art</div><div class="d-d">gefüllt mit cremigem Schafskäse</div></div><div class="d-p">19,90 €</div></div>
+    <div class="d"><div class="d-i"><div class="d-n">Kalbsleber</div><div class="d-d">mit frischen gerösteten Zwiebeln</div></div><div class="d-p">20,90 €</div></div>
+    <div class="d"><div class="d-i"><div class="d-n">Grillteller Am Fels</div><div class="d-d">Cevapcici, Rückensteak, Hacksteak und Raznjici auf einem Teller</div></div><div class="d-p">21,90 €</div></div>
+    <div class="d"><div class="d-i"><div class="d-n">Lustiger Bosnjak</div><div class="d-d">Rumpsteak gefüllt mit Schinken und Käse</div></div><div class="d-p">ab 28,90 €</div></div>
   </div>
 
-  <svg class="ornament-svg" viewBox="0 0 500 16" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-    <line x1="0" y1="8" x2="216" y2="8" stroke="#c0c0b0" stroke-width=".5"/>
-    <path d="M228 8 L232 4 L236 8 L232 12Z" fill="#a8782e" opacity=".5"/>
-    <circle cx="244" cy="8" r="1.5" fill="#a8782e" opacity=".35"/>
-    <path d="M252 8 L256 4 L260 8 L256 12Z" fill="#a8782e" opacity=".5"/>
-    <line x1="272" y1="8" x2="500" y2="8" stroke="#c0c0b0" stroke-width=".5"/>
-  </svg>
+  <svg class="orn" viewBox="0 0 460 16" fill="none" preserveAspectRatio="xMidYMid meet"><line x1="0" y1="8" x2="196" y2="8" stroke="#d0c8b4" stroke-width=".5"/><path d="M208 8 L212 4 L216 8 L212 12Z" fill="#b8893a" opacity=".5"/><circle cx="223" cy="8" r="1.4" fill="#b8893a" opacity=".35"/><path d="M230 8 L234 4 L238 8 L234 12Z" fill="#b8893a" opacity=".5"/><line x1="250" y1="8" x2="460" y2="8" stroke="#d0c8b4" stroke-width=".5"/></svg>
 
   <div class="s">
-    <div class="s-head">
-      <div class="s-head-line"></div>
-      <div class="s-title">Klein aber Fein</div>
-      <div class="s-head-line"></div>
-    </div>
-    <div class="d"><div class="d-info"><div class="d-name">Salat Filetto di Manzo</div><div class="d-desc">frischer Salat mit Steakfleischstreifen und Parmesan</div></div><div class="d-price">18,90 €</div></div>
-    <div class="d"><div class="d-info"><div class="d-name">Salat Chef</div><div class="d-desc">mit gegrillten Hähnchenstreifen, Bratkartoffeln und Parmesan</div></div><div class="d-price">17,90 €</div></div>
-    <div class="d"><div class="d-info"><div class="d-name">Gemüseteller Vegetaria</div><div class="d-desc">buntes Pfannengemüse, Folienkartoffel mit Sauerrahm</div></div><div class="d-price">16,90 €</div></div>
-    <div class="d"><div class="d-info"><div class="d-name">Tagliatelle Gambas</div><div class="d-desc">frische Bandnudeln mit Garnelen in Parmesan-Sahne-Sauce</div></div><div class="d-price">17,90 €</div></div>
+    <div class="sh"><div class="sh-line"></div><div class="sh-title">Klein aber Fein</div><div class="sh-line"></div></div>
+    <div class="d"><div class="d-i"><div class="d-n">Salat Filetto di Manzo</div><div class="d-d">frischer Salat mit Steakfleischstreifen und Parmesan</div></div><div class="d-p">18,90 €</div></div>
+    <div class="d"><div class="d-i"><div class="d-n">Salat Chef</div><div class="d-d">mit gegrillten Hähnchenstreifen, Bratkartoffeln und Parmesan</div></div><div class="d-p">17,90 €</div></div>
+    <div class="d"><div class="d-i"><div class="d-n">Gemüseteller Vegetaria</div><div class="d-d">buntes Pfannengemüse, Folienkartoffel mit Sauerrahm</div></div><div class="d-p">16,90 €</div></div>
+    <div class="d"><div class="d-i"><div class="d-n">Tagliatelle Gambas</div><div class="d-d">frische Bandnudeln mit Garnelen in Parmesan-Sahne-Sauce</div></div><div class="d-p">17,90 €</div></div>
   </div>
 
-  <div class="allergen">Allergene und Zusatzstoffe auf Anfrage beim Personal. · Alle Preise inkl. gesetzl. MwSt.</div>
-</div>
-<div class="rf"><span>Restaurant Am Fels · Engelskirchen-Loope</span><span>amfels.de</span></div>
-</div>
+  <div class="allergen">Allergene und Zusatzstoffe auf Anfrage beim Personal · Alle Preise inkl. gesetzl. MwSt.</div>
+</div><div class="rf"><span>Restaurant Am Fels · Engelskirchen-Loope</span><span>amfels.de</span></div></div>
 
 
-<!-- ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-     02 — HAUPTGERICHTE
-▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ -->
-<div class="page inner">
-<div class="inner-wrap">
-
-  <div class="rh">
-    <img src="amfels_logo.png" class="rh-logo" alt="">
-    <span class="rh-title">Hauptgerichte</span>
-    <span class="rh-num">02</span>
-  </div>
-
-  <div class="cols2">
+<!-- ████████ 02 — HAUPTGERICHTE ████████ -->
+<div class="page inner"><div class="iw">
+  <div class="rh"><img src="amfels_logo.png" class="rh-logo" alt=""><span class="rh-title">Hauptgerichte</span><span class="rh-num">02</span></div>
+  <div class="c2">
     <div>
-      <div class="s">
-        <div class="s-head"><div class="s-head-line"></div><div class="s-title">Vom Schwein</div><div class="s-head-line"></div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Cordon Bleu</div><div class="d-desc">mit Schinken &amp; Käse gefüllt, paniert, Pommes Frites</div></div><div class="d-price">20,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Zagreb Teller</div><div class="d-desc">Schweinefilet mit Schinken &amp; Käse, Knoblauchrahmsauce</div></div><div class="d-price">20,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Schiwago Teller</div><div class="d-desc">mit Champignonrahmsauce, Kroketten &amp; Gemüse</div></div><div class="d-price">20,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Marco Polo</div><div class="d-desc">mit Schinken, Sauce Béarnaise, Käse überbacken</div></div><div class="d-price">21,90 €</div></div>
+      <div class="s"><div class="sh"><div class="sh-line"></div><div class="sh-title">Vom Schwein</div><div class="sh-line"></div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Cordon Bleu</div><div class="d-d">mit Schinken &amp; Käse gefüllt, paniert, Pommes Frites</div></div><div class="d-p">20,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Zagreb Teller</div><div class="d-d">Schweinefilet mit Schinken &amp; Käse, Knoblauchrahmsauce</div></div><div class="d-p">20,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Schiwago Teller</div><div class="d-d">Champignonrahmsauce, Kroketten &amp; Gemüse</div></div><div class="d-p">20,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Marco Polo</div><div class="d-d">Schinken, Sauce Béarnaise, Käse überbacken</div></div><div class="d-p">21,90 €</div></div>
       </div>
       <hr class="sep">
-      <div class="s">
-        <div class="s-head"><div class="s-head-line"></div><div class="s-title">Hähnchen &amp; Schnitzel</div><div class="s-head-line"></div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Pfanne India</div><div class="d-desc">Hähnchengeschnetzeltes, tropische Früchte, Curry-Sahne</div></div><div class="d-price">19,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Schnitzel Wiener Art</div><div class="d-desc">paniert, Pommes Frites</div></div><div class="d-price">17,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Schnitzel Champignon</div><div class="d-desc">paniert, Champignon-Rahmsauce</div></div><div class="d-price">19,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Hähnchensteak Natur</div><div class="d-desc">gegrillt, mit Kräuterbutter</div></div><div class="d-price">18,90 €</div></div>
+      <div class="s"><div class="sh"><div class="sh-line"></div><div class="sh-title">Hähnchen &amp; Schnitzel</div><div class="sh-line"></div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Pfanne India</div><div class="d-d">Hähnchengeschnetzeltes, tropische Früchte, Curry-Sahne</div></div><div class="d-p">19,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Schnitzel Wiener Art</div><div class="d-d">paniert, Pommes Frites</div></div><div class="d-p">17,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Schnitzel Champignon</div><div class="d-d">paniert, Champignon-Rahmsauce</div></div><div class="d-p">19,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Hähnchensteak Natur</div><div class="d-d">gegrillt, mit Kräuterbutter</div></div><div class="d-p">18,90 €</div></div>
       </div>
       <hr class="sep">
-      <div class="s">
-        <div class="s-head"><div class="s-head-line"></div><div class="s-title">Vom Lamm</div><div class="s-head-line"></div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Lamm-Hüfte</div><div class="d-desc">mit frischem Knoblauch, Prinzessbohnen &amp; Bratkartoffeln</div></div><div class="d-price">25,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Lamm-Mix Teller</div><div class="d-desc">Steak und Kotelett mit frischem Knoblauch</div></div><div class="d-price">28,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Lamm-Kotelett vom Carré</div><div class="d-desc">mit frischem Knoblauch</div></div><div class="d-price">30,90 €</div></div>
+      <div class="s"><div class="sh"><div class="sh-line"></div><div class="sh-title">Vom Lamm</div><div class="sh-line"></div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Lamm-Hüfte</div><div class="d-d">mit frischem Knoblauch, Prinzessbohnen &amp; Bratkartoffeln</div></div><div class="d-p">25,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Lamm-Mix Teller</div><div class="d-d">Steak und Kotelett mit frischem Knoblauch</div></div><div class="d-p">28,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Lamm-Kotelett vom Carré</div><div class="d-d">mit frischem Knoblauch</div></div><div class="d-p">30,90 €</div></div>
       </div>
       <hr class="sep">
-      <div class="s">
-        <div class="s-head"><div class="s-head-line"></div><div class="s-title">Kleine Gäste</div><div class="s-head-line"></div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Biene Maya</div><div class="d-desc">paniertes Hähnchenschnitzel, Pommes Frites</div></div><div class="d-price">9,50 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Cowboy</div><div class="d-desc">4 Cevapcici, Pommes Frites</div></div><div class="d-price">9,50 €</div></div>
+      <div class="s"><div class="sh"><div class="sh-line"></div><div class="sh-title">Kleine Gäste</div><div class="sh-line"></div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Biene Maya</div><div class="d-d">paniertes Hähnchenschnitzel, Pommes Frites</div></div><div class="d-p">9,50 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Cowboy</div><div class="d-d">4 Cevapcici, Pommes Frites</div></div><div class="d-p">9,50 €</div></div>
       </div>
     </div>
     <div>
-      <div class="s">
-        <div class="s-head"><div class="s-head-line"></div><div class="s-title">Frischer Fisch</div><div class="s-head-line"></div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Doradenfilet</div><div class="d-desc">Kräuterbutter-Sauce, Mangold-Kartoffeln</div></div><div class="d-price">21,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Zanderfilet</div><div class="d-desc">feine Dill-Sauce, Mangold-Kartoffeln mit Knoblauch</div></div><div class="d-price">22,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Lachsfilet</div><div class="d-desc">Kräuterbutter, Folienkartoffel mit Sauerrahm</div></div><div class="d-price">22,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Fischteller Am Fels</div><div class="d-desc">verschiedene Fischfilets und 2 Garnelen</div></div><div class="d-price">26,90 €</div></div>
+      <div class="s"><div class="sh"><div class="sh-line"></div><div class="sh-title">Frischer Fisch</div><div class="sh-line"></div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Doradenfilet</div><div class="d-d">Kräuterbutter-Sauce, Mangold-Kartoffeln</div></div><div class="d-p">21,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Zanderfilet</div><div class="d-d">feine Dill-Sauce, Mangold-Kartoffeln mit Knoblauch</div></div><div class="d-p">22,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Lachsfilet</div><div class="d-d">Kräuterbutter, Folienkartoffel mit Sauerrahm</div></div><div class="d-p">22,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Fischteller Am Fels</div><div class="d-d">verschiedene Fischfilets und 2 Garnelen</div></div><div class="d-p">26,90 €</div></div>
       </div>
       <hr class="sep">
-      <div class="s">
-        <div class="s-head"><div class="s-head-line"></div><div class="s-title">Für Senioren</div><div class="s-head-line"></div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Herren Teller</div><div class="d-desc">2 Schweinefiletmedaillons mit Pfeffersauce</div></div><div class="d-price">17,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Damen Teller</div><div class="d-desc">Hähnchensteak, tropische Früchte &amp; Hollandaise</div></div><div class="d-price">17,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Filetsteak Mini 130 g</div><div class="d-desc">mit Champignons in Pfefferrahmsauce</div></div><div class="d-price">25,90 €</div></div>
+      <div class="s"><div class="sh"><div class="sh-line"></div><div class="sh-title">Für Senioren</div><div class="sh-line"></div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Herren Teller</div><div class="d-d">2 Schweinefiletmedaillons mit Pfeffersauce</div></div><div class="d-p">17,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Damen Teller</div><div class="d-d">Hähnchensteak, tropische Früchte &amp; Hollandaise</div></div><div class="d-p">17,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Filetsteak Mini 130 g</div><div class="d-d">Champignons in Pfefferrahmsauce</div></div><div class="d-p">25,90 €</div></div>
       </div>
       <hr class="sep">
-      <div class="s">
-        <div class="s-head"><div class="s-head-line"></div><div class="s-title">Mittagskarte</div><div class="s-head-line"></div></div>
+      <div class="s"><div class="sh"><div class="sh-line"></div><div class="sh-title">Mittagskarte</div><div class="sh-line"></div></div>
         <p class="note">Samstag 11:30 – 14:30 Uhr · inkl. Beilagensalat</p>
-        <div class="d"><div class="d-info"><div class="d-name">Tagliatelle Pollo</div><div class="d-desc">Hähnchen &amp; Champignons, Käse-Sahne-Sauce</div></div><div class="d-price">15,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Gourmet Hacksteak</div><div class="d-desc">mit Zwiebeln &amp; Speck, Pommes Frites</div></div><div class="d-price">16,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Schnitzel Paprika Art</div><div class="d-desc">paniert, Paprika-Sauce &amp; Pommes Frites</div></div><div class="d-price">16,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Rotbarschfilet</div><div class="d-desc">paniert, Bratkartoffeln &amp; Remouladensauce</div></div><div class="d-price">16,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Tagliatelle Pollo</div><div class="d-d">Hähnchen &amp; Champignons, Käse-Sahne-Sauce</div></div><div class="d-p">15,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Gourmet Hacksteak</div><div class="d-d">Zwiebeln &amp; Speck, Pommes Frites</div></div><div class="d-p">16,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Schnitzel Paprika Art</div><div class="d-d">paniert, Paprika-Sauce &amp; Pommes Frites</div></div><div class="d-p">16,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Rotbarschfilet</div><div class="d-d">paniert, Bratkartoffeln &amp; Remouladensauce</div></div><div class="d-p">16,90 €</div></div>
       </div>
     </div>
   </div>
-
-  <div class="allergen">Allergene und Zusatzstoffe auf Anfrage beim Personal. · Alle Preise inkl. gesetzl. MwSt.</div>
-</div>
-<div class="rf"><span>Restaurant Am Fels · Engelskirchen-Loope</span><span>amfels.de</span></div>
-</div>
+  <div class="allergen">Allergene und Zusatzstoffe auf Anfrage beim Personal · Alle Preise inkl. gesetzl. MwSt.</div>
+</div><div class="rf"><span>Restaurant Am Fels · Engelskirchen-Loope</span><span>amfels.de</span></div></div>
 
 
-<!-- ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-     03 — STEAKBÖRSE · BEILAGEN · DESSERTS · SPARGEL
-▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ -->
-<div class="page inner">
-<div class="inner-wrap">
-
-  <div class="rh">
-    <img src="amfels_logo.png" class="rh-logo" alt="">
-    <span class="rh-title">Steakbörse &amp; Desserts</span>
-    <span class="rh-num">03</span>
-  </div>
+<!-- ████████ 03 — STEAKS & DESSERTS ████████ -->
+<div class="page inner"><div class="iw">
+  <div class="rh"><img src="amfels_logo.png" class="rh-logo" alt=""><span class="rh-title">Steakbörse &amp; Desserts</span><span class="rh-num">03</span></div>
 
   <div class="s">
-    <div class="s-head"><div class="s-head-line"></div><div class="s-title">Steakbörse</div><div class="s-head-line"></div></div>
-    <p class="stk-note">Premium Grain Fed Beef · Argentinien · alle Steaks mit Beilagensalat · Garpunkte auf Wunsch</p>
-    <table class="stk">
-      <thead>
-        <tr>
-          <th style="width:52%"></th>
-          <th>200 g</th>
-          <th>300 g</th>
-          <th>400 g</th>
-        </tr>
-      </thead>
+    <div class="sh"><div class="sh-line"></div><div class="sh-title">Steakbörse</div><div class="sh-line"></div></div>
+    <p class="sn">Premium Grain Fed Beef · Argentinien · alle Steaks mit Beilagensalat · Garpunkte auf Wunsch</p>
+    <table class="st">
+      <thead><tr><th style="width:52%"></th><th>200 g</th><th>300 g</th><th>400 g</th></tr></thead>
       <tbody>
         <tr><td>Rumpsteak Premium</td><td class="p">27,90 €</td><td class="p">35,90 €</td><td class="p">41,90 €</td></tr>
         <tr><td>Filetsteak Premium</td><td class="p">33,90 €</td><td class="p">43,90 €</td><td class="p">51,90 €</td></tr>
-        <tr><td>Zwiebelrostbraten<span class="d-desc">mit frischen gerösteten Zwiebeln</span></td><td class="p">28,90 €</td><td class="p">36,90 €</td><td class="p">42,90 €</td></tr>
-        <tr><td>Rumpsteak Spezial<span class="d-desc">Champignons &amp; Sauce Béarnaise</span></td><td class="p">28,90 €</td><td class="p">36,90 €</td><td class="p">42,90 €</td></tr>
-        <tr><td>Filetsteak Madagaskar<span class="d-desc">klassische Pfeffersauce</span></td><td class="p">33,90 €</td><td class="p">43,90 €</td><td class="p">51,90 €</td></tr>
-        <tr><td>Filetsteak Champignon<span class="d-desc">Champignonrahmsauce</span></td><td class="p">33,90 €</td><td class="p">43,90 €</td><td class="p">51,90 €</td></tr>
-        <tr><td>Pfanne Am Fels<span class="d-desc">Steakstreifen, Paprika &amp; Champignons, Peperoni-Salsa</span></td><td class="p">23,90 €</td><td class="p">29,90 €</td><td class="p">35,90 €</td></tr>
+        <tr><td>Zwiebelrostbraten<span class="dd">mit frischen gerösteten Zwiebeln</span></td><td class="p">28,90 €</td><td class="p">36,90 €</td><td class="p">42,90 €</td></tr>
+        <tr><td>Rumpsteak Spezial<span class="dd">Champignons &amp; Sauce Béarnaise</span></td><td class="p">28,90 €</td><td class="p">36,90 €</td><td class="p">42,90 €</td></tr>
+        <tr><td>Filetsteak Madagaskar<span class="dd">klassische Pfeffersauce</span></td><td class="p">33,90 €</td><td class="p">43,90 €</td><td class="p">51,90 €</td></tr>
+        <tr><td>Filetsteak Champignon<span class="dd">Champignonrahmsauce</span></td><td class="p">33,90 €</td><td class="p">43,90 €</td><td class="p">51,90 €</td></tr>
+        <tr><td>Pfanne Am Fels<span class="dd">Steakstreifen, Paprika &amp; Champignons, Peperoni-Salsa</span></td><td class="p">23,90 €</td><td class="p">29,90 €</td><td class="p">35,90 €</td></tr>
       </tbody>
     </table>
   </div>
 
-  <svg class="ornament-svg" viewBox="0 0 500 16" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-    <line x1="0" y1="8" x2="216" y2="8" stroke="#c0c0b0" stroke-width=".5"/>
-    <path d="M228 8 L232 4 L236 8 L232 12Z" fill="#a8782e" opacity=".5"/>
-    <circle cx="244" cy="8" r="1.5" fill="#a8782e" opacity=".35"/>
-    <path d="M252 8 L256 4 L260 8 L256 12Z" fill="#a8782e" opacity=".5"/>
-    <line x1="272" y1="8" x2="500" y2="8" stroke="#c0c0b0" stroke-width=".5"/>
-  </svg>
+  <svg class="orn" viewBox="0 0 460 16" fill="none" preserveAspectRatio="xMidYMid meet"><line x1="0" y1="8" x2="196" y2="8" stroke="#d0c8b4" stroke-width=".5"/><path d="M208 8 L212 4 L216 8 L212 12Z" fill="#b8893a" opacity=".5"/><circle cx="223" cy="8" r="1.4" fill="#b8893a" opacity=".35"/><path d="M230 8 L234 4 L238 8 L234 12Z" fill="#b8893a" opacity=".5"/><line x1="250" y1="8" x2="460" y2="8" stroke="#d0c8b4" stroke-width=".5"/></svg>
 
-  <div class="cols2">
+  <div class="c2">
     <div>
-      <div class="s">
-        <div class="s-head"><div class="s-head-line"></div><div class="s-title">Beilagen</div><div class="s-head-line"></div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Pommes Frites</div></div><div class="d-price">4,00 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Kroketten</div></div><div class="d-price">4,00 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Folienkartoffel</div></div><div class="d-price">5,00 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Bratkartoffeln</div></div><div class="d-price">4,00 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Djuwetschreis</div></div><div class="d-price">4,00 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Butterreis</div></div><div class="d-price">4,00 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Gemüse</div></div><div class="d-price">4,00 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Beilagensalat</div></div><div class="d-price">4,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Prinzessbohnen</div></div><div class="d-price">4,00 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Kräuterbutter</div></div><div class="d-price">2,50 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Ajvar</div></div><div class="d-price">2,50 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Sauerrahm</div></div><div class="d-price">3,00 €</div></div>
+      <div class="s"><div class="sh"><div class="sh-line"></div><div class="sh-title">Beilagen</div><div class="sh-line"></div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Pommes Frites</div></div><div class="d-p">4,00 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Kroketten</div></div><div class="d-p">4,00 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Folienkartoffel</div></div><div class="d-p">5,00 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Bratkartoffeln</div></div><div class="d-p">4,00 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Djuwetschreis</div></div><div class="d-p">4,00 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Butterreis</div></div><div class="d-p">4,00 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Gemüse</div></div><div class="d-p">4,00 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Beilagensalat</div></div><div class="d-p">4,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Prinzessbohnen</div></div><div class="d-p">4,00 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Kräuterbutter</div></div><div class="d-p">2,50 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Ajvar</div></div><div class="d-p">2,50 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Sauerrahm</div></div><div class="d-p">3,00 €</div></div>
         <hr class="sep" style="margin:2mm 0">
-        <div class="d"><div class="d-info"><div class="d-name">Champignonrahmsauce</div></div><div class="d-price">4,00 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Pfeffersauce</div></div><div class="d-price">4,00 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Hollandaise</div></div><div class="d-price">4,00 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Sauce Béarnaise</div></div><div class="d-price">4,00 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Champignonrahmsauce</div></div><div class="d-p">4,00 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Pfeffersauce</div></div><div class="d-p">4,00 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Hollandaise</div></div><div class="d-p">4,00 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Sauce Béarnaise</div></div><div class="d-p">4,00 €</div></div>
       </div>
     </div>
     <div>
-      <div class="s">
-        <div class="s-head"><div class="s-head-line"></div><div class="s-title">Desserts</div><div class="s-head-line"></div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Palatschinken</div><div class="d-desc">mit Schokolade oder Marmelade</div></div><div class="d-price">5,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Palatschinken Gourmet</div><div class="d-desc">hauchdünn, Schokolade &amp; Vanilleeis</div></div><div class="d-price">8,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Crème brûlée</div><div class="d-desc">karamellisierte Zuckerschicht</div></div><div class="d-price">6,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Lava Cake</div><div class="d-desc">warmes Schokoladen-Soufflé mit flüssigem Kern</div></div><div class="d-price">8,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Semifreddo</div><div class="d-desc">karamellisierte Mandeln &amp; Karamellsauce</div></div><div class="d-price">9,50 €</div></div>
+      <div class="s"><div class="sh"><div class="sh-line"></div><div class="sh-title">Desserts</div><div class="sh-line"></div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Palatschinken</div><div class="d-d">mit Schokolade oder Marmelade</div></div><div class="d-p">5,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Palatschinken Gourmet</div><div class="d-d">hauchdünn, Schokolade &amp; Vanilleeis</div></div><div class="d-p">8,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Crème brûlée</div><div class="d-d">karamellisierte Zuckerschicht</div></div><div class="d-p">6,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Lava Cake</div><div class="d-d">warmes Schokoladen-Soufflé mit flüssigem Kern</div></div><div class="d-p">8,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Semifreddo</div><div class="d-d">karamellisierte Mandeln &amp; Karamellsauce</div></div><div class="d-p">9,50 €</div></div>
       </div>
-      <div class="seasonal">
-        <div class="seasonal-label">Saisonal · Spargel 2026</div>
+      <div class="sea">
+        <div class="sea-lbl">Saisonal · Spargel 2026</div>
         <p class="note" style="margin-top:0;margin-bottom:2.5mm">mit Sauce Hollandaise &amp; Salzkartoffeln</p>
-        <div class="d"><div class="d-info"><div class="d-name">mit Prosciutto Cotto</div></div><div class="d-price">25,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">mit Hähnchensteak</div></div><div class="d-price">28,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">mit Schweinemedaillons</div></div><div class="d-price">30,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">mit Lachsfilet</div></div><div class="d-price">32,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">mit Rumpsteak 200 g / 300 g</div></div><div class="d-price">37,90 / 45,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">mit Filetsteak 200 g / 300 g</div></div><div class="d-price">43,90 / 52,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">mit Prosciutto Cotto</div></div><div class="d-p">25,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">mit Hähnchensteak</div></div><div class="d-p">28,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">mit Schweinemedaillons</div></div><div class="d-p">30,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">mit Lachsfilet</div></div><div class="d-p">32,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">mit Rumpsteak 200 g / 300 g</div></div><div class="d-p">37,90 / 45,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">mit Filetsteak 200 g / 300 g</div></div><div class="d-p">43,90 / 52,90 €</div></div>
       </div>
     </div>
   </div>
-
-  <div class="allergen">Allergene und Zusatzstoffe auf Anfrage beim Personal. · Alle Preise inkl. gesetzl. MwSt.</div>
-</div>
-<div class="rf"><span>Restaurant Am Fels · Engelskirchen-Loope</span><span>amfels.de</span></div>
-</div>
+  <div class="allergen">Allergene und Zusatzstoffe auf Anfrage beim Personal · Alle Preise inkl. gesetzl. MwSt.</div>
+</div><div class="rf"><span>Restaurant Am Fels · Engelskirchen-Loope</span><span>amfels.de</span></div></div>
 
 
-<!-- ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-     04 — GETRÄNKEKARTE
-▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ -->
-<div class="page inner">
-<div class="inner-wrap">
-
-  <div class="rh">
-    <img src="amfels_logo.png" class="rh-logo" alt="">
-    <span class="rh-title">Getränkekarte</span>
-    <span class="rh-num">04</span>
-  </div>
-
-  <div class="cols2">
+<!-- ████████ 04 — GETRÄNKE ████████ -->
+<div class="page inner"><div class="iw">
+  <div class="rh"><img src="amfels_logo.png" class="rh-logo" alt=""><span class="rh-title">Getränkekarte</span><span class="rh-num">04</span></div>
+  <div class="c2">
     <div>
-      <div class="s">
-        <div class="dk-title">Heiße Getränke</div>
-        <div class="d"><div class="d-info"><div class="d-name">Tasse Kaffee</div></div><div class="d-price">2,50 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Espresso</div></div><div class="d-price">2,30 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Espresso doppelt</div></div><div class="d-price">3,00 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Espresso Macchiato</div></div><div class="d-price">3,00 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Cappuccino</div></div><div class="d-price">3,30 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Latte Macchiato</div></div><div class="d-price">3,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Milchkaffee</div></div><div class="d-price">3,60 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Heiße Schokolade</div></div><div class="d-price">3,50 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Tasse Tee</div></div><div class="d-price">3,00 €</div></div>
+      <div class="s"><div class="dk">Heiße Getränke</div>
+        <div class="d"><div class="d-i"><div class="d-n">Tasse Kaffee</div></div><div class="d-p">2,50 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Espresso</div></div><div class="d-p">2,30 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Espresso doppelt</div></div><div class="d-p">3,00 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Espresso Macchiato</div></div><div class="d-p">3,00 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Cappuccino</div></div><div class="d-p">3,30 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Latte Macchiato</div></div><div class="d-p">3,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Milchkaffee</div></div><div class="d-p">3,60 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Heiße Schokolade</div></div><div class="d-p">3,50 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Tasse Tee</div></div><div class="d-p">3,00 €</div></div>
       </div>
       <hr class="sep">
-      <div class="s">
-        <div class="dk-title">Bier</div>
-        <div class="d"><div class="d-info"><div class="d-name">Früh Kölsch 0,3 l</div></div><div class="d-price">3,20 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Früh Kölsch 0,2 l</div></div><div class="d-price">2,20 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Früh Kölsch alkoholfrei</div></div><div class="d-price">3,50 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Erzquell Pils 0,3 l</div></div><div class="d-price">3,30 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Bergisches Landbier 0,3 l</div></div><div class="d-price">3,40 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Bergisches Landbier alk.fr.</div></div><div class="d-price">3,60 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Paulaner Hefeweizen 0,5 l</div></div><div class="d-price">5,50 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Malzbier 0,3 l</div></div><div class="d-price">3,20 €</div></div>
+      <div class="s"><div class="dk">Bier</div>
+        <div class="d"><div class="d-i"><div class="d-n">Früh Kölsch 0,3 l</div></div><div class="d-p">3,20 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Früh Kölsch 0,2 l</div></div><div class="d-p">2,20 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Früh Kölsch alkoholfrei</div></div><div class="d-p">3,50 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Erzquell Pils 0,3 l</div></div><div class="d-p">3,30 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Bergisches Landbier 0,3 l</div></div><div class="d-p">3,40 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Bergisches Landbier alk.fr.</div></div><div class="d-p">3,60 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Paulaner Hefeweizen 0,5 l</div></div><div class="d-p">5,50 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Malzbier 0,3 l</div></div><div class="d-p">3,20 €</div></div>
       </div>
       <hr class="sep">
-      <div class="s">
-        <div class="dk-title">Aperitifs &amp; Cocktails</div>
-        <div class="d"><div class="d-info"><div class="d-name">Aperolspritz</div></div><div class="d-price">7,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Campari Orange</div></div><div class="d-price">7,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Lillet Berry</div></div><div class="d-price">7,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Tanqueray Gin Tonic</div></div><div class="d-price">9,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Glas Sekt 0,1 l</div></div><div class="d-price">4,50 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Martini Bianco / Sherry</div></div><div class="d-price">4,50 €</div></div>
+      <div class="s"><div class="dk">Aperitifs &amp; Cocktails</div>
+        <div class="d"><div class="d-i"><div class="d-n">Aperolspritz</div></div><div class="d-p">7,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Campari Orange</div></div><div class="d-p">7,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Lillet Berry</div></div><div class="d-p">7,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Tanqueray Gin Tonic</div></div><div class="d-p">9,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Glas Sekt 0,1 l</div></div><div class="d-p">4,50 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Martini Bianco / Sherry</div></div><div class="d-p">4,50 €</div></div>
       </div>
       <hr class="sep">
-      <div class="s">
-        <div class="dk-title">Alkoholfrei</div>
-        <div class="d"><div class="d-info"><div class="d-name">Coca-Cola / Zero 0,3 l</div></div><div class="d-price">3,30 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Fanta / Sprite 0,3 l</div></div><div class="d-price">3,30 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Spezi 0,3 l</div></div><div class="d-price">3,30 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Tönnissteiner 0,25 l / 0,75 l</div></div><div class="d-price">3,00 / 6,50 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Apfelschorle Naturtrüb</div></div><div class="d-price">3,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Rhabarberlimonade</div></div><div class="d-price">3,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Eistee Pfirsich</div></div><div class="d-price">3,90 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">O-Saft / Apfelsaft 0,2 l</div></div><div class="d-price">3,50 €</div></div>
+      <div class="s"><div class="dk">Alkoholfrei</div>
+        <div class="d"><div class="d-i"><div class="d-n">Coca-Cola / Zero 0,3 l</div></div><div class="d-p">3,30 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Fanta / Sprite 0,3 l</div></div><div class="d-p">3,30 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Spezi 0,3 l</div></div><div class="d-p">3,30 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Tönnissteiner 0,25 l / 0,75 l</div></div><div class="d-p">3,00 / 6,50 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Apfelschorle Naturtrüb</div></div><div class="d-p">3,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Rhabarberlimonade</div></div><div class="d-p">3,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Eistee Pfirsich</div></div><div class="d-p">3,90 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">O-Saft / Apfelsaft 0,2 l</div></div><div class="d-p">3,50 €</div></div>
       </div>
     </div>
     <div>
-      <div class="s">
-        <div class="dk-title">Weine</div>
-        <div class="dk-sub">Rotweine · 0,2 l / 0,75 l</div>
-        <div class="d"><div class="d-info"><div class="d-name">Plavac</div><div class="d-desc">Kroatien</div></div><div class="d-price">6,90 / 23,00 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Kadarka</div><div class="d-desc">Nordmazedonien</div></div><div class="d-price">6,90 / 23,00 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Merlot</div><div class="d-desc">Veneto, Italien</div></div><div class="d-price">6,50 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Tempranillo</div><div class="d-desc">Navarra, Spanien</div></div><div class="d-price">7,00 / 24,00 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Primitivo</div><div class="d-desc">Puglia, Italien</div></div><div class="d-price">8,00 / 28,00 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Cà Dei Frati Ronchedone</div><div class="d-desc">Lombardei, Italien</div></div><div class="d-price">42,00 €</div></div>
-        <div class="dk-sub">Weißweine · 0,2 l / 0,75 l</div>
-        <div class="d"><div class="d-info"><div class="d-name">Pinot Grigio</div><div class="d-desc">Veneto, Italien</div></div><div class="d-price">6,50 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Riesling Herrenberg</div><div class="d-desc">Deutschland</div></div><div class="d-price">7,00 / 24,00 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Grauburgunder</div><div class="d-desc">Pfalz, Deutschland</div></div><div class="d-price">6,90 / 23,00 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Verdejo</div><div class="d-desc">Rueda, Spanien</div></div><div class="d-price">7,30 / 25,00 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Cà Dei Frati Lugana DOC</div><div class="d-desc">Lombardei, Italien</div></div><div class="d-price">36,00 €</div></div>
-        <div class="dk-sub">Roséweine · 0,2 l / 0,75 l</div>
-        <div class="d"><div class="d-info"><div class="d-name">Grenache Rosé</div><div class="d-desc">Navarra, Spanien</div></div><div class="d-price">6,90 / 23,00 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Spätburgunder Rosé</div><div class="d-desc">Deutschland</div></div><div class="d-price">7,30 / 25,00 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Cà Dei Frati Rosa Cuvée</div><div class="d-desc">Lombardei, Italien</div></div><div class="d-price">35,00 €</div></div>
-        <div class="dk-sub">Sekt &amp; Champagner</div>
-        <div class="d"><div class="d-info"><div class="d-name">Significa Sekt</div><div class="d-desc">Rheinhessen</div></div><div class="d-price">28,00 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Veuve Pelletier Brut</div><div class="d-desc">Champagne, Frankreich</div></div><div class="d-price">38,00 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Taittinger</div><div class="d-desc">Champagne, Frankreich</div></div><div class="d-price">89,00 €</div></div>
+      <div class="s"><div class="dk">Weine</div>
+        <div class="dksub">Rotweine · 0,2 l / 0,75 l</div>
+        <div class="d"><div class="d-i"><div class="d-n">Plavac</div><div class="d-d">Kroatien</div></div><div class="d-p">6,90 / 23,00 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Kadarka</div><div class="d-d">Nordmazedonien</div></div><div class="d-p">6,90 / 23,00 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Merlot</div><div class="d-d">Veneto, Italien</div></div><div class="d-p">6,50 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Tempranillo</div><div class="d-d">Navarra, Spanien</div></div><div class="d-p">7,00 / 24,00 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Primitivo</div><div class="d-d">Puglia, Italien</div></div><div class="d-p">8,00 / 28,00 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Cà Dei Frati Ronchedone</div><div class="d-d">Lombardei, Italien</div></div><div class="d-p">42,00 €</div></div>
+        <div class="dksub">Weißweine · 0,2 l / 0,75 l</div>
+        <div class="d"><div class="d-i"><div class="d-n">Pinot Grigio</div><div class="d-d">Veneto, Italien</div></div><div class="d-p">6,50 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Riesling Herrenberg</div><div class="d-d">Deutschland</div></div><div class="d-p">7,00 / 24,00 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Grauburgunder</div><div class="d-d">Pfalz, Deutschland</div></div><div class="d-p">6,90 / 23,00 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Verdejo</div><div class="d-d">Rueda, Spanien</div></div><div class="d-p">7,30 / 25,00 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Cà Dei Frati Lugana DOC</div><div class="d-d">Lombardei, Italien</div></div><div class="d-p">36,00 €</div></div>
+        <div class="dksub">Roséweine · 0,2 l / 0,75 l</div>
+        <div class="d"><div class="d-i"><div class="d-n">Grenache Rosé</div><div class="d-d">Navarra, Spanien</div></div><div class="d-p">6,90 / 23,00 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Spätburgunder Rosé</div><div class="d-d">Deutschland</div></div><div class="d-p">7,30 / 25,00 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Cà Dei Frati Rosa Cuvée</div><div class="d-d">Lombardei, Italien</div></div><div class="d-p">35,00 €</div></div>
+        <div class="dksub">Sekt &amp; Champagner</div>
+        <div class="d"><div class="d-i"><div class="d-n">Significa Sekt</div><div class="d-d">Rheinhessen</div></div><div class="d-p">28,00 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Veuve Pelletier Brut</div><div class="d-d">Champagne, Frankreich</div></div><div class="d-p">38,00 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Taittinger</div><div class="d-d">Champagne, Frankreich</div></div><div class="d-p">89,00 €</div></div>
       </div>
       <hr class="sep">
-      <div class="s">
-        <div class="dk-title">Spirituosen</div>
-        <div class="dk-sub">Whisky (à 2 cl)</div>
-        <div class="d"><div class="d-info"><div class="d-name">Johnnie Walker / Jack Daniel's</div></div><div class="d-price">3,80 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Chivas Regal</div></div><div class="d-price">4,00 €</div></div>
-        <div class="dk-sub">Cognac &amp; Weinbrand (à 2 cl)</div>
-        <div class="d"><div class="d-info"><div class="d-name">Remy V.S.O.P / Hennessy</div></div><div class="d-price">4,00 / 4,50 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Asbach Uralt</div></div><div class="d-price">2,80 €</div></div>
-        <div class="dk-sub">Liköre (à 4 cl)</div>
-        <div class="d"><div class="d-info"><div class="d-name">Baileys / Ramazotti / Averna</div></div><div class="d-price">4,50 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Sambuca / Jägermeister</div></div><div class="d-price">2,50 €</div></div>
-        <div class="dk-sub">Kroatische Spezialitäten</div>
-        <div class="d"><div class="d-info"><div class="d-name">Slivovic / Barak Palinka</div></div><div class="d-price">2,50 / 2,70 €</div></div>
-        <div class="d"><div class="d-info"><div class="d-name">Visnjevac (4 cl)</div></div><div class="d-price">4,50 €</div></div>
+      <div class="s"><div class="dk">Spirituosen</div>
+        <div class="dksub">Whisky (à 2 cl)</div>
+        <div class="d"><div class="d-i"><div class="d-n">Johnnie Walker / Jack Daniel's</div></div><div class="d-p">3,80 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Chivas Regal</div></div><div class="d-p">4,00 €</div></div>
+        <div class="dksub">Cognac &amp; Weinbrand (à 2 cl)</div>
+        <div class="d"><div class="d-i"><div class="d-n">Remy V.S.O.P / Hennessy</div></div><div class="d-p">4,00 / 4,50 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Asbach Uralt</div></div><div class="d-p">2,80 €</div></div>
+        <div class="dksub">Liköre (à 4 cl)</div>
+        <div class="d"><div class="d-i"><div class="d-n">Baileys / Ramazotti / Averna</div></div><div class="d-p">4,50 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Sambuca / Jägermeister</div></div><div class="d-p">2,50 €</div></div>
+        <div class="dksub">Kroatische Spezialitäten</div>
+        <div class="d"><div class="d-i"><div class="d-n">Slivovic / Barak Palinka</div></div><div class="d-p">2,50 / 2,70 €</div></div>
+        <div class="d"><div class="d-i"><div class="d-n">Visnjevac (4 cl)</div></div><div class="d-p">4,50 €</div></div>
       </div>
     </div>
   </div>
-
-</div>
-<div class="rf"><span>Mo · Mi–Fr 17:30–22:00 · Sa 12:00–14:30 &amp; 17:30–22:00 · So 12:00–15:00 &amp; 17:00–21:00 · Di Ruhetag</span><span>02263 929 1371</span></div>
-</div>
+</div><div class="rf"><span>Mo · Mi–Fr 17:30–22:00 · Sa 12:00–14:30 &amp; 17:30–22:00 · So 12:00–15:00 &amp; 17:00–21:00 · Di Ruhetag</span><span>02263 929 1371</span></div></div>
 
 
-<!-- ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-     RÜCKSEITE
-▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ -->
+<!-- ████████ RÜCKSEITE ████████ -->
 <div class="page back">
-  <div class="back-frame"></div>
-
-  <!-- Botanical corners (smaller, lighter on back) -->
-  <svg class="back-corner-svg tl" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g opacity=".4">
-      <path d="M4,76 C8,58 20,40 40,20 C30,45 55,30 76,4" stroke="#c4983e" stroke-width=".7" fill="none"/>
-      <path d="M14,62 C6,56 4,66 12,68 C13,65 14,62 14,62Z" fill="#c4983e" opacity=".5"/>
-      <path d="M14,62 C22,58 20,68 14,68 C14,65 14,62 14,62Z" fill="#c4983e" opacity=".5"/>
-      <path d="M28,46 C20,40 18,50 26,52 C27,49 28,46 28,46Z" fill="#c4983e" opacity=".5"/>
-      <path d="M28,46 C36,42 34,52 28,52 C28,49 28,46 28,46Z" fill="#c4983e" opacity=".5"/>
-      <path d="M46,26 C38,20 36,30 44,32 C45,29 46,26 46,26Z" fill="#c4983e" opacity=".5"/>
-      <path d="M46,26 C54,22 52,32 46,32 C46,29 46,26 46,26Z" fill="#c4983e" opacity=".5"/>
-      <circle cx="11" cy="70" r="1.3" fill="#c4983e" opacity=".4"/>
-      <circle cx="42" cy="33" r="1.1" fill="#c4983e" opacity=".4"/>
-    </g>
+  <!-- Vines on back cover too -->
+  <svg class="bk-vine left" viewBox="0 0 22 297" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <path d="M11,5 C8,22 13,38 10,55 C7,72 13,88 9,105 C5,122 13,138 9,155 C5,172 13,188 9,205 C5,222 13,238 9,255 C7,268 10,280 10,292" stroke="#d4a84e" stroke-width=".55" opacity=".3"/>
+    <path d="M10,28 C5,22 2,28 7,33 C9,31 10,28 10,28Z" fill="#d4a84e" opacity=".28"/>
+    <path d="M10,28 C15,22 18,28 13,33 C11,31 10,28 10,28Z" fill="#d4a84e" opacity=".28"/>
+    <path d="M9,78 C4,72 1,78 6,83 C8,81 9,78 9,78Z" fill="#d4a84e" opacity=".28"/>
+    <path d="M9,78 C14,72 17,78 12,83 C10,81 9,78 9,78Z" fill="#d4a84e" opacity=".28"/>
+    <path d="M10,128 C5,122 2,128 7,133 C9,131 10,128 10,128Z" fill="#d4a84e" opacity=".28"/>
+    <path d="M10,128 C15,122 18,128 13,133 C11,131 10,128 10,128Z" fill="#d4a84e" opacity=".28"/>
+    <path d="M9,178 C4,172 1,178 6,183 C8,181 9,178 9,178Z" fill="#d4a84e" opacity=".28"/>
+    <path d="M9,178 C14,172 17,178 12,183 C10,181 9,178 9,178Z" fill="#d4a84e" opacity=".28"/>
+    <path d="M10,228 C5,222 2,228 7,233 C9,231 10,228 10,228Z" fill="#d4a84e" opacity=".28"/>
+    <path d="M10,228 C15,222 18,228 13,233 C11,231 10,228 10,228Z" fill="#d4a84e" opacity=".28"/>
+    <path d="M10,278 C5,272 2,278 7,283 C9,281 10,278 10,278Z" fill="#d4a84e" opacity=".28"/>
+    <path d="M10,278 C15,272 18,278 13,283 C11,281 10,278 10,278Z" fill="#d4a84e" opacity=".28"/>
   </svg>
-  <svg class="back-corner-svg tr" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g opacity=".4">
-      <path d="M4,76 C8,58 20,40 40,20 C30,45 55,30 76,4" stroke="#c4983e" stroke-width=".7" fill="none"/>
-      <path d="M14,62 C6,56 4,66 12,68 C13,65 14,62 14,62Z" fill="#c4983e" opacity=".5"/>
-      <path d="M14,62 C22,58 20,68 14,68 C14,65 14,62 14,62Z" fill="#c4983e" opacity=".5"/>
-      <path d="M28,46 C20,40 18,50 26,52 C27,49 28,46 28,46Z" fill="#c4983e" opacity=".5"/>
-      <path d="M28,46 C36,42 34,52 28,52 C28,49 28,46 28,46Z" fill="#c4983e" opacity=".5"/>
-      <path d="M46,26 C38,20 36,30 44,32 C45,29 46,26 46,26Z" fill="#c4983e" opacity=".5"/>
-      <path d="M46,26 C54,22 52,32 46,32 C46,29 46,26 46,26Z" fill="#c4983e" opacity=".5"/>
-      <circle cx="11" cy="70" r="1.3" fill="#c4983e" opacity=".4"/>
-      <circle cx="42" cy="33" r="1.1" fill="#c4983e" opacity=".4"/>
-    </g>
-  </svg>
-  <svg class="back-corner-svg bl" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g opacity=".4">
-      <path d="M4,76 C8,58 20,40 40,20 C30,45 55,30 76,4" stroke="#c4983e" stroke-width=".7" fill="none"/>
-      <path d="M14,62 C6,56 4,66 12,68 C13,65 14,62 14,62Z" fill="#c4983e" opacity=".5"/>
-      <path d="M14,62 C22,58 20,68 14,68 C14,65 14,62 14,62Z" fill="#c4983e" opacity=".5"/>
-      <path d="M28,46 C20,40 18,50 26,52 C27,49 28,46 28,46Z" fill="#c4983e" opacity=".5"/>
-      <path d="M28,46 C36,42 34,52 28,52 C28,49 28,46 28,46Z" fill="#c4983e" opacity=".5"/>
-      <path d="M46,26 C38,20 36,30 44,32 C45,29 46,26 46,26Z" fill="#c4983e" opacity=".5"/>
-      <path d="M46,26 C54,22 52,32 46,32 C46,29 46,26 46,26Z" fill="#c4983e" opacity=".5"/>
-      <circle cx="11" cy="70" r="1.3" fill="#c4983e" opacity=".4"/>
-      <circle cx="42" cy="33" r="1.1" fill="#c4983e" opacity=".4"/>
-    </g>
-  </svg>
-  <svg class="back-corner-svg br" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g opacity=".4">
-      <path d="M4,76 C8,58 20,40 40,20 C30,45 55,30 76,4" stroke="#c4983e" stroke-width=".7" fill="none"/>
-      <path d="M14,62 C6,56 4,66 12,68 C13,65 14,62 14,62Z" fill="#c4983e" opacity=".5"/>
-      <path d="M14,62 C22,58 20,68 14,68 C14,65 14,62 14,62Z" fill="#c4983e" opacity=".5"/>
-      <path d="M28,46 C20,40 18,50 26,52 C27,49 28,46 28,46Z" fill="#c4983e" opacity=".5"/>
-      <path d="M28,46 C36,42 34,52 28,52 C28,49 28,46 28,46Z" fill="#c4983e" opacity=".5"/>
-      <path d="M46,26 C38,20 36,30 44,32 C45,29 46,26 46,26Z" fill="#c4983e" opacity=".5"/>
-      <path d="M46,26 C54,22 52,32 46,32 C46,29 46,26 46,26Z" fill="#c4983e" opacity=".5"/>
-      <circle cx="11" cy="70" r="1.3" fill="#c4983e" opacity=".4"/>
-      <circle cx="42" cy="33" r="1.1" fill="#c4983e" opacity=".4"/>
-    </g>
+  <svg class="bk-vine right" viewBox="0 0 22 297" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <path d="M11,5 C8,22 13,38 10,55 C7,72 13,88 9,105 C5,122 13,138 9,155 C5,172 13,188 9,205 C5,222 13,238 9,255 C7,268 10,280 10,292" stroke="#d4a84e" stroke-width=".55" opacity=".3"/>
+    <path d="M10,28 C5,22 2,28 7,33 C9,31 10,28 10,28Z" fill="#d4a84e" opacity=".28"/>
+    <path d="M10,28 C15,22 18,28 13,33 C11,31 10,28 10,28Z" fill="#d4a84e" opacity=".28"/>
+    <path d="M9,78 C4,72 1,78 6,83 C8,81 9,78 9,78Z" fill="#d4a84e" opacity=".28"/>
+    <path d="M9,78 C14,72 17,78 12,83 C10,81 9,78 9,78Z" fill="#d4a84e" opacity=".28"/>
+    <path d="M10,128 C5,122 2,128 7,133 C9,131 10,128 10,128Z" fill="#d4a84e" opacity=".28"/>
+    <path d="M10,128 C15,122 18,128 13,133 C11,131 10,128 10,128Z" fill="#d4a84e" opacity=".28"/>
+    <path d="M9,178 C4,172 1,178 6,183 C8,181 9,178 9,178Z" fill="#d4a84e" opacity=".28"/>
+    <path d="M9,178 C14,172 17,178 12,183 C10,181 9,178 9,178Z" fill="#d4a84e" opacity=".28"/>
+    <path d="M10,228 C5,222 2,228 7,233 C9,231 10,228 10,228Z" fill="#d4a84e" opacity=".28"/>
+    <path d="M10,228 C15,222 18,228 13,233 C11,231 10,228 10,228Z" fill="#d4a84e" opacity=".28"/>
+    <path d="M10,278 C5,272 2,278 7,283 C9,281 10,278 10,278Z" fill="#d4a84e" opacity=".28"/>
+    <path d="M10,278 C15,272 18,278 13,283 C11,281 10,278 10,278Z" fill="#d4a84e" opacity=".28"/>
   </svg>
 
-  <div class="back-body">
-    <div class="back-quote">
-      „Essen ist eine Notwendigkeit.<br>
-      Aber intelligentes Essen ist eine Kunst."
-    </div>
-    <div class="back-attr">François de La Rochefoucauld</div>
-    <div class="back-rule"></div>
-    <img src="amfels_logo.png" class="back-logo" alt="Am Fels">
-    <div class="back-contact">
+  <div class="bk-frame"></div>
+  <div class="bk-body">
+    <div class="bk-q">„Essen ist eine Notwendigkeit.<br>Aber intelligentes Essen ist eine Kunst."</div>
+    <div class="bk-a">François de La Rochefoucauld</div>
+    <div class="bk-rule"></div>
+    <img src="amfels_logo.png" class="bk-logo" alt="Am Fels">
+    <div class="bk-c">
       <p class="hi">Restaurant Am Fels</p>
       <p>Staadter Weg 2 · 51766 Engelskirchen-Loope</p>
       <p class="hi">02263 929 1371</p>
