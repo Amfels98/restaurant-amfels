@@ -2186,18 +2186,37 @@
 </head>
 <body>
 
-<!-- URLAUB BANNER -->
+<!-- URLAUB BANNER (klein, vor 22. Juni) -->
 <div id="urlaubBanner" style="background:linear-gradient(90deg,#7a3a2a,#b8924a,#7a3a2a);color:#fff;text-align:center;padding:0.65rem 1rem;font-family:'Cormorant Garamond',serif;font-size:1rem;letter-spacing:0.04em;position:fixed;top:0;left:0;right:0;z-index:1002">
   🌴 <strong>Betriebsurlaub 22. Juni – 9. Juli 2026</strong> — Ab <strong>10. Juli</strong> freuen wir uns wieder auf Ihren Besuch!
   <button onclick="document.getElementById('urlaubBanner').style.display='none';document.body.style.paddingTop='0'" style="position:absolute;right:0.75rem;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,0.6);font-size:1.1rem;cursor:pointer;line-height:1">✕</button>
 </div>
+
+<!-- URLAUB MODAL (groß, ab 22. Juni) -->
+<div id="urlaubModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:2000;align-items:center;justify-content:center;padding:1.5rem">
+  <div style="background:#1a1208;border:1px solid #b8924a;border-radius:4px;max-width:480px;width:100%;text-align:center;padding:3rem 2.5rem;position:relative;font-family:'Cormorant Garamond',serif">
+    <div style="font-size:3rem;margin-bottom:1rem">🌴</div>
+    <div style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:#b8924a;margin-bottom:1rem">Betriebsurlaub</div>
+    <h2 style="font-size:2rem;color:#f5f0e8;font-weight:400;margin:0 0 0.75rem">22. Juni – 9. Juli 2026</h2>
+    <p style="color:rgba(245,240,232,0.7);font-size:1.05rem;line-height:1.7;margin:0 0 2rem">Wir erholen uns und sind vom <strong style="color:#f5f0e8">22. Juni bis einschließlich 9. Juli</strong> geschlossen.<br>Ab <strong style="color:#b8924a">10. Juli</strong> freuen wir uns wieder auf Ihren Besuch!</p>
+    <button onclick="document.getElementById('urlaubModal').style.display='none'" style="background:linear-gradient(135deg,#b8924a,#8a6a30);color:#fff;border:none;padding:0.85rem 2.5rem;font-family:'Cormorant Garamond',serif;font-size:1rem;letter-spacing:0.08em;cursor:pointer;border-radius:2px">Verstanden</button>
+  </div>
+</div>
+
 <script>
   (function(){
-    var b = document.getElementById('urlaubBanner');
-    if (new Date() > new Date(2026, 6, 9)) {
-      b.style.display = 'none';
+    var now = new Date();
+    var startUrlaub = new Date(2026, 5, 22);   // 22. Juni
+    var endUrlaub   = new Date(2026, 6, 9, 23, 59); // 9. Juli
+    var banner = document.getElementById('urlaubBanner');
+    var modal  = document.getElementById('urlaubModal');
+    if (now > endUrlaub) {
+      banner.style.display = 'none';
+    } else if (now >= startUrlaub) {
+      banner.style.display = 'none';
+      modal.style.display = 'flex';
     } else {
-      document.body.style.paddingTop = b.offsetHeight + 'px';
+      document.body.style.paddingTop = banner.offsetHeight + 'px';
     }
   })();
 </script>
