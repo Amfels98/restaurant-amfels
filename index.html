@@ -3643,12 +3643,16 @@
   }
   window.addEventListener('load', function() {
     setTimeout(function() {
-      const popup = document.getElementById('spargelPopup');
+      var now = new Date();
+      var urlaubStart = new Date(2026, 5, 22);
+      var urlaubEnd   = new Date(2026, 6, 9, 23, 59);
+      if (now >= urlaubStart && now <= urlaubEnd) return;
+      var popup = document.getElementById('spargelPopup');
       if (popup) {
         popup.classList.add('open');
         document.body.style.overflow = 'hidden';
       }
-    }, 900);
+    }, 100);
   });
   document.getElementById('spargelPopup').addEventListener('click', function(e) {
     if (e.target === this) closeSpargelPopup();
