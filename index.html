@@ -2355,6 +2355,29 @@
         fjs.parentNode.insertBefore(js, fjs);
       })( document, "script", "https://static.teburio.de/w2.js?id=ZZE2uHLvJerGaAx9R");
       </script>
+      <script>
+        (function() {
+          var container = document.getElementById('teburio-ZZE2uHLvJerGaAx9R');
+
+          // Track button click inside Teburio widget
+          container.addEventListener('click', function(e) {
+            var el = e.target;
+            if (el.tagName === 'BUTTON' || el.tagName === 'INPUT' && el.type === 'submit' || el.closest('button')) {
+              fbq('track', 'InitiateCheckout');
+            }
+          });
+
+          // Track confirmation (Danke) message appearing = reservation submitted
+          var observer = new MutationObserver(function() {
+            var text = container.innerText || '';
+            if (text.toLowerCase().indexOf('danke') !== -1) {
+              fbq('track', 'Lead');
+              observer.disconnect();
+            }
+          });
+          observer.observe(container, { childList: true, subtree: true, characterData: true });
+        })();
+      </script>
     </div>
     <p class="res-phone">
       Oder direkt anrufen: <a href="tel:+4922639291371">02263 9291371</a>
