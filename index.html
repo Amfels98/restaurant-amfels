@@ -2356,27 +2356,17 @@
       })( document, "script", "https://static.teburio.de/w2.js?id=ZZE2uHLvJerGaAx9R");
       </script>
       <script>
-        (function() {
-          var container = document.getElementById('teburio-ZZE2uHLvJerGaAx9R');
-
-          // Track button click inside Teburio widget
-          container.addEventListener('click', function(e) {
-            var el = e.target;
-            if (el.tagName === 'BUTTON' || el.tagName === 'INPUT' && el.type === 'submit' || el.closest('button')) {
-              fbq('track', 'InitiateCheckout');
-            }
-          });
-
-          // Track confirmation (Danke) message appearing = reservation submitted
-          var observer = new MutationObserver(function() {
-            var text = container.innerText || '';
-            if (text.toLowerCase().indexOf('danke') !== -1) {
-              fbq('track', 'Lead');
-              observer.disconnect();
-            }
-          });
-          observer.observe(container, { childList: true, subtree: true, characterData: true });
-        })();
+        // Teburio fires postMessage events from its iframe
+        window.addEventListener('message', function(e) {
+          if (!e.data || typeof e.data !== 'object') return;
+          var type = e.data.type || e.data.event || '';
+          if (type === 'teburio.booked' || type === 'booked') {
+            fbq('track', 'Schedule');
+          }
+          if (type === 'teburio.first_clicked' || type === 'first_clicked') {
+            fbq('track', 'InitiateCheckout');
+          }
+        });
       </script>
     </div>
     <p class="res-phone">
