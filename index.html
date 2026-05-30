@@ -2891,8 +2891,8 @@
 
 <!-- Video Divider 1 -->
 <div class="video-divider" id="vd1">
-  <video class="vd-bg" src="images/videos/fleisch-vorbereitung.mp4" autoplay muted loop playsinline preload="none"></video>
-  <video class="vd-main" src="images/videos/fleisch-vorbereitung.mp4" autoplay muted loop playsinline preload="none"></video>
+  <video class="vd-bg" data-src="images/videos/fleisch-vorbereitung.mp4" muted loop playsinline preload="none"></video>
+  <video class="vd-main" data-src="images/videos/fleisch-vorbereitung.mp4" muted loop playsinline preload="none"></video>
   <div class="video-divider-overlay">
     <div class="video-divider-line"></div>
     <div class="video-divider-text">Jedes Gericht entsteht mit Leidenschaft und Handwerk</div>
@@ -3020,8 +3020,8 @@
 
 <!-- Video Divider 2 -->
 <div class="video-divider" id="vd2">
-  <video class="vd-bg" src="images/videos/schokokuchen-dessert.mp4" autoplay muted loop playsinline preload="none"></video>
-  <video class="vd-main" src="images/videos/schokokuchen-dessert.mp4" autoplay muted loop playsinline preload="none"></video>
+  <video class="vd-bg" data-src="images/videos/schokokuchen-dessert.mp4" muted loop playsinline preload="none"></video>
+  <video class="vd-main" data-src="images/videos/schokokuchen-dessert.mp4" muted loop playsinline preload="none"></video>
   <div class="video-divider-overlay">
     <div class="video-divider-line"></div>
     <div class="video-divider-text">Von der Vorspeise bis zum Dessert — ein Erlebnis</div>
@@ -3087,8 +3087,8 @@
 
 <!-- Video Divider 3 -->
 <div class="video-divider" id="vd3">
-  <video class="vd-bg" src="images/videos/restaurant-location.mp4" autoplay muted loop playsinline preload="none"></video>
-  <video class="vd-main" src="images/videos/restaurant-location.mp4" autoplay muted loop playsinline preload="none"></video>
+  <video class="vd-bg" data-src="images/videos/restaurant-location.mp4" muted loop playsinline preload="none"></video>
+  <video class="vd-main" data-src="images/videos/restaurant-location.mp4" muted loop playsinline preload="none"></video>
   <div class="video-divider-overlay"></div>
 </div>
 
@@ -3433,13 +3433,18 @@
     document.getElementById('panel-' + id).classList.add('active');
   }
 
-  // Video Dividers — play/pause + animate on scroll
+  // Video Dividers — lazy load + play/pause + animate on scroll
   const vdObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       const videos = entry.target.querySelectorAll('video');
       if (entry.isIntersecting) {
         entry.target.classList.add('in-view');
-        videos.forEach(v => v.play());
+        videos.forEach(v => {
+          if (v.dataset.src && !v.src) {
+            v.src = v.dataset.src;
+          }
+          v.play();
+        });
       } else {
         entry.target.classList.remove('in-view');
         videos.forEach(v => v.pause());
