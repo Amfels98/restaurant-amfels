@@ -976,108 +976,6 @@
 
     .lightbox-close:hover { opacity: 1; }
 
-    /* ── SPARGELKARTE POPUP ── */
-    #spargelPopup {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 99998;
-      align-items: center;
-      justify-content: center;
-      background: rgba(10, 4, 1, 0.85);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    #spargelPopup.open { display: flex; }
-    .spargel-popup-box {
-      background: var(--dark2);
-      border: 1px solid rgba(184,146,74,0.4);
-      max-width: 520px;
-      width: 92%;
-      padding: 3.5rem 3rem;
-      text-align: center;
-      position: relative;
-      animation: heroFadeIn 0.5s ease both;
-    }
-    .spargel-popup-close {
-      position: absolute;
-      top: 1rem; right: 1.2rem;
-      background: none;
-      border: none;
-      color: var(--gold);
-      font-size: 1.5rem;
-      cursor: pointer;
-      opacity: 0.65;
-      transition: opacity 0.2s;
-      line-height: 1;
-    }
-    .spargel-popup-close:hover { opacity: 1; }
-    .spargel-popup-season {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.2rem;
-    }
-    .spargel-popup-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.2rem, 7vw, 3.2rem);
-      color: var(--cream);
-      line-height: 1;
-      margin-bottom: 0.4rem;
-    }
-    .spargel-popup-sub {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 1.15rem;
-      color: var(--gold-light);
-      margin-bottom: 0.5rem;
-    }
-    .spargel-popup-divider {
-      display: flex; align-items: center; justify-content: center;
-      gap: 0.8rem; margin: 1.6rem auto;
-    }
-    .spargel-popup-divider-line { height: 1px; width: 55px; background: rgba(184,146,74,0.3); }
-    .spargel-popup-divider-diamond { width: 6px; height: 6px; background: var(--gold); transform: rotate(45deg); flex-shrink: 0; }
-    .spargel-popup-text {
-      font-size: 0.95rem;
-      color: var(--text);
-      line-height: 1.9;
-      margin-bottom: 2rem;
-    }
-    .spargel-popup-btn {
-      display: inline-block;
-      background: var(--gold);
-      color: var(--black);
-      padding: 0.95rem 2.8rem;
-      font-family: 'Lato', sans-serif;
-      font-size: 0.73rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: background 0.3s;
-      border: none;
-      cursor: pointer;
-    }
-    .spargel-popup-btn:hover { background: var(--gold-light); }
-    .spargel-popup-dismiss {
-      display: block;
-      font-size: 0.68rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text);
-      cursor: pointer;
-      margin-top: 1.2rem;
-      opacity: 0.55;
-      background: none;
-      border: none;
-      font-family: 'Lato', sans-serif;
-      transition: opacity 0.2s;
-      width: 100%;
-    }
-    .spargel-popup-dismiss:hover { opacity: 1; }
     .menu-tab.seasonal { color: var(--gold); }
     .menu-tab.seasonal::before {
       content: '✦ ';
@@ -2980,27 +2878,6 @@
   </div>
 </section>
 
-<!-- ── SPARGELKARTE POPUP ── -->
-<div id="spargelPopup">
-  <div class="spargel-popup-box">
-    <button class="spargel-popup-close" onclick="closeSpargelPopup()" aria-label="Schließen">✕</button>
-    <p class="spargel-popup-season">✦ &nbsp; Saison 2026 &nbsp; ✦</p>
-    <h2 class="spargel-popup-title">Spargelzeit</h2>
-    <p class="spargel-popup-sub">ist eröffnet</p>
-    <div class="spargel-popup-divider">
-      <div class="spargel-popup-divider-line"></div>
-      <div class="spargel-popup-divider-diamond"></div>
-      <div class="spargel-popup-divider-line"></div>
-    </div>
-    <p class="spargel-popup-text">
-      Frischer weißer Spargel aus der Region –<br>
-      serviert mit Sauce Hollandaise und Salzkartoffeln.<br>
-      Zu jedem Gericht ein kleiner Beilagensalat.
-    </p>
-    <a href="#speisekarte" class="spargel-popup-btn" onclick="closeSpargelPopup();setTimeout(function(){switchTab('spargel',document.querySelector('.menu-tab.seasonal'))},300);">Spargelkarte ansehen</a>
-    <button class="spargel-popup-dismiss" onclick="closeSpargelPopup()">Später anschauen</button>
-  </div>
-</div>
 
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
@@ -3652,34 +3529,6 @@
   }
   animateEmbers();
 
-  // ═══════════════════════════════════════
-  // 🌿 SPARGELKARTE POPUP
-  // ═══════════════════════════════════════
-  function closeSpargelPopup() {
-    document.getElementById('spargelPopup').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  window.addEventListener('load', function() {
-    setTimeout(function() {
-      var now = new Date();
-      var urlaubStart = new Date(2026, 5, 22);
-      var urlaubEnd   = new Date(2026, 6, 9, 23, 59);
-      if (now >= urlaubStart && now <= urlaubEnd) return;
-      var popup = document.getElementById('spargelPopup');
-      if (popup) {
-        popup.classList.add('open');
-        document.body.style.overflow = 'hidden';
-      }
-    }, 100);
-  });
-  document.getElementById('spargelPopup').addEventListener('click', function(e) {
-    if (e.target === this) closeSpargelPopup();
-  });
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && document.getElementById('spargelPopup').classList.contains('open')) {
-      closeSpargelPopup();
-    }
-  });
 
   // ═══════════════════════════════════════
   // ✨ GOLDEN CURSOR TRAIL
