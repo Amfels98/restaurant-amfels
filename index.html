@@ -2119,16 +2119,24 @@
   })();
 </script>
 
-<!-- PFIFFERLINGE BANNER -->
-<div id="pfifferlingeBanner" style="background:linear-gradient(90deg,#5c3d1a,#9a6e2a,#5c3d1a);color:#fff;text-align:center;padding:0.65rem 2.5rem;font-family:'Cormorant Garamond',serif;font-size:1rem;letter-spacing:0.04em;position:fixed;top:0;left:0;right:0;z-index:1002">
-  🍄 <strong>Frische Pfifferlinge</strong> — Jetzt zur Saison! &nbsp;<a href="#speisekarte" onclick="switchTab('pfifferlinge',document.querySelector('[onclick*=pfifferlinge]'));document.getElementById('pfifferlingeBanner').style.display='none';document.body.style.paddingTop='0'" style="color:#f5d98a;text-decoration:underline;text-underline-offset:2px">Zur Karte →</a>
-  <button onclick="document.getElementById('pfifferlingeBanner').style.display='none';document.body.style.paddingTop='0'" style="position:absolute;right:0.75rem;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,0.6);font-size:1.1rem;cursor:pointer;line-height:1">✕</button>
+<!-- PFIFFERLINGE POPUP -->
+<div id="pfiffPopup" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:2001;align-items:center;justify-content:center;padding:1.5rem">
+  <div style="background:#fdfaf5;border:1px solid rgba(184,146,74,0.35);max-width:480px;width:100%;padding:2.5rem 2rem 2rem;position:relative;text-align:center;border-radius:2px">
+    <button onclick="document.getElementById('pfiffPopup').style.display='none'" style="position:absolute;top:0.75rem;right:0.75rem;background:none;border:none;font-size:1.3rem;cursor:pointer;color:#9a7a48;line-height:1">✕</button>
+    <div style="font-size:2.5rem;margin-bottom:0.5rem">🍄</div>
+    <div style="font-family:'Lato',sans-serif;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#b8924a;margin-bottom:0.4rem">Aktuell zur Saison</div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;color:#3a2516;margin:0 0 0.75rem">Frische Pfifferlinge</h2>
+    <p style="font-family:'Lato',sans-serif;font-size:0.82rem;color:#6b5645;line-height:1.8;margin:0 0 1.5rem">Jetzt frische Pfifferlinge auf unserer Saisonkarte — mit Speck und Zwiebeln zubereitet, als Vorspeise, Pasta oder zum Steak.</p>
+    <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap">
+      <a href="#speisekarte" onclick="switchTab('pfifferlinge',document.querySelector('[onclick*=pfifferlinge]'));document.getElementById('pfiffPopup').style.display='none'" class="btn-primary" style="text-decoration:none">Zur Karte</a>
+      <button onclick="document.getElementById('pfiffPopup').style.display='none'" style="background:none;border:1px solid rgba(184,146,74,0.4);color:#9a7a48;font-family:'Lato',sans-serif;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.75rem 1.5rem;cursor:pointer">Schließen</button>
+    </div>
+  </div>
 </div>
 <script>
-  (function(){
-    var b = document.getElementById('pfifferlingeBanner');
-    document.body.style.paddingTop = b.offsetHeight + 'px';
-  })();
+  window.addEventListener('load', function(){
+    setTimeout(function(){ document.getElementById('pfiffPopup').style.display='flex'; }, 800);
+  });
 </script>
 
 <!-- ── NAVIGATION ── -->
@@ -2968,11 +2976,7 @@
 
 <!-- ── FESTTAGE ── -->
 <style>
-  #festtage { background:#0a0401 !important }
-  #festtage .section-label { color:var(--gold) }
-  #festtage .section-title { color:#f0e6d3 }
-  #festtage .ornament-line { background:var(--gold) }
-  #festtage .ornament-diamond { border-color:var(--gold) }
+  .fest-nav-btn { color:rgba(184,146,74,0.6) }
   .fest-card { background-size:cover;background-position:center;border:1px solid rgba(184,146,74,0.2);position:relative }
   .fest-card-inner { position:relative;z-index:1;padding:2rem 1.5rem 2rem }
   .fest-card-overlay { position:absolute;inset:0;background:rgba(10,4,1,0.82) }
@@ -2983,8 +2987,8 @@
   .fest-pdf-link { position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;padding-bottom:0.6rem;background:linear-gradient(to bottom,transparent 50%,rgba(10,4,1,0.8));text-decoration:none }
   .fest-pdf-label { font-family:'Lato',sans-serif;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,146,74,0.5);padding:0.3rem 0.7rem }
   .fest-nav { display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:1.5rem;border:1px solid rgba(184,146,74,0.25);overflow:hidden;border-radius:2px }
-  .fest-nav-btn { flex:1;padding:0.7rem 0.5rem;font-family:'Lato',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;transition:all 0.25s;background:transparent;color:rgba(184,146,74,0.5) }
-  .fest-nav-btn.active { background:var(--gold);color:#0a0401 }
+  .fest-nav-btn { flex:1;padding:0.7rem 0.5rem;font-family:'Lato',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;transition:all 0.25s;background:transparent;color:rgba(184,146,74,0.7) }
+  .fest-nav-btn.active { background:var(--gold);color:#fff }
   .fest-nav-divider { width:1px;height:38px;background:rgba(184,146,74,0.25);flex-shrink:0 }
   .fest-swipe-hint { font-family:'Lato',sans-serif;font-size:0.62rem;letter-spacing:0.12em;color:rgba(184,146,74,0.45);margin-top:0.65rem;text-align:center }
   .fest-slide { flex:0 0 100%;max-width:100%;box-sizing:border-box;min-width:0 }
