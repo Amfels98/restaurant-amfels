@@ -2930,79 +2930,134 @@
 </section>
 
 <!-- ── FESTTAGE ── -->
-<section class="voucher" id="festtage" style="background:var(--dark2)">
-  <div class="voucher-inner" style="max-width:860px;margin:0 auto;text-align:center">
+<section class="voucher" id="festtage" style="background:var(--dark2);overflow:hidden">
+  <div style="max-width:760px;margin:0 auto;text-align:center;padding:0 1.5rem">
     <div class="fade-up">
       <span class="section-label">Dezember 2026</span>
       <h2 class="section-title">Festtage bei<br><em>Am Fels</em></h2>
-      <div class="ornament" style="justify-content:center">
+      <div class="ornament" style="justify-content:center;margin-bottom:2.5rem">
         <div class="ornament-line"></div>
         <div class="ornament-diamond"></div>
         <div class="ornament-line right"></div>
       </div>
-
-      <!-- Tabs -->
-      <div style="display:flex;justify-content:center;gap:0;margin:1.5rem auto 2rem;max-width:420px;border:1px solid rgba(184,146,74,0.3);border-radius:2px;overflow:hidden">
-        <button id="tabWeihnachten" onclick="switchFesttag('weihnachten')" style="flex:1;padding:0.75rem 1rem;font-family:'Lato',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border:none;cursor:pointer;transition:all 0.25s;background:var(--gold);color:var(--black)">🎄 Weihnachten</button>
-        <button id="tabSilvester" onclick="switchFesttag('silvester')" style="flex:1;padding:0.75rem 1rem;font-family:'Lato',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border:none;cursor:pointer;transition:all 0.25s;background:transparent;color:var(--gold)">🥂 Silvester</button>
-      </div>
-
-      <!-- WEIHNACHTEN PANEL -->
-      <div id="panelWeihnachten">
-        <p style="font-family:'Lato',sans-serif;font-size:0.92rem;color:var(--text);line-height:1.9;max-width:600px;margin:0 auto 2rem">
-          Verbringen Sie die schönsten Tage des Jahres mit Ihren Liebsten bei uns —
-          mit einem besonderen Festmenü, in warmer Atmosphäre und herzlichem Service.
-        </p>
-        <div style="background:rgba(184,146,74,0.07);border:1px solid rgba(184,146,74,0.2);padding:1.5rem 2rem;margin-bottom:1.5rem;max-width:520px;margin-left:auto;margin-right:auto">
-          <div style="font-family:'Lato',sans-serif;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem">25. &amp; 26. Dezember · Reservierung nur in festen Zeitfenstern</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.65rem 1.2rem;text-align:left">
-            <div style="border-left:2px solid var(--gold);padding-left:0.75rem"><div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--cream)">11:30 – 13:00</div></div>
-            <div style="border-left:2px solid var(--gold);padding-left:0.75rem"><div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--cream)">14:00 – 16:00</div></div>
-            <div style="border-left:2px solid var(--gold);padding-left:0.75rem"><div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--cream)">17:00 – 19:00</div></div>
-            <div style="border-left:2px solid var(--gold);padding-left:0.75rem"><div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--cream)">19:30 – 21:30</div></div>
-          </div>
-        </div>
-        <p style="font-family:'Lato',sans-serif;font-size:0.78rem;color:var(--dim);font-style:italic;margin-bottom:1.5rem">Die Karte kann sich bis zum Veranstaltungstag noch leicht verändern.</p>
-        <iframe src="weihnachtskarte-2026.pdf" style="width:100%;max-width:600px;height:480px;border:1px solid rgba(184,146,74,0.2);margin-bottom:1.5rem;display:block;margin-left:auto;margin-right:auto" title="Weihnachtskarte 2026"></iframe>
-        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
-          <a href="weihnachtskarte-2026.pdf" target="_blank" class="btn-primary">Karte öffnen / herunterladen</a>
-          <a href="#reservierung" class="btn-outline" style="border-color:var(--gold);color:var(--gold)">Tisch reservieren</a>
-        </div>
-      </div>
-
-      <!-- SILVESTER PANEL -->
-      <div id="panelSilvester" style="display:none">
-        <p style="font-family:'Lato',sans-serif;font-size:0.92rem;color:var(--text);line-height:1.9;max-width:600px;margin:0 auto 2rem">
-          Begrüßen Sie das neue Jahr bei uns — mit einer exklusiven Silvesterkarte
-          und einem unvergesslichen Abend in besonderem Ambiente.
-        </p>
-        <div style="background:rgba(184,146,74,0.07);border:1px solid rgba(184,146,74,0.2);padding:1.5rem 2rem;margin-bottom:1.5rem;max-width:520px;margin-left:auto;margin-right:auto">
-          <div style="font-family:'Lato',sans-serif;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem">31. Dezember · Öffnungszeiten</div>
-          <div style="border-left:2px solid var(--gold);padding-left:0.75rem;text-align:left;display:inline-block">
-            <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--cream)">17:30 – 21:00 Uhr</div>
-          </div>
-        </div>
-        <p style="font-family:'Lato',sans-serif;font-size:0.78rem;color:var(--dim);font-style:italic;margin-bottom:1.5rem">Die Karte kann sich bis zum Veranstaltungstag noch leicht verändern.</p>
-        <iframe src="silvester-2026.pdf" style="width:100%;max-width:600px;height:480px;border:1px solid rgba(184,146,74,0.2);margin-bottom:1.5rem;display:block;margin-left:auto;margin-right:auto" title="Silvesterkarte 2026"></iframe>
-        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
-          <a href="silvester-2026.pdf" target="_blank" class="btn-primary">Karte öffnen / herunterladen</a>
-          <a href="#reservierung" class="btn-outline" style="border-color:var(--gold);color:var(--gold)">Tisch reservieren</a>
-        </div>
-      </div>
-
     </div>
+
+    <!-- SLIDER -->
+    <div style="position:relative">
+
+      <!-- Pfeile -->
+      <button onclick="slideFest(-1)" id="festPrev" style="position:absolute;left:-1rem;top:50%;transform:translateY(-50%);z-index:10;background:rgba(10,4,1,0.7);border:1px solid rgba(184,146,74,0.4);color:var(--gold);width:42px;height:42px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;opacity:0.4">‹</button>
+      <button onclick="slideFest(1)"  id="festNext" style="position:absolute;right:-1rem;top:50%;transform:translateY(-50%);z-index:10;background:rgba(10,4,1,0.7);border:1px solid rgba(184,146,74,0.4);color:var(--gold);width:42px;height:42px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s">›</button>
+
+      <!-- Track -->
+      <div style="overflow:hidden;border-radius:2px">
+        <div id="festTrack" style="display:flex;transition:transform 0.45s cubic-bezier(0.4,0,0.2,1);will-change:transform">
+
+          <!-- KARTE 0: WEIHNACHTEN -->
+          <div style="min-width:100%;padding:0 0.5rem;box-sizing:border-box">
+            <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(184,146,74,0.2);padding:2.5rem 2rem 2rem">
+              <!-- Icon -->
+              <div style="margin-bottom:1.2rem">
+                <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#b8924a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+              </div>
+              <div style="font-family:'Lato',sans-serif;font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem">25. &amp; 26. Dezember</div>
+              <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:400;color:var(--cream);margin:0 0 0.3rem">Weihnachten</h3>
+              <p style="font-family:'Lato',sans-serif;font-size:0.82rem;color:var(--text);line-height:1.8;margin:0 0 1.8rem;max-width:480px;margin-left:auto;margin-right:auto">Verbringen Sie die schönsten Tage des Jahres mit Ihren Liebsten bei uns — mit einem besonderen Festmenü in warmer Atmosphäre.</p>
+
+              <!-- Zeitfenster -->
+              <div style="background:rgba(184,146,74,0.06);border:1px solid rgba(184,146,74,0.15);padding:1.2rem 1.5rem;margin-bottom:1.2rem;display:inline-block;min-width:280px">
+                <div style="font-family:'Lato',sans-serif;font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.9rem">Reservierung nur in festen Zeitfenstern</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem 1rem;text-align:left">
+                  <div style="border-left:1px solid var(--gold);padding-left:0.6rem;font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--cream)">11:30 – 13:00</div>
+                  <div style="border-left:1px solid var(--gold);padding-left:0.6rem;font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--cream)">14:00 – 16:00</div>
+                  <div style="border-left:1px solid var(--gold);padding-left:0.6rem;font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--cream)">17:00 – 19:00</div>
+                  <div style="border-left:1px solid var(--gold);padding-left:0.6rem;font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--cream)">19:30 – 21:30</div>
+                </div>
+              </div>
+
+              <!-- PDF mini -->
+              <div style="margin:1.2rem auto 1.5rem;max-width:320px;height:200px;border:1px solid rgba(184,146,74,0.2);overflow:hidden;position:relative">
+                <iframe src="weihnachtskarte-2026.pdf" style="width:170%;height:170%;transform:scale(0.588);transform-origin:top left;border:none;pointer-events:none" title="Weihnachtskarte Vorschau"></iframe>
+                <a href="weihnachtskarte-2026.pdf" target="_blank" style="position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;padding-bottom:0.75rem;background:linear-gradient(to bottom,transparent 40%,rgba(10,4,1,0.7));text-decoration:none">
+                  <span style="font-family:'Lato',sans-serif;font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,146,74,0.5);padding:0.35rem 0.85rem">Karte öffnen ↗</span>
+                </a>
+              </div>
+
+              <p style="font-family:'Lato',sans-serif;font-size:0.72rem;color:var(--dim);font-style:italic;margin-bottom:1.5rem">Die Karte kann sich noch leicht verändern.</p>
+              <a href="#reservierung" class="btn-primary">Tisch reservieren</a>
+            </div>
+          </div>
+
+          <!-- KARTE 1: SILVESTER -->
+          <div style="min-width:100%;padding:0 0.5rem;box-sizing:border-box">
+            <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(184,146,74,0.2);padding:2.5rem 2rem 2rem">
+              <!-- Icon -->
+              <div style="margin-bottom:1.2rem">
+                <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#b8924a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M8 22h8M12 11v11M6.2 2h11.6L20 8c0 4.4-3.6 8-8 8s-8-3.6-8-8l2.2-6z"/>
+                </svg>
+              </div>
+              <div style="font-family:'Lato',sans-serif;font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem">31. Dezember</div>
+              <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:400;color:var(--cream);margin:0 0 0.3rem">Silvester</h3>
+              <p style="font-family:'Lato',sans-serif;font-size:0.82rem;color:var(--text);line-height:1.8;margin:0 0 1.8rem;max-width:480px;margin-left:auto;margin-right:auto">Begrüßen Sie das neue Jahr bei uns — mit einer exklusiven Silvesterkarte und einem unvergesslichen Abend in besonderem Ambiente.</p>
+
+              <!-- Öffnungszeit -->
+              <div style="background:rgba(184,146,74,0.06);border:1px solid rgba(184,146,74,0.15);padding:1.2rem 2rem;margin-bottom:1.2rem;display:inline-block">
+                <div style="font-family:'Lato',sans-serif;font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem">Öffnungszeiten</div>
+                <div style="border-left:1px solid var(--gold);padding-left:0.75rem;text-align:left">
+                  <div style="font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--cream)">17:30 – 21:00 Uhr</div>
+                </div>
+              </div>
+
+              <!-- PDF mini -->
+              <div style="margin:1.2rem auto 1.5rem;max-width:320px;height:200px;border:1px solid rgba(184,146,74,0.2);overflow:hidden;position:relative">
+                <iframe src="silvester-2026.pdf" style="width:170%;height:170%;transform:scale(0.588);transform-origin:top left;border:none;pointer-events:none" title="Silvesterkarte Vorschau"></iframe>
+                <a href="silvester-2026.pdf" target="_blank" style="position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;padding-bottom:0.75rem;background:linear-gradient(to bottom,transparent 40%,rgba(10,4,1,0.7));text-decoration:none">
+                  <span style="font-family:'Lato',sans-serif;font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,146,74,0.5);padding:0.35rem 0.85rem">Karte öffnen ↗</span>
+                </a>
+              </div>
+
+              <p style="font-family:'Lato',sans-serif;font-size:0.72rem;color:var(--dim);font-style:italic;margin-bottom:1.5rem">Die Karte kann sich noch leicht verändern.</p>
+              <a href="#reservierung" class="btn-primary">Tisch reservieren</a>
+            </div>
+          </div>
+
+        </div><!-- /track -->
+      </div><!-- /overflow -->
+
+      <!-- Dots -->
+      <div style="display:flex;justify-content:center;gap:0.5rem;margin-top:1.5rem">
+        <div id="festDot0" style="width:24px;height:2px;background:var(--gold);transition:all 0.3s"></div>
+        <div id="festDot1" style="width:8px;height:2px;background:rgba(184,146,74,0.3);transition:all 0.3s"></div>
+      </div>
+
+    </div><!-- /relative -->
   </div>
 </section>
 <script>
-  function switchFesttag(tab) {
-    var isW = tab === 'weihnachten';
-    document.getElementById('panelWeihnachten').style.display = isW ? '' : 'none';
-    document.getElementById('panelSilvester').style.display  = isW ? 'none' : '';
-    document.getElementById('tabWeihnachten').style.background = isW ? 'var(--gold)' : 'transparent';
-    document.getElementById('tabWeihnachten').style.color     = isW ? 'var(--black)' : 'var(--gold)';
-    document.getElementById('tabSilvester').style.background  = isW ? 'transparent' : 'var(--gold)';
-    document.getElementById('tabSilvester').style.color       = isW ? 'var(--gold)' : 'var(--black)';
+  var festIdx = 0;
+  function slideFest(dir) {
+    festIdx = Math.max(0, Math.min(1, festIdx + dir));
+    document.getElementById('festTrack').style.transform = 'translateX(-' + (festIdx * 100) + '%)';
+    document.getElementById('festPrev').style.opacity = festIdx === 0 ? '0.4' : '1';
+    document.getElementById('festNext').style.opacity = festIdx === 1 ? '0.4' : '1';
+    document.getElementById('festDot0').style.width = festIdx === 0 ? '24px' : '8px';
+    document.getElementById('festDot0').style.background = festIdx === 0 ? 'var(--gold)' : 'rgba(184,146,74,0.3)';
+    document.getElementById('festDot1').style.width = festIdx === 1 ? '24px' : '8px';
+    document.getElementById('festDot1').style.background = festIdx === 1 ? 'var(--gold)' : 'rgba(184,146,74,0.3)';
   }
+  // Touch/Swipe
+  (function() {
+    var el = document.getElementById('festTrack');
+    var sx = 0;
+    el.addEventListener('touchstart', function(e) { sx = e.touches[0].clientX; }, {passive:true});
+    el.addEventListener('touchend', function(e) {
+      var dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 40) slideFest(dx < 0 ? 1 : -1);
+    }, {passive:true});
+  })();
 </script>
 
 <!-- Video Divider 3 -->
