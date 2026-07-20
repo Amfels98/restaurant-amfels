@@ -2132,7 +2132,7 @@
     <div style="padding:0 2rem 2rem">
       <div style="font-family:'Lato',sans-serif;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#b8924a;margin-bottom:0.4rem">Aktuell zur Saison</div>
       <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;color:#3a2516;margin:0 0 0.65rem">Frische Pfifferlinge</h2>
-      <p style="font-family:'Lato',sans-serif;font-size:0.82rem;color:#6b5645;line-height:1.8;margin:0 0 1.4rem">Jetzt frische Pfifferlinge auf unserer Saisonkarte — mit Speck und Zwiebeln zubereitet, als Vorspeise, Pasta oder zum Steak.</p>
+      <p style="font-family:'Lato',sans-serif;font-size:0.82rem;color:#6b5645;line-height:1.8;margin:0 0 1.4rem">Frische Pfifferlinge — nur für kurze Zeit. Mit Speck und Zwiebeln verfeinert, in seidiger Rahmsauce, zu Pasta, Schnitzel oder feinstem Steak.</p>
       <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap">
         <a href="#speisekarte" onclick="switchTab('pfifferlinge',document.querySelector('[onclick*=pfifferlinge]'));document.getElementById('pfiffPopup').style.display='none'" class="btn-primary" style="text-decoration:none">Zur Karte</a>
         <button onclick="document.getElementById('pfiffPopup').style.display='none'" style="background:none;border:1px solid rgba(184,146,74,0.4);color:#9a7a48;font-family:'Lato',sans-serif;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.75rem 1.5rem;cursor:pointer">Schließen</button>
@@ -2348,9 +2348,6 @@
         <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">306. Hähnchensteak Pfifferling</div><div class="menu-item-desc">Schweinefilet · in Rahmsauce · Bratkartoffeln</div></div><span class="menu-item-price">30,90 €</span></div>
         <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">306. Rumpsteak Pfifferling</div><div class="menu-item-desc">in Rahmsauce · Bratkartoffeln</div><div class="menu-sizes"><div class="menu-size-btn"><span class="menu-size-label">200g</span><span class="menu-size-price">37,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">300g</span><span class="menu-size-price">45,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">400g</span><span class="menu-size-price">51,90 €</span></div></div></div></div>
         <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">307. Filetsteak Pfifferling</div><div class="menu-item-desc">in Rahmsauce · Bratkartoffeln</div><div class="menu-sizes"><div class="menu-size-btn"><span class="menu-size-label">200g</span><span class="menu-size-price">42,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">300g</span><span class="menu-size-price">52,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">400g</span><span class="menu-size-price">60,90 €</span></div></div></div></div>
-      </div>
-      <div style="text-align:center;margin-top:2rem">
-        <a href="pfifferlinge-2026.pdf" target="_blank" class="btn-outline">Karte als PDF öffnen</a>
       </div>
     </div>
   </div>
@@ -2988,11 +2985,19 @@
   .fest-card-inner { position:relative;z-index:1;padding:2rem 1.5rem 2rem }
   .fest-card-overlay { position:absolute;inset:0;background:rgba(10,4,1,0.82) }
   .fest-times { display:grid;grid-template-columns:1fr 1fr;gap:0.45rem 1rem;text-align:left }
-  .fest-pdf { margin:1.2rem auto;max-width:200px;position:relative }
+  .fest-pdf { margin:1.2rem auto;max-width:220px;position:relative }
   .fest-pdf-frame { box-shadow:-4px 4px 0 rgba(184,146,74,0.12),0 6px 24px rgba(0,0,0,0.5);border:1px solid rgba(184,146,74,0.3);aspect-ratio:148/210;overflow:hidden;position:relative;background:#1a1208 }
   .fest-pdf-frame iframe { width:100%;height:100%;border:none;pointer-events:none;display:block }
-  .fest-pdf-link { position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;padding-bottom:0.6rem;background:linear-gradient(to bottom,transparent 50%,rgba(10,4,1,0.8));text-decoration:none }
+  .fest-pdf-link { position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;padding-bottom:0.6rem;background:linear-gradient(to bottom,transparent 50%,rgba(10,4,1,0.85));text-decoration:none }
   .fest-pdf-label { font-family:'Lato',sans-serif;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,146,74,0.5);padding:0.3rem 0.7rem }
+  /* Mobile: iframe doesn't render PDFs — show styled tap-card instead */
+  .fest-pdf-mobile { display:none;text-decoration:none }
+  @media(max-width:640px) {
+    .fest-pdf-frame iframe { display:none }
+    .fest-pdf-frame { aspect-ratio:auto;height:auto }
+    .fest-pdf-link { display:none }
+    .fest-pdf-mobile { display:flex;align-items:center;justify-content:center;gap:0.75rem;border:1px solid rgba(184,146,74,0.4);padding:1rem 1.5rem;background:rgba(184,146,74,0.06) }
+  }
   .fest-nav { display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:1.5rem;border:1px solid rgba(184,146,74,0.25);overflow:hidden;border-radius:2px }
   .fest-nav-btn { flex:1;padding:0.7rem 0.5rem;font-family:'Lato',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;transition:all 0.25s;background:transparent;color:rgba(184,146,74,0.7) }
   .fest-nav-btn.active { background:var(--gold);color:#fff }
@@ -3054,6 +3059,10 @@
                   <iframe src="weihnachtskarte-2026.pdf#toolbar=0&navpanes=0&scrollbar=0" title="Weihnachtskarte"></iframe>
                   <a href="weihnachtskarte-2026.pdf" target="_blank" class="fest-pdf-link"><span class="fest-pdf-label">Karte öffnen ↗</span></a>
                 </div>
+                <a href="weihnachtskarte-2026.pdf" target="_blank" class="fest-pdf-mobile">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b8924a" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  <span style="font-family:'Lato',sans-serif;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:#b8924a">Weihnachtskarte öffnen ↗</span>
+                </a>
               </div>
               <p style="font-family:'Lato',sans-serif;font-size:0.7rem;color:rgba(240,230,211,0.45);font-style:italic;margin:0.75rem 0 1.2rem">Die Karte kann sich noch leicht verändern.</p>
               <a href="#reservierung" class="btn-primary">Tisch reservieren</a>
@@ -3078,6 +3087,10 @@
                   <iframe src="silvester-2026.pdf#toolbar=0&navpanes=0&scrollbar=0" title="Silvesterkarte"></iframe>
                   <a href="silvester-2026.pdf" target="_blank" class="fest-pdf-link"><span class="fest-pdf-label">Karte öffnen ↗</span></a>
                 </div>
+                <a href="silvester-2026.pdf" target="_blank" class="fest-pdf-mobile">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b8924a" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  <span style="font-family:'Lato',sans-serif;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:#b8924a">Silvesterkarte öffnen ↗</span>
+                </a>
               </div>
               <p style="font-family:'Lato',sans-serif;font-size:0.7rem;color:rgba(240,230,211,0.45);font-style:italic;margin:0.75rem 0 1.2rem">Die Karte kann sich noch leicht verändern.</p>
               <a href="#reservierung" class="btn-primary">Tisch reservieren</a>
