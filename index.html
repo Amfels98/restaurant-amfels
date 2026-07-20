@@ -2119,6 +2119,18 @@
   })();
 </script>
 
+<!-- PFIFFERLINGE BANNER -->
+<div id="pfifferlingeBanner" style="background:linear-gradient(90deg,#5c3d1a,#9a6e2a,#5c3d1a);color:#fff;text-align:center;padding:0.65rem 2.5rem;font-family:'Cormorant Garamond',serif;font-size:1rem;letter-spacing:0.04em;position:fixed;top:0;left:0;right:0;z-index:1002">
+  🍄 <strong>Frische Pfifferlinge</strong> — Jetzt zur Saison! &nbsp;<a href="#speisekarte" onclick="switchTab('pfifferlinge',document.querySelector('[onclick*=pfifferlinge]'));document.getElementById('pfifferlingeBanner').style.display='none';document.body.style.paddingTop='0'" style="color:#f5d98a;text-decoration:underline;text-underline-offset:2px">Zur Karte →</a>
+  <button onclick="document.getElementById('pfifferlingeBanner').style.display='none';document.body.style.paddingTop='0'" style="position:absolute;right:0.75rem;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,0.6);font-size:1.1rem;cursor:pointer;line-height:1">✕</button>
+</div>
+<script>
+  (function(){
+    var b = document.getElementById('pfifferlingeBanner');
+    document.body.style.paddingTop = b.offsetHeight + 'px';
+  })();
+</script>
+
 <!-- ── NAVIGATION ── -->
 <nav id="navbar">
   <a href="#" class="nav-logo">
@@ -2289,6 +2301,7 @@
   </div>
 
   <div class="menu-tabs" role="tablist">
+    <button class="menu-tab seasonal" onclick="switchTab('pfifferlinge', this)">Frische Pfifferlinge</button>
     <button class="menu-tab active" onclick="switchTab('mittag', this)">Mittagskarte</button>
     <button class="menu-tab" onclick="switchTab('vorspeisen', this)">Vorspeisen &amp; Suppen</button>
     <button class="menu-tab" onclick="switchTab('steaks', this)">Steakbörse</button>
@@ -2303,6 +2316,30 @@
   </div>
 
   <!-- MITTAGSKARTE -->
+  <!-- PFIFFERLINGE -->
+  <div class="menu-panel" id="panel-pfifferlinge">
+    <div class="menu-category">
+      <div style="text-align:center;margin-bottom:2rem">
+        <span class="section-label">Aktuell zur Saison</span>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;color:var(--cream);margin:0.3rem 0 0.5rem">Frische Pfifferlinge</h3>
+        <p style="font-size:0.82rem;color:var(--text);font-style:italic">Unsere Pfifferlinge werden mit Speck und Zwiebeln zubereitet. Zu jedem Gericht servieren wir einen Beilagensalat mit hausgemachtem Dressing.</p>
+      </div>
+      <div class="menu-cat-divider"></div>
+      <div class="menu-items-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">301. Rührei mit Pfifferlingen</div><div class="menu-item-desc">mit Frühlingszwiebeln, dazu Bratkartoffeln</div></div><span class="menu-item-price">19,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">302. Bandnudeln mit Pfifferlingen</div><div class="menu-item-desc">in Rahmsauce</div></div><span class="menu-item-price">22,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">303. Schnitzel-Pfifferling</div><div class="menu-item-desc">Hähnchenschnitzel · in Rahmsauce · Pommes</div></div><span class="menu-item-price">27,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">305. Medaillons Pfifferling</div><div class="menu-item-desc">Gegrillt · in Rahmsauce · Kroketten</div></div><span class="menu-item-price">28,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">306. Hähnchensteak Pfifferling</div><div class="menu-item-desc">Schweinefilet · in Rahmsauce · Bratkartoffeln</div></div><span class="menu-item-price">30,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">306. Rumpsteak Pfifferling</div><div class="menu-item-desc">in Rahmsauce · Bratkartoffeln</div><div class="menu-sizes"><div class="menu-size-btn"><span class="menu-size-label">200g</span><span class="menu-size-price">37,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">300g</span><span class="menu-size-price">45,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">400g</span><span class="menu-size-price">51,90 €</span></div></div></div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">307. Filetsteak Pfifferling</div><div class="menu-item-desc">in Rahmsauce · Bratkartoffeln</div><div class="menu-sizes"><div class="menu-size-btn"><span class="menu-size-label">200g</span><span class="menu-size-price">42,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">300g</span><span class="menu-size-price">52,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">400g</span><span class="menu-size-price">60,90 €</span></div></div></div></div>
+      </div>
+      <div style="text-align:center;margin-top:2rem">
+        <a href="pfifferlinge-2026.pdf" target="_blank" class="btn-outline">Karte als PDF öffnen</a>
+      </div>
+    </div>
+  </div>
+
   <div class="menu-panel active" id="panel-mittag">
     <div class="menu-category">
       <h3 class="menu-cat-title">Mittagskarte</h3>
