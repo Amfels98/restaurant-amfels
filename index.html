@@ -3311,11 +3311,6 @@
   // Close button
   document.getElementById('navClose').addEventListener('click', closeMenu);
 
-  // Close menu on link click
-  navLinks.addEventListener('click', function(e) {
-    var link = e.target.closest('a');
-    if (link) { setTimeout(closeMenu, 50); }
-  });
 
   // Intersection Observer for fade-up
   const observer = new IntersectionObserver((entries) => {
