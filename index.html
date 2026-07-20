@@ -2931,27 +2931,33 @@
 
 <!-- ── FESTTAGE ── -->
 <style>
+  #festtage { background:#0a0401 !important }
+  #festtage .section-label { color:var(--gold) }
+  #festtage .section-title { color:#f0e6d3 }
+  #festtage .ornament-line { background:var(--gold) }
+  #festtage .ornament-diamond { border-color:var(--gold) }
   .fest-card { background-size:cover;background-position:center;border:1px solid rgba(184,146,74,0.2);position:relative }
   .fest-card-inner { position:relative;z-index:1;padding:2rem 1.5rem 2rem }
-  .fest-card-overlay { position:absolute;inset:0;background:rgba(10,4,1,0.80) }
+  .fest-card-overlay { position:absolute;inset:0;background:rgba(10,4,1,0.82) }
   .fest-times { display:grid;grid-template-columns:1fr 1fr;gap:0.45rem 1rem;text-align:left }
   .fest-pdf { margin:1.2rem auto;max-width:200px;position:relative }
   .fest-pdf-frame { box-shadow:-4px 4px 0 rgba(184,146,74,0.12),0 6px 24px rgba(0,0,0,0.5);border:1px solid rgba(184,146,74,0.3);aspect-ratio:148/210;overflow:hidden;position:relative;background:#1a1208 }
   .fest-pdf-frame iframe { width:100%;height:100%;border:none;pointer-events:none;display:block }
   .fest-pdf-link { position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;padding-bottom:0.6rem;background:linear-gradient(to bottom,transparent 50%,rgba(10,4,1,0.8));text-decoration:none }
   .fest-pdf-label { font-family:'Lato',sans-serif;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,146,74,0.5);padding:0.3rem 0.7rem }
-  .fest-nav { display:flex;align-items:center;justify-content:center;gap:0;margin-top:1.5rem;border:1px solid rgba(184,146,74,0.25);overflow:hidden;border-radius:2px }
-  .fest-nav-btn { flex:1;padding:0.7rem 0.5rem;font-family:'Lato',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;transition:all 0.25s;background:transparent;color:rgba(184,146,74,0.4) }
-  .fest-nav-btn.active { background:var(--gold);color:var(--black) }
+  .fest-nav { display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:1.5rem;border:1px solid rgba(184,146,74,0.25);overflow:hidden;border-radius:2px }
+  .fest-nav-btn { flex:1;padding:0.7rem 0.5rem;font-family:'Lato',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;transition:all 0.25s;background:transparent;color:rgba(184,146,74,0.5) }
+  .fest-nav-btn.active { background:var(--gold);color:#0a0401 }
   .fest-nav-divider { width:1px;height:38px;background:rgba(184,146,74,0.25);flex-shrink:0 }
-  .fest-swipe-hint { font-family:'Lato',sans-serif;font-size:0.62rem;letter-spacing:0.12em;color:rgba(184,146,74,0.5);margin-top:0.65rem;text-align:center }
+  .fest-swipe-hint { font-family:'Lato',sans-serif;font-size:0.62rem;letter-spacing:0.12em;color:rgba(184,146,74,0.45);margin-top:0.65rem;text-align:center }
+  .fest-slide { flex:0 0 100%;max-width:100%;box-sizing:border-box;min-width:0 }
   @media(max-width:480px) {
     .fest-times { grid-template-columns:1fr }
-    .fest-card-inner { padding:1.5rem 1rem 1.5rem }
-    .fest-pdf { max-width:160px }
+    .fest-card-inner { padding:1.5rem 1rem }
+    .fest-pdf { max-width:150px }
   }
 </style>
-<section class="voucher" id="festtage" style="background:var(--dark2);overflow:hidden">
+<section class="voucher" id="festtage" style="overflow:hidden">
   <div style="max-width:680px;margin:0 auto;text-align:center;padding:0 1rem">
     <div class="fade-up">
       <span class="section-label">Dezember 2026</span>
@@ -2979,20 +2985,20 @@
       <div id="festTrack" style="display:flex;transition:transform 0.45s cubic-bezier(0.4,0,0.2,1)">
 
         <!-- WEIHNACHTEN -->
-        <div style="min-width:100%;box-sizing:border-box">
+        <div class="fest-slide">
           <div class="fest-card" style="background-image:url('https://images.unsplash.com/photo-1608306680606-871907587b27?w=1200&q=80')">
             <div class="fest-card-overlay"></div>
             <div class="fest-card-inner">
-              <div style="font-family:'Lato',sans-serif;font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem">25. &amp; 26. Dezember</div>
-              <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:400;color:var(--cream);margin:0 0 0.75rem">Weihnachten</h3>
-              <p style="font-family:'Lato',sans-serif;font-size:0.8rem;color:var(--text);line-height:1.8;margin:0 0 1.2rem">Verbringen Sie die schönsten Tage des Jahres mit Ihren Liebsten bei uns — mit einem besonderen Festmenü in warmer Atmosphäre.</p>
-              <div style="background:rgba(184,146,74,0.06);border:1px solid rgba(184,146,74,0.15);padding:1rem 1.2rem;margin-bottom:1rem;display:inline-block;width:100%;box-sizing:border-box">
-                <div style="font-family:'Lato',sans-serif;font-size:0.56rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:0.7rem">Reservierung nur in festen Zeitfenstern</div>
+              <div style="font-family:'Lato',sans-serif;font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:#b8924a;margin-bottom:0.4rem">25. &amp; 26. Dezember</div>
+              <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:400;color:#f0e6d3;margin:0 0 0.75rem">Weihnachten</h3>
+              <p style="font-family:'Lato',sans-serif;font-size:0.8rem;color:rgba(240,230,211,0.75);line-height:1.8;margin:0 0 1.2rem">Verbringen Sie die schönsten Tage des Jahres mit Ihren Liebsten bei uns — mit einem besonderen Festmenü in warmer Atmosphäre.</p>
+              <div style="background:rgba(184,146,74,0.08);border:1px solid rgba(184,146,74,0.2);padding:1rem 1.2rem;margin-bottom:1rem;width:100%;box-sizing:border-box">
+                <div style="font-family:'Lato',sans-serif;font-size:0.56rem;letter-spacing:0.16em;text-transform:uppercase;color:#b8924a;margin-bottom:0.7rem">Reservierung nur in festen Zeitfenstern</div>
                 <div class="fest-times">
-                  <div style="border-left:1px solid var(--gold);padding-left:0.5rem;font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--cream)">11:30 – 13:00</div>
-                  <div style="border-left:1px solid var(--gold);padding-left:0.5rem;font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--cream)">14:00 – 16:00</div>
-                  <div style="border-left:1px solid var(--gold);padding-left:0.5rem;font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--cream)">17:00 – 19:00</div>
-                  <div style="border-left:1px solid var(--gold);padding-left:0.5rem;font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--cream)">19:30 – 21:30</div>
+                  <div style="border-left:1px solid #b8924a;padding-left:0.5rem;font-family:'Cormorant Garamond',serif;font-size:1rem;color:#f0e6d3">11:30 – 13:00</div>
+                  <div style="border-left:1px solid #b8924a;padding-left:0.5rem;font-family:'Cormorant Garamond',serif;font-size:1rem;color:#f0e6d3">14:00 – 16:00</div>
+                  <div style="border-left:1px solid #b8924a;padding-left:0.5rem;font-family:'Cormorant Garamond',serif;font-size:1rem;color:#f0e6d3">17:00 – 19:00</div>
+                  <div style="border-left:1px solid #b8924a;padding-left:0.5rem;font-family:'Cormorant Garamond',serif;font-size:1rem;color:#f0e6d3">19:30 – 21:30</div>
                 </div>
               </div>
               <div class="fest-pdf">
@@ -3001,23 +3007,23 @@
                   <a href="weihnachtskarte-2026.pdf" target="_blank" class="fest-pdf-link"><span class="fest-pdf-label">Karte öffnen ↗</span></a>
                 </div>
               </div>
-              <p style="font-family:'Lato',sans-serif;font-size:0.7rem;color:var(--dim);font-style:italic;margin:0.75rem 0 1.2rem">Die Karte kann sich noch leicht verändern.</p>
+              <p style="font-family:'Lato',sans-serif;font-size:0.7rem;color:rgba(240,230,211,0.45);font-style:italic;margin:0.75rem 0 1.2rem">Die Karte kann sich noch leicht verändern.</p>
               <a href="#reservierung" class="btn-primary">Tisch reservieren</a>
             </div>
           </div>
         </div>
 
         <!-- SILVESTER -->
-        <div style="min-width:100%;box-sizing:border-box">
+        <div class="fest-slide">
           <div class="fest-card" style="background-image:url('https://images.unsplash.com/photo-1608416026650-66b4e0c0c301?w=1200&q=80')">
             <div class="fest-card-overlay"></div>
             <div class="fest-card-inner">
-              <div style="font-family:'Lato',sans-serif;font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem">31. Dezember</div>
-              <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:400;color:var(--cream);margin:0 0 0.75rem">Silvester</h3>
-              <p style="font-family:'Lato',sans-serif;font-size:0.8rem;color:var(--text);line-height:1.8;margin:0 0 1.2rem">Begrüßen Sie das neue Jahr bei uns — mit einer exklusiven Silvesterkarte und einem unvergesslichen Abend in besonderem Ambiente.</p>
-              <div style="background:rgba(184,146,74,0.06);border:1px solid rgba(184,146,74,0.15);padding:1rem 1.2rem;margin-bottom:1rem;display:inline-block;width:100%;box-sizing:border-box">
-                <div style="font-family:'Lato',sans-serif;font-size:0.56rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:0.7rem">Öffnungszeiten</div>
-                <div style="border-left:1px solid var(--gold);padding-left:0.5rem;text-align:left;font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--cream)">17:30 – 21:00 Uhr</div>
+              <div style="font-family:'Lato',sans-serif;font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:#b8924a;margin-bottom:0.4rem">31. Dezember</div>
+              <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:400;color:#f0e6d3;margin:0 0 0.75rem">Silvester</h3>
+              <p style="font-family:'Lato',sans-serif;font-size:0.8rem;color:rgba(240,230,211,0.75);line-height:1.8;margin:0 0 1.2rem">Begrüßen Sie das neue Jahr bei uns — mit einer exklusiven Silvesterkarte und einem unvergesslichen Abend in besonderem Ambiente.</p>
+              <div style="background:rgba(184,146,74,0.08);border:1px solid rgba(184,146,74,0.2);padding:1rem 1.2rem;margin-bottom:1rem;width:100%;box-sizing:border-box">
+                <div style="font-family:'Lato',sans-serif;font-size:0.56rem;letter-spacing:0.16em;text-transform:uppercase;color:#b8924a;margin-bottom:0.7rem">Öffnungszeiten</div>
+                <div style="border-left:1px solid #b8924a;padding-left:0.5rem;text-align:left;font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:#f0e6d3">17:30 – 21:00 Uhr</div>
               </div>
               <div class="fest-pdf">
                 <div class="fest-pdf-frame">
@@ -3025,7 +3031,7 @@
                   <a href="silvester-2026.pdf" target="_blank" class="fest-pdf-link"><span class="fest-pdf-label">Karte öffnen ↗</span></a>
                 </div>
               </div>
-              <p style="font-family:'Lato',sans-serif;font-size:0.7rem;color:var(--dim);font-style:italic;margin:0.75rem 0 1.2rem">Die Karte kann sich noch leicht verändern.</p>
+              <p style="font-family:'Lato',sans-serif;font-size:0.7rem;color:rgba(240,230,211,0.45);font-style:italic;margin:0.75rem 0 1.2rem">Die Karte kann sich noch leicht verändern.</p>
               <a href="#reservierung" class="btn-primary">Tisch reservieren</a>
             </div>
           </div>
