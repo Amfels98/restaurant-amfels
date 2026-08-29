@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Restaurant Am Fels – Speisekarte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --gold:#b8924a;
+    --gold-light:#dfc089;
+    --gold-dark:#9a7a48;
+    --ivory:#fdfaf5;
+    --cream:#f5efe4;
+    --brown:#3a2516;
+    --text:#6b5645;
+    --line:#e2d7c3;
+    --wine:#6b1f1f;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  body{
+    font-family:'Lato',sans-serif;
+    color:var(--brown);
+    background:#d8ccb8;
+    line-height:1.5;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+
+  /* ── A4 PAGE ── */
+  .page{
+    width:210mm;
+    min-height:297mm;
+    margin:12mm auto;
+    padding:20mm 18mm 18mm;
+    background:var(--ivory);
+    position:relative;
+    box-shadow:0 6px 30px rgba(0,0,0,.25);
+    overflow:hidden;
+  }
+  .page::before{
+    content:"";
+    position:absolute;
+    inset:8mm;
+    border:1px solid var(--line);
+    pointer-events:none;
+  }
+  .page-inner{position:relative;z-index:1;}
+
+  /* subtle running header/footer */
+  .run-head{
+    text-align:center;
+    font-family:'Playfair Display',serif;
+    letter-spacing:.5em;
+    text-transform:uppercase;
+    font-size:9px;
+    color:var(--gold);
+    margin-bottom:14mm;
+  }
+  .run-foot{
+    position:absolute;
+    bottom:11mm;left:0;right:0;
+    text-align:center;
+    font-size:8.5px;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:var(--text);
+    opacity:.7;
+  }
+
+  /* ── COVER ── */
+  .cover{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    min-height:257mm;
+  }
+  .cover .logo{width:120px;height:auto;margin-bottom:26px;opacity:.95;}
+  .cover .est{
+    font-size:10px;letter-spacing:.4em;text-transform:uppercase;
+    color:var(--gold-dark);margin-bottom:26px;
+  }
+  .cover h1{
+    font-family:'Playfair Display',serif;
+    font-weight:500;
+    font-size:78px;
+    line-height:.95;
+    color:var(--brown);
+    margin-bottom:6px;
+  }
+  .cover h1 em{font-style:italic;color:var(--gold);font-weight:400;}
+  .cover .sub{
+    font-family:'Playfair Display',serif;
+    font-style:italic;
+    font-size:22px;
+    color:var(--text);
+    margin-bottom:30px;
+  }
+  .cover .flourish{display:flex;align-items:center;gap:14px;margin:8px 0 34px;}
+  .cover .flourish .l{width:70px;height:1px;background:var(--gold);}
+  .cover .flourish .d{width:8px;height:8px;background:var(--gold);transform:rotate(45deg);}
+  .cover .tag{
+    font-size:12px;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--text);line-height:2.4;
+  }
+  .cover .addr{
+    margin-top:40px;font-size:11px;color:var(--text);
+    letter-spacing:.06em;line-height:1.9;
+  }
+
+  /* ── SECTION ── */
+  .section{margin-bottom:11mm;}
+  .section:last-child{margin-bottom:0;}
+  .section-head{text-align:center;margin-bottom:8mm;}
+  .kicker{
+    font-size:9.5px;letter-spacing:.34em;text-transform:uppercase;
+    color:var(--gold-dark);display:block;margin-bottom:5px;
+  }
+  .cat-title{
+    font-family:'Playfair Display',serif;
+    font-weight:500;
+    font-size:26px;
+    color:var(--brown);
+  }
+  .cat-title em{font-style:italic;color:var(--gold);}
+  .cat-divider{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:8px;}
+  .cat-divider .l{width:44px;height:1px;background:var(--gold);}
+  .cat-divider .d{width:6px;height:6px;background:var(--gold);transform:rotate(45deg);}
+
+  .note{
+    text-align:center;font-style:italic;font-size:10.5px;color:var(--text);
+    max-width:75%;margin:5px auto 0;line-height:1.6;
+  }
+  .subhead{
+    font-family:'Playfair Display',serif;font-size:16px;font-weight:600;
+    color:var(--gold-dark);letter-spacing:.02em;
+    margin:7mm 0 3mm;padding-bottom:3px;border-bottom:1px solid var(--line);text-align:center;
+  }
+
+  /* ── ITEM ── */
+  .item{margin-bottom:5.5mm;break-inside:avoid;}
+  .item-row{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;justify-content:center;}
+  .item-name{
+    font-family:'Playfair Display',serif;
+    font-weight:500;font-size:14.5px;color:var(--brown);
+    white-space:nowrap;
+  }
+  .leader{ display:none; }
+  .item-price{
+    font-family:'Playfair Display',serif;
+    font-weight:600;font-size:14px;color:var(--gold-dark);
+    white-space:nowrap;
+  }
+  .alg{font-size:8px;vertical-align:super;color:var(--gold-dark);font-weight:400;letter-spacing:.03em;white-space:nowrap;}
+  .item-desc{
+    font-size:12px;color:var(--text);line-height:1.55;
+    margin-top:2px;text-align:center;
+  }
+  .item-sizes{display:flex;gap:20px;margin-top:4px;justify-content:center;}
+  .size{display:flex;align-items:baseline;gap:6px;font-size:11px;}
+  .size b{font-family:'Playfair Display',serif;color:var(--brown);font-weight:600;}
+  .size span{color:var(--gold-dark);font-weight:700;}
+
+  .two-col{column-count:2;column-gap:12mm;}
+  .two-col .item{break-inside:avoid;}
+
+  /* small compact items (drinks) */
+  .compact .item{margin-bottom:3.5mm;}
+  .colbal{column-count:2;column-gap:12mm;}
+  .compact.colbal .item{-webkit-column-break-inside:avoid;break-inside:avoid;}
+  .compact .item-desc{margin-top:0;}
+
+  /* ── LOGO MARK (white logo recolored via mask) ── */
+  .brand-mark{
+    width:30px;height:30px;margin:0 auto 6px;
+    -webkit-mask:url(images/logo.png) center/contain no-repeat;
+    mask:url(images/logo.png) center/contain no-repeat;
+    background:var(--gold-dark);
+    opacity:.85;
+  }
+
+  /* ── CIRCULAR FOOD MEDALLION ── */
+  .medallion{
+    width:30mm;height:30mm;margin:0 auto 10px;
+    border-radius:50%;
+    background-size:cover;background-position:center;
+    border:1px solid var(--gold);
+    box-shadow:0 0 0 4px var(--ivory),0 0 0 5px var(--line),0 8px 20px rgba(58,37,22,.18);
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+
+  /* ── COVER PHOTO ── */
+  .cover-bg{
+    position:absolute;inset:0;
+    background:url(images/ambiente.jpeg) center/cover no-repeat;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+  .cover-bg::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(20,12,6,.82) 0%,rgba(20,12,6,.72) 45%,rgba(20,12,6,.86) 100%);
+  }
+  .page.cover-page::before{border-color:rgba(223,192,137,.5);inset:8mm;}
+  .cover.on-photo{color:#f6ecd8;}
+  .cover.on-photo .est,.cover.on-photo .tag{color:var(--gold-light);}
+  .cover.on-photo h1{color:#fbf3e3;}
+  .cover.on-photo h1 em{color:var(--gold-light);}
+  .cover.on-photo .sub{color:#e7d8bd;}
+  .cover.on-photo .addr{color:#d8c7a8;}
+  .cover.on-photo .logo-mark{
+    width:88px;height:88px;margin:0 auto 26px;
+    -webkit-mask:url(images/logo.png) center/contain no-repeat;
+    mask:url(images/logo.png) center/contain no-repeat;
+    background:var(--gold-light);
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+  .cover.on-photo .run-foot{color:var(--gold-light);opacity:.85;}
+
+  @media print{
+    html,body{background:#fff;margin:0;padding:0;}
+    .page{
+      margin:0;
+      box-shadow:none;
+      width:210mm;
+      height:297mm;
+      min-height:297mm;
+      page-break-after:always;
+      overflow:hidden;
+    }
+    .page:last-child{page-break-after:auto;}
+  }
+  @page{size:A4;margin:0;}
+</style>
+</head>
+<body>
+
+<!-- ══════════ COVER ══════════ -->
+<div class="page cover-page">
+  <div class="cover-bg"></div>
+  <div class="page-inner cover on-photo">
+    <div class="logo-mark"></div>
+    <div class="est">Engelskirchen · Loope</div>
+    <h1>Am <em>Fels</em></h1>
+    <div class="sub">Restaurant</div>
+    <div class="flourish"><span class="l"></span><span class="d"></span><span class="l"></span></div>
+    <div class="tag">Speise&nbsp;&amp;&nbsp;Getränkekarte</div>
+    <div class="addr">
+      Kroatische Tradition trifft internationale Kochkunst<br>
+      Steaks · Grillspezialitäten · Frischer Fisch
+    </div>
+    <div style="margin-top:30px;text-align:center;-webkit-print-color-adjust:exact;print-color-adjust:exact">
+      <div style="font-style:italic;font-size:14px;color:#e7d8bd;margin-bottom:12px;letter-spacing:.02em">Verschenken Sie Genuss</div>
+      <div style="display:inline-block;border:1px solid var(--gold);background:rgba(20,12,6,.35);padding:15px 34px;border-radius:2px;box-shadow:0 0 0 4px rgba(246,236,216,.06)">
+        <div style="font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold-light);margin-bottom:7px">Geschenkgutschein</div>
+        <div style="font-size:23px;color:#fbf3e3;letter-spacing:.06em;line-height:1">Am <em style="font-style:italic;color:var(--gold-light)">Fels</em></div>
+        <div style="font-size:8.5px;letter-spacing:.14em;color:#d8c7a8;margin-top:8px;text-transform:uppercase">In jeder Höhe erhältlich · Fragen Sie unser Team</div>
+      </div>
+    </div>
+  </div>
+  <div class="run-foot">Restaurant Am Fels · amfels.de</div>
+</div>
+
+<!-- ══════════ VORSPEISEN & SUPPEN ══════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="brand-mark"></div>
+
+    <div class="section">
+      <div class="section-head">
+        <span class="kicker">Zum Beginn</span>
+        <div class="cat-title">Vorspeisen &amp; <em>Suppen</em></div>
+        <div class="cat-divider"><span class="l"></span><span class="d"></span><span class="l"></span></div>
+      </div>
+
+      <div class="item">
+        <div class="item-row"><span class="item-name">6. Knoblauchbrot <sup class="alg">A,G,I</sup></span><span class="leader"></span><span class="item-price">5,90</span></div>
+        <div class="item-desc">mit Sauerrahm-Dip</div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">8. Schafskäse überbacken <sup class="alg">G</sup></span><span class="leader"></span><span class="item-price">10,90</span></div>
+        <div class="item-desc">auf Tomaten und Paprika mit Olivenöl, dazu Brot</div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">10. Ziegenkäse <sup class="alg">A,G,H</sup></span><span class="leader"></span><span class="item-price">10,90</span></div>
+        <div class="item-desc">mit Honig und Walnüssen überbacken, dazu Brot</div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">9. Scampi Picante <sup class="alg">A,B,G,I</sup></span><span class="leader"></span><span class="item-price">13,90</span></div>
+        <div class="item-desc">in hauseigener Sauce, mit Knoblauch, dazu Brot</div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">11. Carpaccio <sup class="alg">A,G</sup></span><span class="leader"></span><span class="item-price">14,90</span></div>
+        <div class="item-desc">Rinderfiletscheiben auf Balsamicodressing, mit geraspeltem Parmesan, Kapern und Rucola, dazu Brot</div>
+      </div>
+
+      <div class="subhead">Suppen</div>
+      <div class="item"><div class="item-row"><span class="item-name">13. Hühnersuppe <sup class="alg">A,G</sup></span><span class="leader"></span><span class="item-price">6,50</span></div></div>
+      <div class="item"><div class="item-row"><span class="item-name">14. Tagessuppe <sup class="alg">I</sup></span><span class="leader"></span><span class="item-price">6,50</span></div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <span class="kicker">Kroatische Spezialitäten</span>
+        <div class="cat-title">Vom <em>Grill</em></div>
+        <div class="cat-divider"><span class="l"></span><span class="d"></span><span class="l"></span></div>
+      </div>
+
+      <div class="item">
+        <div class="item-row"><span class="item-name">54. Cevapcici <sup class="alg">I</sup></span><span class="leader"></span><span class="item-price">18,90</span></div>
+        <div class="item-desc">hausgemachte Hackfleischröllchen, dazu Pommes Frites und Djuwetschreis</div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">55. Raznjici</span><span class="leader"></span><span class="item-price">19,90</span></div>
+        <div class="item-desc">vom Schwein, dazu Pommes Frites und Djuwetschreis</div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">56. Hacksteak Hirten Art <sup class="alg">G,I</sup></span><span class="leader"></span><span class="item-price">19,90</span></div>
+        <div class="item-desc">gefüllt mit Schafskäse, dazu Pommes Frites und Djuwetschreis</div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">58. Kalbsleber <sup class="alg">A,G,I</sup></span><span class="leader"></span><span class="item-price">20,90</span></div>
+        <div class="item-desc">mit frischen gerösteten Zwiebeln, dazu Pommes Frites und Djuwetschreis</div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">57. Grillteller <sup class="alg">I</sup></span><span class="leader"></span><span class="item-price">22,90</span></div>
+        <div class="item-desc">Cevapcici, Rückensteak, Hacksteak und Raznjici, dazu Djuwetschreis und Pommes</div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">59. Lustiger Bosnjak <sup class="alg">A,C,G,I · 1,2,3</sup></span><span class="leader"></span></div>
+        <div class="item-desc">Rumpsteak gefüllt mit Schinken und Käse, dazu Pommes Frites und Djuwetschreis</div>
+        <div class="item-sizes">
+          <span class="size"><b>200g</b><span>28,90</span></span>
+          <span class="size"><b>300g</b><span>36,90</span></span>
+          <span class="size"><b>400g</b><span>42,90</span></span>
+        </div>
+      </div>
+      <p class="note">Zu diesen Gerichten servieren wir einen Beilagensalat.</p>
+    </div>
+  </div>
+  <div class="run-foot">Alle Preise in Euro inkl. gesetzl. MwSt.</div>
+</div>
+
+<!-- ══════════ STEAKBÖRSE ══════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="brand-mark"></div>
+
+    <div class="section">
+      <div class="section-head">
+        <span class="kicker">Premium Grain Fed Beef · Argentinien</span>
+        <div class="cat-title"><em>Steak</em>börse</div>
+        <div class="cat-divider"><span class="l"></span><span class="d"></span><span class="l"></span></div>
+        <p class="note">Vom Futtermittel über die Aufzucht bis zur Schlachtung aus einer Hand.<br>Garpunkte: Englisch · Medium · Well done</p>
+      </div>
+
+      <div class="item">
+        <div class="item-row"><span class="item-name">29. Rumpsteak Premium Grain Fed <sup class="alg">G</sup></span><span class="leader"></span></div>
+        <div class="item-desc">mit Kräuterbutter, dazu Folienkartoffel mit Sauerrahm</div>
+        <div class="item-sizes"><span class="size"><b>200g</b><span>27,90</span></span><span class="size"><b>300g</b><span>35,90</span></span><span class="size"><b>400g</b><span>41,90</span></span></div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">30. Filetsteak Premium Grain Fed <sup class="alg">G</sup></span><span class="leader"></span></div>
+        <div class="item-desc">mit Kräuterbutter, dazu Folienkartoffel mit Sauerrahm</div>
+        <div class="item-sizes"><span class="size"><b>200g</b><span>33,90</span></span><span class="size"><b>300g</b><span>43,90</span></span><span class="size"><b>400g</b><span>51,90</span></span></div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">33. Zwiebelrostbraten <sup class="alg">A,G</sup></span><span class="leader"></span></div>
+        <div class="item-desc">Rumpsteak mit frischen gerösteten Zwiebeln, dazu Bratkartoffeln</div>
+        <div class="item-sizes"><span class="size"><b>200g</b><span>28,90</span></span><span class="size"><b>300g</b><span>36,90</span></span><span class="size"><b>400g</b><span>42,90</span></span></div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">37. Rumpsteak „Spezial“ <sup class="alg">G,I</sup></span><span class="leader"></span></div>
+        <div class="item-desc">mit gerösteten Champignons und einem Hauch Sauce Béarnaise, dazu Pommes Frites</div>
+        <div class="item-sizes"><span class="size"><b>200g</b><span>28,90</span></span><span class="size"><b>300g</b><span>36,90</span></span><span class="size"><b>400g</b><span>42,90</span></span></div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">35. Filetsteak Madagaskar <sup class="alg">G,I</sup></span><span class="leader"></span></div>
+        <div class="item-desc">mit Pfeffersauce, dazu Bratkartoffeln</div>
+        <div class="item-sizes"><span class="size"><b>200g</b><span>33,90</span></span><span class="size"><b>300g</b><span>43,90</span></span><span class="size"><b>400g</b><span>51,90</span></span></div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">36. Filetsteak Champignon <sup class="alg">A,G,I</sup></span><span class="leader"></span></div>
+        <div class="item-desc">mit Champignonrahmsauce, dazu Kroketten und Gemüse</div>
+        <div class="item-sizes"><span class="size"><b>200g</b><span>33,90</span></span><span class="size"><b>300g</b><span>43,90</span></span><span class="size"><b>400g</b><span>51,90</span></span></div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">31. Pfanne „Am Fels“ <sup class="alg">G,I</sup></span><span class="leader"></span></div>
+        <div class="item-desc">Steakfleischstreifen, Paprika &amp; frische Champignons in feuriger Peperoni-Salsa, dazu Butterreis</div>
+        <div class="item-sizes"><span class="size"><b>200g</b><span>23,90</span></span><span class="size"><b>300g</b><span>29,90</span></span><span class="size"><b>400g</b><span>35,90</span></span></div>
+      </div>
+      <p class="note">Alle Steaks werden mit einem Beilagensalat serviert.</p>
+    </div>
+
+    <div class="section">
+      <div class="subhead" style="margin-top:0">Beilagen</div>
+      <div class="compact colbal">
+            <div class="item"><div class="item-row"><span class="item-name">100. Pommes Frites</span><span class="leader"></span><span class="item-price">4,00</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">101. Kroketten</span><span class="leader"></span><span class="item-price">4,00</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">103. Bratkartoffeln</span><span class="leader"></span><span class="item-price">4,00</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">102. Folienkartoffel</span><span class="leader"></span><span class="item-price">5,00</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">110. Mangold-Kartoffeln</span><span class="leader"></span><span class="item-price">4,00</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">106. Butterreis</span><span class="leader"></span><span class="item-price">4,00</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">105. Djuwetschreis</span><span class="leader"></span><span class="item-price">4,00</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">104. Gemüse</span><span class="leader"></span><span class="item-price">4,00</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">109. Prinzessbohnen</span><span class="leader"></span><span class="item-price">4,00</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">111. Geröstete Champignons</span><span class="leader"></span><span class="item-price">4,00</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">112. Röstzwiebeln</span><span class="leader"></span><span class="item-price">4,00</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">107. Beilagensalat</span><span class="leader"></span><span class="item-price">4,90</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">108. Kräuterbutter</span><span class="leader"></span><span class="item-price">2,50</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">117. Ajvar</span><span class="leader"></span><span class="item-price">2,50</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">119. Sauerrahm</span><span class="leader"></span><span class="item-price">3,00</span></div></div>
+      </div>
+      <div class="subhead">Saucen</div>
+      <div class="compact colbal">
+            <div class="item"><div class="item-row"><span class="item-name">113. Champignonsauce</span><span class="leader"></span><span class="item-price">4,00</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">114. Pfeffersauce</span><span class="leader"></span><span class="item-price">4,00</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">115. Hollandaise</span><span class="leader"></span><span class="item-price">4,00</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">116. Béarnaise</span><span class="leader"></span><span class="item-price">4,00</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">118. Rahmsauce</span><span class="leader"></span><span class="item-price">4,00</span></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="run-foot">Alle Preise in Euro inkl. gesetzl. MwSt.</div>
+</div>
+
+<!-- ══════════ LAMM / SCHWEIN / HÄHNCHEN ══════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="brand-mark"></div>
+
+    <div class="section">
+      <div class="section-head">
+        <span class="kicker">Aus der Küche</span>
+        <div class="cat-title">Lamm · Schwein · <em>Hähnchen</em></div>
+        <div class="cat-divider"><span class="l"></span><span class="d"></span><span class="l"></span></div>
+      </div>
+
+      <div class="subhead" style="margin-top:0">Vom Lamm</div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">25. Lamm-Hüfte <sup class="alg">I</sup></span><span class="leader"></span><span class="item-price">25,90</span></div>
+        <div class="item-desc">mit frischem Knoblauch, dazu Prinzessbohnen und Bratkartoffeln</div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">26. Lamm-Mix Teller <sup class="alg">I</sup></span><span class="leader"></span><span class="item-price">28,90</span></div>
+        <div class="item-desc">Steak und Kotelett mit frischem Knoblauch, dazu Prinzessbohnen und Bratkartoffeln</div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">27. Lamm-Kotelett <sup class="alg">I</sup></span><span class="leader"></span><span class="item-price">30,90</span></div>
+        <div class="item-desc">vom Carré, mit frischem Knoblauch, dazu Prinzessbohnen und Bratkartoffeln</div>
+      </div>
+
+      <div class="subhead">Vom Schwein</div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">43. Cordon Bleu <sup class="alg">A,C,G · 1,2,3</sup></span><span class="leader"></span><span class="item-price">20,90</span></div>
+        <div class="item-desc">Schweinefilet gefüllt mit Schinken und Käse, paniert, dazu Pommes Frites</div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">44. Zagreb Teller <sup class="alg">A,C,G,I · 1,2,3</sup></span><span class="leader"></span><span class="item-price">20,90</span></div>
+        <div class="item-desc">Schweinefilet gefüllt mit Schinken und Käse, in Knoblauchrahmsauce, dazu Bratkartoffeln</div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">45. Schiwago Teller <sup class="alg">A,C,G,I</sup></span><span class="leader"></span><span class="item-price">20,90</span></div>
+        <div class="item-desc">Schweinefilet mit Champignonrahmsauce, dazu Kroketten und Gemüse</div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">46. Marco Polo <sup class="alg">G,I · 1,2,3</sup></span><span class="leader"></span><span class="item-price">21,90</span></div>
+        <div class="item-desc">Schweinefilet mit Schinken, Sauce Béarnaise und Käse überbacken, dazu Bratkartoffeln</div>
+      </div>
+
+      <div class="subhead">Hähnchen &amp; Schnitzel</div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">39. Schnitzel „Wiener Art“ <sup class="alg">A,C,G</sup></span><span class="leader"></span><span class="item-price">17,90</span></div>
+        <div class="item-desc">paniert, dazu Pommes Frites</div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">42. Hähnchensteak Natur <sup class="alg">G</sup></span><span class="leader"></span><span class="item-price">18,90</span></div>
+        <div class="item-desc">gegrillt, mit Kräuterbutter, dazu Folienkartoffel mit Sauerrahm</div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">40. Schnitzel „Champignon“ <sup class="alg">A,C,G,I</sup></span><span class="leader"></span><span class="item-price">19,90</span></div>
+        <div class="item-desc">paniert, mit Champignon-Rahmsauce, dazu Pommes Frites</div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">38. Pfanne India <sup class="alg">G</sup></span><span class="leader"></span><span class="item-price">19,90</span></div>
+        <div class="item-desc">Hähnchengeschnetzeltes mit tropischen Früchten, in feiner Curry-Sahne-Sauce, dazu Butterreis</div>
+      </div>
+      <p class="note">Zu diesen Gerichten servieren wir einen Beilagensalat.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <span class="kicker">Fangfrisch</span>
+        <div class="cat-title">Frischer <em>Fisch</em></div>
+        <div class="cat-divider"><span class="l"></span><span class="d"></span><span class="l"></span></div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">62. Doradenfilet <sup class="alg">D,G · 1,2</sup></span><span class="leader"></span><span class="item-price">22,90</span></div>
+        <div class="item-desc">in Kräuterbutter-Sauce, dazu Mangold-Kartoffeln mit Knoblauch</div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">60. Zanderfilet <sup class="alg">D,G · 1,2</sup></span><span class="leader"></span><span class="item-price">22,90</span></div>
+        <div class="item-desc">in feiner Dill-Sauce, dazu Mangold-Kartoffeln mit Knoblauch</div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">61. Lachsfilet <sup class="alg">D,G · 1,2</sup></span><span class="leader"></span><span class="item-price">22,90</span></div>
+        <div class="item-desc">mit Kräuterbutter, dazu Folienkartoffel mit Sauerrahm</div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">63. Fischteller <sup class="alg">A,C,D,G,J,N · 1,2</sup></span><span class="leader"></span><span class="item-price">27,90</span></div>
+        <div class="item-desc">verschiedene Fischfilets und 2 Garnelen, dazu Mangold-Kartoffeln mit Knoblauch</div>
+      </div>
+      <p class="note">Zu diesen Gerichten servieren wir einen Beilagensalat.</p>
+    </div>
+  </div>
+  <div class="run-foot">Alle Preise in Euro inkl. gesetzl. MwSt.</div>
+</div>
+
+<!-- ══════════ KLEIN & FEIN / SENIOREN / KINDER ══════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="brand-mark"></div>
+
+    <div class="section">
+      <div class="section-head">
+        <span class="kicker">Salate &amp; Leichtes</span>
+        <div class="cat-title">Salate &amp; <em>mehr</em></div>
+        <div class="cat-divider"><span class="l"></span><span class="d"></span><span class="l"></span></div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">16. Salat „Filetto di Manzo“ <sup class="alg">G,J</sup></span><span class="leader"></span><span class="item-price">19,90</span></div>
+        <div class="item-desc">bunt gemischter Salat mit hausgemachtem Vinaigrette-Dressing, dazu Streifen von Filet und Rumpsteak, mediterranes Gemüse und Parmesan</div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">17. Salat Chef <sup class="alg">G,I,J</sup></span><span class="leader"></span><span class="item-price">17,90</span></div>
+        <div class="item-desc">bunt gemischter Salat mit hausgemachtem Vinaigrette-Dressing, dazu Hähnchenstreifen, Bratkartoffeln und Parmesan</div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">21. Tagliatelle Gambas <sup class="alg">A,B,G</sup></span><span class="leader"></span><span class="item-price">19,90</span></div>
+        <div class="item-desc">frische Bandnudeln mit Garnelen und Cherry-Tomaten in Parmesan-Sahne-Sauce, dazu Beilagensalat</div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">19. Gemüseteller Vegetaria <sup class="alg">G,I</sup></span><span class="leader"></span><span class="item-price">18,90</span></div>
+        <div class="item-desc">buntes Pfannengemüse, dazu Folienkartoffel mit Sauerrahm und Beilagensalat</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="subhead" style="margin-top:0">Für unsere Senioren</div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">22. Herren Teller <sup class="alg">G,I</sup></span><span class="leader"></span><span class="item-price">17,90</span></div>
+        <div class="item-desc">2 Schweinefiletmedaillons mit Pfeffersauce, dazu Bratkartoffeln</div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">23. Damen Teller <sup class="alg">C,G,I</sup></span><span class="leader"></span><span class="item-price">17,90</span></div>
+        <div class="item-desc">Hähnchensteak und tropische Früchte mit Sauce Hollandaise und Käse überbacken, dazu Kroketten und Gemüse</div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">24. Filetsteak Mini · 130g <sup class="alg">G,I</sup></span><span class="leader"></span><span class="item-price">25,90</span></div>
+        <div class="item-desc">mit frischen Champignons in Pfefferrahmsauce, dazu Bratkartoffeln</div>
+      </div>
+      <p class="note">Zu diesen Gerichten servieren wir einen Beilagensalat.</p>
+    </div>
+
+    <div class="section">
+      <div class="subhead" style="margin-top:0">Für unsere kleinen Gäste</div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">51. Biene Maya <sup class="alg">A,C,G</sup></span><span class="leader"></span><span class="item-price">9,50</span></div>
+        <div class="item-desc">paniertes Hähnchenschnitzel mit Pommes Frites</div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">53. Cowboy <sup class="alg">I</sup></span><span class="leader"></span><span class="item-price">9,50</span></div>
+        <div class="item-desc">4 Cevapcici mit Pommes Frites</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <span class="kicker">Zum Abschluss</span>
+        <div class="cat-title"><em>Desserts</em></div>
+        <div class="cat-divider"><span class="l"></span><span class="d"></span><span class="l"></span></div>
+      </div>
+      <div class="item"><div class="item-row"><span class="item-name">64. Palatschinken mit Schokolade <sup class="alg">A,C,G</sup></span><span class="leader"></span><span class="item-price">5,90</span></div></div>
+      <div class="item"><div class="item-row"><span class="item-name">65. Palatschinken mit Marmelade <sup class="alg">A,C,G</sup></span><span class="leader"></span><span class="item-price">5,90</span></div></div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">66. Eis &amp; heiße Kirschen <sup class="alg">C,G · 11</sup></span><span class="leader"></span><span class="item-price">8,90</span></div>
+        <div class="item-desc">mit Vanilleeis und Sahne</div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">68. Crème brûlée <sup class="alg">C,G</sup></span><span class="leader"></span><span class="item-price">6,90</span></div>
+        <div class="item-desc">mit karamellisierter Zuckerschicht</div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">67. Palatschinken Gourmet <sup class="alg">A,C,G · 1</sup></span><span class="leader"></span><span class="item-price">8,90</span></div>
+        <div class="item-desc">hauchdünner Pfannkuchen mit Schokolade, gefüllt mit Vanilleeis, dekoriert mit Früchten und Sahne</div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">69. Lava Cake <sup class="alg">A,C,G · 1</sup></span><span class="leader"></span><span class="item-price">8,90</span></div>
+        <div class="item-desc">warmes Schokoladen-Soufflé mit flüssigem Kern, dazu Vanilleeis mit Sahne</div>
+      </div>
+      <div class="item">
+        <div class="item-row"><span class="item-name">70. Semifreddo <sup class="alg">A,C,G,H · 1</sup></span><span class="leader"></span><span class="item-price">9,50</span></div>
+        <div class="item-desc">luftig wie eine Mousse, cremig wie Eis, mit karamellisierten Mandeln und hausgemachter Karamellsauce auf Keksboden</div>
+      </div>
+    </div>
+  </div>
+  <div class="run-foot">Alle Preise in Euro inkl. gesetzl. MwSt.</div>
+</div>
+
+<!-- ══════════ WEINKARTE ══════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="brand-mark"></div>
+
+    <div class="section">
+      <div class="section-head">
+        <span class="kicker">Aus dem Keller</span>
+        <div class="cat-title">Die <em>Weinkarte</em></div>
+        <div class="cat-divider"><span class="l"></span><span class="d"></span><span class="l"></span></div>
+        <p class="note">Preise je Glas 0,2 l / Flasche 0,75 l</p>
+      </div>
+
+      <div class="subhead" style="margin-top:0">Rotweine</div>
+      <div class="item"><div class="item-row"><span class="item-name">Cavazza, Merlot · Veneto, Italien</span><span class="leader"></span><span class="item-price">6,50</span></div><div class="item-desc">fruchtiges Aroma reifer roter Beeren, sanft, elegant und gut balanciert · trocken</div></div>
+      <div class="item"><div class="item-row"><span class="item-name">Plavac · Kroatien</span><span class="leader"></span><span class="item-price">6,90 / 23,00</span></div><div class="item-desc">fein trockener, leichter Wein</div></div>
+      <div class="item"><div class="item-row"><span class="item-name">Kadarka · Nordmazedonien</span><span class="leader"></span><span class="item-price">6,90 / 23,00</span></div><div class="item-desc">rund und weich, feines sanftes Aroma · lieblich</div></div>
+      <div class="item"><div class="item-row"><span class="item-name">Casa Carmela, Semi-Dulce · Spanien</span><span class="leader"></span><span class="item-price">7,00 / 24,00</span></div><div class="item-desc">fruchtig mit ausbalancierter Süße, nicht ganz trocken</div></div>
+      <div class="item"><div class="item-row"><span class="item-name">Señora de Ayanz, Tempranillo · Navarra</span><span class="leader"></span><span class="item-price">7,00 / 24,00</span></div><div class="item-desc">Frucht und Tannin mit Beeren, saftiger junger Spanier</div></div>
+      <div class="item"><div class="item-row"><span class="item-name">Don Filippo, Primitivo · Puglia</span><span class="leader"></span><span class="item-price">8,00 / 28,00</span></div><div class="item-desc">intensive Noten roter Früchte, weich und rund</div></div>
+
+      <div class="subhead">Weißweine</div>
+      <div class="item"><div class="item-row"><span class="item-name">Cavazza, Pinot Grigio · Veneto</span><span class="leader"></span><span class="item-price">6,50</span></div><div class="item-desc">frisch, mit Aroma tropischer Früchte · trocken</div></div>
+      <div class="item"><div class="item-row"><span class="item-name">Karl Pfaffmann, Grauburgunder · Pfalz</span><span class="leader"></span><span class="item-price">6,90 / 23,00</span></div><div class="item-desc">saftig und animierend frisch, lang im Abgang · trocken</div></div>
+      <div class="item"><div class="item-row"><span class="item-name">Karl Pfaffmann, Riesling · Herrenberg</span><span class="leader"></span><span class="item-price">7,00 / 24,00</span></div><div class="item-desc">kräftige Früchte und zart süßlicher Schmelz · feinherb</div></div>
+      <div class="item"><div class="item-row"><span class="item-name">Javier Sanz, Verdejo · Rueda, Spanien</span><span class="leader"></span><span class="item-price">7,30 / 25,00</span></div><div class="item-desc">frisch, sehr aromatisch, tropische Früchte · feinherb</div></div>
+      <div class="item"><div class="item-row"><span class="item-name">Javier Sanz, Semidulce · Rueda, Spanien</span><span class="leader"></span><span class="item-price">7,70 / 26,00</span></div><div class="item-desc">frisch, mit Melonen- und Ananasaromen · lieblich</div></div>
+      <div class="item"><div class="item-row"><span class="item-name">Cà dei Frati Lugana DOC</span><span class="leader"></span><span class="item-price">10,90 / 36,00</span></div><div class="item-desc">Trebbiano, frisch, trocken und ausdrucksstark, zitrusfruchtig mit Mandelaromen</div></div>
+
+        <div class="item"><div class="item-row"><span class="item-name">Weinschorle weiß <span style="font-weight:400;font-size:10px;color:var(--text)">0,2l</span></span><span class="leader"></span><span class="item-price">5,90</span></div></div>
+      <div class="subhead">Roséweine</div>
+      <div class="item"><div class="item-row"><span class="item-name">Señora de Ayanz, Grenache · Navarra</span><span class="leader"></span><span class="item-price">6,90 / 23,00</span></div><div class="item-desc">erfrischende Frucht, leichter Genuss · trocken</div></div>
+      <div class="item"><div class="item-row"><span class="item-name">Wildner, Spätburgunder Rosé</span><span class="leader"></span><span class="item-price">7,30 / 25,00</span></div><div class="item-desc">fruchtige Aromen von Waldbeeren, Erdbeeren und Kirschen</div></div>
+      <div class="item"><div class="item-row"><span class="item-name">Cà dei Frati Rosa Cuvée DOC</span><span class="leader"></span><span class="item-price">10,90 / 35,00</span></div><div class="item-desc">Walderdbeeren, Himbeeren, Kirschen und florale Noten</div></div>
+
+      <div class="subhead">Sekt <span style="font-weight:400;font-size:11px;font-style:italic;color:var(--text)">· Flasche 0,75 l</span></div>
+      <div class="item"><div class="item-row"><span class="item-name">Significa · Rheinhessen, Sekt</span><span class="leader"></span><span class="item-price">28,00</span></div><div class="item-desc">fruchtig und mild · trocken</div></div>
+    </div>
+  </div>
+  <div class="run-foot">Alle Preise in Euro inkl. gesetzl. MwSt.</div>
+</div>
+
+<!-- ══════════ GETRÄNKE ══════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="brand-mark"></div>
+
+    <div class="section">
+      <div class="section-head">
+        <span class="kicker">Erfrischungen</span>
+        <div class="cat-title"><em>Getränke</em></div>
+        <div class="cat-divider"><span class="l"></span><span class="d"></span><span class="l"></span></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12mm;align-items:start;">
+        <div>
+          <div class="subhead" style="margin-top:0">Alkoholfreie Getränke</div>
+          <div class="compact">
+            <div class="item"><div class="item-row"><span class="item-name">Coca-Cola <span style="font-weight:400;font-size:10px;color:var(--text)">0,3l</span></span><span class="leader"></span><span class="item-price">3,70</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Coca-Cola Zero <span style="font-weight:400;font-size:10px;color:var(--text)">0,33l</span></span><span class="leader"></span><span class="item-price">4,00</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Fanta <span style="font-weight:400;font-size:10px;color:var(--text)">0,3l</span></span><span class="leader"></span><span class="item-price">3,70</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Sprite <span style="font-weight:400;font-size:10px;color:var(--text)">0,3l</span></span><span class="leader"></span><span class="item-price">3,70</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Spezi <span style="font-weight:400;font-size:10px;color:var(--text)">0,3l</span></span><span class="leader"></span><span class="item-price">3,70</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Fassbrause <span style="font-weight:400;font-size:10px;color:var(--text)">0,33l</span></span><span class="leader"></span><span class="item-price">3,80</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Apfelschorle naturtrüb <span style="font-weight:400;font-size:10px;color:var(--text)">0,33l</span></span><span class="leader"></span><span class="item-price">4,00</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Eistee Pfirsich <span style="font-weight:400;font-size:10px;color:var(--text)">0,3l</span></span><span class="leader"></span><span class="item-price">3,90</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Rhabarberlimonade <span style="font-weight:400;font-size:10px;color:var(--text)">0,33l</span></span><span class="leader"></span><span class="item-price">4,00</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">O-Saft <span style="font-weight:400;font-size:10px;color:var(--text)">0,2l</span></span><span class="leader"></span><span class="item-price">3,50</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Apfelsaft <span style="font-weight:400;font-size:10px;color:var(--text)">0,2l</span></span><span class="leader"></span><span class="item-price">3,50</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Bitter Lemon <span style="font-weight:400;font-size:10px;color:var(--text)">0,2l</span></span><span class="leader"></span><span class="item-price">3,30</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Tonic Wasser <span style="font-weight:400;font-size:10px;color:var(--text)">0,2l</span></span><span class="leader"></span><span class="item-price">3,30</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Tönnissteiner <span style="font-weight:400;font-size:10px;color:var(--text)">0,25l</span></span><span class="leader"></span><span class="item-price">3,20</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Tönnissteiner <span style="font-weight:400;font-size:10px;color:var(--text)">0,75l</span></span><span class="leader"></span><span class="item-price">6,70</span></div></div>
+          </div>
+        </div>
+        <div>
+          <div class="subhead" style="margin-top:0">Biere</div>
+          <div class="compact">
+            <div class="item"><div class="item-row"><span class="item-name">Früh Kölsch <span style="font-weight:400;font-size:10px;color:var(--text)">0,2l</span></span><span class="leader"></span><span class="item-price">2,30</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Früh Kölsch <span style="font-weight:400;font-size:10px;color:var(--text)">0,3l</span></span><span class="leader"></span><span class="item-price">3,30</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Früh Kölsch alkoholfrei <span style="font-weight:400;font-size:10px;color:var(--text)">0,33l</span></span><span class="leader"></span><span class="item-price">3,50</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Erzquell Pils <span style="font-weight:400;font-size:10px;color:var(--text)">0,3l</span></span><span class="leader"></span><span class="item-price">3,30</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Bergisches Landbier <span style="font-weight:400;font-size:10px;color:var(--text)">0,3l</span></span><span class="leader"></span><span class="item-price">3,40</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Bergisches Landbier alkoholfrei <span style="font-weight:400;font-size:10px;color:var(--text)">0,33l</span></span><span class="leader"></span><span class="item-price">3,60</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Paulaner Hefeweizen <span style="font-weight:400;font-size:10px;color:var(--text)">0,5l</span></span><span class="leader"></span><span class="item-price">5,70</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Paulaner Hefeweizen alkoholfrei <span style="font-weight:400;font-size:10px;color:var(--text)">0,5l</span></span><span class="leader"></span><span class="item-price">5,50</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Malzbier <span style="font-weight:400;font-size:10px;color:var(--text)">0,3l</span></span><span class="leader"></span><span class="item-price">3,30</span></div></div>
+          </div>
+
+          <div class="subhead">Heiße Getränke</div>
+          <div class="compact">
+            <div class="item"><div class="item-row"><span class="item-name">Espresso <sup class="alg">5</sup></span><span class="leader"></span><span class="item-price">2,30</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Tasse Kaffee <sup class="alg">5</sup></span><span class="leader"></span><span class="item-price">2,50</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Espresso doppelt <sup class="alg">5</sup></span><span class="leader"></span><span class="item-price">3,50</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Espresso Macchiato <sup class="alg">5</sup></span><span class="leader"></span><span class="item-price">3,00</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Cappuccino <sup class="alg">5</sup></span><span class="leader"></span><span class="item-price">3,50</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Heiße Schokolade</span><span class="leader"></span><span class="item-price">3,50</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Milchkaffee <sup class="alg">5</sup></span><span class="leader"></span><span class="item-price">3,60</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Latte Macchiato <sup class="alg">5</sup></span><span class="leader"></span><span class="item-price">3,90</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Tasse Tee</span><span class="leader"></span><span class="item-price">3,00</span></div><div class="item-desc">Minze · Kamille · Kräuter · Schwarz · Früchte · Grün</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="run-foot">Alle Preise in Euro inkl. gesetzl. MwSt.</div>
+</div>
+
+<!-- ══════════ APERITIFS & SPIRITUOSEN ══════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="brand-mark"></div>
+
+    <div class="section">
+      <div class="section-head">
+        <span class="kicker">Zum Anstoßen &amp; Ausklang</span>
+        <div class="cat-title">Aperitifs &amp; <em>Spirituosen</em></div>
+        <div class="cat-divider"><span class="l"></span><span class="d"></span><span class="l"></span></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12mm;align-items:start;">
+        <div>
+          <div class="subhead" style="margin-top:0">Aperitifs</div>
+          <div class="compact">
+            <div class="item"><div class="item-row"><span class="item-name">Sherry dry <span style="font-weight:400;font-size:10px;color:var(--text)">5cl</span></span><span class="leader"></span><span class="item-price">4,90</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Martini Bianco <span style="font-weight:400;font-size:10px;color:var(--text)">5cl</span></span><span class="leader"></span><span class="item-price">4,90</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Glas Sekt <span style="font-weight:400;font-size:10px;color:var(--text)">0,1l</span></span><span class="leader"></span><span class="item-price">4,90</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Campari Orange <span style="font-weight:400;font-size:10px;color:var(--text)">0,2l</span></span><span class="leader"></span><span class="item-price">7,90</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Aperol Spritz <span style="font-weight:400;font-size:10px;color:var(--text)">0,2l</span></span><span class="leader"></span><span class="item-price">7,90</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Lillet Berry <span style="font-weight:400;font-size:10px;color:var(--text)">0,2l</span></span><span class="leader"></span><span class="item-price">7,90</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Tanqueray Gin Tonic <span style="font-weight:400;font-size:10px;color:var(--text)">0,25l</span></span><span class="leader"></span><span class="item-price">9,90</span></div></div>
+          </div>
+
+          <div class="subhead">Liköre &amp; Bitter</div>
+          <div class="compact">
+            <div class="item"><div class="item-row"><span class="item-name">Sambuca <span style="font-weight:400;font-size:10px;color:var(--text)">2cl</span></span><span class="leader"></span><span class="item-price">2,50</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Jägermeister <span style="font-weight:400;font-size:10px;color:var(--text)">2cl</span></span><span class="leader"></span><span class="item-price">2,50</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Fernet Branca <span style="font-weight:400;font-size:10px;color:var(--text)">2cl</span></span><span class="leader"></span><span class="item-price">2,50</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Baileys Cream <span style="font-weight:400;font-size:10px;color:var(--text)">4cl</span></span><span class="leader"></span><span class="item-price">4,90</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Ramazzotti <span style="font-weight:400;font-size:10px;color:var(--text)">4cl</span></span><span class="leader"></span><span class="item-price">4,90</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Averna <span style="font-weight:400;font-size:10px;color:var(--text)">4cl</span></span><span class="leader"></span><span class="item-price">4,90</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">43er auf Eis <span style="font-weight:400;font-size:10px;color:var(--text)">4cl</span></span><span class="leader"></span><span class="item-price">4,90</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Višnjevac <span style="font-weight:400;font-size:10px;color:var(--text)">4cl</span></span><span class="leader"></span><span class="item-price">4,90</span></div></div>
+          </div>
+        </div>
+        <div>
+          <div class="subhead" style="margin-top:0">Spirituosen <span style="font-weight:400;font-size:11px;font-style:italic;color:var(--text)">· je 2cl</span></div>
+          <div class="compact">
+            <div class="item"><div class="item-row"><span class="item-name">Williams-Birne</span><span class="leader"></span><span class="item-price">3,20</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Linie Aquavit</span><span class="leader"></span><span class="item-price">3,20</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Bergische Nuss</span><span class="leader"></span><span class="item-price">3,20</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Malteser</span><span class="leader"></span><span class="item-price">2,70</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Barak Palinka</span><span class="leader"></span><span class="item-price">2,70</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Grappa</span><span class="leader"></span><span class="item-price">2,70</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Wodka</span><span class="leader"></span><span class="item-price">2,50</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Slivovic</span><span class="leader"></span><span class="item-price">2,50</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Ouzo</span><span class="leader"></span><span class="item-price">2,50</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Julishka</span><span class="leader"></span><span class="item-price">2,50</span></div></div>
+          </div>
+
+          <div class="subhead">Whisky <span style="font-weight:400;font-size:11px;font-style:italic;color:var(--text)">· 2cl</span></div>
+          <div class="compact">
+            <div class="item"><div class="item-row"><span class="item-name">Johnny Walker</span><span class="leader"></span><span class="item-price">3,80</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Jack Daniel's</span><span class="leader"></span><span class="item-price">3,80</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Chivas Regal</span><span class="leader"></span><span class="item-price">4,00</span></div></div>
+          </div>
+
+          <div class="subhead">Cognac &amp; Weinbrand <span style="font-weight:400;font-size:11px;font-style:italic;color:var(--text)">· 2cl</span></div>
+          <div class="compact">
+            <div class="item"><div class="item-row"><span class="item-name">Asbach Uralt</span><span class="leader"></span><span class="item-price">3,00</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Hennessy V.S.O.P</span><span class="leader"></span><span class="item-price">4,00</span></div></div>
+            <div class="item"><div class="item-row"><span class="item-name">Rémy Martin V.S.O.P</span><span class="leader"></span><span class="item-price">4,50</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="run-foot">Restaurant Am Fels · Engelskirchen-Loope · amfels.de</div>
+</div>
+
+<div class="page">
+  <div class="page-inner">
+      <div style="margin-top:24mm;">
+        <div style="font-family:'Playfair Display',serif;font-size:13px;font-weight:600;color:var(--gold-dark);text-align:center;margin-bottom:4mm;letter-spacing:.02em;">Allergene &amp; Zusatzstoffe</div>
+        <div style="font-size:10px;color:var(--text);line-height:1.8;text-align:center;max-width:92%;margin:0 auto 3mm;">
+          <b style="color:var(--brown)">Allergene:</b>&nbsp; <sup>A</sup>&nbsp;Glutenhaltiges Getreide &nbsp;·&nbsp; <sup>B</sup>&nbsp;Krebstiere &nbsp;·&nbsp; <sup>C</sup>&nbsp;Eier &nbsp;·&nbsp; <sup>D</sup>&nbsp;Fisch &nbsp;·&nbsp; <sup>E</sup>&nbsp;Erdnüsse &nbsp;·&nbsp; <sup>F</sup>&nbsp;Soja &nbsp;·&nbsp; <sup>G</sup>&nbsp;Milch/Laktose &nbsp;·&nbsp; <sup>H</sup>&nbsp;Schalenfrüchte &nbsp;·&nbsp; <sup>I</sup>&nbsp;Sellerie &nbsp;·&nbsp; <sup>J</sup>&nbsp;Senf &nbsp;·&nbsp; <sup>K</sup>&nbsp;Sesam &nbsp;·&nbsp; <sup>L</sup>&nbsp;Schwefeldioxid/Sulfite &nbsp;·&nbsp; <sup>M</sup>&nbsp;Lupinen &nbsp;·&nbsp; <sup>N</sup>&nbsp;Weichtiere
+        </div>
+        <div style="font-size:10px;color:var(--text);line-height:1.8;text-align:center;max-width:92%;margin:0 auto;">
+          <b style="color:var(--brown)">Zusatzstoffe:</b>&nbsp; <sup>1</sup>&nbsp;mit Farbstoff &nbsp;·&nbsp; <sup>2</sup>&nbsp;mit Konservierungsstoff &nbsp;·&nbsp; <sup>3</sup>&nbsp;mit Antioxidationsmittel &nbsp;·&nbsp; <sup>4</sup>&nbsp;mit Geschmacksverstärker &nbsp;·&nbsp; <sup>5</sup>&nbsp;koffeinhaltig &nbsp;·&nbsp; <sup>6</sup>&nbsp;mit Süßungsmittel &nbsp;·&nbsp; <sup>7</sup>&nbsp;geschwefelt &nbsp;·&nbsp; <sup>8</sup>&nbsp;mit Phosphat &nbsp;·&nbsp; <sup>9</sup>&nbsp;Phenylalaninquelle &nbsp;·&nbsp; <sup>11</sup>&nbsp;Steinobst (Kerne möglich) &nbsp;·&nbsp; <sup>12</sup>&nbsp;Fischfilet (Gräten möglich) &nbsp;·&nbsp; <sup>35</sup>&nbsp;zum sofortigen Verzehr
+        </div>
+        <div style="font-size:10px;font-style:italic;color:var(--text);text-align:center;margin-top:3mm;">Eine separate Allergenkarte halten wir für Sie bereit — sprechen Sie uns gerne an.</div>
+      </div>
+  
+      <div style="text-align:center;margin-top:12mm;">
+        <div class="flourish" style="display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:10px;"><span style="width:60px;height:1px;background:var(--gold)"></span><span style="width:7px;height:7px;background:var(--gold);transform:rotate(45deg)"></span><span style="width:60px;height:1px;background:var(--gold)"></span></div>
+        <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:19px;color:var(--brown);">Wir wünschen Ihnen einen guten Appetit</div>
+        <div style="margin-top:6px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-dark);">Restaurant Am Fels</div>
+      </div>
+  </div>
+  <div class="run-foot">Restaurant Am Fels · Engelskirchen-Loope · amfels.de</div>
+</div>
+
+</body>
+</html>
