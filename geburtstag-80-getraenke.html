@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Am Fels – Getränke zum 80. Geburtstag</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700&family=Lato:wght@300;400;700&family=Great+Vibes&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --gold:#b8924a; --gold-light:#dfc089; --gold-dark:#9a7a48;
+    --ivory:#fdfaf5; --cream:#f5efe4; --brown:#3a2516; --text:#6b5645; --line:#e2d7c3;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Lato',sans-serif;color:var(--brown);background:#d8ccb8;line-height:1.4;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+
+  .page{
+    width:148mm;height:210mm;margin:12mm auto;padding:11mm 12mm 9mm;
+    background:var(--ivory);position:relative;box-shadow:0 6px 30px rgba(0,0,0,.25);overflow:hidden;
+    display:flex;flex-direction:column;
+  }
+  .page::before{content:"";position:absolute;inset:5mm;border:1px solid var(--line);pointer-events:none;}
+  .page::after{content:"";position:absolute;inset:5.9mm;border:1px solid rgba(184,146,74,.35);pointer-events:none;}
+  .inner{position:relative;z-index:1;display:flex;flex-direction:column;flex:1;}
+
+  /* ── HEADER (mit Luft, kein Überlappen) ── */
+  .head{text-align:center;}
+  .est{font-size:9px;letter-spacing:.38em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:9px;}
+  .script{font-family:'Great Vibes',cursive;font-size:47px;color:var(--gold);line-height:1.15;padding-top:4px;margin-bottom:6px;}
+  .sub{font-family:'Playfair Display',serif;font-style:italic;font-size:12px;color:var(--text);}
+  .flourish{display:flex;align-items:center;justify-content:center;gap:10px;margin:8px 0 0;}
+  .flourish .l{width:40px;height:1px;background:var(--gold);}
+  .flourish .d{width:6px;height:6px;background:var(--gold);transform:rotate(45deg);}
+
+  /* ── zwei Spalten, füllen die Höhe ── */
+  .cols{display:flex;gap:10mm;align-items:flex-start;flex:1;margin-top:4mm;}
+  .col{flex:1;min-width:0;}
+
+  .cat{margin-bottom:4.5mm;}
+  .cat:last-child{margin-bottom:0;}
+  .cat-label{font-family:'Playfair Display',serif;font-size:13px;font-weight:600;color:var(--gold-dark);
+    letter-spacing:.15em;text-transform:uppercase;text-align:center;}
+  .cat-note{font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--text);text-align:center;font-style:italic;margin-top:2px;}
+  .cat-rule{width:26px;height:1px;background:var(--gold);margin:4px auto 5px;}
+
+  .row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin:1.5mm 0;}
+  .d-name{font-size:10.5px;color:var(--brown);}
+  .d-size{font-size:9.5px;color:var(--gold-dark);white-space:nowrap;}
+
+  .wine{margin:2.2mm 0;text-align:center;}
+  .wine-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:var(--brown);}
+  .wine-desc{font-size:9px;color:var(--text);font-style:italic;line-height:1.35;margin-top:1px;}
+
+  .spirits{font-size:10px;color:var(--brown);line-height:1.8;text-align:center;}
+
+  .foot{text-align:center;margin-top:7mm;padding-top:5mm;border-top:1px solid var(--line);}
+  .foot .service{font-family:'Playfair Display',serif;font-style:italic;font-size:10px;color:var(--text);margin-bottom:5px;}
+  .foot .amfels{font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dark);}
+
+  @media print{ body{background:#fff;} .page{margin:0;box-shadow:none;} }
+  @page{size:A5;margin:0;}
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="inner">
+
+    <div class="head">
+      <div class="est">Restaurant Am Fels</div>
+      <div class="script">Getränke</div>
+      <div class="flourish"><span class="l"></span><span class="d"></span><span class="l"></span></div>
+    </div>
+
+    <div class="cols">
+
+      <!-- ── LINKE SPALTE ── -->
+      <div class="col">
+        <div class="cat">
+          <div class="cat-label">Alkoholfreie Getränke</div>
+          <div class="cat-rule"></div>
+          <div class="row"><span class="d-name">Coca-Cola</span><span class="d-size">0,3 l</span></div>
+          <div class="row"><span class="d-name">Coca-Cola Zero</span><span class="d-size">0,33 l</span></div>
+          <div class="row"><span class="d-name">Spezi</span><span class="d-size">0,3 l</span></div>
+          <div class="row"><span class="d-name">Fanta</span><span class="d-size">0,3 l</span></div>
+          <div class="row"><span class="d-name">Sprite</span><span class="d-size">0,3 l</span></div>
+          <div class="row"><span class="d-name">Fassbrause</span><span class="d-size">0,33 l</span></div>
+          <div class="row"><span class="d-name">Güldenkron O-Saft</span><span class="d-size">0,2 l</span></div>
+          <div class="row"><span class="d-name">Güldenkron Apfelsaft</span><span class="d-size">0,2 l</span></div>
+          <div class="row"><span class="d-name">Wasser sprudel / still</span><span class="d-size">0,25 l</span></div>
+          <div class="row"><span class="d-name">Wasser sprudel / still</span><span class="d-size">0,75 l</span></div>
+          <div class="row"><span class="d-name">Bitter Lemon</span><span class="d-size">0,2 l</span></div>
+          <div class="row"><span class="d-name">Tonic Wasser</span><span class="d-size">0,2 l</span></div>
+          <div class="row"><span class="d-name">Eistee Pfirsich</span><span class="d-size">0,3 l</span></div>
+          <div class="row"><span class="d-name">Rhabarberlimonade</span><span class="d-size">0,33 l</span></div>
+          <div class="row"><span class="d-name">Apfelschorle naturtrüb</span><span class="d-size">0,33 l</span></div>
+        </div>
+
+        <div class="cat">
+          <div class="cat-label">Aperitifs</div>
+          <div class="cat-note">auch alkoholfrei möglich</div>
+          <div class="cat-rule"></div>
+          <div class="spirits">Lillet Berry&nbsp;&nbsp;·&nbsp;&nbsp;Aperol Spritz&nbsp;&nbsp;·&nbsp;&nbsp;Gin Tonic</div>
+        </div>
+
+        <div class="cat">
+          <div class="cat-label">Kaffee</div>
+          <div class="cat-rule"></div>
+          <div class="spirits">Kaffee&nbsp;&nbsp;·&nbsp;&nbsp;Espresso&nbsp;&nbsp;·&nbsp;&nbsp;Cappuccino</div>
+        </div>
+      </div>
+
+      <!-- ── RECHTE SPALTE ── -->
+      <div class="col">
+        <div class="cat">
+          <div class="cat-label">Bier</div>
+          <div class="cat-rule"></div>
+          <div class="row"><span class="d-name">Früh Kölsch</span><span class="d-size">0,2 l</span></div>
+          <div class="row"><span class="d-name">Früh Kölsch</span><span class="d-size">0,3 l</span></div>
+          <div class="row"><span class="d-name">Früh Kölsch alkoholfrei</span><span class="d-size">0,33 l</span></div>
+          <div class="row"><span class="d-name">Erzquell Pils</span><span class="d-size">0,3 l</span></div>
+          <div class="row"><span class="d-name">Bergisches Landbier</span><span class="d-size">0,3 l</span></div>
+          <div class="row"><span class="d-name">Bergisches Landbier alkoholfrei</span><span class="d-size">0,33 l</span></div>
+          <div class="row"><span class="d-name">Paulaner Hefeweizen</span><span class="d-size">0,5 l</span></div>
+          <div class="row"><span class="d-name">Paulaner Hefeweizen alkoholfrei</span><span class="d-size">0,5 l</span></div>
+          <div class="row"><span class="d-name">Malzbier</span><span class="d-size">0,3 l</span></div>
+        </div>
+
+        <div class="cat">
+          <div class="cat-label">Weißwein</div>
+          <div class="cat-rule"></div>
+          <div class="wine">
+            <div class="wine-name">Pinot Grigio · Hauswein, Italien</div>
+            <div class="wine-desc">frisch &amp; animierend, lang im Abgang · trocken</div>
+          </div>
+          <div class="wine">
+            <div class="wine-name">Riesling · Karl Pfaffmann, Herrenberg</div>
+            <div class="wine-desc">kräftige Früchte, zart süßlicher Schmelz · feinherb</div>
+          </div>
+        </div>
+
+        <div class="cat">
+          <div class="cat-label">Rotwein</div>
+          <div class="cat-rule"></div>
+          <div class="wine">
+            <div class="wine-name">Merlot · Hauswein, Italien</div>
+            <div class="wine-desc">reife rote Beeren, sanft &amp; elegant · trocken</div>
+          </div>
+          <div class="wine">
+            <div class="wine-name">Casa Carmela · Semi-Dulce, Spanien</div>
+            <div class="wine-desc">fruchtig, mit sanfter Süße</div>
+          </div>
+        </div>
+
+        <div class="cat">
+          <div class="cat-label">Spirituosen</div>
+          <div class="cat-rule"></div>
+          <div class="spirits">Williams-Birne · Linie Aquavit · Barak Palinka · Slivovic · Ouzo · Grappa · Julishka · Bergische Nuss · Ramazzotti · Jägermeister</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="foot">
+      <div class="service">Für weitere Spirituosen &amp; Weine sprechen Sie gerne unser Service-Team an.</div>
+      <div class="amfels">Restaurant Am Fels · Engelskirchen-Loope</div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

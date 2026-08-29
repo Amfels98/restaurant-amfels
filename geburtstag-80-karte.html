@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Am Fels – Menü zum 80. Geburtstag</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:wght@300;400;700&family=Great+Vibes&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --gold:#b8924a; --gold-light:#dfc089; --gold-dark:#9a7a48;
+    --ivory:#fdfaf5; --cream:#f5efe4; --brown:#3a2516; --text:#6b5645; --line:#e2d7c3;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Lato',sans-serif;color:var(--brown);background:#d8ccb8;line-height:1.45;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+
+  /* ── A5 PAGE ── */
+  .page{
+    width:148mm;min-height:210mm;margin:12mm auto;padding:9mm 12mm 7mm;
+    background:var(--ivory);position:relative;box-shadow:0 6px 30px rgba(0,0,0,.25);overflow:hidden;
+  }
+  .page::before{content:"";position:absolute;inset:4.5mm;border:1px solid var(--line);pointer-events:none;}
+  .page::after{content:"";position:absolute;inset:5.3mm;border:1px solid rgba(184,146,74,.35);pointer-events:none;}
+  .inner{position:relative;z-index:1;text-align:center;}
+
+  .est{font-size:8px;letter-spacing:.36em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:6px;}
+
+  .portrait-wrap{position:relative;width:34mm;height:34mm;margin:0 auto 6px;}
+  .portrait{
+    width:34mm;height:34mm;border-radius:50%;object-fit:cover;object-position:center top;
+    border:1px solid var(--gold);
+    box-shadow:0 0 0 3px var(--ivory),0 0 0 4px var(--line),0 5px 14px rgba(58,37,22,.22);
+  }
+  .badge80{
+    position:absolute;right:-2mm;bottom:-1mm;width:12.5mm;height:12.5mm;border-radius:50%;
+    background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;
+    font-family:'Playfair Display',serif;font-weight:700;font-size:16px;
+    box-shadow:0 0 0 2.5px var(--ivory),0 3px 7px rgba(58,37,22,.3);
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+
+  .script{font-family:'Great Vibes',cursive;font-size:26px;color:var(--gold);line-height:1.05;margin:1px 0 0;}
+  .title{font-family:'Playfair Display',serif;font-weight:500;font-size:20px;color:var(--brown);}
+  .title em{font-style:italic;color:var(--gold);}
+
+  .flourish{display:flex;align-items:center;justify-content:center;gap:9px;margin:6px 0 3px;}
+  .flourish .l{width:34px;height:1px;background:var(--gold);}
+  .flourish .d{width:5px;height:5px;background:var(--gold);transform:rotate(45deg);}
+
+  /* ── COURSES ── */
+  .course{margin-top:5mm;}
+  .course:first-of-type{margin-top:2mm;}
+  .course-label{font-family:'Playfair Display',serif;font-size:15.5px;font-weight:600;color:var(--gold-dark);letter-spacing:.06em;}
+  .course-sub{font-size:8.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--text);margin-top:1px;}
+  .course-rule{width:28px;height:1px;background:var(--gold);margin:4px auto 5px;}
+
+  .dish{margin:2.9mm 0;}
+  .dish-name{font-family:'Playfair Display',serif;font-weight:500;font-size:14.5px;color:var(--brown);}
+  .dish-desc{font-size:10px;color:var(--text);font-style:italic;line-height:1.35;margin-top:1px;}
+
+  .platter-name{font-family:'Playfair Display',serif;font-weight:500;font-size:14.5px;color:var(--brown);}
+  .platter-items{font-size:10.5px;color:var(--text);font-style:italic;line-height:1.5;margin-top:2px;}
+
+  .foot{text-align:center;margin-top:6mm;padding-top:4mm;border-top:1px solid var(--line);
+    font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dark);}
+  .foot .sub{display:block;font-size:7.5px;letter-spacing:.05em;text-transform:none;font-style:italic;color:var(--text);margin-top:3px;}
+
+  @media print{ body{background:#fff;} .page{margin:0;box-shadow:none;width:auto;min-height:auto;} }
+  @page{size:A5;margin:0;}
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="inner">
+
+    <div class="est">Restaurant Am Fels</div>
+
+    <div class="portrait-wrap">
+      <img src="images/geburtstag-portrait.png" alt="Geburtstagskind" class="portrait" />
+      <div class="badge80">80</div>
+    </div>
+
+    <div class="script">Herzlichen Glückwunsch, liebe Rita</div>
+    <div class="title">zum <em>80.</em> Geburtstag</div>
+    <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:11px;color:var(--text);margin-top:3px;letter-spacing:.02em;">Sonntag, 9. August 2026 · 18:00 Uhr</div>
+
+    <div class="flourish"><span class="l"></span><span class="d"></span><span class="l"></span></div>
+
+    <!-- VORSPEISE -->
+    <div class="course">
+      <div class="course-label">Vorspeise</div>
+      <div class="course-sub">für alle Gäste</div>
+      <div class="course-rule"></div>
+      <div class="platter-name">Vorspeisenteller „Am Fels“</div>
+      <div class="platter-items">Scampi · überbackener Schafskäse · Antipasti-Gemüse<br>Kräuterquark · frisches Baguette</div>
+    </div>
+
+    <!-- HAUPTSPEISE -->
+    <div class="course">
+      <div class="course-label">Hauptspeise</div>
+      <div class="course-sub">nach Wahl</div>
+      <div class="course-rule"></div>
+      <div class="dish">
+        <div class="dish-name">Schweinefilet mit Pfifferlingen</div>
+        <div class="dish-desc">gegrillt, Pfifferlinge mit Zwiebeln &amp; Speck in Rahmsauce, dazu Kroketten</div>
+      </div>
+      <div class="dish">
+        <div class="dish-name">Zwiebelrostbraten</div>
+        <div class="dish-desc">Black-Angus-Rumpsteak mit gerösteten Zwiebeln, dazu Bratkartoffeln</div>
+      </div>
+      <div class="dish">
+        <div class="dish-name">Schnitzel „Champignon“</div>
+        <div class="dish-desc">paniert, in Champignon-Rahmsauce, dazu Pommes Frites</div>
+      </div>
+      <div class="dish">
+        <div class="dish-name">Hacksteak Hirten</div>
+        <div class="dish-desc">gefüllt mit Schafskäse, dazu Pommes Frites &amp; Djuwetschreis</div>
+      </div>
+      <div class="dish">
+        <div class="dish-name">Lachsfilet</div>
+        <div class="dish-desc">mit Kräuterbutter, dazu Folienkartoffel mit Sauerrahm</div>
+      </div>
+    </div>
+
+    <!-- DESSERT -->
+    <div class="course">
+      <div class="course-label">Dessert</div>
+      <div class="course-sub">nach Wahl</div>
+      <div class="course-rule"></div>
+      <div class="dish">
+        <div class="dish-name">Eis mit heißen Kirschen &amp; Sahne</div>
+      </div>
+      <div class="dish">
+        <div class="dish-name">Lava Cake</div>
+        <div class="dish-desc">warmes Schokoladen-Soufflé mit flüssigem Kern, dazu Vanilleeis</div>
+      </div>
+    </div>
+
+    <div class="foot">Restaurant Am Fels · Engelskirchen-Loope
+      <span class="sub">Zu den Hauptgerichten servieren wir einen frischen Beilagensalat</span>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

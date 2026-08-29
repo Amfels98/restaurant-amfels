@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Restaurant Am Fels – Menüauswahl für Reisegruppen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --gold:#b8924a;
+    --gold-light:#dfc089;
+    --gold-dark:#9a7a48;
+    --ivory:#fdfaf5;
+    --cream:#f5efe4;
+    --brown:#3a2516;
+    --text:#6b5645;
+    --line:#e2d7c3;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:'Lato',sans-serif;color:var(--brown);background:#d8ccb8;
+    line-height:1.5;-webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+  .page{
+    width:210mm;min-height:297mm;margin:12mm auto;padding:22mm 20mm 18mm;
+    background:var(--ivory);position:relative;box-shadow:0 6px 30px rgba(0,0,0,.25);overflow:hidden;
+  }
+  .page::before{content:"";position:absolute;inset:8mm;border:1px solid var(--line);pointer-events:none;}
+  .inner{position:relative;z-index:1;}
+
+  /* ── HEADER ── */
+  .head{text-align:center;margin-bottom:11mm;}
+  .brand-mark{
+    width:66px;height:66px;margin:0 auto 12px;
+    -webkit-mask:url(images/logo.png) center/contain no-repeat;
+    mask:url(images/logo.png) center/contain no-repeat;
+    background:var(--gold-dark);-webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+  .est{font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:14px;}
+  .head h1{
+    font-family:'Playfair Display',serif;font-weight:500;font-size:42px;line-height:1.05;color:var(--brown);
+  }
+  .head h1 em{font-style:italic;color:var(--gold);}
+  .head .sub{
+    font-family:'Playfair Display',serif;font-style:italic;font-size:17px;color:var(--text);margin-top:8px;
+  }
+  .flourish{display:flex;align-items:center;justify-content:center;gap:12px;margin:16px 0 4px;}
+  .flourish .l{width:60px;height:1px;background:var(--gold);}
+  .flourish .d{width:7px;height:7px;background:var(--gold);transform:rotate(45deg);}
+  .date{
+    margin-top:10px;font-family:'Playfair Display',serif;font-size:15px;
+    letter-spacing:.18em;color:var(--gold-dark);text-transform:uppercase;
+  }
+
+  /* ── DISH LIST ── */
+  .list{margin-top:6mm;}
+  .dish{
+    display:flex;align-items:baseline;gap:14px;
+    padding:6.5mm 2mm;border-bottom:1px solid var(--line);break-inside:avoid;
+  }
+  .dish:last-child{border-bottom:none;}
+  .dish-body{flex:1;min-width:0;}
+  .dish-name{
+    font-family:'Playfair Display',serif;font-weight:600;font-size:20px;color:var(--brown);
+  }
+  .dish-desc{font-size:12px;color:var(--text);line-height:1.55;margin-top:4px;padding-right:8%;}
+  .dot{
+    flex:1;align-self:flex-end;border-bottom:1.5px dotted var(--line);transform:translateY(-5px);min-width:16px;
+  }
+  .dish-price{
+    flex:none;font-family:'Playfair Display',serif;font-weight:600;font-size:19px;color:var(--gold-dark);
+    white-space:nowrap;text-align:right;
+  }
+  .sizes{margin-top:6px;display:flex;gap:18px;flex-wrap:wrap;}
+  .size{display:flex;align-items:baseline;gap:5px;font-size:11.5px;}
+  .size b{font-family:'Playfair Display',serif;color:var(--brown);font-weight:600;}
+  .size span{color:var(--gold-dark);font-weight:700;}
+
+  /* ── FOOTER ── */
+  .foot{margin-top:12mm;text-align:center;}
+  .foot .note{
+    font-style:italic;font-size:11.5px;color:var(--text);line-height:1.7;max-width:80%;margin:0 auto;
+  }
+  .foot .contact{
+    margin-top:8mm;padding-top:6mm;border-top:1px solid var(--line);
+    font-size:10.5px;letter-spacing:.05em;color:var(--text);line-height:1.9;
+  }
+  .foot .contact strong{color:var(--brown);}
+
+  @media print{
+    body{background:#fff;}
+    .page{margin:0;box-shadow:none;width:auto;min-height:auto;}
+  }
+  @page{size:A4;margin:0;}
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="inner">
+
+    <div class="head">
+      <div class="brand-mark"></div>
+      <div class="est">Engelskirchen · Loope</div>
+      <h1>Menüauswahl für <em>Reisegruppen</em></h1>
+      <div class="sub">Eine Auswahl unserer Küche – speziell für Ihre Gruppe</div>
+      <div class="flourish"><span class="l"></span><span class="d"></span><span class="l"></span></div>
+      <div class="date">25. August 2026</div>
+    </div>
+
+    <div class="list">
+
+      <div class="dish">
+        <div class="dish-body">
+          <div class="dish-name">Salat „Filetto di Manzo“</div>
+          <div class="dish-desc">bunt gemischter Salat mit hausgemachtem Vinaigrette-Dressing, dazu Steakfleischstreifen, mediterranes Gemüse und Parmesan</div>
+        </div>
+        <div class="dot"></div>
+        <div class="dish-price">18,90 €</div>
+      </div>
+
+      <div class="dish">
+        <div class="dish-body">
+          <div class="dish-name">Herren Teller</div>
+          <div class="dish-desc">2 Schweinefiletmedaillons mit Pfeffersauce, dazu Bratkartoffeln</div>
+        </div>
+        <div class="dot"></div>
+        <div class="dish-price">17,90 €</div>
+      </div>
+
+      <div class="dish">
+        <div class="dish-body">
+          <div class="dish-name">Schnitzel „Champignon“</div>
+          <div class="dish-desc">paniert, mit Champignon-Rahmsauce, dazu Pommes Frites</div>
+        </div>
+        <div class="dot"></div>
+        <div class="dish-price">19,90 €</div>
+      </div>
+
+      <div class="dish">
+        <div class="dish-body">
+          <div class="dish-name">Hacksteak Hirten</div>
+          <div class="dish-desc">gefüllt mit Schafskäse, dazu Pommes Frites und Djuwetschreis</div>
+        </div>
+        <div class="dot"></div>
+        <div class="dish-price">19,90 €</div>
+      </div>
+
+      <div class="dish">
+        <div class="dish-body">
+          <div class="dish-name">Zwiebelrostbraten</div>
+          <div class="dish-desc">Rumpsteak mit frischen gerösteten Zwiebeln, dazu Bratkartoffeln</div>
+          <div class="sizes">
+            <span class="size"><b>200g</b><span>28,90 €</span></span>
+            <span class="size"><b>300g</b><span>36,90 €</span></span>
+            <span class="size"><b>400g</b><span>42,90 €</span></span>
+          </div>
+        </div>
+        <div class="dot"></div>
+        <div class="dish-price">ab 28,90 €</div>
+      </div>
+
+      <div class="dish">
+        <div class="dish-body">
+          <div class="dish-name">Lamm-Mix Teller</div>
+          <div class="dish-desc">Lammsteak und -kotelett mit frischem Knoblauch, dazu Prinzessbohnen und Bratkartoffeln</div>
+        </div>
+        <div class="dot"></div>
+        <div class="dish-price">28,90 €</div>
+      </div>
+
+      <div class="dish">
+        <div class="dish-body">
+          <div class="dish-name">Lachsfilet</div>
+          <div class="dish-desc">mit Kräuterbutter, dazu Folienkartoffel mit Sauerrahm</div>
+        </div>
+        <div class="dot"></div>
+        <div class="dish-price">22,90 €</div>
+      </div>
+
+    </div>
+
+    <div class="foot">
+      <p class="note">Zu allen Gerichten servieren wir einen frischen Beilagensalat.<br>Alle Preise in Euro inkl. gesetzlicher MwSt.</p>
+      <div class="contact">
+        <strong>Restaurant Am Fels</strong> · Staadter Weg 2 · 51766 Engelskirchen-Loope<br>
+        Tel. 02263 9291371 · amfels.de
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
