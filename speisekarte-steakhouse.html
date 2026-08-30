@@ -18,21 +18,21 @@
   .cathead .t{font-family:'Oswald',sans-serif;font-weight:700;font-size:18px;letter-spacing:.05em;text-transform:uppercase;color:var(--red);white-space:nowrap;text-align:center;}
   .cathead .l{flex:1;height:0;border-top:2px dashed var(--red);opacity:.8;}
   .dish{break-inside:avoid;margin-bottom:1.6mm;}
-  .dn{font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:.01em;text-transform:uppercase;color:var(--ink);}
+  .dn{font-family:'Oswald',sans-serif;font-weight:600;font-size:13.5px;letter-spacing:.01em;text-transform:uppercase;color:var(--ink);}
   .dn .unit{font-family:'Lato';font-weight:400;font-size:9px;text-transform:none;color:var(--muted);letter-spacing:0;}
   .dn .alg{font-family:'Lato';font-size:8px;font-weight:400;color:var(--red);vertical-align:super;letter-spacing:.02em;}
-  .dd{font-size:11px;line-height:1.38;color:var(--muted);margin-top:.4px;}
+  .dd{font-size:12px;line-height:1.36;color:var(--muted);margin-top:.4px;}
   .pr{color:var(--ink);font-weight:700;white-space:nowrap;}
   .dbody{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;margin-top:1px;}
   .dbody .dd{flex:1;margin-top:0;}
   .dish.dinline{display:flex;justify-content:space-between;align-items:baseline;gap:8px;}
   /* Getraenke: kleiner & enger, uebersichtlich */
-  .cat.drinks .dn{font-size:9.7px;}
+  .cat.drinks .dn{font-size:10.7px;}
   .cat.drinks .dn .unit{font-size:8px;}
-  .cat.drinks .pr{font-size:9.5px;}
-  .cat.drinks .dd{font-size:8.3px;line-height:1.25;}
-  .cat.drinks .dish{margin-bottom:0.9mm;}
-  .cat.drinks .cathead{margin-bottom:1.8mm;}
+  .cat.drinks .pr{font-size:10.2px;}
+  .cat.drinks .dd{font-size:9px;line-height:1.3;}
+  .cat.drinks .dish{margin-bottom:1.1mm;}
+  .cat.drinks .cathead{margin-bottom:2.4mm;}
   .cat.dense .dish{margin-bottom:1.2mm;}
   .tbl2{display:grid;grid-template-columns:1fr 1fr;column-gap:6mm;}
   .tbl2 .dish{break-inside:avoid;margin-bottom:1.4mm;}
@@ -102,8 +102,8 @@
   /* Steakbörse ueber die GANZE Seite */
   .steakpage .feat.cat.box{min-height:256mm;}
   .steakpage .scol-l{display:flex;flex-direction:column;justify-content:space-between;}
-  .scol-r .dn{font-size:13px;}
-  .scol-r .dd{font-size:11px;line-height:1.38;}
+  .scol-r .dn{font-size:13.5px;}
+  .scol-r .dd{font-size:12px;line-height:1.36;}
   .scol-r .steaksz{font-size:9.5px;} .scol-r .steaksz .pr{font-size:9.5px;}
   .scol-r .gfb{font-size:9px;}
   /* Gluehstein-Text (oben links) viel groesser */
@@ -118,26 +118,31 @@
   .steakpage .surfturf .pw{width:26mm;}
   .steakpage .surfturf .st1{font-size:19px;} .steakpage .surfturf .st2{font-size:11.5px;}
   /* Desserts groesser */
-  .dessertsec:not(.drinks) .dn{font-size:13px;}
-  .dessertsec:not(.drinks) .dd{font-size:11px;line-height:1.38;}
+  .dessertsec:not(.drinks) .dn{font-size:13.5px;}
+  .dessertsec:not(.drinks) .dd{font-size:12px;line-height:1.36;}
   /* Weine kompakt (passen mit Getraenken auf eine Seite) */
-  .cat.winec .dn{font-size:10.5px;}
+  .cat.winec .dn{font-size:11.5px;}
   .cat.winec .dd{font-size:10px;line-height:1.35;}
-  .cat.winec .pr{font-size:10px;}
-  .cat.winec .dish{margin-bottom:1.5mm;}
+  .cat.winec .pr{font-size:11px;}
+  .cat.winec .dish{margin-bottom:1.7mm;}
   .cat.winec .cathead{margin-bottom:2mm;}
   /* Getraenke-Seite: 3-spaltig (alles inkl. Wein auf eine Seite) */
   .drinks3{column-count:3;column-gap:8mm;}
-  .drinks3 .cat{break-inside:avoid;-webkit-column-break-inside:avoid;display:inline-block;width:100%;margin:0 0 3.2mm;}
+  .drinks3 .cat{break-inside:avoid;-webkit-column-break-inside:avoid;display:inline-block;width:100%;margin:0 0 3.6mm;}
   .drinks3 .cathead{margin-bottom:1.6mm;}
   .drinks3 .beerlogos{gap:5px;margin-top:2mm;}
   .drinks3 .beerlogos img{height:7mm;max-width:15mm;}
   .drinks3 .beerlogos img[src*="fruh"]{width:12mm;}
-  .drinks3 .winec .dd{font-size:9.5px;}
+  .drinks3 .winec .dd{font-size:9.7px;}
   /* kombinierte Seite: Allergene-Fuss */
   .legfoot{margin-top:7mm;}
   .legfoot .leg-line{margin-bottom:2mm;line-height:1.7;}
   .cols2.dk{margin-top:5mm;align-items:flex-start;}
+  /* Hauptgerichte luftiger, damit die 2 Seiten gut gefuellt sind */
+  .mainp .dish{margin-bottom:4.5mm;}
+  .mainp .cat{margin-bottom:7mm;}
+  .mainp .cat.box{padding:5mm 5mm 4mm;}
+  .mainp .cathead{margin-bottom:4mm;}
 </style></head><body>
 <div class="page" style="display:flex;align-items:center;justify-content:center"><div class="cover">
   <div class="clogo"></div>
