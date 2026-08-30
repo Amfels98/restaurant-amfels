@@ -1,0 +1,20 @@
+<svg viewBox="0 0 150 120" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" stroke="#b0522e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Ruecken / Aussenkurve -->
+    <path d="M118 36 C 126 66, 104 102, 62 102 C 30 102, 18 78, 34 62"/>
+    <!-- Bauch / Innenkurve -->
+    <path d="M104 44 C 110 66, 94 88, 62 88 C 46 88, 40 78, 46 68"/>
+    <!-- Kopf schliessen -->
+    <path d="M34 62 C 40 58, 44 62, 46 68"/>
+    <!-- Schwanzfaecher -->
+    <path d="M118 36 L 138 27 M118 36 L 130 18 M104 44 L 118 26"/>
+    <!-- Segmente -->
+    <path stroke-width="3" d="M100 56 q -7 5 -4 13 M86 70 q -7 4 -3 13 M70 80 q -6 3 -2 11"/>
+    <!-- Beinchen -->
+    <path stroke-width="3" d="M52 88 l -3 11 M60 90 l -1 12 M69 88 l 1 12"/>
+    <!-- Fuehler + Rostrum -->
+    <path stroke-width="3.5" d="M40 64 C 22 60 12 46 6 30 M40 70 C 24 74 16 86 15 100"/>
+    <!-- Auge -->
+    <circle cx="47" cy="70" r="3.6" fill="#b0522e" stroke="none"/>
+  </g>
+</svg>
