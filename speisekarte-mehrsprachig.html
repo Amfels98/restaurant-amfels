@@ -48,7 +48,7 @@
     pointer-events:none;
   }
   .page:not(.cover-page){display:flex;flex-direction:column;justify-content:center;}
-  .page-inner{position:relative;z-index:1;width:100%;}
+  .page-inner{width:100%;}
 
   /* subtle running header/footer */
   .run-head{
@@ -191,8 +191,9 @@
 
   /* ── LOGO MARK (white logo recolored via mask) ── */
   .brand-mark{
-    width:40mm;height:21mm;margin:0 auto 7mm;
-    background:url(images/logo-dunkel.svg) center/contain no-repeat;
+    position:absolute;top:11mm;right:13mm;z-index:2;
+    width:30mm;height:16mm;margin:0;
+    background:url(images/logo-dunkel.svg) right center/contain no-repeat;
     opacity:.9;
     -webkit-print-color-adjust:exact;print-color-adjust:exact;
   }
@@ -536,11 +537,11 @@
       <div class="item">
         <div class="item-row"><span class="item-name">31. Pfanne „Am Fels“ <sup class="alg">G,I</sup></span><span class="leader"></span></div>
         <div class="item-tr">“Am Fels” pan &middot; Poêlée « Am Fels » &middot; Padella «Am Fels»</div>
-        <div class="item-desc">Steakfleischstreifen, Paprika &amp; frische Champignons in feuriger Peperoni-Salsa, dazu Butterreis</div>
-        <div class="tr"><span class="lng">EN</span>strips of steak, peppers and fresh mushrooms in a fiery pepper salsa, with buttered rice</div>
-        <div class="tr"><span class="lng">FR</span>émincé de steak, poivrons et champignons frais dans une salsa relevée, riz au beurre</div>
-        <div class="tr"><span class="lng">IT</span>straccetti di carne, peperoni e funghi freschi in salsa piccante, con riso al burro</div>
-        <div class="item-sizes"><span class="size"><b>200g</b><span>23,90</span></span><span class="size"><b>300g</b><span>29,90</span></span><span class="size"><b>400g</b><span>35,90</span></span></div>
+        <div class="item-desc">Rump- und Filetstreifen, Paprika &amp; frische Champignons in feuriger Peperoni-Salsa, dazu Butterreis</div>
+        <div class="tr"><span class="lng">EN</span>rump and fillet strips, peppers and fresh mushrooms in a fiery pepper salsa, with buttered rice</div>
+        <div class="tr"><span class="lng">FR</span>lamelles de romsteck et filet, poivrons et champignons frais dans une salsa relevée, riz au beurre</div>
+        <div class="tr"><span class="lng">IT</span>straccetti di controfiletto e filetto, peperoni e funghi freschi in salsa piccante, con riso al burro</div>
+        <div class="item-sizes"><span class="size"><b>200g</b><span>24,90</span></span><span class="size"><b>300g</b><span>30,90</span></span><span class="size"><b>400g</b><span>36,90</span></span></div>
       </div>
     </div>
   </div>
