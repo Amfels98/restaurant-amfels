@@ -171,6 +171,12 @@
   .size span{color:var(--gold-dark);font-weight:700;}
 
   .two-col{column-count:2;column-gap:12mm;}
+  /* Getränke/Aperitifs linksbündig */
+  .drinks .item-row{display:flex;justify-content:space-between;gap:8px;}
+  .drinks .item-row::before{display:none;}
+  .drinks .item-name{white-space:normal;}
+  .drinks .subhead{text-align:left;}
+  .drinks .item-desc{text-align:left;}
   .two-col .item{break-inside:avoid;}
 
   /* small compact items (drinks) */
@@ -181,9 +187,9 @@
 
   /* ── LOGO MARK (white logo recolored via mask) ── */
   .brand-mark{
-    width:42mm;height:15mm;margin:0 auto 8mm;
-    background:url(images/logo-dunkel.png) center/contain no-repeat;
-    opacity:.9;
+    width:15mm;height:11mm;margin:0 auto 7mm;
+    background:url(images/logo-berg.png) center/contain no-repeat;
+    opacity:.82;
     -webkit-print-color-adjust:exact;print-color-adjust:exact;
   }
 
@@ -705,7 +711,7 @@
   <div class="run-foot">Alle Preise in Euro inkl. gesetzl. MwSt.</div>
 </div>
 
-<div class="page">
+<div class="page drinks">
   <div class="page-inner">
     <div class="brand-mark"></div>
 
@@ -769,7 +775,7 @@
   <div class="run-foot">Alle Preise in Euro inkl. gesetzl. MwSt.</div>
 </div>
 
-<div class="page">
+<div class="page drinks">
   <div class="page-inner">
     <div class="brand-mark"></div>
 
