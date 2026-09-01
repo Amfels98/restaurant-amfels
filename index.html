@@ -2083,7 +2083,6 @@
     }
   
     /* Language Toggle */
-    .nav-lang-item { display: flex; align-items: center; }
     #langToggle {
       font-family: 'Lato', sans-serif;
       font-size: 0.62rem;
@@ -2091,30 +2090,17 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       background: transparent;
-      border: 1px solid rgba(184,146,74,0.5);
+      border: 1px solid rgba(184,146,74,0.55);
       color: var(--gold);
-      padding: 0.3rem 0.7rem;
+      padding: 0.3rem 0.65rem;
       cursor: pointer;
       transition: all 0.2s;
       line-height: 1.4;
       border-radius: 2px;
+      white-space: nowrap;
     }
     #langToggle:hover { background: var(--gold); color: #fff; }
-    /* Mobile: show in open menu, hide nav-lang-item when menu closed on mobile */
-    @media(max-width:900px) {
-      .nav-lang-item {
-        display: flex !important;
-        justify-content: center;
-        padding: 0.5rem 0;
-        width: 100%;
-      }
-      #langToggle {
-        font-size: 0.85rem;
-        padding: 0.5rem 1.5rem;
-        color: #fff;
-        border-color: rgba(184,146,74,0.7);
-      }
-    }
+    nav.scrolled #langToggle { border-color: rgba(184,146,74,0.7); }
 </style>
 </head>
 <body>
@@ -2197,8 +2183,11 @@
   <a href="#" class="nav-logo">
     <img src="images/logo.png" alt="Restaurant Am Fels" class="nav-logo-img" />
   </a>
-  <div class="hamburger" id="hamburger">
-    <span></span><span></span><span></span>
+  <div style="display:flex;align-items:center;gap:0.6rem;position:relative;z-index:1002">
+    <button id="langToggle" onclick="toggleLang()" title="Switch language">EN</button>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
   </div>
 </nav>
 
@@ -2212,7 +2201,6 @@
   <li><a href="#gutscheine">Gutscheine</a></li>
   <li><a href="#kontakt">Kontakt</a></li>
   <li><a href="#reservierung" class="nav-reserve">Reservieren</a></li>
-  <li class="nav-lang-item"><button id="langToggle" onclick="toggleLang()" title="Switch language">EN</button></li>
 </ul>
 
 <div id="page-wrap">
