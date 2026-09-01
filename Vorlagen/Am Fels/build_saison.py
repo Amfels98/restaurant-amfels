@@ -29,17 +29,17 @@ DISHES=[
 ]
 
 EXTRA='''<style>
-  .stag{display:flex;align-items:center;justify-content:center;gap:16px;width:100%;margin:3mm 0 4mm;}
+  .stag{display:flex;align-items:center;justify-content:center;gap:16px;width:100%;margin:4mm 0 4mm;}
   .stag .t{font-family:'Oswald',sans-serif;font-weight:700;font-size:24px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);white-space:nowrap;}
   .stag .l{flex:1;max-width:32mm;border-top:2px dashed var(--red);opacity:.8;}
-  .ssubt{text-align:center;font-family:'Oswald',sans-serif;font-weight:600;font-size:16px;letter-spacing:.1em;text-transform:uppercase;color:var(--head);margin:0 0 12mm;}
+  .ssubt{text-align:center;font-family:'Oswald',sans-serif;font-weight:600;font-size:16px;letter-spacing:.1em;text-transform:uppercase;color:var(--head);margin:0 0 7mm;}
   .saisoncol{text-align:center;}
-  .sdish{margin-bottom:9mm;}
+  .sdish{margin-bottom:5mm;}
   .sname{font-family:'Oswald',sans-serif;font-weight:600;font-size:16px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink);}
   .sgf{font-family:'Oswald',sans-serif;font-weight:700;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-top:.6mm;}
-  .sdesc{font-size:13px;line-height:1.4;color:var(--muted);margin-top:1.6mm;}
-  .sprice{font-family:'Lato',sans-serif;font-weight:700;font-size:15px;color:var(--ink);margin-top:2mm;}
-  .ssize{font-size:13px;color:var(--muted);margin-top:2mm;}
+  .sdesc{font-size:13px;line-height:1.4;color:var(--muted);margin-top:1mm;}
+  .sprice{font-family:'Lato',sans-serif;font-weight:700;font-size:15px;color:var(--ink);margin-top:1.4mm;}
+  .ssize{font-size:13px;color:var(--muted);margin-top:1.4mm;}
   .ssize b{color:var(--ink);font-weight:700;}
   .ssaladnote{text-align:center;font-style:italic;font-weight:700;color:var(--red);font-size:12.5px;letter-spacing:.02em;margin-top:3mm;}
   .saisonfoot{position:absolute;left:15mm;right:15mm;bottom:12mm;text-align:center;font-style:italic;color:var(--muted);font-size:11px;}
