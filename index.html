@@ -2083,7 +2083,7 @@
     }
   
     /* Language Toggle */
-    #langToggle {
+    #langToggle, #langToggleMobile {
       font-family: 'Lato', sans-serif;
       font-size: 0.62rem;
       font-weight: 700;
@@ -2099,8 +2099,16 @@
       border-radius: 2px;
       white-space: nowrap;
     }
-    #langToggle:hover { background: var(--gold); color: #fff; }
-    nav.scrolled #langToggle { border-color: rgba(184,146,74,0.7); }
+    #langToggle:hover, #langToggleMobile:hover { background: var(--gold); color: #fff; }
+    nav.scrolled #langToggleMobile { border-color: rgba(184,146,74,0.7); }
+    .lang-btn-desktop-li { display: flex; align-items: center; }
+    /* Mobile: show mobile button, hide desktop one */
+    .lang-btn-desktop-li { display: none; }
+    .lang-btn-mobile { display: inline-block; }
+    @media(min-width:901px) {
+      .lang-btn-mobile { display: none !important; }
+      .lang-btn-desktop-li { display: flex !important; align-items: center; }
+    }
 </style>
 </head>
 <body>
@@ -2183,8 +2191,8 @@
   <a href="#" class="nav-logo">
     <img src="images/logo.png" alt="Restaurant Am Fels" class="nav-logo-img" />
   </a>
-  <div style="display:flex;align-items:center;gap:0.6rem;position:relative;z-index:1002">
-    <button id="langToggle" onclick="toggleLang()" title="Switch language">EN</button>
+  <div style="display:flex;align-items:center;gap:0.6rem">
+    <button id="langToggleMobile" onclick="toggleLang()" title="Switch language" class="lang-btn-mobile">EN</button>
     <div class="hamburger" id="hamburger">
       <span></span><span></span><span></span>
     </div>
@@ -2201,6 +2209,7 @@
   <li><a href="#gutscheine">Gutscheine</a></li>
   <li><a href="#kontakt">Kontakt</a></li>
   <li><a href="#reservierung" class="nav-reserve">Reservieren</a></li>
+  <li class="lang-btn-desktop-li"><button id="langToggle" onclick="toggleLang()" title="Switch language">EN</button></li>
 </ul>
 
 <div id="page-wrap">
@@ -3914,8 +3923,11 @@
   window.setLang = function(lang) {
     document.documentElement.setAttribute('lang', lang);
     localStorage.setItem('amfels-lang', lang);
+    var label = lang === 'de' ? 'EN' : 'DE';
     var btn = document.getElementById('langToggle');
-    if (btn) btn.textContent = lang === 'de' ? 'EN' : 'DE';
+    if (btn) btn.textContent = label;
+    var btnM = document.getElementById('langToggleMobile');
+    if (btnM) btnM.textContent = label;
     T.forEach(function(t) {
       document.querySelectorAll(t.s).forEach(function(el) {
         el.innerHTML = lang === 'en' ? t.en : t.de;
@@ -3952,10 +3964,9 @@
     }
   };
 
-  // Restore saved language
+  // Always start in German (don't persist language across sessions)
   document.addEventListener('DOMContentLoaded', function() {
-    var saved = localStorage.getItem('amfels-lang');
-    if (saved === 'en') window.setLang('en');
+    localStorage.removeItem('amfels-lang');
   });
 })();
 </script>
