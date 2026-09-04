@@ -82,7 +82,7 @@ FOOD = {
     "with olive oil and herb butter, with chard potatoes and garlic","sauce fine à l'aneth, pommes de terre aux blettes et à l'ail","in delicata salsa all'aneto, con patate e bietola all'aglio"),
  61:("Salmon fillet","Filet de saumon","Filetto di salmone",
     "with herb butter and baked potato with sour cream","beurre aux herbes, pomme de terre au four à la crème","con burro alle erbe e patata al forno con panna acida"),
- 62:("Grilled Scampi","Scampis grillés","Scampi alla griglia",
+ 62:("Black Tiger Prawns","Gambas Black Tiger","Gamberi Black Tiger",
     "with fresh garlic and olive oil, with chard potatoes","à l'ail frais et huile d'olive, pommes de terre aux blettes","con aglio fresco e olio d'oliva, con patate e bietola"),
  63:("Fish platter","Assiette de poisson","Piatto di pesce",
     "assorted fish fillets and 2 prawns in herb butter, with chard potatoes and garlic","filets de poissons variés et 2 gambas au beurre d'herbes, pommes de terre aux blettes et à l'ail","filetti di pesce misti e 2 gamberi al burro d'erbe, con patate e bietola all'aglio"),

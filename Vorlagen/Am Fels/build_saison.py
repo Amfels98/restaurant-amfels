@@ -49,7 +49,7 @@ BODY=('<div class="page winelist saisonpage">'+PHEAD
       +'<div class="stag"><span class="l"></span><span class="t">Saisonal</span><span class="l"></span></div>'
       +'<div class="ssubt">Frische Pfifferlinge</div>'
       +'<div class="saisoncol">'+''.join(DISHES)
-      +'<div class="ssaladnote">Zu allen Gerichten servieren wir einen Beilagensalat</div></div>'
+      +'<div class="ssaladnote">Zu diesen Gerichten servieren wir einen Beilagensalat</div></div>'
       +'<div class="saisonfoot">Restaurant Am Fels &middot; Engelskirchen-Loope &middot; amfels.de</div>'
       +'</div>')
 

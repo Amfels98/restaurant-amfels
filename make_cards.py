@@ -236,19 +236,21 @@ def bernd_card():
         d.center(CX,y,name,'B',10.5,BROWN); y-=10
         if desc:
             for ln in wrap(desc,'I',9,345): d.center(CX,y,ln,'I',9,TEXT); y-=10
-        return y-6
+        return y-3
     y=396
     y=course_head(y,"VORSPEISE","nach Wahl")
     y=dish(y,"Insalata Caprese","cremiger Büffelmozzarella mit fruchtigen Tomaten & Basilikum")
     y=dish(y,"Scampi Picante","in hauseigener Sauce, mit Knoblauch")
     y=dish(y,"Ziegenkäse","mit Honig & Walnüssen überbacken")
-    y-=13
+    y=dish(y,"Vegane Kürbissuppe","mit Kürbiskernöl")
+    y-=8
     y=course_head(y,"HAUPTSPEISE","nach Wahl")
     y=dish(y,"Wiener Schnitzel „Original“","vom Kalb, mit Preiselbeeren, dazu Pommes Frites")
     y=dish(y,"Filetsteak Madagaskar","Black-Angus-Rinderfilet mit Pfeffersauce, dazu Bratkartoffeln")
     y=dish(y,"Zanderfilet","in feiner Dill-Sauce, dazu Mangold-Kartoffeln mit Knoblauch")
     y=dish(y,"Tagliatelle Mediterrana","frische Bandnudeln in Olivenöl mit Peperoncini, Paprika, Zucchini & Champignons, dazu Parmesan")
-    y-=13
+    for ln in wrap("Zu jedem Hauptgericht servieren wir einen Beilagensalat mit Vinaigrette-Dressing.",'I',8.5,355): d.center(CX,y,ln,'I',8.5,GOLDD); y-=10
+    y-=6
     y=course_head(y,"DESSERT","nach Wahl")
     y=dish(y,"Eis mit heißen Kirschen & Sahne")
     y=dish(y,"Lava Cake","warmes Schoko-Soufflé mit flüssigem Kern, dazu Vanilleeis & Sahne")
