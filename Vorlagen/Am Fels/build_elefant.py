@@ -140,6 +140,7 @@ _saladcats={'Neuseeländisches Lamm','Für unsere Senioren','Hähnchen','Vom Sch
 for c in segA:
     if c[0] in _saladcats: _setsalad(c)
 _setsalad(fisch); _setsalad(grill)
+grill[1]=re.sub(r'(Lustiger Bosnjak.*?</span></span>)(<div class="dd">)', r'\1<div class="gfb">Grain fed Beef</div>\2', grill[1], count=1, flags=re.S)
 # Essen und Getraenke NICHT mischen. Steaks brauchen eine eigene Seite (Preise drunter,
 # Grain-Fed-Zeile). Grill+Fisch+Desserts auf eine weitere Essens-Seite. Getraenke+Wein separat.
 foodmain = segA                 # Hauptgerichte -> 1 volle Seite
@@ -245,6 +246,7 @@ CSS='''<style>
   .cat.dense .dish{margin-bottom:0.9mm;}
   /* Vom Grill / Fisch ohne Rahmen, je einspaltig; Desserts 2-spaltig */
   .grillsec .dish{margin-bottom:1.5mm;}
+  .grillsec .gfb{font-size:9px;margin-top:.2mm;}
   .dessertsec{margin-top:0;}
   .dgrid{column-count:2;column-gap:12mm;margin-top:1mm;}
   .dgrid .dish{break-inside:avoid;-webkit-column-break-inside:avoid;}
