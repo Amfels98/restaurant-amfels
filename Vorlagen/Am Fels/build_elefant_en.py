@@ -12,7 +12,7 @@ IMG='file:///Users/leonrajic/Desktop/amfels/images/'
 # Category headers (keys are the internal German titles reaching cathead())
 CAT={
  'Vorspeisen':'Starters','Suppen':'Soups','Salate & mehr':'Salads & more',
- 'Für unsere kleinen Gäste':'For our little guests','Vom Lamm':'Lamb',
+ 'Für unsere kleinen Gäste':'For our little guests','Neuseeländisches Lamm':'New Zealand Lamb',
  'Für unsere Senioren':'For our senior guests','Hähnchen':'Chicken','Vom Schwein':'Pork',
  'Beilagen':'Side dishes','Saucen & Dips':'Sauces & dips',
  'Argentinischer Black Angus':'Argentinischer Black Angus',
@@ -185,7 +185,7 @@ def pop_cat(name):
     return [name,'']
 steakb=pop_cat('Steakbörse'); grill=pop_cat('Vom Grill'); beil=pop_cat('Beilagen'); sauc=pop_cat('Saucen & Dips')
 # Rest-Reihenfolge: Fisch ans Ende
-_order=['Vorspeisen','Suppen','Salate & mehr','Für unsere kleinen Gäste','Vom Lamm','Für unsere Senioren','Hähnchen','Vom Schwein','Desserts','Frischer Fisch']
+_order=['Vorspeisen','Suppen','Salate & mehr','Für unsere kleinen Gäste','Für unsere Senioren','Neuseeländisches Lamm','Hähnchen','Vom Schwein','Desserts','Frischer Fisch']
 food.sort(key=lambda c:_order.index(c[0]) if c[0] in _order else 999)
 SURFBOX='<div class="surfturf"><img class="pw" src="'+IMG+'garnele-foto.png"><div class="stt"><div class="st1">Surf &amp; Turf</div><div class="st2">Turn your steak into Surf &amp; Turf &ndash; add 2 prawns <b>+5,00</b></div></div></div>'
 getr=extract_cats(GETR, use_cat=False)
@@ -208,7 +208,7 @@ for c in aper: c[1]=compact_prices(c[1])
 beil[1]=compact_prices(beil[1]); sauc[1]=compact_prices(sauc[1])
 # Wein bekommt eigenen Sammel-Header
 # Segmente (Steak-Feature laeuft separat, Wein bekommt eigene Seite)
-segA_names={'Vorspeisen','Suppen','Salate & mehr','Für unsere kleinen Gäste','Vom Lamm','Für unsere Senioren','Hähnchen','Vom Schwein'}
+segA_names={'Vorspeisen','Suppen','Salate & mehr','Für unsere kleinen Gäste','Neuseeländisches Lamm','Für unsere Senioren','Hähnchen','Vom Schwein'}
 segA=[c for c in food if c[0] in segA_names]
 # Vorspeisen + Suppen in EINE Umrandung (Suppen-Header in die Vorspeisen-Box)
 _vor=next((c for c in segA if c[0]=='Vorspeisen'),None)
@@ -227,7 +227,7 @@ SALADNOTE='<div class="saladnote">These dishes are served with a side salad</div
 def _setsalad(c):
     c[1]=re.sub(r'<div class="cnote">[^<]*[Bb]eilagensalat[^<]*</div>','',c[1])
     c[1]=c[1].rstrip()+SALADNOTE
-_saladcats={'Vom Lamm','Für unsere Senioren','Hähnchen','Vom Schwein'}
+_saladcats={'Neuseeländisches Lamm','Für unsere Senioren','Hähnchen','Vom Schwein'}
 for c in segA:
     if c[0] in _saladcats: _setsalad(c)
 _setsalad(fisch); _setsalad(grill)
@@ -555,7 +555,7 @@ STEAK_PAGE='<div class="page steakpage">'+PHEAD+STEAKBOX+'</div>'
 _legrow=lambda h,a,z: '<div class="leg-h">%s</div><div class="leg-line">%s</div><div class="leg-line">%s</div>'%(h,a,z)
 _DEA='<b>Allergens:</b> <sup>A</sup> Cereals containing gluten &middot; <sup>B</sup> Crustaceans &middot; <sup>C</sup> Eggs &middot; <sup>D</sup> Fish &middot; <sup>E</sup> Peanuts &middot; <sup>F</sup> Soy &middot; <sup>G</sup> Milk/Lactose &middot; <sup>H</sup> Tree nuts &middot; <sup>I</sup> Celery &middot; <sup>J</sup> Mustard &middot; <sup>K</sup> Sesame &middot; <sup>L</sup> Sulphur dioxide/sulphites &middot; <sup>M</sup> Lupin &middot; <sup>N</sup> Molluscs'
 _DEZ='<b>Additives:</b> <sup>1</sup> with colouring &middot; <sup>2</sup> with preservative &middot; <sup>3</sup> with antioxidant &middot; <sup>4</sup> with flavour enhancer &middot; <sup>5</sup> contains caffeine &middot; <sup>6</sup> with sweetener &middot; <sup>7</sup> sulphured &middot; <sup>8</sup> with phosphate &middot; <sup>9</sup> source of phenylalanine &middot; <sup>11</sup> stone fruit (may contain pits) &middot; <sup>12</sup> fish fillet (may contain bones) &middot; <sup>35</sup> for immediate consumption'
-ALLERG='<div class="legfoot">'+_legrow('Allergens &amp; additives',_DEA,_DEZ)+'</div>'
+ALLERG='<div class="legfoot">'+_legrow('Allergens &amp; additives',_DEA,_DEZ)+'<div class="leg-line" style="font-style:italic;margin-top:1.5mm;"><b>Note:</b> Our fried potatoes are prepared with bacon, onions and corn flour (gluten-free).</div></div>'
 # Seite 4 wie die Speisen-Seite: sauberes 2-Spalten-Layout, Allergene unten
 _gc=lambda cls,t,inner: '<div class="cat '+cls+'">'+cathead(t)+inner+'</div>'
 _col0=_gc('grillsec','Vom Grill',grill[1])+_gc('grillsec','Frischer Fisch',fisch[1])

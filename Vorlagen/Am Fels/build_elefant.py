@@ -94,7 +94,7 @@ def pop_cat(name):
     return [name,'']
 steakb=pop_cat('Steakbörse'); grill=pop_cat('Vom Grill'); beil=pop_cat('Beilagen'); sauc=pop_cat('Saucen & Dips')
 # Rest-Reihenfolge: Fisch ans Ende
-_order=['Vorspeisen','Suppen','Salate & mehr','Für unsere kleinen Gäste','Vom Lamm','Für unsere Senioren','Hähnchen','Vom Schwein','Desserts','Frischer Fisch']
+_order=['Vorspeisen','Suppen','Salate & mehr','Für unsere kleinen Gäste','Für unsere Senioren','Neuseeländisches Lamm','Hähnchen','Vom Schwein','Desserts','Frischer Fisch']
 food.sort(key=lambda c:_order.index(c[0]) if c[0] in _order else 999)
 SURFBOX='<div class="surfturf"><img class="pw" src="'+IMG+'garnele-foto.png"><div class="stt"><div class="st1">Surf &amp; Turf</div><div class="st2">Mach dein Steak zu Surf &amp; Turf &ndash; dazu 2 Garnelen <b>+5,00</b></div></div></div>'
 getr=extract_cats(GETR, use_cat=False)
@@ -117,7 +117,7 @@ for c in aper: c[1]=compact_prices(c[1])
 beil[1]=compact_prices(beil[1]); sauc[1]=compact_prices(sauc[1])
 # Wein bekommt eigenen Sammel-Header
 # Segmente (Steak-Feature laeuft separat, Wein bekommt eigene Seite)
-segA_names={'Vorspeisen','Suppen','Salate & mehr','Für unsere kleinen Gäste','Vom Lamm','Für unsere Senioren','Hähnchen','Vom Schwein'}
+segA_names={'Vorspeisen','Suppen','Salate & mehr','Für unsere kleinen Gäste','Neuseeländisches Lamm','Für unsere Senioren','Hähnchen','Vom Schwein'}
 segA=[c for c in food if c[0] in segA_names]
 # Vorspeisen + Suppen in EINE Umrandung (Suppen-Header in die Vorspeisen-Box)
 _vor=next((c for c in segA if c[0]=='Vorspeisen'),None)
@@ -136,7 +136,7 @@ SALADNOTE='<div class="saladnote">Zu diesen Gerichten servieren wir einen Beilag
 def _setsalad(c):
     c[1]=re.sub(r'<div class="cnote">[^<]*[Bb]eilagensalat[^<]*</div>','',c[1])
     c[1]=c[1].rstrip()+SALADNOTE
-_saladcats={'Vom Lamm','Für unsere Senioren','Hähnchen','Vom Schwein'}
+_saladcats={'Neuseeländisches Lamm','Für unsere Senioren','Hähnchen','Vom Schwein'}
 for c in segA:
     if c[0] in _saladcats: _setsalad(c)
 _setsalad(fisch); _setsalad(grill)
@@ -464,7 +464,7 @@ STEAK_PAGE='<div class="page steakpage">'+PHEAD+STEAKBOX+'</div>'
 _legrow=lambda h,a,z: '<div class="leg-h">%s</div><div class="leg-line">%s</div><div class="leg-line">%s</div>'%(h,a,z)
 _DEA='<b>Allergene:</b> <sup>A</sup> Glutenhaltiges Getreide &middot; <sup>B</sup> Krebstiere &middot; <sup>C</sup> Eier &middot; <sup>D</sup> Fisch &middot; <sup>E</sup> Erdn&uuml;sse &middot; <sup>F</sup> Soja &middot; <sup>G</sup> Milch/Laktose &middot; <sup>H</sup> Schalenfr&uuml;chte &middot; <sup>I</sup> Sellerie &middot; <sup>J</sup> Senf &middot; <sup>K</sup> Sesam &middot; <sup>L</sup> Schwefeldioxid/Sulfite &middot; <sup>M</sup> Lupinen &middot; <sup>N</sup> Weichtiere'
 _DEZ='<b>Zusatzstoffe:</b> <sup>1</sup> mit Farbstoff &middot; <sup>2</sup> mit Konservierungsstoff &middot; <sup>3</sup> mit Antioxidationsmittel &middot; <sup>4</sup> mit Geschmacksverst&auml;rker &middot; <sup>5</sup> koffeinhaltig &middot; <sup>6</sup> mit S&uuml;&szlig;ungsmittel &middot; <sup>7</sup> geschwefelt &middot; <sup>8</sup> mit Phosphat &middot; <sup>9</sup> Phenylalaninquelle &middot; <sup>11</sup> Steinobst (Kerne m&ouml;glich) &middot; <sup>12</sup> Fischfilet (Gr&auml;ten m&ouml;glich) &middot; <sup>35</sup> zum sofortigen Verzehr'
-ALLERG='<div class="legfoot">'+_legrow('Allergene &amp; Zusatzstoffe',_DEA,_DEZ)+'</div>'
+ALLERG='<div class="legfoot">'+_legrow('Allergene &amp; Zusatzstoffe',_DEA,_DEZ)+'<div class="leg-line" style="font-style:italic;margin-top:1.5mm;"><b>Hinweis:</b> Unsere Bratkartoffeln werden mit Speck, Zwiebeln und Maismehl (glutenfrei) zubereitet.</div></div>'
 # Seite 4 wie die Speisen-Seite: sauberes 2-Spalten-Layout, Allergene unten
 _gc=lambda cls,t,inner: '<div class="cat '+cls+'">'+cathead(t)+inner+'</div>'
 _col0=_gc('grillsec','Vom Grill',grill[1])+_gc('grillsec','Frischer Fisch',fisch[1])
