@@ -216,6 +216,7 @@ _sup=next((c for c in segA if c[0]=='Suppen'),None)
 if _vor and _sup:
     _vor[1]=_vor[1]+'<div style="height:0.2mm"></div>'+cathead('Suppen')+_sup[1]
     segA.remove(_sup)
+if _vor: _vor[1]=re.sub(r'(11\. Carpaccio.*?</span></span>)(<div class="dd">)', r'\1<div class="gfb">Grain fed Beef</div>\2', _vor[1], count=1, flags=re.S)
 # Klarstellung: Kindergerichte nur fuer Kinder
 _kids=next((c for c in segA if 'kleinen' in c[0]),None)
 if _kids: _kids[1]='<div class="cnote">For children only</div>'+_kids[1]
@@ -304,7 +305,7 @@ CSS='''<style>
   .szl{display:block;margin-top:.5mm;white-space:nowrap;color:var(--muted);} .szl .pr{color:var(--ink);}
   /* Steak-Preise: klein, unter der Beschreibung */
   .steaksz{font-size:8px;line-height:1.25;color:var(--muted);margin-top:.2mm;} .steaksz .pr{color:var(--ink);font-size:8px;}
-  .gfb{font-family:'Oswald',sans-serif;font-size:7.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--red);margin-top:.1mm;}
+  .gfb{font-family:'Oswald',sans-serif;font-size:9px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--red);margin-top:.1mm;}
   .gf .col{width:auto;flex:1;}
   .cnote{font-size:9.5px;font-style:italic;color:var(--muted);margin:0 0 2mm;}
   .saladnote{margin-top:0.6mm;font-size:9.3px;font-style:italic;font-weight:700;color:var(--red);letter-spacing:.02em;}
