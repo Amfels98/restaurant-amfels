@@ -1,0 +1,217 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"><style>
+  :root{--paper:#f7f0e3;--ink:#2b2018;--muted:#6b5645;--text:#6b5645;--red:#9a7a48;--gold:#9a7a48;--head:#856428;}
+  *{margin:0;box-sizing:border-box;}
+  body{background:#cfcfcf;font-family:'Lato',sans-serif;}
+  .page{width:210mm;height:297mm;overflow:hidden;background:var(--paper);margin:0 auto 10px;padding:8mm 15mm 6.5mm;position:relative;color:var(--ink);
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .page:not(:last-child){break-after:page;page-break-after:always;}
+  @media print{.page{margin:0;}}
+  .page::before{content:"";position:absolute;inset:8mm;border:1.5px solid var(--red);opacity:.5;border-radius:3px;pointer-events:none;}
+  .phead{display:flex;align-items:center;justify-content:center;margin:0 -7mm 1.5mm -7mm;padding:3.0mm 6mm;background:rgba(154,122,72,.16);border:none;border-bottom:1.5px solid rgba(154,122,72,.55);border-radius:0;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .phead .lm{width:39mm;height:14.9mm;background:url(file:///Users/leonrajic/Desktop/amfels/images/logo-dunkel.svg) center/contain no-repeat;flex:none;}
+  .phead .pn{font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--head);}
+  .cols2{display:flex;gap:12mm;align-items:flex-start;}
+  .col{width:84mm;}
+  .cat{margin:0 0 1.2mm;break-inside:avoid;}
+  .cat.box{border:1.5px solid var(--red);border-radius:4px;padding:2.8mm 4.5mm 1.8mm;background:rgba(154,122,72,.045);}
+  .cat.box .cathead .l{opacity:.5;}
+  .cathead{display:flex;align-items:center;gap:8px;justify-content:center;margin-bottom:2.8mm;break-inside:avoid;break-after:avoid;}
+  .cathead .t{font-family:'Oswald',sans-serif;font-weight:700;font-size:18px;letter-spacing:.05em;text-transform:uppercase;color:var(--head);white-space:nowrap;text-align:center;}
+  .cathead .l{flex:1;height:0;border-top:2px dashed var(--red);opacity:.8;}
+  .dish{break-inside:avoid;margin-bottom:0.5mm;}
+  .dn{font-family:'Oswald',sans-serif;font-weight:600;font-size:14px;letter-spacing:.01em;text-transform:uppercase;color:var(--ink);}
+  .dn .unit{font-family:'Lato';font-weight:400;font-size:9px;text-transform:none;color:var(--muted);letter-spacing:0;}
+  .dn .alg{font-family:'Lato';font-size:8px;font-weight:400;color:var(--red);vertical-align:super;letter-spacing:.02em;}
+  .dd{font-size:12.5px;line-height:1.27;color:var(--ink);margin-top:.3px;}
+  .pr{color:var(--ink);font-weight:700;white-space:nowrap;}
+  .dbody{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;margin-top:1px;}
+  .dbody .dd{flex:1;margin-top:0;}
+  .dish.dinline{display:flex;justify-content:space-between;align-items:baseline;gap:8px;}
+  /* Getraenke: kleiner & enger, uebersichtlich */
+  .cat.drinks .dn{font-size:11.5px;}
+  .cat.drinks .dn .unit{font-size:8.5px;}
+  .cat.drinks .pr{font-size:11px;}
+  .cat.drinks .dd{font-size:9.5px;line-height:1.3;}
+  .cat.drinks .dish{margin-bottom:1.2mm;}
+  .cat.drinks .cathead{margin-bottom:2.4mm;}
+  .cat.dense .dish{margin-bottom:1.2mm;}
+  .tbl2{display:grid;grid-template-columns:1fr 1fr;column-gap:6mm;}
+  .tbl2 .dish{break-inside:avoid;margin-bottom:1.4mm;}
+  .tbl2 .dn{font-size:10px;} .tbl2 .pr{font-size:10px;}
+  .szl{display:block;margin-top:.5mm;white-space:nowrap;color:var(--muted);} .szl .pr{color:var(--ink);}
+  /* Steak-Preise: klein, unter der Beschreibung */
+  .steaksz{font-size:8px;line-height:1.25;color:var(--muted);margin-top:.2mm;} .steaksz .pr{color:var(--ink);font-size:8px;}
+  .gfb{font-family:'Oswald',sans-serif;font-size:9px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--red);margin-top:.1mm;}
+  .gf .col{width:auto;flex:1;}
+  .cnote{font-size:9.5px;font-style:italic;color:var(--muted);margin:0 0 2mm;}
+  .saladnote{margin-top:0.6mm;font-size:9.3px;font-style:italic;font-weight:700;color:var(--red);letter-spacing:.02em;}
+  /* Steak-Feature: links Text + Beilagen/Saucen (umrandet, gestapelt), rechts Steak-Gerichte */
+  .steakcols{display:flex;gap:9mm;align-items:stretch;}
+  .scol-l{width:76mm;flex-shrink:0;}
+  .scol-r{flex:1;display:flex;flex-direction:column;}
+  .steakcol{flex:1;display:flex;flex-direction:column;justify-content:space-between;}
+  .steakcol .dish{margin-bottom:2.5mm;}
+  .prov{line-height:1.4;margin-bottom:4mm;display:flow-root;font-size:10px;text-align:center;}
+  .prov .provk{display:block;font-family:'Oswald',sans-serif;font-weight:700;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--red);font-style:normal;margin-bottom:.3mm;}
+  .prov .provsub{display:block;font-style:italic;font-size:10.5px;color:var(--ink);margin-bottom:1.6mm;}
+  .prov .provgar{display:block;font-style:italic;font-size:9.5px;color:var(--red);margin-top:1.6mm;}
+  .garstufen{margin-top:5mm;padding-top:3.5mm;border-top:1px dashed var(--red);text-align:center;}
+  .garstufen .gt{font-family:'Oswald',sans-serif;font-weight:700;font-size:14px;letter-spacing:.05em;text-transform:uppercase;color:var(--red);margin-bottom:2.5mm;text-align:center;}
+  .garstufen .gl{font-size:14.5px;margin-bottom:1.8mm;line-height:1.35;}
+  .garstufen .gl b{color:var(--ink);font-weight:700;}
+  .garstufen .gl b::after{content:" \\00b7 ";color:var(--red);font-weight:700;}
+  .garstufen .gl span{color:var(--muted);}
+  .siegel{float:right;width:19mm;height:19mm;margin:0 0 1mm 2.5mm;shape-outside:circle(50%);}
+  .scol-l .cat.box{margin:0 0 4mm;}
+  .feat.cat.box{padding:3.4mm 4.5mm 2.4mm;margin-bottom:2.4mm;}
+  .feat .cathead{margin-bottom:3mm;}
+  /* Beilagen & Saucen: viel kleiner */
+  .cat.dense.box{padding:2.4mm 3.2mm 1.6mm;}
+  .cat.dense .cathead{margin-bottom:1.6mm;}
+  .cat.dense .cathead .t{font-size:11.5px;letter-spacing:.04em;}
+  .cat.dense .dn{font-size:8.7px;letter-spacing:0;}
+  .cat.dense .pr{font-size:8.7px;}
+  .cat.dense .dish{margin-bottom:0.9mm;}
+  /* Vom Grill / Fisch ohne Rahmen, je einspaltig; Desserts 2-spaltig */
+  .grillsec .dish{margin-bottom:1.5mm;}
+  .grillsec .gfb{font-size:9px;margin-top:.2mm;}
+  .dessertsec{margin-top:0;}
+  .dgrid{column-count:2;column-gap:12mm;margin-top:1mm;}
+  .dgrid .dish{break-inside:avoid;-webkit-column-break-inside:avoid;}
+  .cd{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:1.5mm;}
+  .cd .dn{font-size:11.5px;}
+  .surfturf{display:flex;align-items:center;gap:11px;margin-top:2mm;padding:2.2mm 3.5mm;border:1.6px dashed var(--red);border-radius:5px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .surfturf .pw{width:22mm;height:auto;flex-shrink:0;}
+  .surfturf .st1{font-family:'Oswald',sans-serif;font-weight:700;font-size:17px;text-transform:uppercase;letter-spacing:.05em;color:var(--red);}
+  .surfturf .st2{font-size:10.5px;color:var(--muted);margin-top:1px;} .surfturf .st2 b{color:var(--ink);}
+  .beerlogos{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:3mm;}
+  .beerlogos img{height:12mm;width:auto;max-width:24mm;object-fit:contain;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .beerlogos img[src*="fruh"]{height:auto;width:19mm;}
+  .mcol{width:84mm;}
+  /* Cover: Hauptteil mittig, Oeffnungszeiten ganz unten */
+  .coverp{display:flex;flex-direction:column;align-items:center;}
+  .cover{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:100%;}
+  .cover .clogo{width:92mm;height:48mm;background:url(file:///Users/leonrajic/Desktop/amfels/images/logo-dunkel.svg) center/contain no-repeat;margin-bottom:8mm;}
+  .cover .cest{font-family:'Oswald',sans-serif;font-size:16px;letter-spacing:.42em;text-transform:uppercase;color:var(--muted);}
+  .cover .crule{display:flex;align-items:center;gap:12px;margin:8mm 0;width:78mm;}
+  .cover .crule .l{flex:1;border-top:2px dashed var(--red);opacity:.8;}
+  .cover .crule .d{width:8px;height:8px;background:var(--red);transform:rotate(45deg);}
+  .cover .ctag{display:flex;align-items:center;justify-content:center;gap:16px;width:100%;}
+  .cover .ctag .t{font-family:'Oswald',sans-serif;font-weight:700;font-size:24px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);white-space:nowrap;}
+  .cover .ctag .l{flex:1;max-width:32mm;border-top:2px dashed var(--red);opacity:.8;}
+  .cover .cdesc{font-size:18px;color:var(--muted);margin-top:7mm;line-height:1.85;}
+  .cover .cfeier{margin-top:12mm;} .cover .cfeier .t{font-family:'Oswald',sans-serif;font-weight:600;font-size:21px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);}
+  .cover .cfeier .s{font-size:14px;color:var(--muted);margin-top:5px;}
+  .cbox{margin-bottom:14mm;border:1.5px solid var(--red);padding:6mm 12mm;text-align:center;}
+  .cbox .h{font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--red);margin-bottom:4mm;}
+  .cbox .hours{display:grid;grid-template-columns:auto auto;gap:6px 30px;font-size:13px;text-align:left;}
+  .cbox .hours b{color:var(--ink);font-weight:700;} .cbox .hours .r{text-align:right;color:var(--muted);}
+  /* Legende */
+  .legpage{padding:20mm 16mm;}
+  .leg-h{font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);text-align:center;margin:0 0 3mm;}
+  .leg-line{font-size:10px;color:var(--muted);line-height:1.9;text-align:center;max-width:92%;margin:0 auto 5mm;}
+  .leg-line b{color:var(--ink);} .leg-line sup{color:var(--red);font-weight:700;}
+  /* Steakbörse ueber die GANZE Seite */
+  .steakpage .feat.cat.box{min-height:238mm;position:relative;overflow:visible;display:flex;flex-direction:column;}
+  .steakpage .steakcols{flex:1;padding-top:8mm;}
+  .steakpage .angus{position:absolute;top:2mm;right:-2mm;width:29mm;height:29mm;z-index:6;}
+  .steakpage .scol-l{display:flex;flex-direction:column;justify-content:space-between;}
+  .scol-r .dn{font-size:15px;}
+  .scol-r .dd{font-size:15px;line-height:1.42;}
+  .scol-r .steaksz{font-size:10.5px;} .scol-r .steaksz .pr{font-size:10.5px;}
+  .scol-r .gfb{font-size:9px;}
+  /* Gluehstein-Text (oben links) viel groesser */
+  .prov{font-size:14.5px;line-height:1.5;}
+  .prov .provk{font-size:14px;white-space:nowrap;}
+  .prov .provsub{font-size:15px;margin-bottom:2.5mm;}
+  .prov .provgar{font-size:12.5px;margin-top:2.5mm;}
+  .steakpage .siegel{width:24mm;height:24mm;}
+  .steakpage .cat.dense .dn{font-size:11.5px;} .steakpage .cat.dense .pr{font-size:11.5px;}
+  .steakpage .cat.dense .dish{margin-bottom:0.8mm;}
+  .steakpage .surfturf{margin-top:4mm;padding:3.5mm 5mm;}
+  .steakpage .surfturf .pw{width:26mm;}
+  .steakpage .surfturf .st1{font-size:19px;} .steakpage .surfturf .st2{font-size:11.5px;}
+  /* Desserts groesser */
+  .dessertsec:not(.drinks) .dn{font-size:13.5px;}
+  .dessertsec:not(.drinks) .dd{font-size:13px;line-height:1.36;}
+  .dessertsec.drinks .dn{font-size:13.5px;} .dessertsec.drinks .pr{font-size:13.5px;} .dessertsec.drinks .dd{font-size:13px;line-height:1.36;} .dessertsec.drinks .dn .unit{font-size:10px;}
+  /* Weine kompakt (passen mit Getraenken auf eine Seite) */
+  .cat.winec .dn{font-size:11.5px;}
+  .cat.winec .dd{font-size:10.5px;line-height:1.3;}
+  .cat.winec .pr{font-size:11px;}
+  .cat.winec .dish{margin-bottom:2mm;}
+  .cat.winec .cathead{margin-bottom:2mm;}
+  /* Getraenke-Seite: 3-spaltig (alles inkl. Wein auf eine Seite) */
+  .drinks3x{display:flex;gap:7mm;align-items:flex-start;}
+  .drinks3x .d3col{flex:1;width:0;}
+  .drinks3x .cat{break-inside:avoid;-webkit-column-break-inside:avoid;display:inline-block;width:100%;margin:0 0 3.6mm;}
+  .drinks3x .cathead{margin-bottom:1.6mm;}
+  .drinks3x .beerlogos{display:flex;justify-content:space-between;align-items:center;flex-wrap:nowrap;gap:3px;margin-top:3mm;width:100%;}
+  .drinks3x .beerlogos img{height:13mm;width:auto;max-width:none;}
+  .drinks3x .beerlogos img[src*="fruh"]{height:auto;width:15mm;}
+  .drinks3x .winec .dd{font-size:10.5px;line-height:1.3;}
+  .winetitle{font-family:'Oswald',sans-serif;font-weight:700;font-size:23px;letter-spacing:.12em;text-transform:uppercase;color:var(--head);text-align:center;margin:1mm 0 6mm;}
+  .winepage .cols2{align-items:flex-start;}
+  .winepage .cat.winec{margin:0 0 13mm;}
+  .winepage .cat.winec .cathead{margin-bottom:4mm;}
+  .winepage .cat.winec .dn{font-size:14.5px;}
+  .winepage .cat.winec .dd{font-size:12.5px;line-height:1.45;}
+  .winepage .cat.winec .pr{font-size:13px;}
+  .winepage .cat.winec .dish{margin-bottom:7mm;}
+  .drinkspage .cat.drinks{margin:0 0 5mm;}
+  .drinkspage .cat.drinks .cathead{margin-bottom:3mm;}
+  .drinkspage .cat.drinks .dn{font-size:13.5px;}
+  .drinkspage .cat.drinks .pr{font-size:13px;}
+  .drinkspage .cat.drinks .dn .unit{font-size:10px;}
+  .drinkspage .cat.drinks .dish{margin-bottom:1.8mm;}
+  .drinkspage .beerlogos{display:flex;justify-content:space-between;align-items:center;flex-wrap:nowrap;width:100%;margin-top:3mm;}
+  .drinkspage .beerlogos img{height:15mm;}
+  .winelist .winecol{width:100%;}
+  .winelist .winenote{text-align:center;font-style:italic;color:var(--muted);font-size:11.5px;margin:-3mm 0 6mm;}
+  .winelist .cat.winec{margin:0 0 3.5mm;}
+  .winelist .cat.winec .cathead{margin-bottom:2.4mm;}
+  .winelist .wdish{margin-bottom:2.0mm;break-inside:avoid;}
+  .winelist .wtop{display:flex;align-items:flex-end;gap:6px;}
+  .winelist .wname{font-family:'Oswald',sans-serif;font-weight:600;font-size:14px;letter-spacing:.02em;text-transform:uppercase;color:var(--ink);}
+  .winelist .wlead{flex:1;border-bottom:1.5px dotted var(--red);opacity:.4;margin-bottom:3.5px;}
+  .winelist .wpr{display:inline-flex;gap:4mm;font-family:'Lato',sans-serif;font-weight:700;font-size:13.5px;color:var(--ink);white-space:nowrap;}
+  .winelist .wpricehead{display:flex;align-items:flex-end;gap:6px;margin:11mm 0 3mm;}
+  .winelist .wpricehead .wsp{flex:1;}
+  .winelist .wpricehead .wpr{font-weight:400;font-style:italic;font-size:11px;color:var(--muted);}
+  .winelist .pg{min-width:12mm;text-align:right;}
+  .winelist .pb{min-width:15mm;text-align:right;}
+  .winelist .wdesc{font-size:11.5px;line-height:1.3;color:var(--muted);margin-top:1px;}
+  /* kombinierte Seite: Allergene-Fuss */
+  .legfoot{margin-top:7mm;}
+  .legfoot .leg-line{margin-bottom:2mm;line-height:1.7;}
+  .cols2.dk{margin-top:5mm;align-items:flex-start;}
+  /* Hauptgerichte luftiger, damit die 2 Seiten gut gefuellt sind */
+  .mainp .dish{margin-bottom:4.5mm;}
+  .mainp .cat{margin-bottom:7mm;}
+  .mainp .cat.box{padding:5mm 5mm 4mm;}
+  .mainp .cathead{margin-bottom:4mm;}
+</style><style>
+  .cltitle{text-align:center;font-family:'Oswald',sans-serif;font-weight:700;font-size:23px;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin:2mm 0 1mm;}
+  .cldate{text-align:center;font-style:italic;color:var(--muted);font-size:12px;margin:0 0 6mm;}
+  .clsec{break-inside:avoid;margin:0 0 5mm;}
+  .clh{font-family:'Oswald',sans-serif;font-weight:700;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--head);margin:0 0 2mm;border-bottom:1px dashed var(--red);padding-bottom:1mm;}
+  table.pt{width:100%;border-collapse:collapse;font-size:11px;}
+  table.pt th{text-align:left;font-family:'Oswald',sans-serif;font-weight:600;font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);padding:0 6px 1mm 0;border-bottom:1px solid rgba(154,122,72,.3);}
+  table.pt td{padding:.9mm 6px .9mm 0;color:var(--ink);vertical-align:baseline;}
+  table.pt td.a{width:60%;}
+  table.pt td.o{text-align:right;color:var(--muted);white-space:nowrap;}
+  table.pt td.ar{text-align:center;color:var(--red);width:6mm;}
+  table.pt td.n{text-align:right;font-weight:700;color:var(--ink);white-space:nowrap;}
+  table.pt tbody tr:not(:last-child) td{border-bottom:1px solid rgba(154,122,72,.12);}
+  .clsec ul{margin:0;padding-left:4.5mm;}
+  .clsec li{font-size:11px;line-height:1.5;color:var(--ink);margin-bottom:.8mm;}
+  .clsec li b{color:var(--head);}
+  .warn{break-inside:avoid;border:1.6px solid var(--red);border-radius:5px;background:rgba(154,122,72,.10);padding:3.5mm 5mm;margin:0 0 6mm;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .warn .wh{font-family:'Oswald',sans-serif;font-weight:700;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--red);margin-bottom:2mm;}
+  .warn p{font-size:11px;line-height:1.55;color:var(--ink);margin:0 0 1.5mm;}
+  .warn b{color:var(--red);}
+  .clcols{column-count:2;column-gap:12mm;}
+  .clfoot{text-align:center;font-style:italic;color:var(--muted);font-size:10px;margin-top:6mm;padding-top:2mm;border-top:1px dashed var(--red);}
+</style></head><body>
+<div class="page"><div class="phead"><div class="lm"></div></div><div class="cltitle">&Auml;nderungsprotokoll Speisekarte</div><div class="cldate">Durchgef&uuml;hrt am 05.09.2026 &middot; Restaurant Am Fels, Engelskirchen-Loope</div><div class="clcols"><div class="clsec"><div class="clh">Preis&auml;nderungen &middot; Speisen</div><table class="pt"><thead><tr><th>Artikel</th><th>alt</th><th></th><th>neu</th></tr></thead><tbody><tr><td class="a">Damen Teller</td><td class="o">17,90</td><td class="ar">&rarr;</td><td class="n">18,50</td></tr><tr><td class="a">Cordon Bleu</td><td class="o">20,90</td><td class="ar">&rarr;</td><td class="n">21,90</td></tr><tr><td class="a">Zagreb Teller</td><td class="o">20,90</td><td class="ar">&rarr;</td><td class="n">21,90</td></tr><tr><td class="a">Schiwago Teller</td><td class="o">20,90</td><td class="ar">&rarr;</td><td class="n">21,90</td></tr><tr><td class="a">Schnitzel &bdquo;Champignon&ldquo;</td><td class="o">19,90</td><td class="ar">&rarr;</td><td class="n">20,90</td></tr><tr><td class="a">Cevapcici (Nr.&nbsp;54)</td><td class="o">18,90</td><td class="ar">&rarr;</td><td class="n">19,90</td></tr><tr><td class="a">Hacksteak Hirten</td><td class="o">19,90</td><td class="ar">&rarr;</td><td class="n">20,90</td></tr><tr><td class="a">Kalbsleber</td><td class="o">20,90</td><td class="ar">&rarr;</td><td class="n">21,90</td></tr></tbody></table></div><div class="clsec"><div class="clh">Desserts &amp; Hei&szlig;getr&auml;nke</div><table class="pt"><thead><tr><th>Artikel</th><th>alt</th><th></th><th>neu</th></tr></thead><tbody><tr><td class="a">Palatschinken (Schoko / Marmelade)</td><td class="o">5,90</td><td class="ar">&rarr;</td><td class="n">6,50</td></tr><tr><td class="a">Palatschinken Gourmet</td><td class="o">8,90</td><td class="ar">&rarr;</td><td class="n">9,50</td></tr><tr><td class="a">Lava Cake</td><td class="o">8,90</td><td class="ar">&rarr;</td><td class="n">9,50</td></tr><tr><td class="a">Cr&egrave;me br&ucirc;l&eacute;e</td><td class="o">6,90</td><td class="ar">&rarr;</td><td class="n">7,50</td></tr><tr><td class="a">Espresso</td><td class="o">2,30</td><td class="ar">&rarr;</td><td class="n">2,50</td></tr><tr><td class="a">Tasse Kaffee</td><td class="o">2,50</td><td class="ar">&rarr;</td><td class="n">2,70</td></tr><tr><td class="a">Milchkaffee</td><td class="o">3,60</td><td class="ar">&rarr;</td><td class="n">3,80</td></tr></tbody></table></div><div class="clsec"><div class="clh">Getr&auml;nke &middot; Wein &amp; Bier</div><table class="pt"><thead><tr><th>Artikel</th><th>alt</th><th></th><th>neu</th></tr></thead><tbody><tr><td class="a">Cavazza Merlot (Glas 0,2&thinsp;l)</td><td class="o">6,50</td><td class="ar">&rarr;</td><td class="n">6,90</td></tr><tr><td class="a">Cavazza Pinot Grigio (Glas 0,2&thinsp;l)</td><td class="o">6,50</td><td class="ar">&rarr;</td><td class="n">6,90</td></tr><tr><td class="a">Fr&uuml;h K&ouml;lsch alkoholfrei</td><td class="o">3,50</td><td class="ar">&rarr;</td><td class="n">3,60</td></tr><tr><td class="a">Erzquell Pils</td><td class="o">3,30</td><td class="ar">&rarr;</td><td class="n">3,40</td></tr><tr><td class="a">Bergisches Landbier</td><td class="o">3,40</td><td class="ar">&rarr;</td><td class="n">3,50</td></tr><tr><td class="a">Paulaner Hefeweizen alkoholfrei</td><td class="o">5,50</td><td class="ar">&rarr;</td><td class="n">5,70</td></tr></tbody></table></div><div class="clsec"><div class="clh">Neu ins Sortiment</div><ul><li>Pelinkovac (2&thinsp;cl) &mdash; <b>3,00&nbsp;&euro;</b></li><li>Black Tiger Garnelen (ersetzt &bdquo;Gegrillte Scampis&ldquo;) &mdash; <b>25,90&nbsp;&euro;</b></li></ul></div><div class="clsec"><div class="clh">Namens- &amp; Beschreibungs&auml;nderungen (ohne Preiswirkung)</div><ul><li>&bdquo;Vom Lamm&ldquo; &rarr; <b>Neuseel&auml;ndisches Lamm</b></li><li>&bdquo;Steakb&ouml;rse&ldquo; &rarr; <b>Black Angus Steaks</b></li><li>Nr.&nbsp;9 &bdquo;Scampi Picante&ldquo; &rarr; <b>Gambas Picante</b></li><li>Nr.&nbsp;60 Zanderfilet: Dill-Sauce &rarr; <b>Oliven&ouml;l &amp; Kr&auml;uterbutter</b></li><li>Hacksteak Hirten (ohne &bdquo;Art&ldquo;)</li><li>Lava Cake: &bdquo;&hellip;Vanilleeis und Sahne&ldquo;</li><li>Beilagensalat erg&auml;nzt: Gem&uuml;seteller &amp; Tagliatelle Gambas</li><li>&bdquo;Grain fed Beef&ldquo; erg&auml;nzt: Carpaccio &amp; Lustiger Bosnjak</li></ul></div><div class="clsec"><div class="clh">Allergene / Kennzeichnung</div><ul><li>Fischteller: N (Weichtiere) &amp; J (Senf) entfernt &rarr; <b>B, D, G &middot; 12</b></li><li>Neuer Hinweis: Bratkartoffeln mit <b>Speck, Zwiebeln &amp; Maismehl (glutenfrei)</b></li></ul></div><div class="clsec"><div class="clh">Website amfels.de</div><ul><li>Champagner entfernt (Taittinger, Veuve Pelletier); &bdquo;Sekt &amp; Champagner&ldquo; &rarr; <b>Sekt</b></li><li>Extra-Weine entfernt (Ronchedone, Zenato Chardonnay)</li><li>Softdrink-Preise an die Karte angeglichen (Cola/Fanta/Sprite/Spezi 3,70; Cola&nbsp;Zero, Apfelschorle, Rhabarber 4,00; Bitter&nbsp;Lemon &amp; Tonic 3,30; T&ouml;nnissteiner 3,20/6,70; Glas&nbsp;Sekt 4,90)</li><li>Fischteller 26,90 &rarr; <b>27,90</b> (Website an Karte angeglichen)</li><li>Rechtschreibung: Williams-Birne, Se&ntilde;ora de Ayanz, Tempranillo</li><li>Alle &Auml;nderungen <b>zweisprachig (DE + EN)</b> &middot; Mittagskarte &amp; Saisonkarte unver&auml;ndert</li></ul></div></div><div class="clfoot">Internes &Auml;nderungsprotokoll zur Vorlage bei Bedarf &middot; Erstellt 05.09.2026</div></div>
+</body></html>
