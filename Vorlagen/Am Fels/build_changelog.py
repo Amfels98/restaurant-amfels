@@ -48,12 +48,12 @@ WARN=('<div class="warn"><div class="wh">&#9888; Hinweis: bereits gedruckte Kart
  '<p>Betrifft: alkoholfreies K&ouml;lsch (+0,10&nbsp;&euro;) und alkoholfreies Weizen (+0,20&nbsp;&euro;).</p></div>')
 
 speisen=ptable('Preis&auml;nderungen &middot; Speisen',[
- ('Damen Teller','17,90','18,50'),('Cordon Bleu','20,90','21,90'),('Zagreb Teller','20,90','21,90'),
- ('Schiwago Teller','20,90','21,90'),('Schnitzel &bdquo;Champignon&ldquo;','19,90','20,90'),
- ('Cevapcici (Nr.&nbsp;54)','18,90','19,90'),('Hacksteak Hirten','19,90','20,90'),('Kalbsleber','20,90','21,90')])
+ ('Damen Teller (Nr.&nbsp;23)','17,90','18,50'),('Cordon Bleu (Nr.&nbsp;43)','20,90','21,90'),('Zagreb Teller (Nr.&nbsp;44)','20,90','21,90'),
+ ('Schiwago Teller (Nr.&nbsp;45)','20,90','21,90'),('Schnitzel &bdquo;Champignon&ldquo; (Nr.&nbsp;40)','19,90','20,90'),
+ ('Cevapcici (Nr.&nbsp;54)','18,90','19,90'),('Hacksteak Hirten (Nr.&nbsp;56)','19,90','20,90'),('Kalbsleber (Nr.&nbsp;58)','20,90','21,90')])
 dess=ptable('Desserts &amp; Hei&szlig;getr&auml;nke',[
- ('Palatschinken (Schoko / Marmelade)','5,90','6,50'),('Palatschinken Gourmet','8,90','9,50'),
- ('Lava Cake','8,90','9,50'),('Cr&egrave;me br&ucirc;l&eacute;e','6,90','7,50'),
+ ('Palatschinken Schoko/Marmelade (Nr.&nbsp;64/65)','5,90','6,50'),('Palatschinken Gourmet (Nr.&nbsp;67)','8,90','9,50'),
+ ('Lava Cake (Nr.&nbsp;69)','8,90','9,50'),('Cr&egrave;me br&ucirc;l&eacute;e (Nr.&nbsp;68)','6,90','7,50'),
  ('Espresso','2,30','2,50'),('Tasse Kaffee','2,50','2,70'),('Milchkaffee','3,60','3,80')])
 getr=ptable('Getr&auml;nke &middot; Wein &amp; Bier',[
  ('Cavazza Merlot (Glas 0,2&thinsp;l)','6,50','6,90'),('Cavazza Pinot Grigio (Glas 0,2&thinsp;l)','6,50','6,90'),
@@ -67,9 +67,9 @@ namen=lsec('Namens&auml;nderungen',[
  '&bdquo;Steakb&ouml;rse&ldquo; &rarr; <b>Black Angus Steaks</b>',
  'Nr.&nbsp;9 &bdquo;Scampi Picante&ldquo; &rarr; <b>Gambas Picante</b>',
  'Nr.&nbsp;62 &bdquo;Gegrillte Scampis&ldquo; &rarr; <b>Black Tiger Garnelen</b> (Preis 25,90 unver&auml;ndert)',
- 'Hacksteak Hirten (ohne &bdquo;Art&ldquo;)'])
+ 'Nr.&nbsp;56 Hacksteak Hirten (ohne &bdquo;Art&ldquo;)'])
 allerg=lsec('Allergene / Kennzeichnung',[
- 'Fischteller: N (Weichtiere) &amp; J (Senf) entfernt &rarr; <b>B, D, G &middot; 12</b>',
+ 'Fischteller (Nr.&nbsp;63): N (Weichtiere) &amp; J (Senf) entfernt &rarr; <b>B, D, G &middot; 12</b>',
  'Neuer Hinweis: Bratkartoffeln mit <b>Speck, Zwiebeln &amp; Maismehl (glutenfrei)</b>'])
 web=lsec('Website amfels.de',[
  'Champagner entfernt (Taittinger, Veuve Pelletier); &bdquo;Sekt &amp; Champagner&ldquo; &rarr; <b>Sekt</b>',
