@@ -58,7 +58,7 @@ dess=ptable('Desserts &amp; Hei&szlig;getr&auml;nke',[
 getr=ptable('Getr&auml;nke &middot; Wein &amp; Bier',[
  ('Cavazza Merlot (Glas 0,2&thinsp;l)','6,50','6,90'),('Cavazza Pinot Grigio (Glas 0,2&thinsp;l)','6,50','6,90'),
  ('Fr&uuml;h K&ouml;lsch alkoholfrei','3,50','3,60'),('Erzquell Pils','3,30','3,40'),
- ('Bergisches Landbier','3,40','3,50'),('Paulaner Hefeweizen alkoholfrei','5,50','5,70')])
+ ('Bergisches Landbier','3,40','3,50'),('Paulaner Hefeweizen (mit &amp; ohne)','5,60','5,70')])
 neu=lsec('Neu ins Sortiment',[
  'Pelinkovac (2&thinsp;cl) &mdash; <b>3,00&nbsp;&euro;</b>',
  'Black Tiger Garnelen (ersetzt &bdquo;Gegrillte Scampis&ldquo;) &mdash; <b>25,90&nbsp;&euro;</b>'])
