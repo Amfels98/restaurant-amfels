@@ -62,16 +62,12 @@ getr=ptable('Getr&auml;nke &middot; Wein &amp; Bier',[
 neu=lsec('Neu ins Sortiment',[
  'Pelinkovac (2&thinsp;cl) &mdash; <b>3,00&nbsp;&euro;</b>',
  'Black Tiger Garnelen (ersetzt &bdquo;Gegrillte Scampis&ldquo;) &mdash; <b>25,90&nbsp;&euro;</b>'])
-namen=lsec('Namens- &amp; Beschreibungs&auml;nderungen (ohne Preiswirkung)',[
+namen=lsec('Namens&auml;nderungen',[
  '&bdquo;Vom Lamm&ldquo; &rarr; <b>Neuseel&auml;ndisches Lamm</b>',
  '&bdquo;Steakb&ouml;rse&ldquo; &rarr; <b>Black Angus Steaks</b>',
  'Nr.&nbsp;9 &bdquo;Scampi Picante&ldquo; &rarr; <b>Gambas Picante</b>',
  'Nr.&nbsp;62 &bdquo;Gegrillte Scampis&ldquo; &rarr; <b>Black Tiger Garnelen</b> (Preis 25,90 unver&auml;ndert)',
- 'Nr.&nbsp;60 Zanderfilet: Dill-Sauce &rarr; <b>Oliven&ouml;l &amp; Kr&auml;uterbutter</b>',
- 'Hacksteak Hirten (ohne &bdquo;Art&ldquo;)',
- 'Lava Cake: &bdquo;&hellip;Vanilleeis und Sahne&ldquo;',
- 'Beilagensalat erg&auml;nzt: Gem&uuml;seteller &amp; Tagliatelle Gambas',
- '&bdquo;Grain fed Beef&ldquo; erg&auml;nzt: Carpaccio &amp; Lustiger Bosnjak'])
+ 'Hacksteak Hirten (ohne &bdquo;Art&ldquo;)'])
 allerg=lsec('Allergene / Kennzeichnung',[
  'Fischteller: N (Weichtiere) &amp; J (Senf) entfernt &rarr; <b>B, D, G &middot; 12</b>',
  'Neuer Hinweis: Bratkartoffeln mit <b>Speck, Zwiebeln &amp; Maismehl (glutenfrei)</b>'])
@@ -81,7 +77,7 @@ web=lsec('Website amfels.de',[
  'Softdrink-Preise an die Karte angeglichen (Cola/Fanta/Sprite/Spezi 3,70; Cola&nbsp;Zero, Apfelschorle, Rhabarber 4,00; Bitter&nbsp;Lemon &amp; Tonic 3,30; T&ouml;nnissteiner 3,20/6,70; Glas&nbsp;Sekt 4,90)',
  'Fischteller 26,90 &rarr; <b>27,90</b> (Website an Karte angeglichen)',
  'Rechtschreibung: Williams-Birne, Se&ntilde;ora de Ayanz, Tempranillo',
- 'Alle &Auml;nderungen <b>zweisprachig (DE + EN)</b> &middot; Mittagskarte &amp; Saisonkarte unver&auml;ndert'])
+ 'Alle &Auml;nderungen <b>zweisprachig (DE + EN)</b> &middot; Saisonkarte unver&auml;ndert'])
 
 BODY=('<div class="page">'+PHEAD
       +'<div class="cltitle">&Auml;nderungsprotokoll Speisekarte</div>'
