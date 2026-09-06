@@ -66,6 +66,7 @@ namen=lsec('Namens- &amp; Beschreibungs&auml;nderungen (ohne Preiswirkung)',[
  '&bdquo;Vom Lamm&ldquo; &rarr; <b>Neuseel&auml;ndisches Lamm</b>',
  '&bdquo;Steakb&ouml;rse&ldquo; &rarr; <b>Black Angus Steaks</b>',
  'Nr.&nbsp;9 &bdquo;Scampi Picante&ldquo; &rarr; <b>Gambas Picante</b>',
+ 'Nr.&nbsp;62 &bdquo;Gegrillte Scampis&ldquo; &rarr; <b>Black Tiger Garnelen</b> (Preis 25,90 unver&auml;ndert)',
  'Nr.&nbsp;60 Zanderfilet: Dill-Sauce &rarr; <b>Oliven&ouml;l &amp; Kr&auml;uterbutter</b>',
  'Hacksteak Hirten (ohne &bdquo;Art&ldquo;)',
  'Lava Cake: &bdquo;&hellip;Vanilleeis und Sahne&ldquo;',
@@ -85,7 +86,7 @@ web=lsec('Website amfels.de',[
 BODY=('<div class="page">'+PHEAD
       +'<div class="cltitle">&Auml;nderungsprotokoll Speisekarte</div>'
       +'<div class="cldate">Durchgef&uuml;hrt am 05.09.2026 &middot; Restaurant Am Fels, Engelskirchen-Loope</div>'
-      +'<div class="clcols">'+speisen+dess+getr+neu+namen+allerg+web+'</div>'
+      +'<div class="clcols">'+speisen+dess+getr+namen+allerg+web+'</div>'
       +'<div class="clfoot">Internes &Auml;nderungsprotokoll zur Vorlage bei Bedarf &middot; Erstellt 05.09.2026</div>'
       +'</div>')
 
