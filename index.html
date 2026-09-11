@@ -976,13 +976,6 @@
 
     .lightbox-close:hover { opacity: 1; }
 
-    .menu-tab.seasonal { color: var(--text); }
-    .menu-tab.seasonal:hover, .menu-tab.seasonal.active { color: var(--gold); }
-    .menu-tab.seasonal::before {
-      content: '✦ ';
-      font-size: 0.55em;
-      opacity: 0.85;
-    }
 
     /* ────────────────────────────────────
        VIDEO DIVIDER
@@ -2148,43 +2141,6 @@
   })();
 </script>
 
-<!-- PFIFFERLINGE POPUP -->
-<div id="pfiffPopup" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.72);z-index:2001;align-items:center;justify-content:center;padding:1.5rem">
-  <div style="background:#fdfaf5;border:1px solid rgba(184,146,74,0.3);max-width:440px;width:100%;position:relative;text-align:center;overflow:hidden">
-    <button onclick="document.getElementById('pfiffPopup').style.display='none'" style="position:absolute;top:0.75rem;right:0.75rem;z-index:2;background:rgba(0,0,0,0.35);border:none;font-size:1rem;cursor:pointer;color:#fff;line-height:1;width:28px;height:28px;border-radius:50%">✕</button>
-    <div style="height:220px;overflow:hidden;position:relative">
-      <img src="https://images.unsplash.com/photo-1696605780283-fc19efd100a1?w=800&q=80" alt="Frische Pfifferlinge" style="width:100%;height:100%;object-fit:cover;object-position:center">
-      <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,#fdfaf5)"></div>
-    </div>
-    <!-- Teaser (vor 23.07) -->
-    <div id="pfiffTeaser" style="padding:0 2rem 2rem">
-      <div style="font-family:'Lato',sans-serif;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#b8924a;margin-bottom:0.4rem">Bald verfügbar</div>
-      <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;color:#3a2516;margin:0 0 0.65rem">Frische Pfifferlinge</h2>
-      <p style="font-family:'Lato',sans-serif;font-size:0.82rem;color:#6b5645;line-height:1.8;margin:0 0 1.4rem">Ab <strong>Donnerstag, 23. Juli</strong> bieten wir frische Pfifferlinge auf unserer Saisonkarte an — mit Speck und Zwiebeln verfeinert, in cremiger Rahmsauce.</p>
-      <button onclick="document.getElementById('pfiffPopup').style.display='none'" style="background:none;border:1px solid rgba(184,146,74,0.4);color:#9a7a48;font-family:'Lato',sans-serif;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.75rem 1.5rem;cursor:pointer">Schließen</button>
-    </div>
-    <!-- Vollversion (ab 23.07) -->
-    <div id="pfiffFull" style="display:none;padding:0 2rem 2rem">
-      <div style="font-family:'Lato',sans-serif;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#b8924a;margin-bottom:0.4rem">Aktuell zur Saison</div>
-      <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;color:#3a2516;margin:0 0 0.65rem">Frische Pfifferlinge</h2>
-      <p style="font-family:'Lato',sans-serif;font-size:0.82rem;color:#6b5645;line-height:1.8;margin:0 0 1.4rem">Frische Pfifferlinge — nur für kurze Zeit. Mit Speck und Zwiebeln verfeinert, in cremiger Rahmsauce — zu Pasta, Schnitzel oder feinstem Steak.</p>
-      <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap">
-        <a href="#speisekarte" onclick="switchTab('pfifferlinge',document.querySelector('[onclick*=pfifferlinge]'));document.getElementById('pfiffPopup').style.display='none'" class="btn-primary" style="text-decoration:none">Zur Karte</a>
-        <button onclick="document.getElementById('pfiffPopup').style.display='none'" style="background:none;border:1px solid rgba(184,146,74,0.4);color:#9a7a48;font-family:'Lato',sans-serif;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.75rem 1.5rem;cursor:pointer">Schließen</button>
-      </div>
-    </div>
-  </div>
-</div>
-<script>
-  window.addEventListener('load', function(){
-    var start = new Date(2026, 6, 23); // 23. Juli 2026
-    if (new Date() >= start) {
-      document.getElementById('pfiffTeaser').style.display = 'none';
-      document.getElementById('pfiffFull').style.display = 'block';
-    }
-    setTimeout(function(){ document.getElementById('pfiffPopup').style.display='flex'; }, 800);
-  });
-</script>
 
 <!-- ── NAVIGATION ── -->
 <nav id="navbar">
@@ -2361,7 +2317,6 @@
 
   <div class="menu-tabs" role="tablist">
     <button class="menu-tab active" onclick="switchTab('mittag', this)">Mittagskarte</button>
-    <button class="menu-tab seasonal" onclick="switchTab('pfifferlinge', this)">Frische Pfifferlinge</button>
     <button class="menu-tab" onclick="switchTab('vorspeisen', this)">Vorspeisen &amp; Suppen</button>
     <button class="menu-tab" onclick="switchTab('steaks', this)">Steaks</button>
     <button class="menu-tab" onclick="switchTab('fleisch', this)">Lamm · Hähnchen · Schwein</button>
@@ -2376,26 +2331,6 @@
 
   <!-- MITTAGSKARTE -->
   <!-- PFIFFERLINGE -->
-  <div class="menu-panel" id="panel-pfifferlinge">
-    <div class="menu-category">
-      <div style="text-align:center;margin-bottom:2rem">
-        <span class="section-label" data-en="Currently in Season">Aktuell zur Saison</span>
-        <h3 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;color:var(--cream);margin:0.3rem 0 0.5rem" data-en="Fresh Chanterelles">Frische Pfifferlinge</h3>
-        <p style="font-size:0.82rem;color:var(--text);font-style:italic" data-en="Our chanterelles are prepared with bacon and onions. A side salad with homemade dressing is served with every dish.">Unsere Pfifferlinge werden mit Speck und Zwiebeln zubereitet. Zu jedem Gericht servieren wir einen Beilagensalat mit hausgemachtem Dressing.</p>
-      </div>
-      <div class="menu-cat-divider"></div>
-      <div class="menu-items-grid" style="max-width:680px;margin:0 auto">
-        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name" data-en="301. Scrambled Eggs with Chanterelles">301. Rührei mit Pfifferlingen</div><div class="menu-item-desc" data-en="with spring onions · fried potatoes">mit Frühlingszwiebeln, dazu Bratkartoffeln</div></div><span class="menu-item-price">19,90 €</span></div>
-        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name" data-en="302. Tagliatelle with Chanterelles">302. Bandnudeln mit Pfifferlingen</div><div class="menu-item-desc" data-en="in cream sauce">in Rahmsauce</div></div><span class="menu-item-price">22,90 €</span></div>
-        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name" data-en="303. Schnitzel with Chanterelles">303. Schnitzel-Pfifferling</div><div class="menu-item-desc" data-en="chicken schnitzel · in cream sauce · fries">Hähnchenschnitzel · in Rahmsauce · Pommes</div></div><span class="menu-item-price">27,90 €</span></div>
-        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name" data-en="304. Chicken Steak with Chanterelles">304. Hähnchensteak Pfifferling</div><div class="menu-item-desc" data-en="in cream sauce · fried potatoes">in Rahmsauce · Bratkartoffeln</div></div><span class="menu-item-price">28,90 €</span></div>
-        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name" data-en="305. Pork Medallions with Chanterelles">305. Schweinemedaillons Pfifferling</div><div class="menu-item-desc" data-en="grilled · in cream sauce · croquettes">Gegrillt · in Rahmsauce · Kroketten</div></div><span class="menu-item-price">30,90 €</span></div>
-        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name" data-en="306. Rump Steak with Chanterelles">306. Rumpsteak Pfifferling</div><div class="menu-item-desc" data-en="in cream sauce · fried potatoes">in Rahmsauce · Bratkartoffeln</div><div class="menu-sizes"><div class="menu-size-btn"><span class="menu-size-label">200g</span><span class="menu-size-price">37,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">300g</span><span class="menu-size-price">45,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">400g</span><span class="menu-size-price">51,90 €</span></div></div></div></div>
-        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name" data-en="307. Fillet Steak with Chanterelles">307. Filetsteak Pfifferling</div><div class="menu-item-desc" data-en="in cream sauce · fried potatoes">in Rahmsauce · Bratkartoffeln</div><div class="menu-sizes"><div class="menu-size-btn"><span class="menu-size-label">200g</span><span class="menu-size-price">42,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">300g</span><span class="menu-size-price">52,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">400g</span><span class="menu-size-price">60,90 €</span></div></div></div></div>
-
-      </div>
-    </div>
-  </div>
 
   <div class="menu-panel active" id="panel-mittag">
     <div class="menu-category">
@@ -3823,7 +3758,6 @@
     {s:'#speisekarte .section-title',  de:'Die <em>Speisekarte</em>', en:'Our <em>Menu</em>'},
     // Menu tabs
     {s:'button[onclick*="mittag"]',      de:'Mittagskarte',              en:'Lunch Menu'},
-    {s:'button.menu-tab.seasonal',       de:'Frische Pfifferlinge',      en:'Fresh Chanterelles'},
     {s:'button[onclick*="vorspeisen"]',  de:'Vorspeisen &amp; Suppen',   en:'Starters &amp; Soups'},
     {s:'button[onclick*="steaks"]',      de:'Steaks',                en:'Steaks'},
     {s:'button[onclick*="fleisch"]',     de:'Lamm · Hähnchen · Schwein', en:'Lamb · Chicken · Pork'},
