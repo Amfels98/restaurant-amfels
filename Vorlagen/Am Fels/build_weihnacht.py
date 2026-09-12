@@ -20,9 +20,9 @@ CSS='''<style>
  .brand{text-align:center;font-family:'Oswald',sans-serif;font-weight:600;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--ink);margin-top:2mm;}
  .wtitle{text-align:center;font-family:'Playfair Display',serif;font-weight:700;font-size:34px;line-height:1.02;color:var(--bord);margin:.5mm 0 1mm;}
  .wtitle .mn{display:block;font-family:'Great Vibes',cursive;font-weight:400;font-size:40px;color:var(--bord);margin-top:-2mm;}
- .sec{text-align:center;font-family:'Playfair Display',serif;font-weight:700;font-size:21px;letter-spacing:.06em;text-transform:uppercase;color:var(--bord);margin:2.8mm 0 1.6mm;}
- .sec.first{margin-top:1.5mm;}
- .dish{text-align:center;margin-bottom:0.9mm;break-inside:avoid;}
+ .sec{text-align:center;font-family:'Playfair Display',serif;font-weight:700;font-size:21px;letter-spacing:.06em;text-transform:uppercase;color:var(--bord);margin:2.2mm 0 1.2mm;}
+ .sec.first{margin-top:1.2mm;}
+ .dish{text-align:center;margin-bottom:0.2mm;break-inside:avoid;}
  .dn{font-family:'Oswald',sans-serif;font-weight:600;font-size:16.5px;letter-spacing:.01em;color:var(--ink);}
  .dn .pr{color:var(--bord);font-weight:700;}
  .gf{font-family:'Oswald',sans-serif;font-weight:700;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-top:.3mm;}
