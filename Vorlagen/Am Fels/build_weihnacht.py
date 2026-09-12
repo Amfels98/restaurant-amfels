@@ -29,6 +29,10 @@ CSS='''<style>
  .dd{font-size:14px;line-height:1.3;color:var(--muted);margin-top:.6mm;}
  .sz{font-size:14px;color:var(--ink);margin-top:.7mm;}
  .sz b{color:var(--bord);}
+ .sprig{text-align:center;line-height:0;margin:1mm 0 .5mm;}
+ .xwish{text-align:center;margin-top:6mm;}
+ .xg{font-family:'Great Vibes',cursive;font-size:36px;color:var(--bord);line-height:1;}
+ .xsub{font-family:'Playfair Display',serif;font-style:italic;font-size:12px;color:var(--muted);margin-top:1.5mm;}
  /* Getraenke */
  .gtitle{text-align:center;font-family:'Great Vibes',cursive;font-size:40px;color:var(--bord);margin:0mm 0 4mm;}
  .gcols{display:flex;gap:3mm;}
@@ -43,6 +47,15 @@ CSS='''<style>
 
 SNOW='<span class="sf" style="top:16mm;left:6mm">&#10052;</span><span class="sf" style="top:40mm;right:7mm;font-size:22px">&#10052;</span><span class="sf" style="bottom:30mm;left:8mm;font-size:26px">&#10052;</span><span class="sf" style="bottom:14mm;right:9mm">&#10052;</span><span class="sf" style="top:95mm;left:5mm;font-size:20px">&#10052;</span>'
 
+SPRIG=('<div class="sprig"><svg width="78" height="16" viewBox="0 0 156 32" xmlns="http://www.w3.org/2000/svg">'
+ '<g stroke="#9a7a48" stroke-width="1.2" fill="none" stroke-linecap="round">'
+ '<path d="M14 16 H60"/><path d="M96 16 H142"/>'
+ '<path d="M60 16 q-9 -9 -20 -7 q7 9 20 7"/><path d="M96 16 q9 -9 20 -7 q-7 9 -20 7"/>'
+ '</g>'
+ '<path d="M78 7 L84 16 L78 25 L72 16 Z" fill="#9a7a48"/>'
+ '<circle cx="63" cy="16" r="2.1" fill="#7c1f2e"/><circle cx="93" cy="16" r="2.1" fill="#7c1f2e"/>'
+ '</svg></div>')
+
 def dish(name, price, desc):
     return '<div class="dish"><div class="dn">%s <span class="pr">%s</span></div><div class="dd">%s</div></div>'%(name,price,desc)
 def steak(name, desc, sizes):
@@ -55,7 +68,7 @@ def steak_nogf(name, desc, sizes):
 
 def page(inner, head=False):
     top='<div class="ribbon"></div>' + (('<div class="brand">Am Fels</div>'
-        '<div class="wtitle">Weihnachts<span class="mn">Men&uuml;</span></div>') if head else '')
+        '<div class="wtitle">Weihnachts<span class="mn">Men&uuml;</span></div>'+SPRIG) if head else '')
     return '<div class="page">'+SNOW+top+inner+'</div>'
 
 # ---- Seite 1 ----
@@ -107,8 +120,8 @@ gR=('<div class="gh">Bier</div>'
  +gi('Wodka','2cl','2,50')+gi('Julishka','2cl','2,50')+gi('Ramazzotti','4cl','4,90')+gi('J&auml;germeister','2cl','2,50')
  +gi('Williams-Birne','2cl','3,20')+gi('Slivovic','2cl','2,50')+gi('Vi&scaron;njevac (Kirschlik&ouml;r)','4cl','4,90')+gi('Baileys','4cl','4,90')
  +gi('Ouzo','2cl','2,50')+gi('Bergische Nuss','2cl','3,20')+gi('Grappa','2cl','2,70')+gi('Linie Aquavit','2cl','3,20'))
-p4=('<div class="gtitle">Getr&auml;nke</div><div class="gcols"><div class="gcol">'+gL+'</div><div class="gcol">'+gR+'</div></div>'
-    +'<div class="gfoot">F&uuml;r weitere Spirituosen und Weine sprechen Sie uns gerne an</div>')
+p4=('<div class="gtitle">Getr&auml;nke</div>'+SPRIG+'<div style="height:3mm"></div><div class="gcols"><div class="gcol">'+gL+'</div><div class="gcol">'+gR+'</div></div>'
+    +'<div class="gfoot"><span class="xg" style="font-size:26px">Frohe Weihnachten</span><br>Wir w&uuml;nschen Ihnen besinnliche Feiertage</div>')
 
 BODY=page(p1,head=True)+page(p2)+page(p4)
 html='<!doctype html><html><head><meta charset="utf-8">'+FONTS+CSS+'</head><body>\n'+BODY+'\n</body></html>'
