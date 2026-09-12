@@ -20,14 +20,14 @@ CSS='''<style>
  .brand{text-align:center;font-family:'Oswald',sans-serif;font-weight:600;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--ink);margin-top:2mm;}
  .wtitle{text-align:center;font-family:'Playfair Display',serif;font-weight:700;font-size:34px;line-height:1.02;color:var(--bord);margin:.5mm 0 1mm;}
  .wtitle .mn{display:block;font-family:'Great Vibes',cursive;font-weight:400;font-size:40px;color:var(--bord);margin-top:-2mm;}
- .sec{text-align:center;font-family:'Playfair Display',serif;font-weight:700;font-size:18.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--bord);margin:3.8mm 0 2mm;}
- .sec.first{margin-top:2mm;}
- .dish{text-align:center;margin-bottom:2.7mm;break-inside:avoid;}
- .dn{font-family:'Oswald',sans-serif;font-weight:600;font-size:13.5px;letter-spacing:.01em;color:var(--ink);}
+ .sec{text-align:center;font-family:'Playfair Display',serif;font-weight:700;font-size:21px;letter-spacing:.06em;text-transform:uppercase;color:var(--bord);margin:2.8mm 0 1.6mm;}
+ .sec.first{margin-top:1.5mm;}
+ .dish{text-align:center;margin-bottom:1.9mm;break-inside:avoid;}
+ .dn{font-family:'Oswald',sans-serif;font-weight:600;font-size:16.5px;letter-spacing:.01em;color:var(--ink);}
  .dn .pr{color:var(--bord);font-weight:700;}
- .gf{font-family:'Oswald',sans-serif;font-weight:700;font-size:7.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-top:.2mm;}
- .dd{font-size:10.5px;line-height:1.3;color:var(--muted);margin-top:.4mm;}
- .sz{font-size:11.5px;color:var(--ink);margin-top:.6mm;}
+ .gf{font-family:'Oswald',sans-serif;font-weight:700;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-top:.3mm;}
+ .dd{font-size:14px;line-height:1.3;color:var(--muted);margin-top:.6mm;}
+ .sz{font-size:14px;color:var(--ink);margin-top:.7mm;}
  .sz b{color:var(--bord);}
  /* Getraenke */
  .gtitle{text-align:center;font-family:'Great Vibes',cursive;font-size:40px;color:var(--bord);margin:0mm 0 4mm;}
@@ -60,7 +60,7 @@ def page(inner, head=False):
 
 # ---- Seite 1 ----
 p1=('<div class="sec first">Vorspeise</div>'
- +dish('Scampi picante','13,90','in Kr&auml;uterbuttersauce')
+ +dish('Gambas picante','13,90','in Kr&auml;uterbuttersauce')
  +dish('Ziegenk&auml;se','10,90','mit Honig und Waln&uuml;ssen &uuml;berbacken')
  +dish('Schafsk&auml;se','10,90','&uuml;berbacken, in Oliven&ouml;l, mit Tomaten und Paprika')
  +dish('Knoblauchbrot','5,90','mit Sauerrahm Dip')
@@ -68,7 +68,8 @@ p1=('<div class="sec first">Vorspeise</div>'
  +dish('Gem&uuml;seteller Vegetaria','18,90','Paprika &middot; Zucchini &middot; Champignons &middot; Ofenkartoffel mit Sauerrahm')
  +dish('Lamm Mix Teller','28,90','Kotelett &middot; Steak &middot; Knoblauch &middot; Bratkartoffeln')
  +steak('Rumpsteak','Kr&auml;uterbutter &middot; Ofenkartoffel mit Sauerrahm',[('200g','27,90'),('300g','35,90'),('400g','41,90')])
- +steak_nogf('Pfanne &bdquo;Am Fels&ldquo;','Steakfleischstreifen &middot; feurige Paprika-Chili-Salsa &middot; Champignons &middot; Butterreis',[('200g','24,90'),('300g','32,90'),('400g','38,90')]))
+ +steak_nogf('Pfanne &bdquo;Am Fels&ldquo;','Steakfleischstreifen &middot; feurige Paprika-Chili-Salsa &middot; Champignons &middot; Butterreis',[('200g','24,90'),('300g','32,90'),('400g','38,90')])
+ +dish('Pfanne India','19,90','H&auml;hnchenstreifen &middot; Curry-Sahne-Sauce &middot; tropische Fr&uuml;chte &middot; Butterreis'))
 
 # ---- Seite 2 ----
 p2=('<div class="sec first">Hauptspeise</div>'
@@ -79,7 +80,6 @@ p2=('<div class="sec first">Hauptspeise</div>'
  +dish('Pfeffertopf','21,90','Schweinefilet &middot; Pfeffersauce &middot; Bratkartoffeln')
  +dish('Grill Teller','22,90','Hacksteak &middot; R&uuml;ckensteak &middot; Raznjici &middot; Cevapcici &middot; Pommes &middot; Djuwetschreis')
  +dish('Lachs Filet','22,90','Kr&auml;uterbutter &middot; Ofenkartoffel mit Sauerrahm')
- +dish('Pfanne India','19,90','H&auml;hnchenstreifen &middot; Curry-Sahne-Sauce &middot; tropische Fr&uuml;chte &middot; Butterreis')
  +dish('Hacksteak Hirten','20,90','gef&uuml;llt mit Schafsk&auml;se &middot; Pommes &middot; Djuwetschreis')
  +'<div class="sec">Desserts</div>'
  +dish('Lava Cake','9,50','Schokoladen-Souffl&eacute; mit Vanilleeis und Sahne')
