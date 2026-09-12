@@ -31,13 +31,13 @@ CSS='''<style>
  .sz b{color:var(--bord);}
  /* Getraenke */
  .gtitle{text-align:center;font-family:'Great Vibes',cursive;font-size:40px;color:var(--bord);margin:0mm 0 4mm;}
- .gcols{display:flex;gap:8mm;}
+ .gcols{display:flex;gap:3mm;}
  .gcol{flex:1;}
- .gh{text-align:center;font-family:'Playfair Display',serif;font-weight:700;font-size:15px;letter-spacing:.05em;text-transform:uppercase;color:var(--bord);margin:0 0 2mm;}
- .gh.mt{margin-top:6mm;}
- .gitem{text-align:center;font-size:11.5px;line-height:1.5;color:var(--ink);}
- .gitem .u{color:var(--muted);font-size:8.5px;}
- .gsubh{text-align:center;font-weight:700;font-size:11px;color:var(--muted);margin:1.5mm 0 .5mm;}
+ .gh{text-align:center;font-family:'Playfair Display',serif;font-weight:700;font-size:17px;letter-spacing:.05em;text-transform:uppercase;color:var(--bord);margin:0 0 2mm;}
+ .gh.mt{margin-top:4mm;}
+ .gitem{text-align:center;font-size:14px;line-height:1.34;color:var(--ink);}
+ .gitem .u{color:var(--muted);font-size:10px;}
+ .gsubh{text-align:center;font-weight:700;font-size:13px;color:var(--muted);margin:1.5mm 0 .5mm;}
  .gfoot{position:absolute;left:11mm;right:11mm;bottom:7mm;text-align:center;font-family:'Playfair Display',serif;font-style:italic;font-size:9.5px;color:var(--bord);}
 </style>'''
 
