@@ -22,7 +22,7 @@ CSS='''<style>
  .wtitle .mn{display:block;font-family:'Great Vibes',cursive;font-weight:400;font-size:40px;letter-spacing:0;color:var(--bord);margin-top:-2mm;}
  .sec{text-align:center;font-family:'Playfair Display',serif;font-weight:700;font-size:20px;letter-spacing:.06em;text-transform:uppercase;color:var(--bord);margin:3mm 0 1.8mm;}
  .sec.first{margin-top:1.6mm;}
- .dish{text-align:center;margin-bottom:2.6mm;break-inside:avoid;}
+ .dish{text-align:center;margin-bottom:1.8mm;break-inside:avoid;}
  .dn{font-family:'Oswald',sans-serif;font-weight:600;font-size:15.5px;letter-spacing:.01em;color:var(--ink);}
  .dn .pr{color:var(--bord);font-weight:700;}
  .gf{font-family:'Oswald',sans-serif;font-weight:700;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-top:.1mm;}
