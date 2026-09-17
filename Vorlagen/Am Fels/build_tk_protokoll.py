@@ -1,0 +1,62 @@
+# -*- coding: utf-8 -*-
+import pathlib
+from playwright.sync_api import sync_playwright
+
+FONTS=('<link rel="preconnect" href="https://fonts.googleapis.com">'
+ '<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">')
+
+ROWS=20
+rows=''.join('<tr><td class="prod"></td><td></td><td></td><td></td><td class="kz"></td></tr>' for _ in range(ROWS))
+
+CSS='''<style>
+ :root{--ink:#2b2018;--muted:#6f6152;--gold:#9a7a48;--line:#c9bda9;--band:#2b2018;}
+ *{margin:0;box-sizing:border-box;}
+ html,body{background:#fff;}
+ .page{width:210mm;min-height:297mm;background:#fff;padding:14mm 13mm 12mm;position:relative;
+   font-family:'Lato',sans-serif;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+ @media print{@page{size:A4;margin:0;}}
+ .head{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid var(--gold);padding-bottom:4mm;margin-bottom:5mm;}
+ .brand{font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink);}
+ .title{font-family:'Oswald',sans-serif;font-weight:700;font-size:30px;letter-spacing:.02em;text-transform:uppercase;color:var(--ink);line-height:1;}
+ .sub{font-family:'Lato',sans-serif;font-size:11px;color:var(--muted);margin-top:1.5mm;}
+ .meta{text-align:right;font-family:'Oswald',sans-serif;font-weight:600;font-size:11px;letter-spacing:.05em;color:var(--muted);line-height:2.1;}
+ .meta u{display:inline-block;min-width:32mm;border-bottom:1px solid var(--line);}
+ table{width:100%;border-collapse:collapse;margin-top:1mm;}
+ th{font-family:'Oswald',sans-serif;font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--band);
+   padding:3mm 2.5mm;text-align:left;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+ td{border:1px solid var(--line);height:10.5mm;padding:0 2.5mm;}
+ th:first-child{border-top-left-radius:2px;} th:last-child{border-top-right-radius:2px;}
+ tbody tr:nth-child(even) td{background:#faf6ee;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+ .prod{width:36%;} .kz{width:12%;}
+ col.c-menge{width:13%;} col.c-datum{width:19%;}
+ .foot{margin-top:6mm;font-size:9.5px;color:var(--muted);line-height:1.6;border-top:1px solid var(--line);padding-top:3mm;}
+ .foot b{color:var(--ink);}
+</style>'''
+
+BODY=('<div class="page">'
+ '<div class="head">'
+   '<div><div class="brand">Restaurant Am Fels</div>'
+   '<div class="title">Tiefk&uuml;hl-Protokoll</div>'
+   '<div class="sub">Kennzeichnung eingefrorener Waren &middot; bitte gut leserlich ausf&uuml;llen</div></div>'
+   '<div class="meta">Tiefk&uuml;hlger&auml;t: <u></u><br>Monat / Jahr: <u></u></div>'
+ '</div>'
+ '<table>'
+ '<colgroup><col class="c-prod"><col class="c-menge"><col class="c-datum"><col class="c-datum"><col class="c-kz"></colgroup>'
+ '<thead><tr><th>Produkt / Ware</th><th>Menge</th><th>Eingefroren am</th><th>Haltbar bis</th><th>K&uuml;rzel</th></tr></thead>'
+ '<tbody>'+rows+'</tbody>'
+ '</table>'
+ '<div class="foot"><b>Hinweise:</b> Jede Ware beim Einfrieren sofort beschriften. &bdquo;First In &ndash; First Out&ldquo; &ndash; &auml;ltere Ware zuerst verbrauchen. '
+ 'Bei &Uuml;berschreitung der Haltbarkeit oder Zweifel an der Qualit&auml;t entsorgen. Einmal aufgetaute Ware nicht wieder einfrieren.</div>'
+ '</div>')
+
+html='<!doctype html><html><head><meta charset="utf-8">'+FONTS+CSS+'</head><body>\n'+BODY+'\n</body></html>'
+OUT='/Users/leonrajic/Desktop/amfels/tiefkuehl-protokoll.html'
+open(OUT,'w',encoding='utf-8').write(html)
+PDF='/Users/leonrajic/Desktop/amfels/Tiefkuehl-Protokoll.pdf'
+with sync_playwright() as p:
+    b=p.chromium.launch(); pg=b.new_page()
+    pg.goto(pathlib.Path(OUT).resolve().as_uri(), wait_until='networkidle')
+    pg.evaluate('document.fonts.ready'); pg.wait_for_timeout(400); pg.emulate_media(media='print')
+    pg.pdf(path=PDF, format='A4', print_background=True, margin={'top':'0','right':'0','bottom':'0','left':'0'})
+    b.close()
+print('PDF ->', PDF)
