@@ -94,7 +94,7 @@ p2=('<div class="sec first">Hauptspeise</div>'
  +dish('Grill Teller','22,90','Raznjici &middot; Cevapcici &middot; R&uuml;ckensteak &middot; Hacksteak &middot; Pommes &middot; Djuwetschreis')
  +dish('Lamm Mix Teller','28,90','Steak &amp; Kotelett &middot; frischer Knoblauch &middot; Bratkartoffeln')
  +steak_nogf('Pfanne &bdquo;Am Fels&ldquo;','Steakfleischstreifen &middot; feurige Paprika-Chili-Salsa &middot; Champignons &middot; Butterreis',[('200g','24,90'),('300g','32,90'),('400g','38,90')])
- +'<div class="sec">Nachspeise</div>'
+ +'<div class="sec">Dessert</div>'
  +dish('Semifreddo','9,50','halbgefroren &middot; karamellisierte Mandeln &middot; hausgemachte Karamellsauce &middot; auf Keksboden')
  +dish('Lava Cake','9,50','warmes Schokoladen-Souffl&eacute; mit fl&uuml;ssigem Kern &middot; Vanilleeis &middot; Sahne'))
 

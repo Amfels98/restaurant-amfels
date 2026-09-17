@@ -94,7 +94,7 @@ p2=('<div class="sec first">Hauptspeise</div>'
  +dish('Grill Teller','22,90','Hacksteak &middot; R&uuml;ckensteak &middot; Raznjici &middot; Cevapcici &middot; Pommes &middot; Djuwetschreis')
  +dish('Lachs Filet','22,90','Kr&auml;uterbutter &middot; Ofenkartoffel mit Sauerrahm')
  +dish('Hacksteak Hirten','20,90','gef&uuml;llt mit Schafsk&auml;se &middot; Pommes &middot; Djuwetschreis')
- +'<div class="sec">Desserts</div>'
+ +'<div class="sec">Dessert</div>'
  +dish('Lava Cake','9,50','Schokoladen-Souffl&eacute; mit Vanilleeis und Sahne')
  +dish('Cr&egrave;me br&ucirc;l&eacute;e','7,50','mit karamellisierter Zuckerschicht'))
 
