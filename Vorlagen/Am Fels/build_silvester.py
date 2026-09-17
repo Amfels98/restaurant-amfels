@@ -20,14 +20,14 @@ CSS='''<style>
  .brand{text-align:center;font-family:'Oswald',sans-serif;font-weight:600;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--ink);margin-top:2mm;}
  .wtitle{text-align:center;font-family:'Playfair Display',serif;font-weight:700;font-size:34px;line-height:1.02;letter-spacing:.04em;color:var(--bord);margin:.5mm 0 1mm;}
  .wtitle .mn{display:block;font-family:'Great Vibes',cursive;font-weight:400;font-size:40px;letter-spacing:0;color:var(--bord);margin-top:-2mm;}
- .sec{text-align:center;font-family:'Playfair Display',serif;font-weight:700;font-size:21px;letter-spacing:.06em;text-transform:uppercase;color:var(--bord);margin:2.2mm 0 1.2mm;}
- .sec.first{margin-top:1.2mm;}
- .dish{text-align:center;margin-bottom:0.2mm;break-inside:avoid;}
- .dn{font-family:'Oswald',sans-serif;font-weight:600;font-size:16.5px;letter-spacing:.01em;color:var(--ink);}
+ .sec{text-align:center;font-family:'Playfair Display',serif;font-weight:700;font-size:20px;letter-spacing:.06em;text-transform:uppercase;color:var(--bord);margin:3mm 0 1.8mm;}
+ .sec.first{margin-top:1.6mm;}
+ .dish{text-align:center;margin-bottom:2.6mm;break-inside:avoid;}
+ .dn{font-family:'Oswald',sans-serif;font-weight:600;font-size:15.5px;letter-spacing:.01em;color:var(--ink);}
  .dn .pr{color:var(--bord);font-weight:700;}
- .gf{font-family:'Oswald',sans-serif;font-weight:700;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-top:.3mm;}
- .dd{font-size:14px;line-height:1.3;color:var(--muted);margin-top:.6mm;}
- .sz{font-size:14px;color:var(--ink);margin-top:.7mm;}
+ .gf{font-family:'Oswald',sans-serif;font-weight:700;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-top:.1mm;}
+ .dd{font-size:13px;line-height:1.28;color:var(--muted);margin-top:.15mm;}
+ .sz{font-size:13px;color:var(--ink);margin-top:.3mm;}
  .sz b{color:var(--bord);}
  .sprig{text-align:center;line-height:0;margin:1mm 0 .5mm;}
  /* Getraenke */
