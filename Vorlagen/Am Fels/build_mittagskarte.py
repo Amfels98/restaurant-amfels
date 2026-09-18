@@ -23,7 +23,7 @@ CSS='''<style>
  .nm{font-family:'Oswald',sans-serif;font-weight:600;font-size:14px;color:var(--ink);white-space:nowrap;}
  .lead{flex:1;border-bottom:1px dotted #c9bda9;transform:translateY(-2px);min-width:6mm;}
  .pr{font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;color:var(--ink);white-space:nowrap;}
- .ds{font-size:10.5px;color:var(--muted);margin-top:.4mm;line-height:1.35;}
+ .ds{font-size:10.5px;color:var(--muted);margin-top:.4mm;line-height:1.35;padding-right:20mm;}
  .note{text-align:center;font-size:10.5px;color:var(--muted);margin-top:5mm;font-style:italic;}
  .foot{position:absolute;left:13mm;right:13mm;bottom:8mm;text-align:center;font-size:8.5px;color:var(--muted);border-top:1px solid #d9cdb8;padding-top:2.2mm;}
  .foot b{color:var(--ink);}
@@ -42,9 +42,9 @@ def item(name,desc,price):
 
 DISHES=[
  ('H&auml;hnchengeschnetzeltes','zartes H&auml;hnchengeschnetzeltes in cremiger Pfefferrahmsauce mit Zwiebeln und frischen Champignons, dazu lockerer Butterreis','16,90 &euro;'),
- ('Schweineschnitzel &bdquo;Schlemmer Art&ldquo;','goldbraun gebacken, mit Tomaten, Sauce Hollandaise und K&auml;se &uuml;berbacken, dazu knusprige Pommes Frites','16,90 &euro;'),
- ('H&auml;hnchensteak &bdquo;Venecia&ldquo;','saftiges H&auml;hnchensteak mit w&uuml;rzigem Schafsk&auml;se &uuml;berbacken, dazu goldene Kroketten und buntes Gem&uuml;se','16,90 &euro;'),
- ('Pola Pola','2 hausgemachte Cevapcici und 1 Raznjici-Spie&szlig; vom Grill, dazu Pommes Frites und w&uuml;rziger Djuwetschreis','16,90 &euro;'),
+ ('Schweineschnitzel &uuml;berbacken','goldbraun gebacken, mit Tomaten, Sauce Hollandaise und K&auml;se &uuml;berbacken, dazu knusprige Pommes Frites','16,90 &euro;'),
+ ('H&auml;hnchensteak &uuml;berbacken','saftiges H&auml;hnchensteak mit w&uuml;rzigem Schafsk&auml;se &uuml;berbacken, dazu goldene Kroketten und buntes Gem&uuml;se','16,90 &euro;'),
+ ('Cevapcici &amp; Raznjici','2 hausgemachte Cevapcici und 1 Raznjici-Spie&szlig; vom Grill, dazu Pommes Frites und w&uuml;rziger Djuwetschreis','16,90 &euro;'),
  ('Schweinefilet','zarte Schweinefilet-Medaillons in feiner Champignonrahmsauce, dazu goldene Kroketten','16,90 &euro;'),
  ('Tagliatelle','Tagliatelle in fruchtiger Tomatensauce mit zarten Lachsstreifen','16,90 &euro;'),
  ('Hacksteak','saftiges Hacksteak mit kr&auml;ftiger Pfeffersauce, dazu knusprige Bratkartoffeln','16,90 &euro;'),
