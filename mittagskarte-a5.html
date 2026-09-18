@@ -2,7 +2,7 @@
  :root{--paper:#f6efe0;--ink:#2b2018;--muted:#7a6552;--gold:#9a7a48;}
  *{margin:0;box-sizing:border-box;}
  html,body{background:#fff;}
- .page{width:148mm;height:210mm;background:var(--paper);padding:11mm 13mm 9mm;position:relative;overflow:hidden;
+ .page{width:148mm;height:210mm;background:var(--paper);padding:26mm 13mm 9mm;position:relative;overflow:hidden;
    font-family:'Lato',sans-serif;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
  @media print{@page{size:148mm 210mm;margin:0;} .page{margin:0;}}
  .page::before{content:"";position:absolute;inset:5mm;border:1px solid var(--gold);opacity:.5;pointer-events:none;}
@@ -15,7 +15,7 @@
  .nm{font-family:'Oswald',sans-serif;font-weight:600;font-size:14px;color:var(--ink);white-space:nowrap;}
  .lead{flex:1;border-bottom:1px dotted #c9bda9;transform:translateY(-2px);min-width:6mm;}
  .pr{font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;color:var(--ink);white-space:nowrap;}
- .ds{font-size:10.5px;color:var(--muted);margin-top:.4mm;line-height:1.35;padding-right:20mm;}
+ .ds{font-size:12px;color:#5a4a39;margin-top:.6mm;line-height:1.4;padding-right:20mm;}
  .note{text-align:center;font-size:10.5px;color:var(--muted);margin-top:5mm;font-style:italic;}
  .foot{position:absolute;left:13mm;right:13mm;bottom:8mm;text-align:center;font-size:8.5px;color:var(--muted);border-top:1px solid #d9cdb8;padding-top:2.2mm;}
  .foot b{color:var(--ink);}
