@@ -44,7 +44,7 @@ DISHES=[
  ('H&auml;hnchengeschnetzeltes','zartes H&auml;hnchengeschnetzeltes in cremiger Pfefferrahmsauce mit Zwiebeln und frischen Champignons, dazu lockerer Butterreis','16,90 &euro;'),
  ('Schweineschnitzel &bdquo;Schlemmer Art&ldquo;','goldbraun gebacken, mit Tomaten, Sauce Hollandaise und K&auml;se &uuml;berbacken, dazu knusprige Pommes Frites','16,90 &euro;'),
  ('H&auml;hnchensteak &bdquo;Venecia&ldquo;','saftiges H&auml;hnchensteak mit w&uuml;rzigem Schafsk&auml;se &uuml;berbacken, dazu goldene Kroketten und buntes Gem&uuml;se','16,90 &euro;'),
- ('Pola Pola','je 2 hausgemachte Cevapcici und Raznjici vom Grill, dazu Pommes Frites und w&uuml;rziger Djuwetschreis','16,90 &euro;'),
+ ('Pola Pola','2 hausgemachte Cevapcici und 1 Raznjici-Spie&szlig; vom Grill, dazu Pommes Frites und w&uuml;rziger Djuwetschreis','16,90 &euro;'),
  ('Schweinefilet','zarte Schweinefilet-Medaillons in feiner Champignonrahmsauce, dazu goldene Kroketten','16,90 &euro;'),
  ('Tagliatelle','Tagliatelle in fruchtiger Tomatensauce mit zarten Lachsstreifen','16,90 &euro;'),
  ('Hacksteak','saftiges Hacksteak mit kr&auml;ftiger Pfeffersauce, dazu knusprige Bratkartoffeln','16,90 &euro;'),
