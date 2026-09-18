@@ -53,7 +53,7 @@ DISHES=[
 BODY=('<div class="page">'
  '<div class="lm"></div>'
  '<div class="title">Mittagskarte</div>'
- '<div class="sub">Restaurant Am Fels</div>'
+ '<div class="sub">Kroatisch-internationale K&uuml;che</div>'
  +SPRIG
  +''.join(item(*d) for d in DISHES)
  +'<div class="note">Zu allen Gerichten servieren wir einen frischen Beilagensalat.</div>'
