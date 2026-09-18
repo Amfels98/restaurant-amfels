@@ -18,12 +18,13 @@ CSS='''<style>
  .title{text-align:center;font-family:'Great Vibes',cursive;font-size:40px;color:var(--gold);line-height:1.05;margin-top:1mm;}
  .sub{text-align:center;font-family:'Oswald',sans-serif;font-weight:600;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);margin-top:.5mm;}
  .sprig{text-align:center;line-height:0;margin:2.5mm 0 1mm;}
- .item{display:flex;align-items:baseline;gap:3mm;margin:4.2mm 0 0;}
- .mid{flex:1;}
- .nm{font-family:'Oswald',sans-serif;font-weight:600;font-size:14px;color:var(--ink);}
- .ds{font-size:10.5px;color:var(--muted);margin-top:.4mm;line-height:1.35;}
- .lead{flex:1;border-bottom:1px dotted #c9bda9;transform:translateY(-2px);min-width:5mm;}
+ .item{margin:4.2mm 0 0;}
+ .row{display:flex;align-items:baseline;gap:3mm;}
+ .nm{font-family:'Oswald',sans-serif;font-weight:600;font-size:14px;color:var(--ink);white-space:nowrap;}
+ .lead{flex:1;border-bottom:1px dotted #c9bda9;transform:translateY(-2px);min-width:6mm;}
  .pr{font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;color:var(--ink);white-space:nowrap;}
+ .ds{font-size:10.5px;color:var(--muted);margin-top:.4mm;line-height:1.35;}
+ .note{text-align:center;font-size:10.5px;color:var(--muted);margin-top:5mm;font-style:italic;}
  .foot{position:absolute;left:13mm;right:13mm;bottom:8mm;text-align:center;font-size:8.5px;color:var(--muted);border-top:1px solid #d9cdb8;padding-top:2.2mm;}
  .foot b{color:var(--ink);}
 </style>'''
@@ -37,17 +38,16 @@ SPRIG=('<div class="sprig"><svg width="70" height="14" viewBox="0 0 156 32" xmln
  '</svg></div>')
 
 def item(name,desc,price):
-    return ('<div class="item"><div class="mid"><div class="nm">%s</div><div class="ds">%s</div></div>'
-            '<div class="lead"></div><div class="pr">%s</div></div>')%(name,desc,price)
+    return '<div class="item"><div class="row"><span class="nm">%s</span><span class="lead"></span><span class="pr">%s</span></div><div class="ds">%s</div></div>'%(name,price,desc)
 
 DISHES=[
- ('H&auml;hnchengeschnetzeltes','in Pfefferrahmsauce mit Zwiebeln und Champignons, dazu Butterreis','16,90 &euro;'),
+ ('H&auml;hnchengeschnetzeltes &bdquo;Milano&ldquo;','in Pfefferrahmsauce mit Zwiebeln und Champignons, dazu Butterreis','16,90 &euro;'),
  ('Schweineschnitzel &bdquo;Schlemmer Art&ldquo;','mit Tomaten, Sauce Hollandaise und K&auml;se &uuml;berbacken, dazu Pommes Frites','16,90 &euro;'),
  ('H&auml;hnchensteak &bdquo;Venecia&ldquo;','mit Schafsk&auml;se &uuml;berbacken, dazu Kroketten und Gem&uuml;se','16,90 &euro;'),
  ('Pola Pola','je 2 Cevapcici und Raznjici, dazu Pommes Frites und Djuwetschreis','15,90 &euro;'),
- ('Schweinefilet','mit Champignonrahmsauce, dazu Kroketten','17,90 &euro;'),
- ('Tagliatelle','in Tomatensauce mit Lachsstreifen','15,90 &euro;'),
- ('Hacksteak','mit Pfeffersauce, dazu Bratkartoffeln','15,90 &euro;'),
+ ('Schweinefilet &bdquo;Toscana&ldquo;','mit Champignonrahmsauce, dazu Kroketten','17,90 &euro;'),
+ ('Tagliatelle &bdquo;Salmone&ldquo;','in Tomatensauce mit Lachsstreifen','15,90 &euro;'),
+ ('Hacksteak &bdquo;Bauern Art&ldquo;','mit Pfeffersauce, dazu Bratkartoffeln','15,90 &euro;'),
 ]
 
 BODY=('<div class="page">'
@@ -56,6 +56,7 @@ BODY=('<div class="page">'
  '<div class="sub">Restaurant Am Fels</div>'
  +SPRIG
  +''.join(item(*d) for d in DISHES)
+ +'<div class="note">Zu allen Gerichten servieren wir einen frischen Beilagensalat.</div>'
  +'<div class="foot"><b>Restaurant Am Fels</b> &middot; Staadter Weg 2 &middot; 51766 Engelskirchen-Loope &middot; Tel. 02263 9291371<br>Alle Preise in Euro inkl. gesetzl. MwSt.</div>'
  '</div>')
 
