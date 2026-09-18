@@ -57,7 +57,7 @@ EXTRA='''<style>
 
 PAGE1=('<div class="page">'+PHEAD
       +'<div class="btitle">Buffet-Vorschlag</div>'
-      +'<div class="bsub">F&uuml;r Ihre Feier &middot; Preis pro Person &middot; ab 25 Personen</div>'
+      +'<div class="bsub">F&uuml;r Ihre Feier &middot; Preis pro Person &middot; ab 25 Personen &middot; Kinder (3&ndash;10 J.) zum halben Preis</div>'
       +'<div class="opts">'+O1+O2+'</div>'
       +'<div class="bfoot">Gerne passen wir Umfang und Gerichte an Ihre W&uuml;nsche an &middot; Restaurant Am Fels</div>'
       +'</div>')
