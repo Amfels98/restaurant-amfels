@@ -41,12 +41,12 @@ def item(name,desc,price):
     return '<div class="item"><div class="row"><span class="nm">%s</span><span class="lead"></span><span class="pr">%s</span></div><div class="ds">%s</div></div>'%(name,price,desc)
 
 DISHES=[
- ('H&auml;hnchengeschnetzeltes Z&uuml;rcher Art','in Pfefferrahmsauce mit Zwiebeln und Champignons, dazu Butterreis','16,90 &euro;'),
+ ('H&auml;hnchengeschnetzeltes Z&uuml;rcher Art','in feiner Pfefferrahmsauce mit Zwiebeln und Champignons, dazu Butterreis','16,90 &euro;'),
  ('Schweineschnitzel &bdquo;Schlemmer Art&ldquo;','mit Tomaten, Sauce Hollandaise und K&auml;se &uuml;berbacken, dazu Pommes Frites','16,90 &euro;'),
  ('H&auml;hnchensteak &bdquo;Venecia&ldquo;','mit Schafsk&auml;se &uuml;berbacken, dazu Kroketten und Gem&uuml;se','16,90 &euro;'),
  ('Pola Pola','2 Cevapcici und 1 Raznjici-Spie&szlig;, dazu Pommes Frites und Djuwetschreis','16,90 &euro;'),
- ('Schweinelendchen','in Champignonrahmsauce, dazu Kroketten','16,90 &euro;'),
- ('Tagliatelle Salmone','in Tomatensauce mit Lachsstreifen','16,90 &euro;'),
+ ('Schweinelendchen','in cremiger Champignonrahmsauce, dazu Kroketten','16,90 &euro;'),
+ ('Tagliatelle Salmone','in fruchtiger Tomatensauce mit Lachsstreifen','16,90 &euro;'),
  ('Pfefferhacksteak','mit Pfeffersauce, dazu Bratkartoffeln','16,90 &euro;'),
 ]
 
