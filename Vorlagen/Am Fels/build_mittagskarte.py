@@ -41,19 +41,19 @@ def item(name,desc,price):
     return '<div class="item"><div class="row"><span class="nm">%s</span><span class="lead"></span><span class="pr">%s</span></div><div class="ds">%s</div></div>'%(name,price,desc)
 
 DISHES=[
- ('H&auml;hnchengeschnetzeltes &bdquo;Zadar&ldquo;','zartes H&auml;hnchengeschnetzeltes in cremiger Pfefferrahmsauce mit Zwiebeln und frischen Champignons, dazu lockerer Butterreis','16,90 &euro;'),
+ ('H&auml;hnchengeschnetzeltes','zartes H&auml;hnchengeschnetzeltes in cremiger Pfefferrahmsauce mit Zwiebeln und frischen Champignons, dazu lockerer Butterreis','16,90 &euro;'),
  ('Schweineschnitzel &bdquo;Schlemmer Art&ldquo;','goldbraun gebacken, mit Tomaten, Sauce Hollandaise und K&auml;se &uuml;berbacken, dazu knusprige Pommes Frites','16,90 &euro;'),
  ('H&auml;hnchensteak &bdquo;Venecia&ldquo;','saftiges H&auml;hnchensteak mit w&uuml;rzigem Schafsk&auml;se &uuml;berbacken, dazu goldene Kroketten und buntes Gem&uuml;se','16,90 &euro;'),
  ('Pola Pola','je 2 hausgemachte Cevapcici und Raznjici vom Grill, dazu Pommes Frites und w&uuml;rziger Djuwetschreis','16,90 &euro;'),
- ('Schweinefilet &bdquo;Dubrovnik&ldquo;','zarte Schweinefilet-Medaillons in feiner Champignonrahmsauce, dazu goldene Kroketten','16,90 &euro;'),
- ('Tagliatelle &bdquo;Dalmacija&ldquo;','Tagliatelle in fruchtiger Tomatensauce mit zarten Lachsstreifen','16,90 &euro;'),
- ('Hacksteak &bdquo;Bauern Art&ldquo;','saftiges Hacksteak mit kr&auml;ftiger Pfeffersauce, dazu knusprige Bratkartoffeln','16,90 &euro;'),
+ ('Schweinefilet','zarte Schweinefilet-Medaillons in feiner Champignonrahmsauce, dazu goldene Kroketten','16,90 &euro;'),
+ ('Tagliatelle','Tagliatelle in fruchtiger Tomatensauce mit zarten Lachsstreifen','16,90 &euro;'),
+ ('Hacksteak','saftiges Hacksteak mit kr&auml;ftiger Pfeffersauce, dazu knusprige Bratkartoffeln','16,90 &euro;'),
 ]
 
 BODY=('<div class="page">'
  '<div class="lm"></div>'
  '<div class="title">Mittagskarte</div>'
- '<div class="sub">Kroatisch-internationale K&uuml;che</div>'
+ '<div class="sub">G&uuml;ltig samstags von 12:00 bis 14:30 Uhr</div>'
  +SPRIG
  +''.join(item(*d) for d in DISHES)
  +'<div class="note">Zu allen Gerichten servieren wir einen frischen Beilagensalat.</div>'
