@@ -41,13 +41,13 @@ def item(name,desc,price):
     return '<div class="item"><div class="row"><span class="nm">%s</span><span class="lead"></span><span class="pr">%s</span></div><div class="ds">%s</div></div>'%(name,price,desc)
 
 DISHES=[
- ('H&auml;hnchengeschnetzeltes','zartes H&auml;hnchengeschnetzeltes in cremiger Pfefferrahmsauce mit Zwiebeln und frischen Champignons, dazu lockerer Butterreis','16,90 &euro;'),
- ('Schweineschnitzel &uuml;berbacken','goldbraun gebacken, mit Tomaten, Sauce Hollandaise und K&auml;se &uuml;berbacken, dazu knusprige Pommes Frites','16,90 &euro;'),
- ('H&auml;hnchensteak &uuml;berbacken','saftiges H&auml;hnchensteak mit w&uuml;rzigem Schafsk&auml;se &uuml;berbacken, dazu goldene Kroketten und buntes Gem&uuml;se','16,90 &euro;'),
- ('Cevapcici &amp; Raznjici','2 hausgemachte Cevapcici und 1 Raznjici-Spie&szlig; vom Grill, dazu Pommes Frites und w&uuml;rziger Djuwetschreis','16,90 &euro;'),
- ('Schweinefilet','zarte Schweinefilet-Medaillons in feiner Champignonrahmsauce, dazu goldene Kroketten','16,90 &euro;'),
- ('Tagliatelle','Tagliatelle in fruchtiger Tomatensauce mit zarten Lachsstreifen','16,90 &euro;'),
- ('Hacksteak','saftiges Hacksteak mit kr&auml;ftiger Pfeffersauce, dazu knusprige Bratkartoffeln','16,90 &euro;'),
+ ('H&auml;hnchengeschnetzeltes Z&uuml;rcher Art','in Pfefferrahmsauce mit Zwiebeln und Champignons, dazu Butterreis','16,90 &euro;'),
+ ('Schweineschnitzel &bdquo;Schlemmer Art&ldquo;','mit Tomaten, Sauce Hollandaise und K&auml;se &uuml;berbacken, dazu Pommes Frites','16,90 &euro;'),
+ ('H&auml;hnchensteak &bdquo;Venecia&ldquo;','mit Schafsk&auml;se &uuml;berbacken, dazu Kroketten und Gem&uuml;se','16,90 &euro;'),
+ ('Pola Pola','2 Cevapcici und 1 Raznjici-Spie&szlig;, dazu Pommes Frites und Djuwetschreis','16,90 &euro;'),
+ ('Schweinelendchen','in Champignonrahmsauce, dazu Kroketten','16,90 &euro;'),
+ ('Tagliatelle Salmone','in Tomatensauce mit Lachsstreifen','16,90 &euro;'),
+ ('Pfefferhacksteak','mit Pfeffersauce, dazu Bratkartoffeln','16,90 &euro;'),
 ]
 
 BODY=('<div class="page">'
