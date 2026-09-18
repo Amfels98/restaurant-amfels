@@ -10,28 +10,28 @@ CSS='''<style>
  :root{--ink:#2b2018;--muted:#7a6552;--gold:#9a7a48;}
  *{margin:0;box-sizing:border-box;}
  html,body{background:#fff;}
- .page{width:148mm;height:210mm;background:#fff;padding:7mm;display:flex;flex-direction:column;gap:6mm;
+ .page{width:148mm;height:210mm;background:#fff;padding:6mm;display:flex;flex-direction:column;gap:5mm;
    font-family:'Lato',sans-serif;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
  @media print{@page{size:148mm 210mm;margin:0;}}
  .lab{flex:1;border:2px dashed #b9ab92;border-radius:6px;position:relative;
-   display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8mm 10mm;}
- .lm{width:38mm;height:14mm;background:url(IMGlogo-dunkel.svg) center/contain no-repeat;margin-bottom:5mm;}
- .hdr{font-family:'Oswald',sans-serif;font-weight:700;font-size:23px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);}
- .rule{width:42mm;height:2px;background:var(--gold);opacity:.7;margin:4.5mm 0;}
- .de{font-family:'Oswald',sans-serif;font-weight:700;font-size:38px;line-height:1.08;color:var(--ink);text-transform:uppercase;letter-spacing:.02em;}
- .hr{font-family:'Lato',sans-serif;font-style:italic;font-weight:400;font-size:22px;color:var(--muted);margin-top:4.5mm;}
- .cuthint{position:absolute;top:3mm;right:5mm;font-size:8.5px;color:#b9ab92;letter-spacing:.1em;}
+   display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:5mm 10mm;}
+ .lm{width:30mm;height:10mm;background:url(IMGlogo-dunkel.svg) center/contain no-repeat;margin-bottom:2.5mm;}
+ .hdr{font-family:'Oswald',sans-serif;font-weight:700;font-size:17px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);}
+ .rule{width:38mm;height:2px;background:var(--gold);opacity:.7;margin:3mm 0;}
+ .de{font-family:'Oswald',sans-serif;font-weight:700;font-size:34px;line-height:1.05;color:var(--ink);text-transform:uppercase;letter-spacing:.02em;}
+ .hr{font-family:'Lato',sans-serif;font-style:italic;font-weight:400;font-size:19px;color:var(--muted);margin-top:3mm;}
+ .cuthint{position:absolute;top:2.5mm;right:4mm;font-size:8px;color:#b9ab92;letter-spacing:.1em;}
 </style>'''
 
 def label(hdr, de, hr):
-    return ('<div class="lab"><div class="cuthint">&#9986; ausschneiden</div>'
-            '<div class="lm"></div>'
+    return ('<div class="lab"><div class="lm"></div>'
             '<div class="hdr">%s</div><div class="rule"></div>'
             '<div class="de">%s</div><div class="hr">%s</div></div>')%(hdr,de,hr)
 
 BODY=('<div class="page">'
-     +label('Reukaffe','Tassen &amp;<br>Untertassen','&Scaron;alice i tanjuri&cacute;i')
-     +label('Reukaffe &middot; Reserve','Geschirr &amp;<br>Besteck','Posu&#273;e i pribor')
+     +label('Reukaffe','Tassen','&Scaron;alice')
+     +label('Reukaffe','Untertassen','Tanjuri&cacute;i')
+     +label('Reukaffe &middot; Reserve','Geschirr &amp; Besteck','Posu&#273;e i pribor')
      +'</div>')
 
 html='<!doctype html><html><head><meta charset="utf-8">'+FONTS+CSS.replace('IMG',IMG)+'</head><body>\n'+BODY+'\n</body></html>'
