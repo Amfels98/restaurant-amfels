@@ -144,7 +144,7 @@
     }
     /* Mobile: Logo groß */
     @media (max-width: 1023px) {
-      .nav-logo-img { height: 90px !important; }
+      .nav-logo-img { height: 90px; }
     }
     nav.scrolled .nav-logo-img { filter: none; }
 
@@ -338,7 +338,7 @@
         width: 22px !important;
       }
       /* Logo-Größe für alle mobilen Größen */
-      .nav-logo-img { height: 90px !important; }
+      .nav-logo-img { height: 90px; }
     }
 
     /* Desktop: logo stays LEFT, no chevron, no pointer-style */
@@ -1978,7 +1978,7 @@
     /* ── HANDY (max 767px) ── */
     @media (max-width: 767px) {
       nav { padding: 0.4rem 0.8rem; }
-      .nav-logo-img { height: 90px !important; }
+      .nav-logo-img { height: 90px; }
       .hamburger { display: flex !important; }
 
       .hero { height: 100svh; min-height: 500px; }
@@ -2047,7 +2047,7 @@
     /* ── TABLET (768px – 1023px) ── */
     @media (min-width: 768px) and (max-width: 1023px) {
       nav { padding: 0.6rem 1.5rem; }
-      .nav-logo-img { height: 90px !important; }
+      .nav-logo-img { height: 90px; }
       .hamburger { display: flex !important; }
 
       .hero-title { font-size: clamp(4rem, 10vw, 7rem); }
@@ -2130,7 +2130,7 @@
     }
 
     @media (max-width: 400px) {
-      .nav-logo-img { height: 90px !important; }
+      .nav-logo-img { height: 90px; }
       .gallery-category { columns: 1; }
       .hero-title { font-size: clamp(2.4rem, 13vw, 4rem); }
       .hero { min-height: 100svh; }
@@ -2230,14 +2230,14 @@
 
 <ul class="nav-links" id="navLinks">
   <li class="nav-close-item"><button class="nav-close-btn" id="navClose" aria-label="Menü schließen">✕</button></li>
-  <li><a href="#ueber-uns">Über uns</a></li>
-  <li><a href="#galerie">Galerie</a></li>
+  <li><a href="#reservierung" class="nav-reserve">Reservieren</a></li>
   <li><a href="#speisekarte">Speisekarte</a></li>
   <li><a href="#festtage">Feiertage</a></li>
+  <li><a href="#ueber-uns">Über uns</a></li>
+  <li><a href="#galerie">Galerie</a></li>
   <li><a href="#events">Events</a></li>
   <li><a href="#gutscheine">Gutscheine</a></li>
   <li><a href="#kontakt">Kontakt</a></li>
-  <li><a href="#reservierung" class="nav-reserve">Reservieren</a></li>
   <li class="lang-btn-desktop-li"><button id="langToggle" onclick="toggleLang()" title="Switch language">EN</button></li>
 </ul>
 
@@ -3478,13 +3478,14 @@
 
   // Logo-Größe per JS erzwingen (unabhängig von CSS-Cache)
   function setLogoSize() {
-    const img = document.querySelector('.nav-logo-img');
+    const img = document.querySelector('#logoMenuTrigger img');
     if (!img) return;
     if (window.innerWidth < 1024) {
-      img.style.height = '115px';
-      img.style.width = 'auto';
+      img.style.setProperty('height', '115px', 'important');
+      img.style.setProperty('width', 'auto', 'important');
     } else {
-      img.style.height = '';
+      img.style.removeProperty('height');
+      img.style.removeProperty('width');
     }
   }
   setLogoSize();
