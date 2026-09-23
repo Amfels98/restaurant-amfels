@@ -142,6 +142,10 @@
       transition: filter 0.15s ease;
       display: block;
     }
+    /* Mobile: Logo groß */
+    @media (max-width: 1023px) {
+      .nav-logo-img { height: 90px !important; }
+    }
     nav.scrolled .nav-logo-img { filter: none; }
 
     .nav-logo span {
@@ -188,19 +192,15 @@
         overflow-y: auto !important;
         border-top: 1px solid rgba(184,146,74,0.4) !important;
         box-shadow: 0 16px 50px rgba(0,0,0,0.75) !important;
-        /* Versteckt: unsichtbar + nicht klickbar */
-        opacity: 0 !important;
-        transform: translateY(-6px) !important;
+        /* Slide-Reveal von oben — geschlossen */
+        clip-path: inset(0 0 100% 0) !important;
         pointer-events: none !important;
-        transition: opacity 0.22s ease, transform 0.22s ease !important;
-        visibility: hidden !important;
+        transition: clip-path 0.32s cubic-bezier(0.16,1,0.3,1) !important;
       }
 
       .nav-links.open {
-        opacity: 1 !important;
-        transform: translateY(0) !important;
+        clip-path: inset(0 0 0% 0) !important;
         pointer-events: all !important;
-        visibility: visible !important;
       }
 
       .nav-links li {
@@ -317,7 +317,7 @@
         width: 22px !important;
       }
       /* Logo-Größe für alle mobilen Größen */
-      .nav-logo-img { height: 80px !important; }
+      .nav-logo-img { height: 90px !important; }
     }
 
     /* Desktop: logo stays LEFT, no chevron, no pointer-style */
@@ -1957,7 +1957,7 @@
     /* ── HANDY (max 767px) ── */
     @media (max-width: 767px) {
       nav { padding: 0.4rem 0.8rem; }
-      .nav-logo-img { height: 80px !important; }
+      .nav-logo-img { height: 90px !important; }
       .hamburger { display: flex !important; }
 
       .hero { height: 100svh; min-height: 500px; }
@@ -2026,7 +2026,7 @@
     /* ── TABLET (768px – 1023px) ── */
     @media (min-width: 768px) and (max-width: 1023px) {
       nav { padding: 0.6rem 1.5rem; }
-      .nav-logo-img { height: 80px !important; }
+      .nav-logo-img { height: 90px !important; }
       .hamburger { display: flex !important; }
 
       .hero-title { font-size: clamp(4rem, 10vw, 7rem); }
@@ -2109,7 +2109,7 @@
     }
 
     @media (max-width: 400px) {
-      .nav-logo-img { height: 72px !important; }
+      .nav-logo-img { height: 90px !important; }
       .gallery-category { columns: 1; }
       .hero-title { font-size: clamp(2.4rem, 13vw, 4rem); }
       .hero { min-height: 100svh; }
