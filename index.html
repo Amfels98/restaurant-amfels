@@ -257,20 +257,41 @@
     .nav-reserve::after { display: none !important; }
     .nav-reserve:hover { background: var(--gold-light) !important; transform: translateY(-1px); }
 
-    /* Hamburger hidden on desktop */
-    .hamburger {
+    /* Hamburger hidden always (logo replaces it on mobile) */
+    .hamburger { display: none !important; }
+
+    /* Logo-chevron: only on mobile */
+    .logo-chevron {
       display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 4px;
+      width: 20px; height: auto;
+      margin: 3px auto 0;
+      stroke: var(--gold);
+      opacity: 0.8;
+      transition: transform 0.3s ease;
+    }
+    body.menu-open .logo-chevron { transform: rotate(180deg); }
+
+    /* Mobile: logo goes to RIGHT, chevron visible */
+    @media(max-width:1023px) {
+      #logoMenuTrigger {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+      }
+      .logo-chevron { display: block; }
     }
 
-    .hamburger span {
-      display: block;
-      width: 26px; height: 2px;
-      background: var(--gold);
-      transition: all 0.3s;
+    /* Desktop: logo stays LEFT, no chevron, no pointer-style */
+    @media(min-width:1024px) {
+      #logoMenuTrigger {
+        order: -1;
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: default;
+        pointer-events: none;
+      }
     }
 
     /* ────────────────────────────────────
@@ -2144,15 +2165,15 @@
 
 <!-- ── NAVIGATION ── -->
 <nav id="navbar">
-  <a href="#" class="nav-logo">
-    <img src="images/logo.png" alt="Restaurant Am Fels" class="nav-logo-img" />
-  </a>
-  <div style="display:flex;align-items:center;gap:0.6rem">
+    <div style="display:flex;align-items:center;gap:0.6rem">
     <button id="langToggleMobile" onclick="toggleLang()" title="Switch language" class="lang-btn-mobile">EN</button>
-    <div class="hamburger" id="hamburger">
-      <span></span><span></span><span></span>
-    </div>
   </div>
+  <button type="button" class="nav-logo" id="logoMenuTrigger" aria-label="Menü öffnen">
+    <img src="images/logo.png" alt="Restaurant Am Fels" class="nav-logo-img" />
+    <svg class="logo-chevron" viewBox="0 0 24 13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M2 2l10 9 10-9"/>
+    </svg>
+  </button>
 </nav>
 
 <ul class="nav-links" id="navLinks">
@@ -3408,10 +3429,9 @@
     const isMobileNav = window.innerWidth < 1024;
     if (isMobileNav) {
       navLinks.style.display = navLinks.classList.contains('open') ? 'flex' : 'none';
-      document.getElementById('hamburger').style.display = 'flex';
     } else {
       navLinks.style.display = 'flex';
-      document.getElementById('hamburger').style.display = 'none';
+      document.body.classList.remove('menu-open');
     }
   }
   updateNavVisibility();
@@ -3436,26 +3456,24 @@
   window.addEventListener('scroll', updateNav, { passive: true });
   updateNav();
 
-  // Hamburger menu
-  const hamburger = document.getElementById('hamburger');
+  // Logo-Menu-Trigger (mobile only — desktop pointer-events:none via CSS)
+  const logoTrigger = document.getElementById('logoMenuTrigger');
 
   function closeMenu() {
     navLinks.classList.remove('open');
     navLinks.style.display = 'none';
     document.body.style.overflow = '';
-    hamburger.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+    document.body.classList.remove('menu-open');
   }
 
-  hamburger.addEventListener('click', () => {
+  logoTrigger.addEventListener('click', () => {
+    if (window.innerWidth >= 1024) return; // desktop: nichts tun
     const isOpen = navLinks.classList.contains('open');
-    const spans = hamburger.querySelectorAll('span');
     if (!isOpen) {
       navLinks.classList.add('open');
       navLinks.style.display = 'flex';
       document.body.style.overflow = 'hidden';
-      spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-      spans[1].style.opacity = '0';
-      spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+      document.body.classList.add('menu-open');
     } else {
       closeMenu();
     }
