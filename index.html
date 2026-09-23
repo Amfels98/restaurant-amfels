@@ -169,43 +169,52 @@
       z-index: 1001;
     }
 
-    /* Mobile fullscreen menu */
+    /* Mobile dropdown menu */
+    @keyframes dropDown {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
     .nav-links.open {
       display: flex !important;
       flex-direction: column !important;
       position: fixed !important;
-      top: 0 !important;
-      left: 0 !important;
-      right: 0 !important;
-      bottom: 0 !important;
-      width: 100vw !important;
-      height: 100dvh !important;
-      background: rgba(10,10,10,0.99) !important;
-      justify-content: center !important;
-      align-items: center !important;
-      gap: 2.5rem !important;
+      top: var(--nav-h, 78px) !important;
+      left: 0 !important; right: 0 !important; bottom: auto !important;
+      width: 100% !important; height: auto !important;
+      max-height: calc(100dvh - var(--nav-h, 78px)) !important;
+      background: rgba(8,4,1,0.97) !important;
+      justify-content: flex-start !important;
+      align-items: stretch !important;
+      gap: 0 !important;
       z-index: 2147483647 !important;
-      margin: 0 !important;
-      padding: 2rem !important;
+      margin: 0 !important; padding: 0.4rem 0 1.2rem !important;
       overflow-y: auto !important;
+      border-top: 1px solid rgba(184,146,74,0.35) !important;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.6) !important;
+      animation: dropDown 0.22s ease !important;
       pointer-events: all !important;
-      -webkit-overflow-scrolling: touch;
     }
 
     .nav-links.open li {
       pointer-events: all !important;
+      border-bottom: 1px solid rgba(184,146,74,0.1) !important;
     }
 
     .nav-links.open a {
-      pointer-events: all !important;
-      cursor: pointer !important;
+      display: flex !important; align-items: center !important;
+      padding: 1rem 2rem !important;
+      font-size: 0.82rem !important; color: #f0e6d3 !important;
+      letter-spacing: 0.2em !important; text-align: left !important;
+      pointer-events: all !important; cursor: pointer !important;
+      width: 100% !important;
     }
 
-    .nav-links.open a { font-size: 1.2rem !important; color: #ffffff !important; }
+    .nav-links.open a:hover { color: var(--gold) !important; background: rgba(184,146,74,0.07) !important; }
+    .nav-links.open .nav-reserve { background: none !important; color: var(--gold) !important; }
 
-    /* Close button — only visible when menu is open */
-    .nav-close-item { display: none; }
-    .nav-links.open .nav-close-item { display: block; }
+    /* Close button — hidden in dropdown (auto-close via click) */
+    .nav-close-item { display: none !important; }
     .nav-close-btn {
       background: none;
       border: 2px solid rgba(255,255,255,0.3);
@@ -263,23 +272,27 @@
     /* Logo-chevron: only on mobile */
     .logo-chevron {
       display: none;
-      width: 20px; height: auto;
-      margin: 3px auto 0;
+      width: 18px; height: auto;
+      margin: 0;
       stroke: var(--gold);
-      opacity: 0.8;
+      opacity: 0.85;
       transition: transform 0.3s ease;
+      flex-shrink: 0;
     }
     body.menu-open .logo-chevron { transform: rotate(180deg); }
 
-    /* Mobile: logo goes to RIGHT, chevron visible */
+    /* Mobile: logo auf rechts, Pfeil rechts neben Logo */
     @media(max-width:1023px) {
       #logoMenuTrigger {
-        background: none;
-        border: none;
-        padding: 0;
+        background: none; border: none; padding: 4px 6px;
         cursor: pointer;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 8px !important;
+        display: flex !important;
       }
-      .logo-chevron { display: block; }
+      .logo-chevron { display: block !important; margin: 0 !important; }
+      .nav-logo-img { height: 62px !important; }
     }
 
     /* Desktop: logo stays LEFT, no chevron, no pointer-style */
@@ -3461,26 +3474,45 @@
 
   function closeMenu() {
     navLinks.classList.remove('open');
-    navLinks.style.display = 'none';
+    navLinks.style.display = '';
     document.body.style.overflow = '';
     document.body.classList.remove('menu-open');
   }
 
-  logoTrigger.addEventListener('click', () => {
-    if (window.innerWidth >= 1024) return; // desktop: nichts tun
-    const isOpen = navLinks.classList.contains('open');
-    if (!isOpen) {
-      navLinks.classList.add('open');
-      navLinks.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-      document.body.classList.add('menu-open');
-    } else {
+  function openMenu() {
+    const navH = document.getElementById('navbar').offsetHeight;
+    document.documentElement.style.setProperty('--nav-h', navH + 'px');
+    navLinks.classList.add('open');
+    navLinks.style.display = 'flex';
+    document.body.classList.add('menu-open');
+  }
+
+  logoTrigger.addEventListener('click', (e) => {
+    if (window.innerWidth >= 1024) return;
+    e.stopPropagation();
+    navLinks.classList.contains('open') ? closeMenu() : openMenu();
+  });
+
+  // Klick auf Nav-Link → schließt Dropdown automatisch
+  navLinks.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      if (window.innerWidth < 1024) closeMenu();
+    });
+  });
+
+  // Klick außerhalb schließt das Menü
+  document.addEventListener('click', function(e) {
+    if (window.innerWidth >= 1024) return;
+    if (navLinks.classList.contains('open') &&
+        !navLinks.contains(e.target) &&
+        !logoTrigger.contains(e.target)) {
       closeMenu();
     }
   });
 
-  // Close button
-  document.getElementById('navClose').addEventListener('click', closeMenu);
+  // X-Schaltfläche (Fallback)
+  const navCloseBtn = document.getElementById('navClose');
+  if (navCloseBtn) navCloseBtn.addEventListener('click', closeMenu);
 
 
   // Intersection Observer for fade-up
