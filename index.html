@@ -2827,7 +2827,7 @@
             </div>
             <div class="fest-pdf-col">
               <div class="fest-pdf-frame">
-                <iframe src="weihnachtskarte-2026.pdf#toolbar=0&navpanes=0&scrollbar=0" title="Weihnachtskarte"></iframe>
+                <iframe data-src="weihnachtskarte-2026.pdf#toolbar=0&navpanes=0&scrollbar=0" title="Weihnachtskarte"></iframe>
                 <a href="weihnachtskarte-2026.pdf" target="_blank" class="fest-pdf-link"><span class="fest-pdf-label" data-en="Open menu ↗">Karte öffnen ↗</span></a>
               </div>
             </div>
@@ -2857,7 +2857,7 @@
             </div>
             <div class="fest-pdf-col">
               <div class="fest-pdf-frame">
-                <iframe src="silvester-2026.pdf#toolbar=0&navpanes=0&scrollbar=0" title="Silvesterkarte"></iframe>
+                <iframe data-src="silvester-2026.pdf#toolbar=0&navpanes=0&scrollbar=0" title="Silvesterkarte"></iframe>
                 <a href="silvester-2026.pdf" target="_blank" class="fest-pdf-link"><span class="fest-pdf-label" data-en="Open menu ↗">Karte öffnen ↗</span></a>
               </div>
             </div>
@@ -2870,6 +2870,21 @@
   <div id="festHint" class="fest-swipe-hint" data-en="← swipe for New Year's Eve →">← wischen für Silvester →</div>
 </section>
 <script>
+  // PDFs erst laden wenn Feiertage-Sektion sichtbar wird
+  (function() {
+    var loaded = false;
+    var obs = new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting && !loaded) {
+        loaded = true;
+        document.querySelectorAll('#festtage iframe[data-src]').forEach(function(f) {
+          f.src = f.getAttribute('data-src');
+        });
+        obs.disconnect();
+      }
+    }, { threshold: 0.1 });
+    obs.observe(document.getElementById('festtage'));
+  })();
+
   var festIdx = 0;
   function slideFest(idx) {
     festIdx = idx;
