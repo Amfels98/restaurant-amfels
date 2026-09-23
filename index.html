@@ -122,6 +122,14 @@
       border-bottom: 1px solid rgba(184, 146, 74, 0.2);
       box-shadow: 0 2px 20px rgba(0,0,0,0.08);
     }
+    /* Mobile: kein backdrop-filter → kein iOS Compositing-Flash */
+    @media (max-width: 1023px) {
+      nav.scrolled {
+        background: #fdfaf5 !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+      }
+    }
 
     .nav-logo {
       font-family: 'Playfair Display', serif;
@@ -149,7 +157,8 @@
     }
     /* Wenn Navbar scrolled (weißer Hintergrund) → Logo braun */
     nav.scrolled .nav-logo-img {
-      filter: none;
+      /* brightness(0)=schwarz, sepia+saturate=warmbraun passend zur Website */
+      filter: brightness(0) sepia(1) saturate(3) hue-rotate(340deg) brightness(0.55);
     }
 
     .nav-logo span {
@@ -187,10 +196,8 @@
         left: 0 !important; right: 0 !important; bottom: auto !important;
         height: auto !important; width: 100% !important;
         max-height: calc(100dvh - var(--nav-h, 88px)) !important;
-        /* Cream-Hintergrund passend zur scrolled-Navbar */
-        background: rgba(253,250,245,0.99) !important;
-        backdrop-filter: blur(20px) !important;
-        -webkit-backdrop-filter: blur(20px) !important;
+        /* Solider Hintergrund — kein backdrop-filter (verhindert iOS schwarzen Flash) */
+        background: #fdfaf5 !important;
         justify-content: flex-start !important;
         align-items: stretch !important;
         gap: 0 !important;
@@ -204,6 +211,9 @@
         clip-path: inset(0 0 100% 0) !important;
         pointer-events: none !important;
         transition: clip-path 0.55s cubic-bezier(0.22,1,0.36,1) !important;
+        will-change: clip-path !important;
+        -webkit-transform: translateZ(0) !important;
+        transform: translateZ(0) !important;
       }
 
       .nav-links.open {
@@ -2007,11 +2017,10 @@
       .about-gold-label { left: 0.5rem; top: 0.5rem; font-size: 0.75rem; padding: 0.4rem 0.8rem; }
       .about-features { grid-template-columns: 1fr; gap: 1rem; }
 
-      .gallery-grid { grid-template-columns: 1fr 1fr; gap: 4px; }
-      .gallery-item:nth-child(1) { grid-column: span 2; }
-      .gallery-item:nth-child(4) { grid-column: span 1; }
+      .gallery-grid { display: block !important; }
+      .gallery-category { columns: 2 !important; column-gap: 8px !important; }
+      .gallery-item { margin-bottom: 8px !important; }
       .gallery-item img { height: auto; }
-      .gallery-item:nth-child(1) img { min-height: 220px; }
 
       .menu-tabs { overflow-x: auto; flex-wrap: nowrap; justify-content: flex-start; padding-bottom: 0.5rem; }
       .menu-tab { white-space: nowrap; flex-shrink: 0; padding: 0.7rem 1rem; font-size: 0.7rem; }
@@ -3511,7 +3520,7 @@
   function updateNav() {
     const hero = document.getElementById('hero');
     const heroBottom = hero ? hero.offsetHeight : 400;
-    const scrolled = window.scrollY / heroBottom > 0.15;
+    const scrolled = window.scrollY / heroBottom > 0.08;
     navbar.classList.toggle('scrolled', scrolled);
     navLinks.classList.toggle('scrolled', scrolled);
   }
