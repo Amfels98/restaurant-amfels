@@ -194,12 +194,12 @@
         margin: 0 !important;
         padding: 0.6rem 0 1.4rem !important;
         overflow-y: auto !important;
-        border-top: 2px solid var(--gold) !important;
+        border-top: 1px solid rgba(184,146,74,0.45) !important;
         box-shadow: 0 8px 30px rgba(107,86,69,0.15) !important;
         /* Slide von oben */
         clip-path: inset(0 0 100% 0) !important;
         pointer-events: none !important;
-        transition: clip-path 0.35s cubic-bezier(0.16,1,0.3,1) !important;
+        transition: clip-path 0.55s cubic-bezier(0.22,1,0.36,1) !important;
       }
 
       .nav-links.open {
@@ -3481,7 +3481,7 @@
     const img = document.querySelector('.nav-logo-img');
     if (!img) return;
     if (window.innerWidth < 1024) {
-      img.style.height = '95px';
+      img.style.height = '115px';
       img.style.width = 'auto';
     } else {
       img.style.height = '';
