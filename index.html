@@ -156,6 +156,10 @@
       .nav-logo-img { height: 90px; }
     }
     /* Wenn Navbar scrolled (weißer Hintergrund) → Logo braun */
+    /* Desktop: Logo-Größe mit maximaler Spezifität */
+    @media (min-width: 1024px) {
+      nav#navbar .nav-logo-img { height: 120px !important; min-height: 120px !important; }
+    }
     nav.scrolled .nav-logo-img {
       /* brightness(0)=schwarz, sepia+saturate=warmbraun passend zur Website */
       filter: brightness(0) sepia(1) saturate(3) hue-rotate(340deg) brightness(0.55);
@@ -2097,7 +2101,7 @@
     /* ── DESKTOP (ab 1024px) ── */
     @media (min-width: 1024px) {
       nav { padding: 0.5rem 2rem; }
-      .nav-logo-img { height: 95px; }
+      .nav-logo-img { height: 120px !important; }
       .nav-reserve { display: inline-flex !important; }
       .hamburger { display: none !important; }
 
