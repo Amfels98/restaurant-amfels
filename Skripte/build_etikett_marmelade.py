@@ -32,7 +32,7 @@ BODY='<div class="page">'+label('Reukaffe','Marmelade &amp;<br>Zuckerstreuer','M
 html='<!doctype html><html><head><meta charset="utf-8">'+FONTS+CSS.replace('IMG',IMG)+'</head><body>\n'+BODY+'\n</body></html>'
 OUT='/private/tmp/claude-501/-Users-leonrajic/73aba5eb-6982-4a41-a6ba-918ade3d188f/scratchpad/etikett_marmelade.html'
 open(OUT,'w',encoding='utf-8').write(html)
-PDF='/Users/leonrajic/Desktop/Etikett Marmelade Zuckerstreuer A5.pdf'
+PDF='/Users/leonrajic/Desktop/amfels/PDF/Etikett Marmelade Zuckerstreuer A5.pdf'
 with sync_playwright() as p:
     b=p.chromium.launch(); pg=b.new_page()
     pg.goto(pathlib.Path(OUT).resolve().as_uri(), wait_until='networkidle')

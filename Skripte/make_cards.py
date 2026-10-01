@@ -155,11 +155,20 @@ def wrap(s,font,size,maxw):
     return lines
 
 # ================= GETRÄNKEKARTE =================
-def drinks_card():
+def drinks_card(subtitle=None,outfile="Getränkekarte Am Fels.pdf",wedding=False):
     d=Doc(); border(d)
-    d.center(CX,558,"RESTAURANT AM FELS",'R',8,GOLDD,tc=2.6)
-    d.center(CX,525,"Getränke",'I',30,GOLD)
-    flourish(d,CX,508)
+    if wedding:
+        m=34
+        _corner(d,m,PH-m,1,-1,GOLD); _corner(d,PW-m,PH-m,-1,-1,GOLD)
+        _corner(d,m,m,1,1,GOLD);     _corner(d,PW-m,m,-1,1,GOLD)
+    d.center(CX,560,"RESTAURANT AM FELS",'R',8,GOLDD,tc=2.6)
+    if subtitle:
+        d.center(CX,534,"Getränke",'I',28,GOLD)
+        d.center(CX,515,subtitle,'I',10.5,TEXT)
+        _rings(d,CX,506,5.4,GOLD,1.6) if wedding else flourish(d,CX,506)
+    else:
+        d.center(CX,525,"Getränke",'I',30,GOLD)
+        flourish(d,CX,508)
     LX=44; RX=PW-44; midL=LX+ (PW/2-44-LX)/2 + 8; # not used
     colL_x=(LX+PW/2-6)/2; colR_x=(PW/2+6+RX)/2
     def cat(cx,y,label,note=None):
@@ -214,7 +223,7 @@ def drinks_card():
     d.line(CX-80,52,CX+80,52,LINE,0.7)
     d.center(CX,40,"Für weitere Spirituosen & Weine sprechen Sie gerne unser Service-Team an.",'I',9,TEXT)
     d.center(CX,26,"RESTAURANT AM FELS · ENGELSKIRCHEN-LOOPE",'R',7.5,GOLDD,tc=1.2)
-    write_pdf("Getränkekarte Am Fels.pdf",d)
+    write_pdf(outfile,d)
 
 def bernd_card():
     d=Doc(); border(d)
@@ -257,7 +266,85 @@ def bernd_card():
     y=dish(y,"Crème brûlée","mit karamellisierter Zuckerschicht")
     write_pdf("Menuekarte-Bernd-80.pdf",d,img,(IW,IH))
 
+def _leaf(d,x,y,ang,ln,col,wf=0.36):
+    dx,dy=math.cos(ang),math.sin(ang); px,py=-dy,dx; w=ln*wf
+    tx,ty=x+dx*ln,y+dy*ln
+    d.fill(col)
+    d.ops.append("%.2f %.2f m %.2f %.2f %.2f %.2f %.2f %.2f c %.2f %.2f %.2f %.2f %.2f %.2f c f"%(
+        x,y, x+dx*ln*0.30+px*w,y+dy*ln*0.30+py*w, x+dx*ln*0.70+px*w,y+dy*ln*0.70+py*w, tx,ty,
+        x+dx*ln*0.70-px*w,y+dy*ln*0.70-py*w, x+dx*ln*0.30-px*w,y+dy*ln*0.30-py*w, x,y))
+
+def _branch(d,cx,cy,ang,col,L=44,n=4,base=8.5,curve=3.5):
+    ux,uy=math.cos(ang),math.sin(ang); px,py=-uy,ux
+    ex,ey=cx+ux*L,cy+uy*L
+    d.stroke(col); d.ops.append("0.7 w")
+    d.ops.append("%.2f %.2f m %.2f %.2f %.2f %.2f %.2f %.2f c S"%(
+        cx,cy, cx+ux*L*0.4+px*curve,cy+uy*L*0.4+py*curve,
+        cx+ux*L*0.75+px*curve,cy+uy*L*0.75+py*curve, ex,ey))
+    for i in range(n):
+        t=0.18+i*(0.70/max(1,n-1)); bump=curve*math.sin(math.pi*t)
+        bx=cx+ux*L*t+px*bump; by=cy+uy*L*t+py*bump; ln=base*(1-0.13*i)
+        _leaf(d,bx,by,ang+math.radians(52),ln,col)
+        _leaf(d,bx,by,ang-math.radians(52),ln,col)
+    _leaf(d,ex,ey,ang,base+1.5,col)
+
+def _rings(d,cx,cy,r,col,lw=1.7):
+    d.circle_stroke(cx-r*0.60,cy,r,col,lw)
+    d.circle_stroke(cx+r*0.60,cy,r,col,lw)
+
+def _weddingdiv(d,cx,cy,col,span=46):
+    _rings(d,cx,cy,5.2,col,1.5)
+    _branch(d,cx-13,cy,math.pi,col,L=span,n=4)
+    _branch(d,cx+13,cy,0,col,L=span,n=4)
+
+def _corner(d,x,y,ax,ay,col):
+    _branch(d,x,y,math.atan2(ay,ax),col,L=30,n=3,base=6.5,curve=2.6)
+    _branch(d,x,y,math.atan2(ay,ax*3),col,L=22,n=2,base=5.5,curve=2.0)
+
+def wedding_card():
+    d=Doc(); border(d)
+    m=34
+    _corner(d,m,PH-m,1,-1,GOLD); _corner(d,PW-m,PH-m,-1,-1,GOLD)
+    _corner(d,m,m,1,1,GOLD);     _corner(d,PW-m,m,-1,1,GOLD)
+    d.center(CX,560,"RESTAURANT AM FELS",'R',8,GOLDD,tc=2.6)
+    d.center(CX,527,"Hochzeit",'I',33,GOLD)
+    d.center(CX,505,"Familie Sedeno",'R',13,BROWN,tc=0.5)
+    _weddingdiv(d,CX,489,GOLD,span=52)
+    def course_head(y,label,sub):
+        d.center(CX,y,label,'B',13,GOLDD,tc=0.6)
+        if sub: d.center(CX,y-11,sub,'R',8.5,TEXT,tc=1.4)
+        yy=y-(18 if sub else 12)
+        d.diamond(CX,yy,1.8,GOLD)
+        _branch(d,CX-4,yy,math.pi,GOLD,L=13,n=2,base=3.8,curve=1.2)
+        _branch(d,CX+4,yy,0,GOLD,L=13,n=2,base=3.8,curve=1.2)
+        return yy-15
+    def dish(y,name,desc=None):
+        d.center(CX,y,name,'B',11,BROWN); y-=12
+        if desc:
+            for ln in wrap(desc,'I',9.5,350): d.center(CX,y,ln,'I',9.5,TEXT); y-=11
+        return y-12
+    y=466
+    y=course_head(y,"VORSPEISE","für alle Gäste")
+    y=dish(y,"Knoblauchbrot","mit hausgemachtem Sauerrahm-Dip")
+    y-=15
+    y=course_head(y,"HAUPTSPEISE","nach Wahl")
+    y=dish(y,"Schiwago Teller","Schweinefilet mit Champignonrahmsauce, dazu Kroketten & Gemüse")
+    y=dish(y,"Zwiebelrostbraten","Rumpsteak mit frisch gerösteten Zwiebeln, dazu Bratkartoffeln")
+    y=dish(y,"Schnitzel „Wiener Art“","vom Hähnchen, paniert, dazu Pommes Frites")
+    y=dish(y,"Lachsfilet","mit Kräuterbutter, dazu Folienkartoffel mit Sauerrahm")
+    y=dish(y,"Gemüseteller Vegetaria","buntes Pfannengemüse, dazu Folienkartoffel mit Sauerrahm & Beilagensalat")
+    y-=15
+    y=course_head(y,"DESSERT","nach Wahl")
+    y=dish(y,"Semifreddo","luftig wie eine Mousse, cremig wie Eis, mit karamellisierten Mandeln & hausgemachter Karamellsauce auf Keksboden")
+    y=dish(y,"Crème brûlée","mit karamellisierter Zuckerschicht")
+    _weddingdiv(d,CX,y-2,GOLD,span=44)
+    d.center(CX,y-22,"Wir wünschen euch einen wunderschönen Tag",'I',10.5,GOLD)
+    write_pdf("Hochzeit Sedeno - Menue.pdf",d)
+
 menu_card()
 drinks_card()
+drinks_card("für Bernd · zum 80. Geburtstag · 3. Oktober 2026","Am Fels – Getränke zum 80. Geburtstag.pdf")
 bernd_card()
+wedding_card()
+drinks_card("zur Hochzeit · Familie Sedeno","Hochzeit Sedeno - Getraenke.pdf",wedding=True)
 print("PDFs erstellt.")

@@ -1,10 +1,98 @@
 import re, sys, pathlib
 sys.path.insert(0,'/private/tmp/claude-501/-Users-leonrajic/73aba5eb-6982-4a41-a6ba-918ade3d188f/scratchpad')
 from playwright.sync_api import sync_playwright
+from ml_trans import FOOD, SIDES, WINEDESC
 SRC='/Users/leonrajic/Desktop/amfels/speisekarte-print.html'
-OUT='/Users/leonrajic/Desktop/amfels/speisekarte-steakhouse.html'
+OUT='/Users/leonrajic/Desktop/amfels/speisekarte-steakhouse-en.html'
+PDF='/Users/leonrajic/Desktop/amfels/PDF/Speisekarte Steakhouse EN.pdf'
 s=open(SRC,encoding='utf-8').read()
 IMG='file:///Users/leonrajic/Desktop/amfels/images/'
+
+# ---------------- English translation layer ----------------
+# Category headers (keys are the internal German titles reaching cathead())
+CAT={
+ 'Vorspeisen':'Starters','Suppen':'Soups','Salate & mehr':'Salads & more',
+ 'Für unsere kleinen Gäste':'For our little guests','Neuseeländisches Lamm':'New Zealand Lamb',
+ 'Für unsere Senioren':'For our senior guests','Hähnchen':'Chicken','Vom Schwein':'Pork',
+ 'Beilagen':'Side dishes','Saucen & Dips':'Sauces & dips',
+ 'Argentinischer Black Angus':'Argentinischer Black Angus',
+ 'Vom Grill':'From the grill','Frischer Fisch':'Fresh fish','Desserts':'Desserts',
+ 'Kaffee & Heißgetränke':'Coffee & hot drinks',
+ 'Alkoholfreie Getränke':'Soft drinks','Biere':'Beers','Aperitifs':'Aperitifs',
+ 'Liköre & Bitter':'Liqueurs & bitters','Spirituosen · je 2cl':'Spirits · per 2cl',
+ 'Whisky · 2cl':'Whisky · 2cl','Cognac & Weinbrand · 2cl':'Cognac & brandy · 2cl',
+ 'Rotweine':'Red wines','Roséweine':'Rosé wines','Weißweine':'White wines','Sekt':'Sparkling wine',
+}
+# English name only (drop FR/IT) for sides/sauces, keyed by German name
+SIDES_EN={k:v.split(' · ')[0] for k,v in SIDES.items()}
+# Non-numbered item names (drinks, coffee, misc). Missing -> kept as-is (proper nouns/brands).
+NAME_MAP={
+ # coffee & hot drinks
+ 'Tasse Kaffee':'Cup of coffee','Espresso doppelt':'Double espresso',
+ 'Heiße Schokolade':'Hot chocolate','Milchkaffee':'Café au lait','Tasse Tee':'Cup of tea',
+ # soft drinks
+ 'Apfelschorle naturtrüb':'Cloudy apple spritzer','Eistee Pfirsich':'Iced tea, peach',
+ 'Rhabarberlimonade':'Rhubarb lemonade','O-Saft':'Orange juice','Apfelsaft':'Apple juice',
+ 'Tonic Wasser':'Tonic water',
+ # beers
+ 'Früh Kölsch alkoholfrei':'Früh Kölsch alcohol-free',
+ 'Bergisches Landbier alkoholfrei':'Bergisches Landbier alcohol-free',
+ 'Paulaner Hefeweizen alkoholfrei':'Paulaner Hefeweizen alcohol-free',
+ 'Malzbier':'Malt beer',
+ # aperitifs
+ 'Glas Sekt':'Glass of sparkling wine',
+ # liqueurs & bitters
+ '43er auf Eis':'Licor 43 on ice',
+ # spirits
+ 'Williams-Birne':'Williams pear brandy','Wodka':'Vodka',
+ # wine spritzer
+ 'Weinschorle weiß':'White wine spritzer',
+}
+_UNTRANSLATED=set()
+
+def tr_name(name):
+    """Translate an item name (may carry a trailing styled unit span). Keeps number/unit/sizes."""
+    unit=''
+    ms=re.search(r'(\s*<span[^>]*>.*?</span>\s*)$', name, re.S)
+    if ms:
+        unit=ms.group(1); core=name[:ms.start()]
+    else:
+        core=name
+    core=core.strip()
+    mn=re.match(r'(\d+)\.\s*(.*)$', core, re.S)
+    if mn:
+        num=int(mn.group(1)); rest=mn.group(2).strip()
+        sz=''
+        msz=re.search(r'(·\s*\d+\s*g)\s*$', rest)
+        if msz:
+            sz=' '+msz.group(1); rest=rest[:msz.start()].strip()
+        if num in FOOD:
+            en=FOOD[num][0]
+        elif rest in SIDES_EN:
+            en=SIDES_EN[rest]
+        else:
+            en=NAME_MAP.get(rest,rest)
+            if rest not in NAME_MAP: _UNTRANSLATED.add(core)
+        return '%d. %s%s%s'%(num,en,sz,unit)
+    else:
+        en=NAME_MAP.get(core,core)
+        for k,v in {'Italien':'Italy','Kroatien':'Croatia','Nordmazedonien':'North Macedonia','Spanien':'Spain'}.items():
+            en=en.replace(k,v)
+        return en+unit
+
+DESC_MAP={
+ 'Minze · Kamille · Kräuter · Schwarz · Früchte · Grün':'Mint · Camomile · Herbal · Black · Fruit · Green',
+}
+def tr_desc(desc,num=None):
+    if num is not None and num in FOOD:
+        return FOOD[num][3]
+    if desc in WINEDESC:
+        return WINEDESC[desc][0]
+    if desc in DESC_MAP:
+        return DESC_MAP[desc]
+    if desc and not re.fullmatch(r'[\W\d]+',desc):
+        _UNTRANSLATED.add('DESC: '+desc)
+    return desc
 
 def bend(s,start):
     d=0;i=start
@@ -44,10 +132,12 @@ def dish_html(itemhtml):
     alg=re.search(r'<sup class="alg">(.*?)</sup>', name)
     algtxt=alg.group(1) if alg else ''
     name=re.sub(r'\s*<sup class="alg">.*?</sup>','',name)
+    mnum=re.match(r'\s*(\d+)\.', name); num=int(mnum.group(1)) if mnum else None
+    name=tr_name(name)
     name=re.sub(r'<span[^>]*>(.*?)</span>', r'<span class="unit">\1</span>', name).strip()
     name=name.replace(' <span class="unit">', '&nbsp;<span class="unit">')  # Einheit bleibt am Namen (kein Solo-Umbruch)
     dm=re.search(r'item-desc">(.*?)</div>', itemhtml, re.S)
-    desc=dm.group(1).strip() if dm else ''
+    desc=tr_desc(dm.group(1).strip(),num) if dm else ''
     pm=re.search(r'item-price">(.*?)</span>', itemhtml)
     price=pm.group(1).strip() if pm else ''
     sizes=re.findall(r'<span class="size"><b>(.*?)</b><span>(.*?)</span></span>', itemhtml)
@@ -62,6 +152,7 @@ def dish_html(itemhtml):
     return '<div class="dish">%s<div class="dd">%s</div></div>'%(dn,prs)
 
 def cathead(title):
+    title=CAT.get(title,title)
     return '<div class="cathead"><span class="l"></span><span class="t">%s</span><span class="l"></span></div>'%title.replace('&','&amp;')
 
 def extract_cats(region, use_cat=True):
@@ -96,12 +187,12 @@ steakb=pop_cat('Steakbörse'); grill=pop_cat('Vom Grill'); beil=pop_cat('Beilage
 # Rest-Reihenfolge: Fisch ans Ende
 _order=['Vorspeisen','Suppen','Salate & mehr','Für unsere kleinen Gäste','Für unsere Senioren','Neuseeländisches Lamm','Hähnchen','Vom Schwein','Desserts','Frischer Fisch']
 food.sort(key=lambda c:_order.index(c[0]) if c[0] in _order else 999)
-SURFBOX='<div class="surfturf"><img class="pw" src="'+IMG+'garnele-foto.png"><div class="stt"><div class="st1">Surf &amp; Turf</div><div class="st2">Mach dein Steak zu Surf &amp; Turf &ndash; dazu 2 Garnelen <b>+5,00</b></div></div></div>'
+SURFBOX='<div class="surfturf"><img class="pw" src="'+IMG+'garnele-foto.png"><div class="stt"><div class="st1">Surf &amp; Turf</div><div class="st2">Turn your steak into Surf &amp; Turf &ndash; add 2 prawns <b>+5,00</b></div></div></div>'
 getr=extract_cats(GETR, use_cat=False)
 wine=extract_cats(WINE_A, use_cat=False)+extract_cats(WINE_B, use_cat=False)
 aper=extract_cats(APER, use_cat=False)
 # Wein-Preishinweis vor Rotweine
-_WNOTE='<div class="cnote">Preise je Glas 0,2 l / Flasche 0,75 l</div>'
+_WNOTE='<div class="cnote">Prices per glass 0.2 l / bottle 0.75 l</div>'
 for _wc in wine:
     if _wc[0].startswith(('Rot','Ros','Weiß','Weiss')): _wc[1]=_WNOTE+_wc[1]
 # Bier-Logos an Biere anhängen
@@ -128,12 +219,12 @@ if _vor and _sup:
 if _vor: _vor[1]=re.sub(r'(11\. Carpaccio.*?</span></span>)(<div class="dd">)', r'\1<div class="gfb">Grain fed Beef</div>\2', _vor[1], count=1, flags=re.S)
 # Klarstellung: Kindergerichte nur fuer Kinder
 _kids=next((c for c in segA if 'kleinen' in c[0]),None)
-if _kids: _kids[1]='<div class="cnote">Nur f&uuml;r Kinder</div>'+_kids[1]
+if _kids: _kids[1]='<div class="cnote">For children only</div>'+_kids[1]
 rest=[c for c in food if c[0] not in segA_names]   # Desserts, Frischer Fisch
 desserts=[c for c in rest if c[0]=='Desserts'][0]
 fisch=[c for c in rest if 'Fisch' in c[0]][0]
 # Beilagensalat-Hinweis (auffaellig) ueberall AUSSER Vorspeisen/Suppen/Salate/Desserts
-SALADNOTE='<div class="saladnote">Zu diesen Gerichten servieren wir einen Beilagensalat</div>'
+SALADNOTE='<div class="saladnote">These dishes are served with a side salad</div>'
 def _setsalad(c):
     c[1]=re.sub(r'<div class="cnote">[^<]*[Bb]eilagensalat[^<]*</div>','',c[1])
     c[1]=c[1].rstrip()+SALADNOTE
@@ -185,13 +276,13 @@ CSS='''<style>
   .phead .pn{font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--head);}
   .cols2{display:flex;gap:12mm;align-items:flex-start;}
   .col{width:84mm;}
-  .cat{margin:0 0 1.2mm;break-inside:avoid;}
+  .cat{margin:0 0 1.3mm;break-inside:avoid;}
   .cat.box{border:1.5px solid var(--red);border-radius:4px;padding:2.8mm 4.5mm 1.8mm;background:rgba(154,122,72,.045);}
   .cat.box .cathead .l{opacity:.5;}
   .cathead{display:flex;align-items:center;gap:8px;justify-content:center;margin-bottom:2.8mm;break-inside:avoid;break-after:avoid;}
   .cathead .t{font-family:'Oswald',sans-serif;font-weight:700;font-size:18px;letter-spacing:.05em;text-transform:uppercase;color:var(--head);white-space:nowrap;text-align:center;}
   .cathead .l{flex:1;height:0;border-top:2px dashed var(--red);opacity:.8;}
-  .dish{break-inside:avoid;margin-bottom:0.5mm;}
+  .dish{break-inside:avoid;margin-bottom:0.55mm;}
   .dn{font-family:'Oswald',sans-serif;font-weight:600;font-size:14px;letter-spacing:.01em;text-transform:uppercase;color:var(--ink);}
   .dn .unit{font-family:'Lato';font-weight:400;font-size:9px;text-transform:none;color:var(--muted);letter-spacing:0;}
   .dn .alg{font-family:'Lato';font-size:8px;font-weight:400;color:var(--red);vertical-align:super;letter-spacing:.02em;}
@@ -369,7 +460,7 @@ FONTS='<link rel="preconnect" href="https://fonts.googleapis.com"><link href="ht
 
 # Höhen messen (Spaltenbreite)
 meas='<html><head><meta charset="utf-8">'+FONTS+CSS+'</head><body><div class="mcol">'+''.join(cat_html)+'</div></body></html>'
-mp='/private/tmp/claude-501/-Users-leonrajic/73aba5eb-6982-4a41-a6ba-918ade3d188f/scratchpad/_em.html'; open(mp,'w',encoding='utf-8').write(meas)
+mp='/private/tmp/claude-501/-Users-leonrajic/73aba5eb-6982-4a41-a6ba-918ade3d188f/scratchpad/_em_en.html'; open(mp,'w',encoding='utf-8').write(meas)
 with sync_playwright() as p:
     b=p.chromium.launch(); pg=b.new_page(); pg.goto(pathlib.Path(mp).resolve().as_uri(), wait_until='load'); pg.wait_for_timeout(800); pg.emulate_media(media='print')
     HH=pg.evaluate('''()=>{const cont=document.querySelector(".mcol");const els=[...cont.children];const r=[];for(let i=0;i<els.length;i++){const top=els[i].getBoundingClientRect().top;const bot=(i<els.length-1)?els[i+1].getBoundingClientRect().top:cont.getBoundingClientRect().bottom;r.push((bot-top)/96*25.4);}return r}''')
@@ -421,21 +512,21 @@ def _winelist(catHTML, bottlecol=False):
 def _wcat(c):
     return '<div class="cat winec">'+cathead(c[0])+_winelist(c[1], bottlecol=c[0]=='Sekt')+'</div>' if c[0] else ''
 _wineorder=[_D('Rotweine'),_D('Rosé'),_D('Weiß'),_sekt]
-WINE_TITLE='Weine'
-WINE_NOTE='<div class="winenote">Preise je Glas 0,2 l / Flasche 0,75 l</div>'
+WINE_TITLE='Wines'
+WINE_NOTE='<div class="winenote">Prices per glass 0.2 l / bottle 0.75 l</div>'
 WINE_PAGE=('<div class="page winelist">'+PHEAD
-           +'<div class="winecol"><div class="wpricehead"><span class="wsp"></span><span class="wpr"><span class="pg">0,2 l</span><span class="pb">0,75 l</span></span></div>'+''.join(_wcat(c) for c in _wineorder)+'</div></div>')
+           +'<div class="winecol"><div class="wpricehead"><span class="wsp"></span><span class="wpr"><span class="pg">0.2 l</span><span class="pb">0.75 l</span></span></div>'+''.join(_wcat(c) for c in _wineorder)+'</div></div>')
 
 # --- Steak-Feature-Seite (vollbreit) ---
 PROV=('<div class="prov">'
-      '<span class="provk">Vom Gl&uuml;hstein-Grill</span>'
-      'Auf weiten Weiden aufgewachsen, mit Getreide veredelt &ndash; daher die feine Marmorierung, '
-      'die f&uuml;r Zartheit und vollen Geschmack sorgt. Alles aus einer Hand: vom Futter bis zur Verarbeitung. '
-      '&Uuml;ber gl&uuml;hendem Stein gegrillt &ndash; kr&auml;ftige Kruste, saftiger Kern.'
-      '<div class="garstufen"><div class="gt">Wie d&uuml;rfen wir Ihr Steak braten?</div>'
-      '<div class="gl"><b>Englisch</b><span>blutig</span></div>'
-      '<div class="gl"><b>Medium</b><span>rosa gebraten</span></div>'
-      '<div class="gl"><b>Well done</b><span>durchgebraten</span></div></div>'
+      '<span class="provk">From the hot-stone grill</span>'
+      'Raised on wide pastures, grain-finished &ndash; giving the fine marbling '
+      'that ensures tenderness and full flavour. All from one source: from feed to processing. '
+      'Grilled over glowing stone &ndash; strong crust, juicy core.'
+      '<div class="garstufen"><div class="gt">How would you like your steak?</div>'
+      '<div class="gl"><b>Rare</b><span>bloody</span></div>'
+      '<div class="gl"><b>Medium</b><span>pink</span></div>'
+      '<div class="gl"><b>Well done</b><span>cooked through</span></div></div>'
       '</div>')
 _notes=re.findall(r'<div class="cnote">.*?</div>', steakb[1], re.S)
 _dishes=re.sub(r'<div class="cnote">.*?</div>','',steakb[1],flags=re.S)
@@ -465,9 +556,9 @@ GRILLFISCH=('<div class="cols2 gf">'
 STEAK_PAGE='<div class="page steakpage">'+PHEAD+STEAKBOX+'</div>'
 # Allergene-Zeilen (fuer die kombinierte Seite)
 _legrow=lambda h,a,z: '<div class="leg-h">%s</div><div class="leg-line">%s</div><div class="leg-line">%s</div>'%(h,a,z)
-_DEA='<b>Allergene:</b> <sup>A</sup> Glutenhaltiges Getreide &middot; <sup>B</sup> Krebstiere &middot; <sup>C</sup> Eier &middot; <sup>D</sup> Fisch &middot; <sup>E</sup> Erdn&uuml;sse &middot; <sup>F</sup> Soja &middot; <sup>G</sup> Milch/Laktose &middot; <sup>H</sup> Schalenfr&uuml;chte &middot; <sup>I</sup> Sellerie &middot; <sup>J</sup> Senf &middot; <sup>K</sup> Sesam &middot; <sup>L</sup> Schwefeldioxid/Sulfite &middot; <sup>M</sup> Lupinen &middot; <sup>N</sup> Weichtiere'
-_DEZ='<b>Zusatzstoffe:</b> <sup>1</sup> mit Farbstoff &middot; <sup>2</sup> mit Konservierungsstoff &middot; <sup>3</sup> mit Antioxidationsmittel &middot; <sup>4</sup> mit Geschmacksverst&auml;rker &middot; <sup>5</sup> koffeinhaltig &middot; <sup>6</sup> mit S&uuml;&szlig;ungsmittel &middot; <sup>7</sup> geschwefelt &middot; <sup>8</sup> mit Phosphat &middot; <sup>9</sup> Phenylalaninquelle &middot; <sup>11</sup> Steinobst (Kerne m&ouml;glich) &middot; <sup>12</sup> Fischfilet (Gr&auml;ten m&ouml;glich) &middot; <sup>35</sup> zum sofortigen Verzehr'
-ALLERG='<div class="legfoot">'+_legrow('Allergene &amp; Zusatzstoffe',_DEA,_DEZ)+'<div class="leg-line" style="font-style:italic;margin-top:1.5mm;"><b>Hinweis:</b> Unsere Bratkartoffeln werden mit Speck, Zwiebeln und Maismehl (glutenfrei) zubereitet.</div></div>'
+_DEA='<b>Allergens:</b> <sup>A</sup> Cereals containing gluten &middot; <sup>B</sup> Crustaceans &middot; <sup>C</sup> Eggs &middot; <sup>D</sup> Fish &middot; <sup>E</sup> Peanuts &middot; <sup>F</sup> Soy &middot; <sup>G</sup> Milk/Lactose &middot; <sup>H</sup> Tree nuts &middot; <sup>I</sup> Celery &middot; <sup>J</sup> Mustard &middot; <sup>K</sup> Sesame &middot; <sup>L</sup> Sulphur dioxide/sulphites &middot; <sup>M</sup> Lupin &middot; <sup>N</sup> Molluscs'
+_DEZ='<b>Additives:</b> <sup>1</sup> with colouring &middot; <sup>2</sup> with preservative &middot; <sup>3</sup> with antioxidant &middot; <sup>4</sup> with flavour enhancer &middot; <sup>5</sup> contains caffeine &middot; <sup>6</sup> with sweetener &middot; <sup>7</sup> sulphured &middot; <sup>8</sup> with phosphate &middot; <sup>9</sup> source of phenylalanine &middot; <sup>11</sup> stone fruit (may contain pits) &middot; <sup>12</sup> fish fillet (may contain bones) &middot; <sup>35</sup> for immediate consumption'
+ALLERG='<div class="legfoot">'+_legrow('Allergens &amp; additives',_DEA,_DEZ)+'<div class="leg-line" style="font-style:italic;margin-top:1.5mm;"><b>Note:</b> Our fried potatoes are prepared with bacon, onions and corn flour (gluten-free).</div></div>'
 # Seite 4 wie die Speisen-Seite: sauberes 2-Spalten-Layout, Allergene unten
 _gc=lambda cls,t,inner: '<div class="cat '+cls+'">'+cathead(t)+inner+'</div>'
 _col0=_gc('grillsec','Vom Grill',grill[1])+_gc('grillsec','Frischer Fisch',fisch[1])
@@ -484,27 +575,30 @@ COVER='''<div class="page coverp"><div class="cover">
   <div class="clogo"></div>
   <div class="cest">Engelskirchen &middot; Loope</div>
   <div class="crule"><span class="l"></span><span class="d"></span><span class="l"></span></div>
-  <div class="ctag"><span class="l"></span><span class="t">Speise &amp; Getr&auml;nkekarte</span><span class="l"></span></div>
-  <div class="cdesc">Kroatische Tradition trifft internationale Kochkunst<br>Steaks &middot; Grillspezialit&auml;ten &middot; Frischer Fisch</div>
-  <div class="cfeier"><div class="t">Feiern Sie bei uns &middot; bis 120 Personen</div><div class="s">F&uuml;r Ihre Anl&auml;sse &ndash; sprechen Sie uns gerne an</div></div>
+  <div class="ctag"><span class="l"></span><span class="t">Food &amp; Drinks Menu</span><span class="l"></span></div>
+  <div class="cdesc">Croatian tradition meets international cuisine<br>Steaks &middot; Grilled specialities &middot; Fresh fish</div>
+  <div class="cfeier"><div class="t">Celebrate with us &middot; up to 120 guests</div><div class="s">For your occasions &ndash; just get in touch</div></div>
 </div>
 <div class="cbox">
-  <div class="h">&Ouml;ffnungszeiten</div>
-  <div class="hours"><b>Montag</b><span class="r">17:30 &ndash; 22:00 Uhr</span><b>Dienstag</b><span class="r">Ruhetag</span><b>Mittwoch &ndash; Freitag</b><span class="r">17:30 &ndash; 22:00 Uhr</span><b>Samstag</b><span class="r">12:00 &ndash; 14:30 &middot; 17:30 &ndash; 22:00</span><b>Sonntag</b><span class="r">12:00 &ndash; 15:00 &middot; 17:00 &ndash; 21:00</span></div>
+  <div class="h">Opening hours</div>
+  <div class="hours"><b>Monday</b><span class="r">17:30 &ndash; 22:00</span><b>Tuesday</b><span class="r">Closed</span><b>Wednesday &ndash; Friday</b><span class="r">17:30 &ndash; 22:00</span><b>Saturday</b><span class="r">12:00 &ndash; 14:30 &middot; 17:30 &ndash; 22:00</span><b>Sunday</b><span class="r">12:00 &ndash; 15:00 &middot; 17:00 &ndash; 21:00</span></div>
 </div></div>'''
 
 # (Allergene sind jetzt auf der kombinierten Grill/Fisch/Dessert/Kaffee-Seite)
 html='<!doctype html><html><head><meta charset="utf-8">'+FONTS+CSS+'</head><body>\n'+COVER+'\n'+'\n'.join(menu_pages)+'\n</body></html>'
+html=html.replace(' Fl.</span>',' btl.</span>')  # EN: Flasche -> bottle abbr.
 open(OUT,'w',encoding='utf-8').write(html)
 print('Kategorien:', len(flow), '| Menue-Seiten:', len(menu_pages), '| gesamt:', len(menu_pages)+2)
+if _UNTRANSLATED:
+    print('UNTRANSLATED names (kept as-is):', sorted(_UNTRANSLATED))
 
-# PDF erzeugen (WICHTIG: sonst bleibt die PDF veraltet!)
-_PDF='/Users/leonrajic/Desktop/amfels/Speisekarte Steakhouse.pdf'
+# --- PDF rendering (A4, print background, no margins) ---
 with sync_playwright() as p:
     b=p.chromium.launch(); pg=b.new_page()
-    pg.goto(pathlib.Path(OUT).resolve().as_uri(), wait_until='networkidle')
-    pg.evaluate('document.fonts.ready'); pg.wait_for_timeout(600); pg.emulate_media(media='print')
-    pg.pdf(path=_PDF, format='A4', print_background=True,
-           margin={'top':'0','right':'0','bottom':'0','left':'0'})
+    pg.goto(pathlib.Path(OUT).resolve().as_uri(), wait_until='load')
+    pg.wait_for_timeout(1200)
+    pg.emulate_media(media='print')
+    pg.pdf(path=PDF, format='A4', print_background=True,
+           margin={'top':'0','bottom':'0','left':'0','right':'0'})
     b.close()
-print('PDF ->', _PDF)
+print('PDF ->', PDF)

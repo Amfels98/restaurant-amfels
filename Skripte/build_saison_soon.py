@@ -48,10 +48,10 @@ build('de','Saisonal',
       'Bald gibt es hier<br>etwas Neues',
       'Wir bereiten unsere n&auml;chste saisonale Karte f&uuml;r Sie vor.<br>Freuen Sie sich darauf!',
       '/Users/leonrajic/Desktop/amfels/saisonkarte-platzhalter.html',
-      '/Users/leonrajic/Desktop/amfels/Saisonkarte Platzhalter.pdf')
+      '/Users/leonrajic/Desktop/amfels/PDF/Saisonkarte Platzhalter.pdf')
 
 build('en','Seasonal',
       'Something new is<br>coming soon',
       "We're preparing our next seasonal menu for you.<br>Stay tuned!",
       '/Users/leonrajic/Desktop/amfels/saisonkarte-platzhalter-en.html',
-      '/Users/leonrajic/Desktop/amfels/Saisonkarte Platzhalter EN.pdf')
+      '/Users/leonrajic/Desktop/amfels/PDF/Saisonkarte Platzhalter EN.pdf')

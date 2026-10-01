@@ -57,7 +57,7 @@ html='<!doctype html><html><head><meta charset="utf-8">'+FONTS+CSS+EXTRA+'</head
 OUT='/Users/leonrajic/Desktop/amfels/saisonkarte-en.html'
 open(OUT,'w',encoding='utf-8').write(html)
 
-PDF='/Users/leonrajic/Desktop/amfels/Saisonkarte Pfifferlinge EN.pdf'
+PDF='/Users/leonrajic/Desktop/amfels/PDF/Saisonkarte Pfifferlinge EN.pdf'
 with sync_playwright() as p:
     b=p.chromium.launch(); pg=b.new_page()
     pg.goto(pathlib.Path(OUT).resolve().as_uri(), wait_until='networkidle')

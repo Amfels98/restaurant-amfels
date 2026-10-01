@@ -89,7 +89,7 @@ BODY=('<div class="page">'+PHEAD
 html='<!doctype html><html><head><meta charset="utf-8">'+FONTS+CSS+EXTRA+'</head><body>\n'+BODY+'\n</body></html>'
 OUT='/Users/leonrajic/Desktop/amfels/aenderungsprotokoll.html'
 open(OUT,'w',encoding='utf-8').write(html)
-PDF='/Users/leonrajic/Desktop/amfels/Aenderungsprotokoll 05-09-2026.pdf'
+PDF='/Users/leonrajic/Desktop/amfels/PDF/Aenderungsprotokoll 05-09-2026.pdf'
 with sync_playwright() as p:
     b=p.chromium.launch(); pg=b.new_page()
     pg.goto(pathlib.Path(OUT).resolve().as_uri(), wait_until='networkidle')

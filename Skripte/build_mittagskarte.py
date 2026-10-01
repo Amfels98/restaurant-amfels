@@ -63,7 +63,7 @@ BODY=('<div class="page">'
 html='<!doctype html><html><head><meta charset="utf-8">'+FONTS+CSS.replace('IMG',IMG)+'</head><body>\n'+BODY+'\n</body></html>'
 OUT='/Users/leonrajic/Desktop/amfels/mittagskarte-a5.html'
 open(OUT,'w',encoding='utf-8').write(html)
-PDF='/Users/leonrajic/Desktop/Mittagskarte A5.pdf'
+PDF='/Users/leonrajic/Desktop/amfels/PDF/Mittagskarte A5.pdf'
 with sync_playwright() as p:
     b=p.chromium.launch(); pg=b.new_page()
     pg.goto(pathlib.Path(OUT).resolve().as_uri(), wait_until='networkidle')
