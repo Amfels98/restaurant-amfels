@@ -2,11 +2,11 @@ import re, sys, pathlib
 sys.path.insert(0,'/private/tmp/claude-501/-Users-leonrajic/73aba5eb-6982-4a41-a6ba-918ade3d188f/scratchpad')
 from playwright.sync_api import sync_playwright
 from ml_trans import FOOD, SIDES, WINEDESC
-SRC='/Users/leonrajic/Documents/Claude Code/amfels/speisekarte-print.html'
-OUT='/Users/leonrajic/Documents/Claude Code/amfels/speisekarte-steakhouse-en.html'
-PDF='/Users/leonrajic/Documents/Claude Code/amfels/PDF/Speisekarte Steakhouse EN.pdf'
+SRC='/Users/leonrajic/Desktop/Claude Code/amfels/speisekarte-print.html'
+OUT='/Users/leonrajic/Desktop/Claude Code/amfels/speisekarte-steakhouse-en.html'
+PDF='/Users/leonrajic/Desktop/Claude Code/amfels/PDF/Speisekarte Steakhouse EN.pdf'
 s=open(SRC,encoding='utf-8').read()
-IMG='file:///Users/leonrajic/Documents/Claude Code/amfels/images/'
+IMG='file:///Users/leonrajic/Desktop/Claude Code/amfels/images/'
 
 # ---------------- English translation layer ----------------
 # Category headers (keys are the internal German titles reaching cathead())

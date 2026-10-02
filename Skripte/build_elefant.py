@@ -1,10 +1,10 @@
 import re, sys, pathlib
 sys.path.insert(0,'/private/tmp/claude-501/-Users-leonrajic/73aba5eb-6982-4a41-a6ba-918ade3d188f/scratchpad')
 from playwright.sync_api import sync_playwright
-SRC='/Users/leonrajic/Documents/Claude Code/amfels/speisekarte-print.html'
-OUT='/Users/leonrajic/Documents/Claude Code/amfels/speisekarte-steakhouse.html'
+SRC='/Users/leonrajic/Desktop/Claude Code/amfels/speisekarte-print.html'
+OUT='/Users/leonrajic/Desktop/Claude Code/amfels/speisekarte-steakhouse.html'
 s=open(SRC,encoding='utf-8').read()
-IMG='file:///Users/leonrajic/Documents/Claude Code/amfels/images/'
+IMG='file:///Users/leonrajic/Desktop/Claude Code/amfels/images/'
 
 def bend(s,start):
     d=0;i=start
@@ -499,7 +499,7 @@ open(OUT,'w',encoding='utf-8').write(html)
 print('Kategorien:', len(flow), '| Menue-Seiten:', len(menu_pages), '| gesamt:', len(menu_pages)+2)
 
 # PDF erzeugen (WICHTIG: sonst bleibt die PDF veraltet!)
-_PDF='/Users/leonrajic/Documents/Claude Code/amfels/PDF/Speisekarte Steakhouse.pdf'
+_PDF='/Users/leonrajic/Desktop/Claude Code/amfels/PDF/Speisekarte Steakhouse.pdf'
 with sync_playwright() as p:
     b=p.chromium.launch(); pg=b.new_page()
     pg.goto(pathlib.Path(OUT).resolve().as_uri(), wait_until='networkidle')

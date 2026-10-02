@@ -4,7 +4,7 @@ from playwright.sync_api import sync_playwright
 
 FONTS=('<link rel="preconnect" href="https://fonts.googleapis.com">'
  '<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">')
-IMG='file:///Users/leonrajic/Documents/Claude Code/amfels/images/'
+IMG='file:///Users/leonrajic/Desktop/Claude Code/amfels/images/'
 
 CSS='''<style>
  :root{--ink:#2b2018;--muted:#7a6552;--gold:#9a7a48;}
@@ -37,7 +37,7 @@ BODY=('<div class="page">'
 html='<!doctype html><html><head><meta charset="utf-8">'+FONTS+CSS.replace('IMG',IMG)+'</head><body>\n'+BODY+'\n</body></html>'
 OUT='/private/tmp/claude-501/-Users-leonrajic/73aba5eb-6982-4a41-a6ba-918ade3d188f/scratchpad/etiketten.html'
 open(OUT,'w',encoding='utf-8').write(html)
-PDF='/Users/leonrajic/Documents/Claude Code/amfels/PDF/Etiketten Reukaffe A5.pdf'
+PDF='/Users/leonrajic/Desktop/Claude Code/amfels/PDF/Etiketten Reukaffe A5.pdf'
 with sync_playwright() as p:
     b=p.chromium.launch(); pg=b.new_page()
     pg.goto(pathlib.Path(OUT).resolve().as_uri(), wait_until='networkidle')

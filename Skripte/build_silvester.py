@@ -126,9 +126,9 @@ p3=('<div class="gtitle">Getr&auml;nke</div>'+SPRIG+'<div style="height:3mm"></d
 
 BODY=page(p1,head=True)+page(p2)+page(p3)
 html='<!doctype html><html><head><meta charset="utf-8">'+FONTS+CSS+'</head><body>\n'+BODY+'\n</body></html>'
-OUT='/Users/leonrajic/Documents/Claude Code/amfels/silvesterkarte-a5.html'
+OUT='/Users/leonrajic/Desktop/Claude Code/amfels/silvesterkarte-a5.html'
 open(OUT,'w',encoding='utf-8').write(html)
-PDF='/Users/leonrajic/Documents/Claude Code/amfels/silvester-2026.pdf'
+PDF='/Users/leonrajic/Desktop/Claude Code/amfels/silvester-2026.pdf'
 with sync_playwright() as p:
     b=p.chromium.launch(); pg=b.new_page()
     pg.goto(pathlib.Path(OUT).resolve().as_uri(), wait_until='networkidle')

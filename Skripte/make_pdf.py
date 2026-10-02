@@ -212,6 +212,6 @@ for off in offsets:
 out += (b"trailer\n<< /Size " + str(len(objs) + 1).encode() +
         b" /Root 1 0 R >>\nstartxref\n" + str(xref_pos).encode() + b"\n%%EOF")
 
-with open("/Users/leonrajic/Documents/Claude Code/amfels/PDF/Reisegruppen-Karte-25-08-2026.pdf", "wb") as f:
+with open("/Users/leonrajic/Desktop/Claude Code/amfels/PDF/Reisegruppen-Karte-25-08-2026.pdf", "wb") as f:
     f.write(out)
 print("PDF geschrieben:", len(out), "bytes")

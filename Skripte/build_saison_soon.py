@@ -1,7 +1,7 @@
 import re, pathlib
 from playwright.sync_api import sync_playwright
 
-IMG='file:///Users/leonrajic/Documents/Claude Code/amfels/images/'
+IMG='file:///Users/leonrajic/Desktop/Claude Code/amfels/images/'
 src=open('/private/tmp/claude-501/-Users-leonrajic/73aba5eb-6982-4a41-a6ba-918ade3d188f/scratchpad/build_elefant.py',encoding='utf-8').read()
 FONTS=re.search(r"FONTS='(.*?)'\n", src).group(1)
 CSS=re.search(r"CSS='''(.*?)'''", src, re.S).group(1).replace('IMG',IMG)
@@ -47,11 +47,11 @@ def build(lang, title, big, sub, out, pdf):
 build('de','Saisonal',
       'Bald gibt es hier<br>etwas Neues',
       'Wir bereiten unsere n&auml;chste saisonale Karte f&uuml;r Sie vor.<br>Freuen Sie sich darauf!',
-      '/Users/leonrajic/Documents/Claude Code/amfels/saisonkarte-platzhalter.html',
-      '/Users/leonrajic/Documents/Claude Code/amfels/PDF/Saisonkarte Platzhalter.pdf')
+      '/Users/leonrajic/Desktop/Claude Code/amfels/saisonkarte-platzhalter.html',
+      '/Users/leonrajic/Desktop/Claude Code/amfels/PDF/Saisonkarte Platzhalter.pdf')
 
 build('en','Seasonal',
       'Something new is<br>coming soon',
       "We're preparing our next seasonal menu for you.<br>Stay tuned!",
-      '/Users/leonrajic/Documents/Claude Code/amfels/saisonkarte-platzhalter-en.html',
-      '/Users/leonrajic/Documents/Claude Code/amfels/PDF/Saisonkarte Platzhalter EN.pdf')
+      '/Users/leonrajic/Desktop/Claude Code/amfels/saisonkarte-platzhalter-en.html',
+      '/Users/leonrajic/Desktop/Claude Code/amfels/PDF/Saisonkarte Platzhalter EN.pdf')
