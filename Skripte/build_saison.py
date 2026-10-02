@@ -1,7 +1,7 @@
 import re, pathlib
 from playwright.sync_api import sync_playwright
 
-IMG='file:///Users/leonrajic/Desktop/Claude Code/amfels/images/'
+IMG='file:///Users/leonrajic/Documents/Claude Code/amfels/images/'
 src=open('/private/tmp/claude-501/-Users-leonrajic/73aba5eb-6982-4a41-a6ba-918ade3d188f/scratchpad/build_elefant.py',encoding='utf-8').read()
 FONTS=re.search(r"FONTS='(.*?)'\n", src).group(1)
 CSS=re.search(r"CSS='''(.*?)'''", src, re.S).group(1).replace('IMG',IMG)
@@ -54,10 +54,10 @@ BODY=('<div class="page winelist saisonpage">'+PHEAD
       +'</div>')
 
 html='<!doctype html><html><head><meta charset="utf-8">'+FONTS+CSS+EXTRA+'</head><body>\n'+BODY+'\n</body></html>'
-OUT='/Users/leonrajic/Desktop/Claude Code/amfels/saisonkarte.html'
+OUT='/Users/leonrajic/Documents/Claude Code/amfels/saisonkarte.html'
 open(OUT,'w',encoding='utf-8').write(html)
 
-PDF='/Users/leonrajic/Desktop/Claude Code/amfels/PDF/Saisonkarte Pfifferlinge.pdf'
+PDF='/Users/leonrajic/Documents/Claude Code/amfels/PDF/Saisonkarte Pfifferlinge.pdf'
 with sync_playwright() as p:
     b=p.chromium.launch(); pg=b.new_page()
     pg.goto(pathlib.Path(OUT).resolve().as_uri(), wait_until='networkidle')
