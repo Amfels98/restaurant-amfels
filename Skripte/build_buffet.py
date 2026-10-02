@@ -1,7 +1,7 @@
 import re, pathlib
 from playwright.sync_api import sync_playwright
-IMG='file:///Users/leonrajic/Desktop/amfels/images/'
-src=open('/Users/leonrajic/Desktop/amfels/Skripte/build_elefant.py',encoding='utf-8').read()
+IMG='file:///Users/leonrajic/Desktop/Claude Code/amfels/images/'
+src=open('/Users/leonrajic/Desktop/Claude Code/amfels/Skripte/build_elefant.py',encoding='utf-8').read()
 FONTS=re.search(r"FONTS='(.*?)'\n", src).group(1)
 CSS=re.search(r"CSS='''(.*?)'''", src, re.S).group(1).replace('IMG',IMG)
 PHEAD='<div class="phead"><div class="lm"></div></div>'
@@ -67,9 +67,9 @@ PAGE2=('<div class="page">'+PHEAD
       +'<div class="bfoot">Preise in Euro &middot; weitere Weine &amp; Spirituosen auf Anfrage &middot; Restaurant Am Fels</div>'
       +'</div>')
 html='<!doctype html><html><head><meta charset="utf-8">'+FONTS+CSS+EXTRA+'</head><body>\n'+PAGE1+'\n'+PAGE2+'\n</body></html>'
-OUT='/Users/leonrajic/Desktop/amfels/buffet-vorschlag.html'
+OUT='/Users/leonrajic/Desktop/Claude Code/amfels/buffet-vorschlag.html'
 open(OUT,'w',encoding='utf-8').write(html)
-PDF='/Users/leonrajic/Desktop/amfels/PDF/Buffet-Vorschlag.pdf'
+PDF='/Users/leonrajic/Desktop/Claude Code/amfels/PDF/Buffet-Vorschlag.pdf'
 with sync_playwright() as p:
     b=p.chromium.launch(); pg=b.new_page()
     pg.goto(pathlib.Path(OUT).resolve().as_uri(), wait_until='networkidle')

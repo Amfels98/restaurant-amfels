@@ -32,6 +32,6 @@ Benötigt: Python + Playwright (Chromium). Reihenfolge:
 **Immer aus dem Hauptordner `Desktop/amfels` starten**, nicht aus `Skripte/` –
 einige Skripte greifen relativ auf `images/` zu.
 
-Hinweis: Die Skripte verwenden absolute Pfade (`/Users/leonrajic/Desktop/amfels/...`).
+Hinweis: Die Skripte verwenden absolute Pfade (`/Users/leonrajic/Desktop/Claude Code/amfels/...`).
 Für eine neue Saisonkarte (andere Zutat) in `build_saison.py` die Gerichte-Liste (`DISHES`)
 und den Untertitel anpassen.

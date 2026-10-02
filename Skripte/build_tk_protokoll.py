@@ -58,11 +58,11 @@ BODY=('<div class="page">'
  '<span class="hr"><b>Napomene:</b> Svaku robu pri zamrzavanju odmah ozna&ccaron;iti datumom. &bdquo;First In &ndash; First Out&ldquo; &ndash; stariju robu prvo potro&scaron;iti. U slu&ccaron;aju sumnje u kvalitetu baciti. Jednom odmrznutu robu ne zamrzavati ponovno.</span></div>'
  '</div>')
 
-IMG='file:///Users/leonrajic/Desktop/amfels/images/'
+IMG='file:///Users/leonrajic/Desktop/Claude Code/amfels/images/'
 html='<!doctype html><html><head><meta charset="utf-8">'+FONTS+CSS.replace('IMG',IMG)+'</head><body>\n'+BODY+'\n</body></html>'
-OUT='/Users/leonrajic/Desktop/amfels/tiefkuehl-protokoll.html'
+OUT='/Users/leonrajic/Desktop/Claude Code/amfels/tiefkuehl-protokoll.html'
 open(OUT,'w',encoding='utf-8').write(html)
-PDF='/Users/leonrajic/Desktop/amfels/PDF/Tiefkuehl-Protokoll.pdf'
+PDF='/Users/leonrajic/Desktop/Claude Code/amfels/PDF/Tiefkuehl-Protokoll.pdf'
 with sync_playwright() as p:
     b=p.chromium.launch(); pg=b.new_page()
     pg.goto(pathlib.Path(OUT).resolve().as_uri(), wait_until='networkidle')

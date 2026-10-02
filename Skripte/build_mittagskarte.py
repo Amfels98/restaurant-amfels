@@ -4,7 +4,7 @@ from playwright.sync_api import sync_playwright
 
 FONTS=('<link rel="preconnect" href="https://fonts.googleapis.com">'
  '<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Lato:wght@400;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Great+Vibes&display=swap" rel="stylesheet">')
-IMG='file:///Users/leonrajic/Desktop/amfels/images/'
+IMG='file:///Users/leonrajic/Desktop/Claude Code/amfels/images/'
 
 CSS='''<style>
  :root{--paper:#f6efe0;--ink:#2b2018;--muted:#7a6552;--gold:#9a7a48;}
@@ -61,9 +61,9 @@ BODY=('<div class="page">'
  '</div>')
 
 html='<!doctype html><html><head><meta charset="utf-8">'+FONTS+CSS.replace('IMG',IMG)+'</head><body>\n'+BODY+'\n</body></html>'
-OUT='/Users/leonrajic/Desktop/amfels/mittagskarte-a5.html'
+OUT='/Users/leonrajic/Desktop/Claude Code/amfels/mittagskarte-a5.html'
 open(OUT,'w',encoding='utf-8').write(html)
-PDF='/Users/leonrajic/Desktop/amfels/PDF/Mittagskarte A5.pdf'
+PDF='/Users/leonrajic/Desktop/Claude Code/amfels/PDF/Mittagskarte A5.pdf'
 with sync_playwright() as p:
     b=p.chromium.launch(); pg=b.new_page()
     pg.goto(pathlib.Path(OUT).resolve().as_uri(), wait_until='networkidle')
