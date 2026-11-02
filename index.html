@@ -1191,6 +1191,14 @@
 
     .menu-tab:hover { color: var(--gold); }
     .menu-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+    .menu-tab.seasonal { color: var(--text); }
+    .menu-tab.seasonal:hover, .menu-tab.seasonal.active { color: var(--gold); }
+    .menu-tab.seasonal::before {
+      content: '✦';
+      font-size: 0.55rem;
+      margin-right: 0.35rem;
+      opacity: 0.7;
+    }
 
     .menu-panel { display: none; max-width: 1000px; margin: 0 auto; }
     .menu-panel.active { display: block; }
@@ -2235,6 +2243,44 @@
 </script>
 
 
+<!-- WILD & GEFLÜGEL POPUP -->
+<div id="wildPopup" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.72);z-index:2001;align-items:center;justify-content:center;padding:1.5rem">
+  <div style="background:#fdfaf5;border:1px solid rgba(184,146,74,0.3);max-width:440px;width:100%;position:relative;text-align:center;overflow:hidden">
+    <button onclick="document.getElementById('wildPopup').style.display='none'" style="position:absolute;top:0.75rem;right:0.75rem;z-index:2;background:rgba(0,0,0,0.35);border:none;font-size:1rem;cursor:pointer;color:#fff;line-height:1;width:28px;height:28px;border-radius:50%">✕</button>
+    <div style="height:220px;overflow:hidden;position:relative">
+      <img src="https://images.unsplash.com/photo-1574672280600-4accfa5b6f98?w=800&q=80" alt="Wild & Geflügel" style="width:100%;height:100%;object-fit:cover;object-position:center">
+      <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,#fdfaf5)"></div>
+    </div>
+    <!-- Teaser (vor 15.11) -->
+    <div id="wildTeaser" style="padding:0 2rem 2rem">
+      <div style="font-family:'Lato',sans-serif;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#b8924a;margin-bottom:0.4rem">Bald verfügbar</div>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;color:#3a2516;margin:0 0 0.65rem">Wild &amp; Geflügel</h2>
+      <p style="font-family:'Lato',sans-serif;font-size:0.82rem;color:#6b5645;line-height:1.8;margin:0 0 1.4rem">Ab <strong>Mittwoch, 11. November</strong> servieren wir saisonale Wildspezialitäten — Gänsekeule, Gänsebrust und Wildgulasch, solange der Vorrat reicht.</p>
+      <button onclick="document.getElementById('wildPopup').style.display='none'" style="background:none;border:1px solid rgba(184,146,74,0.4);color:#9a7a48;font-family:'Lato',sans-serif;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.75rem 1.5rem;cursor:pointer">Schließen</button>
+    </div>
+    <!-- Vollversion (ab 15.11) -->
+    <div id="wildFull" style="display:none;padding:0 2rem 2rem">
+      <div style="font-family:'Lato',sans-serif;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#b8924a;margin-bottom:0.4rem">Aktuell zur Saison</div>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;color:#3a2516;margin:0 0 0.65rem">Wild &amp; Geflügel</h2>
+      <p style="font-family:'Lato',sans-serif;font-size:0.82rem;color:#6b5645;line-height:1.8;margin:0 0 1.4rem">Gänsekeule, Gänsebrust &amp; Wildgulasch — nur solange der Vorrat reicht. Jetzt auf unserer Saisonkarte.</p>
+      <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap">
+        <a href="#speisekarte" onclick="switchTab('wild',document.querySelector('[onclick*=wild]'));document.getElementById('wildPopup').style.display='none'" class="btn-primary" style="text-decoration:none">Zur Karte</a>
+        <button onclick="document.getElementById('wildPopup').style.display='none'" style="background:none;border:1px solid rgba(184,146,74,0.4);color:#9a7a48;font-family:'Lato',sans-serif;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.75rem 1.5rem;cursor:pointer">Schließen</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var start = new Date(2026, 10, 11); // 11. November 2026
+    if (new Date() >= start) {
+      document.getElementById('wildTeaser').style.display = 'none';
+      document.getElementById('wildFull').style.display = 'block';
+    }
+    setTimeout(function(){ document.getElementById('wildPopup').style.display='flex'; }, 800);
+  });
+</script>
+
 <!-- ── NAVIGATION ── -->
 <nav id="navbar">
     <div style="display:flex;align-items:center;gap:0.6rem">
@@ -2443,6 +2489,7 @@
     <button class="menu-tab" onclick="switchTab('steaks', this)">Steaks</button>
     <button class="menu-tab" onclick="switchTab('fleisch', this)">Lamm · Hähnchen · Schwein</button>
     <button class="menu-tab" onclick="switchTab('grill', this)">Grill</button>
+    <button class="menu-tab seasonal" onclick="switchTab('wild', this)">Wild &amp; Geflügel</button>
     <button class="menu-tab" onclick="switchTab('fisch', this)">Frischer Fisch</button>
     <button class="menu-tab" onclick="switchTab('senioren', this)">Klein &amp; Fein</button>
     <button class="menu-tab" onclick="switchTab('dessert', this)">Desserts &amp; Kaffee</button>
@@ -2665,6 +2712,24 @@
         <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name" data-en="Mixed Grill Plate">Grillteller</div><div class="menu-item-desc" data-en="Ćevapčići, back steak, beef patty and Ražnjići, served with vegetable rice and fries">Cevapcici, Rückensteak, Hacksteak und Raznjici, dazu Djuwetschreis und Pommes</div></div><span class="menu-item-price">22,90 €</span></div>
         <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name" data-en="Calves' Liver">Kalbsleber</div><div class="menu-item-desc" data-en="with freshly roasted onions, served with French fries and vegetable rice">mit frischen gerösteten Zwiebeln, dazu Pommes Frites und Djuwetschreis</div></div><span class="menu-item-price">21,90 €</span></div>
         <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name" data-en="Lustiger Bosnjak">Lustiger Bosnjak</div><div class="menu-item-desc" data-en="Grain fed Beef · rump steak filled with ham and cheese, served with French fries and vegetable rice">Grain fed Beef · Rumpsteak gefüllt mit Schinken und Käse, dazu Pommes Frites und Djuwetschreis</div><div class="menu-sizes"><div class="menu-size-btn"><span class="menu-size-label">200g</span><span class="menu-size-price">28,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">300g</span><span class="menu-size-price">36,90 €</span></div><div class="menu-size-btn"><span class="menu-size-label">400g</span><span class="menu-size-price">42,90 €</span></div></div></div></div>
+      </div>
+    </div>
+    <div class="menu-note" data-en="A side salad is served with all these dishes.">Zu diesen Gerichten servieren wir einen Beilagensalat.</div>
+  </div>
+
+  <!-- WILD & GEFLÜGEL -->
+  <div class="menu-panel" id="panel-wild">
+    <div class="menu-category">
+      <div style="text-align:center;margin-bottom:2rem">
+        <span class="section-label" data-en="Currently in Season">Aktuell zur Saison</span>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;color:var(--cream);margin:0.3rem 0 0.5rem" data-en="Wild Game &amp; Poultry">Wild &amp; Geflügel</h3>
+        <p style="font-size:0.82rem;color:var(--text);font-style:italic" data-en="Seasonal specialities — only available for a limited time. Lovingly prepared with classic autumn accompaniments.">Saisonale Spezialitäten — nur für kurze Zeit erhältlich. Mit viel Liebe und klassischen Herbst-Beilagen zubereitet.</p>
+      </div>
+      <div class="menu-cat-divider"></div>
+      <div class="menu-items-grid" style="max-width:680px;margin:0 auto">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name" data-en="Goose Leg">Gänsekeule</div><div class="menu-item-desc" data-en="slow-roasted, with red cabbage and bread dumpling">langsam geschmort, mit Rotkohl und Semmelknödel</div></div><span class="menu-item-price">28,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name" data-en="Goose Breast">Gänsebrust</div><div class="menu-item-desc" data-en="slow-roasted, with red cabbage and bread dumpling">langsam geschmort, mit Rotkohl und Semmelknödel</div></div><span class="menu-item-price">26,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name" data-en="Wild Game Goulash">Wildgulasch</div><div class="menu-item-desc" data-en="in dark game sauce with cranberries, served with roasted potatoes or dumpling">in dunkler Wildsauce mit Preiselbeeren, dazu Rotkartoffeln oder Knödel</div></div><span class="menu-item-price">24,90 €</span></div>
       </div>
     </div>
     <div class="menu-note" data-en="A side salad is served with all these dishes.">Zu diesen Gerichten servieren wir einen Beilagensalat.</div>
@@ -3930,6 +3995,7 @@
     {s:'button[onclick*="steaks"]',      de:'Steaks',                en:'Steaks'},
     {s:'button[onclick*="fleisch"]',     de:'Lamm · Hähnchen · Schwein', en:'Lamb · Chicken · Pork'},
     {s:'button[onclick*="grill"]',       de:'Grill',                     en:'Grill Specialities'},
+    {s:'button[onclick*="wild"]',        de:'Wild &amp; Geflügel',       en:'Wild Game &amp; Poultry'},
     {s:'button[onclick*="fisch"]',       de:'Frischer Fisch',            en:'Fresh Fish'},
     {s:'button[onclick*="senioren"]',    de:'Klein &amp; Fein',          en:'Small &amp; Fine'},
     {s:'button[onclick*="dessert"]',     de:'Desserts &amp; Kaffee',     en:'Desserts &amp; Coffee'},
