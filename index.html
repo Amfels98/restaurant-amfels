@@ -2203,11 +2203,6 @@
       .lang-btn-mobile { display: none !important; }
       .lang-btn-desktop-li { display: flex !important; align-items: center; }
     }
-    /* 2. Standort: nur im mobilen Menü */
-    .nav-standort-li { display: none; }
-    @media(max-width:1023px) {
-      .nav-standort-li { display: block !important; }
-    }
 </style>
 </head>
 <body>
@@ -2293,7 +2288,6 @@
   <li><a href="#gutscheine">Gutscheine</a></li>
   <li><a href="#kontakt">Kontakt</a></li>
   <li><a href="#reservierung" class="nav-reserve">Reservieren</a></li>
-  <li class="nav-standort-li"><a href="https://www.restaurant-rustikana.com/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:0.4rem;">2. Standort <span style="font-size:0.7em;opacity:0.7">↗</span></a></li>
   <li class="lang-btn-desktop-li"><button id="langToggle" onclick="toggleLang()" title="Switch language">EN</button></li>
 </ul>
 
@@ -2427,6 +2421,9 @@
           }
         });
       </script>
+    </div>
+    <div style="text-align:center;margin-top:2rem;">
+      <a href="https://www.restaurant-rustikana.com/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:'Lato',sans-serif;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid rgba(184,146,74,0.4);padding:0.7rem 1.4rem;" data-en="2nd Location: Restaurant Rustikana ↗">2. Standort: Restaurant Rustikana ↗</a>
     </div>
     <p class="res-phone">
       <span data-en="Or call us directly: ">Oder direkt anrufen: </span><a href="tel:+4922639291371">02263 9291371</a>
