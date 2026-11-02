@@ -2203,6 +2203,29 @@
       .lang-btn-mobile { display: none !important; }
       .lang-btn-desktop-li { display: flex !important; align-items: center; }
     }
+    /* 2. Standort — mobile: zurück in den Fluss, eleganter Pfeil */
+    @media(max-width:1023px) {
+      .nav-standort-li { position: static !important; }
+      .nav-standort-link {
+        position: static !important;
+        transform: none !important;
+        left: auto !important;
+        top: auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0.5rem !important;
+      }
+      .nav-standort-link .standort-arrow {
+        display: inline-block;
+        width: 16px; height: 16px;
+        border-top: 1.5px solid #b8924a;
+        border-right: 1.5px solid #b8924a;
+        transform: rotate(45deg) translateY(2px);
+      }
+      /* Menühöhe: kompaktere Items damit alles passt */
+      .nav-links a { min-height: 44px !important; padding: 0.7rem 2rem !important; }
+    }
 </style>
 </head>
 <body>
@@ -2292,9 +2315,9 @@
   <li><a href="#events">Events</a></li>
   <li><a href="#gutscheine">Gutscheine</a></li>
   <li><a href="#kontakt">Kontakt</a></li>
-  <li style="position:relative;">
+  <li class="nav-standort-li" style="position:relative;">
     <a href="#reservierung" class="nav-reserve">Reservieren</a>
-    <a href="https://www.restaurant-rustikana.com/" target="_blank" rel="noopener" style="position:absolute;top:calc(100% + 1.1rem);left:50%;transform:translateX(-50%);font-family:'Lato',sans-serif;font-size:0.9rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#b8924a;text-decoration:none;white-space:nowrap;" data-en="2nd Location ↗">2. Standort ↗</a>
+    <a href="https://www.restaurant-rustikana.com/" target="_blank" rel="noopener" class="nav-standort-link" style="position:absolute;top:calc(100% + 1.1rem);left:50%;transform:translateX(-50%);font-family:'Lato',sans-serif;font-size:0.9rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#b8924a;text-decoration:none;white-space:nowrap;" data-en="2nd Location ↗">2. Standort <span class="standort-arrow"></span></a>
   </li>
   <li class="lang-btn-desktop-li"><button id="langToggle" onclick="toggleLang()" title="Switch language">EN</button></li>
 </ul>
