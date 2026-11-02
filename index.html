@@ -2206,6 +2206,15 @@
     /* 2. Standort — mobile: zurück in den Fluss, eleganter Pfeil */
     @media(max-width:1023px) {
       .nav-standort-li { position: static !important; }
+      .nav-standort-li .nav-reserve::after {
+        content: '' !important;
+        display: block !important;
+        height: 1px !important;
+        background: linear-gradient(90deg, transparent, rgba(184,146,74,0.3), transparent) !important;
+        margin: 0 2rem !important;
+        position: static !important;
+        width: auto !important;
+      }
       .nav-standort-link {
         position: static !important;
         transform: none !important;
