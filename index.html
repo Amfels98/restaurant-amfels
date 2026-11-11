@@ -2280,7 +2280,10 @@
       <h2 style="font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:300;font-style:italic;color:#3a2516;line-height:1.1;margin:0 0 0.5rem">Wild Saison</h2>
       <div style="width:36px;height:1px;background:#b8924a;margin:0 auto 1rem;"></div>
       <p style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:#6b5645;line-height:1.7;letter-spacing:0.02em;margin:0 0 1.5rem">Gänsekeule &nbsp;·&nbsp; Gänsebrust &nbsp;·&nbsp; Wildgulasch<br><span style="font-size:1.1rem;font-style:italic;opacity:0.75">Nur solange der Vorrat reicht.</span></p>
-      <button onclick="document.getElementById('wildPopup').style.display='none'" style="background:none;border:1px solid rgba(184,146,74,0.4);color:#9a7a48;font-family:'Cormorant Garamond',serif;font-size:1rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.75rem 2rem;cursor:pointer">Schließen</button>
+      <div style="display:flex;gap:0.8rem;flex-wrap:wrap;justify-content:center">
+        <button onclick="document.getElementById('wildPopup').style.display='none';document.querySelector('button[onclick*=\'wild\']').click();document.getElementById('speisekarte').scrollIntoView({behavior:'smooth'})" style="background:#b8924a;border:none;color:#fdfaf5;font-family:'Cormorant Garamond',serif;font-size:1rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.75rem 2rem;cursor:pointer">Zur Karte</button>
+        <button onclick="document.getElementById('wildPopup').style.display='none'" style="background:none;border:1px solid rgba(184,146,74,0.4);color:#9a7a48;font-family:'Cormorant Garamond',serif;font-size:1rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.75rem 2rem;cursor:pointer">Schließen</button>
+      </div>
     </div>
   </div>
 </div>
@@ -2505,6 +2508,7 @@
     <button class="menu-tab" onclick="switchTab('vorspeisen', this)">Vorspeisen &amp; Suppen</button>
     <button class="menu-tab" onclick="switchTab('steaks', this)">Steaks</button>
     <button class="menu-tab" onclick="switchTab('fleisch', this)">Lamm · Hähnchen · Schwein</button>
+    <button class="menu-tab seasonal" onclick="switchTab('wild', this)" data-en="Wild &amp; Goose">Wild Gerichte</button>
     <button class="menu-tab" onclick="switchTab('grill', this)">Grill</button>
     <button class="menu-tab" onclick="switchTab('fisch', this)">Frischer Fisch</button>
     <button class="menu-tab" onclick="switchTab('senioren', this)">Klein &amp; Fein</button>
@@ -2714,6 +2718,24 @@
       </div>
     </div>
     <div class="menu-note" data-en="A side salad is served with all these dishes.">Zu diesen Gerichten servieren wir einen Beilagensalat.</div>
+  </div>
+
+  <!-- WILD GERICHTE -->
+  <div class="menu-panel" id="panel-wild">
+    <div class="menu-category">
+      <div style="text-align:center;margin-bottom:1.8rem">
+        <span class="section-label" data-en="Currently in Season">Aktuell zur Saison</span>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;font-style:italic;color:var(--cream);margin:0.3rem 0 0.4rem" data-en="Wild &amp; Goose Season">Wild &amp; Gänsesaison</h3>
+        <p style="font-size:0.82rem;color:var(--text);font-style:italic" data-en="Only while stocks last. Served with a fresh side salad.">Nur solange der Vorrat reicht. Zu jedem Gericht servieren wir einen Beilagensalat.</p>
+        <a href="gaensekarte.pdf" target="_blank" style="display:inline-block;margin-top:1rem;font-family:'Lato',sans-serif;font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,146,74,0.5);padding:0.45rem 1.1rem;text-decoration:none;border-radius:2px;" data-en="↓ Download Menu Card">↓ Karte herunterladen</a>
+      </div>
+      <div class="menu-cat-divider"></div>
+      <div class="menu-items-grid" style="max-width:640px;margin:0 auto">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name" data-en="Roast Goose Leg">Gänsekeule</div><div class="menu-item-desc" data-en="port wine sauce · red cabbage · dumplings · pear with cranberries">Portweinsauce · Rotkohl · Klöße · Birne mit Preiselbeeren</div></div><span class="menu-item-price">33,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name" data-en="Roast Goose Breast">Gänsebrust</div><div class="menu-item-desc" data-en="port wine sauce · red cabbage · dumplings · pear with cranberries">Portweinsauce · Rotkohl · Klöße · Birne mit Preiselbeeren</div></div><span class="menu-item-price">33,90 €</span></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name" data-en="Venison Goulash">Rehgulasch</div><div class="menu-item-desc" data-en="fine game sauce · spätzle · cranberries">Feine Wildsauce · Spätzle · Preiselbeeren</div></div><span class="menu-item-price">24,90 €</span></div>
+      </div>
+    </div>
   </div>
 
   <!-- GRILL -->
@@ -3994,6 +4016,7 @@
     {s:'button[onclick*="vorspeisen"]',  de:'Vorspeisen &amp; Suppen',   en:'Starters &amp; Soups'},
     {s:'button[onclick*="steaks"]',      de:'Steaks',                en:'Steaks'},
     {s:'button[onclick*="fleisch"]',     de:'Lamm · Hähnchen · Schwein', en:'Lamb · Chicken · Pork'},
+    {s:'button[onclick*="wild"]',         de:'Wild Gerichte',              en:'Wild &amp; Goose'},
     {s:'button[onclick*="grill"]',       de:'Grill',                     en:'Grill Specialities'},
     {s:'button[onclick*="fisch"]',       de:'Frischer Fisch',            en:'Fresh Fish'},
     {s:'button[onclick*="senioren"]',    de:'Klein &amp; Fein',          en:'Small &amp; Fine'},

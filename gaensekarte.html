@@ -1,0 +1,92 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#faf6ee;--ink:#2b2018;--muted:#6b5645;--gold:#9a7a48;--head:#7a5c28;--warm:#c8a96e;}
+  *{margin:0;box-sizing:border-box;}
+  body{background:#ccc;font-family:'Lato',sans-serif;}
+  .page{width:148mm;height:210mm;overflow:hidden;background:var(--paper);margin:0 auto 10px;padding:10mm 12mm 9mm;position:relative;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  @media print{.page{margin:0;}}
+  /* Rahmen */
+  .page::before{content:"";position:absolute;inset:7mm;border:1px solid rgba(154,122,72,.35);border-radius:2px;pointer-events:none;}
+  /* Kopf */
+  .phead{text-align:center;margin-bottom:5mm;}
+  .phead .logo{width:28mm;height:11mm;background:url(images/logo-dunkel.svg) center/contain no-repeat;margin:0 auto 2.5mm;}
+  .phead .sub{font-family:'Lato',sans-serif;font-size:7px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-top:1mm;}
+  /* Saison-Tag */
+  .stag{display:flex;align-items:center;gap:10px;margin:3.5mm 0 2.5mm;}
+  .stag .l{flex:1;border-top:1px solid var(--warm);opacity:.7;}
+  .stag .t{font-family:'Lato',sans-serif;font-size:6.5px;font-weight:900;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);white-space:nowrap;}
+  /* Titel */
+  .titel{text-align:center;margin-bottom:6mm;}
+  .titel h1{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;font-style:italic;color:var(--ink);line-height:1.1;margin-bottom:1mm;}
+  .titel .sub2{font-family:'Lato',sans-serif;font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);}
+  /* Trennlinie */
+  .rule{display:flex;align-items:center;gap:8px;margin:3.5mm 0;}
+  .rule .l{flex:1;border-top:1px dashed rgba(154,122,72,.5);}
+  .rule .d{width:5px;height:5px;background:var(--gold);transform:rotate(45deg);flex-shrink:0;}
+  /* Gericht */
+  .gericht{margin-bottom:5.5mm;}
+  .gericht-head{display:flex;justify-content:space-between;align-items:baseline;gap:6px;margin-bottom:1.2mm;}
+  .gname{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:var(--ink);letter-spacing:.01em;}
+  .gpreis{font-family:'Lato',sans-serif;font-size:13px;font-weight:700;color:var(--head);white-space:nowrap;}
+  .gdesc{font-family:'Lato',sans-serif;font-size:9px;color:var(--muted);line-height:1.5;letter-spacing:.01em;}
+  /* Note */
+  .note{text-align:center;font-family:'Cormorant Garamond',serif;font-size:10px;font-style:italic;color:var(--muted);margin:4mm 0 3mm;line-height:1.5;}
+  /* Fußzeile */
+  .foot{position:absolute;left:12mm;right:12mm;bottom:9mm;text-align:center;font-size:7px;color:var(--muted);letter-spacing:.1em;}
+  .foot b{color:var(--gold);}
+</style>
+</head><body>
+<div class="page">
+  <div class="phead">
+    <div class="logo"></div>
+    <div class="sub">Restaurant Am Fels · Engelskirchen-Loope</div>
+  </div>
+
+  <div class="stag">
+    <span class="l"></span>
+    <span class="t">Aktuell zur Saison</span>
+    <span class="l"></span>
+  </div>
+
+  <div class="titel">
+    <h1>Frische Gänse &amp;<br>Wild</h1>
+    <div class="sub2">Nur solange der Vorrat reicht</div>
+  </div>
+
+  <div class="rule"><span class="l"></span><span class="d"></span><span class="l"></span></div>
+
+  <div class="gericht">
+    <div class="gericht-head">
+      <span class="gname">Gänsekeule</span>
+      <span class="gpreis">33,90 €</span>
+    </div>
+    <div class="gdesc">Portweinsauce · Rotkohl · Klöße · Birne mit Preiselbeeren</div>
+  </div>
+
+  <div class="gericht">
+    <div class="gericht-head">
+      <span class="gname">Gänsebrust</span>
+      <span class="gpreis">33,90 €</span>
+    </div>
+    <div class="gdesc">Portweinsauce · Rotkohl · Klöße · Birne mit Preiselbeeren</div>
+  </div>
+
+  <div class="rule"><span class="l"></span><span class="d"></span><span class="l"></span></div>
+
+  <div class="gericht">
+    <div class="gericht-head">
+      <span class="gname">Rehgulasch</span>
+      <span class="gpreis">24,90 €</span>
+    </div>
+    <div class="gdesc">Feine Wildsauce · Spätzle · Preiselbeeren</div>
+  </div>
+
+  <div class="note">Alle Gerichte werden mit einem Beilagensalat serviert.<br>Alle Preise in Euro inkl. gesetzl. MwSt.</div>
+
+  <div class="foot">
+    <b>RESTAURANT AM FELS</b> · Staadter Weg 2 · 51766 Engelskirchen-Loope · Tel. 02263&nbsp;9291371
+  </div>
+</div>
+</body></html>
