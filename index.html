@@ -2497,18 +2497,20 @@
       }
       @media (prefers-reduced-motion:reduce){.menu-pdf-link:hover{animation:none}}
     </style>
-    <p style="margin-top:1.4rem;text-align:center">
+    <p style="margin-top:1.4rem;text-align:center;display:flex;flex-wrap:wrap;gap:0.6rem;justify-content:center">
       <a class="menu-pdf-link menu-pdf-de" href="speisekarte-2026.pdf" target="_blank">Speisekarte als PDF ansehen ↗</a>
       <a class="menu-pdf-link menu-pdf-en" href="speisekarte-2026-en.pdf" target="_blank">View the full menu as a PDF ↗</a>
+      <a class="menu-pdf-link menu-pdf-de" href="wildgerichte.pdf" target="_blank">Wild &amp; Gänsekarte ↗</a>
+      <a class="menu-pdf-link menu-pdf-en" href="wildgerichte.pdf" target="_blank">Wild &amp; Goose Menu ↗</a>
     </p>
   </div>
 
   <div class="menu-tabs" role="tablist">
-    <button class="menu-tab active" onclick="switchTab('mittag', this)">Mittagskarte</button>
+    <button class="menu-tab seasonal active" onclick="switchTab('wild', this)" data-en="Wild &amp; Goose">Wild Gerichte</button>
+    <button class="menu-tab" onclick="switchTab('mittag', this)">Mittagskarte</button>
     <button class="menu-tab" onclick="switchTab('vorspeisen', this)">Vorspeisen &amp; Suppen</button>
     <button class="menu-tab" onclick="switchTab('steaks', this)">Steaks</button>
     <button class="menu-tab" onclick="switchTab('fleisch', this)">Lamm · Hähnchen · Schwein</button>
-    <button class="menu-tab seasonal" onclick="switchTab('wild', this)" data-en="Wild &amp; Goose">Wild Gerichte</button>
     <button class="menu-tab" onclick="switchTab('grill', this)">Grill</button>
     <button class="menu-tab" onclick="switchTab('fisch', this)">Frischer Fisch</button>
     <button class="menu-tab" onclick="switchTab('senioren', this)">Klein &amp; Fein</button>
@@ -2521,7 +2523,7 @@
   <!-- MITTAGSKARTE -->
   <!-- PFIFFERLINGE -->
 
-  <div class="menu-panel active" id="panel-mittag">
+  <div class="menu-panel" id="panel-mittag">
     <div class="menu-category">
       <h3 class="menu-cat-title" data-en="Lunch Menu">Mittagskarte</h3>
       <p style="text-align:center;color:var(--gold);font-size:0.95rem;margin:-0.5rem 0 1rem;letter-spacing:0.04em;" data-en="Saturday · 12:00 – 2:30 pm">Samstag · 12:00 – 14:30 Uhr</p>
@@ -2721,13 +2723,13 @@
   </div>
 
   <!-- WILD GERICHTE -->
-  <div class="menu-panel" id="panel-wild">
+  <div class="menu-panel active" id="panel-wild">
     <div class="menu-category">
       <div style="text-align:center;margin-bottom:1.8rem">
         <span class="section-label" data-en="Currently in Season">Aktuell zur Saison</span>
         <h3 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;font-style:italic;color:var(--cream);margin:0.3rem 0 0.4rem" data-en="Wild &amp; Goose Season">Wild &amp; Gänsesaison</h3>
         <p style="font-size:0.82rem;color:var(--text);font-style:italic" data-en="Only while stocks last. Served with a fresh side salad.">Nur solange der Vorrat reicht. Zu jedem Gericht servieren wir einen Beilagensalat.</p>
-        <a href="gaensekarte.pdf" target="_blank" style="display:inline-block;margin-top:1rem;font-family:'Lato',sans-serif;font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,146,74,0.5);padding:0.45rem 1.1rem;text-decoration:none;border-radius:2px;" data-en="↓ Download Menu Card">↓ Karte herunterladen</a>
+        <a href="wildgerichte.pdf" target="_blank" style="display:inline-block;margin-top:1rem;font-family:'Lato',sans-serif;font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,146,74,0.5);padding:0.45rem 1.1rem;text-decoration:none;border-radius:2px;" data-en="↓ Download Menu Card">↓ Karte herunterladen</a>
       </div>
       <div class="menu-cat-divider"></div>
       <div class="menu-items-grid" style="max-width:640px;margin:0 auto">
@@ -2736,6 +2738,7 @@
         <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name" data-en="Venison Goulash">Rehgulasch</div><div class="menu-item-desc" data-en="fine game sauce · spätzle · cranberries">Feine Wildsauce · Spätzle · Preiselbeeren</div></div><span class="menu-item-price">24,90 €</span></div>
       </div>
     </div>
+    <div class="menu-note" data-en="A side salad is served with all these dishes.">Zu diesen Gerichten servieren wir einen Beilagensalat.</div>
   </div>
 
   <!-- GRILL -->
